@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 常用边距-->
+    <dimen name="margin_extreme_big">35dp</dimen>
+    <dimen name="margin_very_big">25dp</dimen>
+    <dimen name="margin_normal">16dp</dimen>
+    <dimen name="margin_small">10dp</dimen>
+    <dimen name="margin_very_small">6dp</dimen>
+
+    <!-- 字体大小-->
+    <dimen name="text_size_micro">10sp</dimen>
+    <dimen name="text_size_very_small">11sp</dimen>
+    <dimen name="text_size_very_small_">12sp</dimen>
+    <dimen name="text_size_small_">13sp</dimen>
+    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="text_size_medium">18sp</dimen>
+    <dimen name="text_size_large">22sp</dimen>
+
+    <!--常用尺寸-->
+    <dimen name="bible_item_height">30dp</dimen>
+    <dimen name="chapter_item_height">30dp</dimen>
+    <dimen name="avatar_width_normal">60dp</dimen>
+    <dimen name="avatar_width_large">85dp</dimen>
+</resources>

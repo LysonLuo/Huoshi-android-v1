@@ -1,0 +1,74 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/common_white_bg</item>
+    </style>
+
+    <style name="ToolBarTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- toolbar背景色 -->
+        <item name="colorPrimary">@android:color/white</item>
+        <!-- 标题字体颜色 -->
+        <item name="android:textColorPrimary">@android:color/black</item>
+        <!-- 菜单(字体/按钮)颜色 -->
+        <item name="android:textColorSecondary">@android:color/black</item>
+        <item name="actionMenuTextColor">@android:color/black</item>
+    </style>
+
+    <!-- TabLayout字体样式-->
+    <style name="TabLayoutStyle">
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:gravity">center</item>
+        <item name="tabGravity">center</item>
+        <item name="tabIndicatorColor">@color/text_color_blue_light</item>
+        <item name="tabTextColor">@color/text_color_gray</item>
+        <item name="tabSelectedTextColor">@color/text_color_blue_light</item>
+        <item name="tabIndicatorHeight">2dp</item>
+    </style>
+
+    <style name="MainRadioStyle">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:button">@null</item>
+        <item name="android:textColor">@color/drawable_main_tab_text_color_selector</item>
+        <item name="android:textSize">@dimen/text_size_very_small</item>
+        <item name="android:drawablePadding">@dimen/margin_very_small</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">8dp</item>
+    </style>
+
+    <style name="GrayDividerStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/margin_normal</item>
+        <item name="android:background">@color/common_gray_dark_bg</item>
+    </style>
+
+    <style name="InfoItemStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:drawablePadding">@dimen/margin_very_big</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">@dimen/margin_normal</item>
+    </style>
+
+    <style name="UserInfoItemStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:padding">@dimen/margin_normal</item>
+    </style>
+
+    <style name="CustomPopup" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item><!--边框-->
+        <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
+        <item name="android:windowIsTranslucent">false</item><!--半透明-->
+        <item name="android:windowNoTitle">true</item><!--无标题-->
+        <item name="android:windowBackground">@android:color/transparent</item><!--背景透明-->
+    </style>
+
+</resources>

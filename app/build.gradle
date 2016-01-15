@@ -1,0 +1,53 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "im.huoshi"
+        minSdkVersion 14
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    signingConfigs {
+        release {
+            storeFile file(project.("Huoshi.release.signing"))
+            println(storeFile)
+            storePassword project.property("Huoshi.release.signing.storePassword")
+            println(storePassword)
+            keyAlias project.property("Huoshi.release.signing.keyAlias")
+            println(keyAlias)
+            keyPassword project.property("Huoshi.release.signing.keyPassword")
+            println(keyPassword)
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false//混淆代码
+            debuggable true//开发日志
+            shrinkResources true//优化资源
+            versionNameSuffix "1.0." + new Date().format('MMdd')
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "API_URI", '\"http://119.29.108.48/bible/frontend/web/index.php/\"'
+            buildConfigField "String", "WEB_URI", '\"http://www.baidu.com/\"'
+            buildConfigField "String", "APP_KEY", '\"XXX\"'
+            buildConfigField "String", "APP_SECRET", '\"XXX\"'
+            buildConfigField "String", "APP_PRIVATE_KEY",'\"huoshi2016!\"'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:design:23.1.1'
+    compile 'com.android.support:support-v4:23.1.1'
+    compile 'com.android.support:cardview-v7:23.1.1'
+    compile 'com.facebook.fresco:fresco:0.8.0+'
+    compile 'com.loopj.android:android-async-http:1.4.9'
+    compile 'com.j256.ormlite:ormlite-core:4.48'
+    compile 'com.j256.ormlite:ormlite-android:4.48'
+}

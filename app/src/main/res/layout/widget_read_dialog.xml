@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="match_parent"
+    android:background="@color/common_white_bg"
+    android:paddingBottom="@dimen/margin_extreme_big"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/margin_very_big"
+        android:background="@drawable/drawable_blue_circle_solid"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            android:text="连续阅读天数"
+            android:textColor="@color/text_color_white"
+            android:textSize="@dimen/text_size_small" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/margin_small"
+            android:text="25"
+            android:textColor="@color/text_color_white"
+            android:textSize="40sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="@dimen/margin_very_big"
+        android:layout_marginRight="@dimen/margin_very_big"
+        android:layout_marginTop="@dimen/margin_very_big"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/text_last_read_time"
+            android:textColor="@color/text_color_chapter"
+            android:textSize="@dimen/text_size_small" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical|right"
+            android:text="60分钟"
+            android:textColor="@color/text_color_chapter"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="@dimen/margin_very_big"
+        android:layout_marginRight="@dimen/margin_very_big"
+        android:layout_marginTop="@dimen/margin_very_big"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/text_total_read_time"
+            android:textColor="@color/text_color_chapter"
+            android:textSize="@dimen/text_size_small" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical|right"
+            android:text="60分钟"
+            android:textColor="@color/text_color_chapter"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_extreme_big"
+        android:gravity="center_horizontal"
+        android:text="您真是一个虔诚的教徒，希望您再接再厉"
+        android:textColor="@color/text_color_black_light"
+        android:textSize="@dimen/text_size_small" />
+
+</LinearLayout>

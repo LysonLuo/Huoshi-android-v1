@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View style="@style/GrayDividerStyle" />
+
+    <RelativeLayout
+        android:id="@+id/layout_user_info"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:padding="@dimen/margin_normal">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/imageview_user"
+            android:layout_width="@dimen/avatar_width_normal"
+            android:layout_height="@dimen/avatar_width_normal"
+            fresco:backgroundImage="@android:color/black"
+            fresco:placeholderImage="@mipmap/icon_logo"
+            fresco:roundAsCircle="true" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_normal"
+            android:layout_toRightOf="@id/imageview_user"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="露西安，韦鲁斯" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="阅读时间：100分钟" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/margin_normal"
+            android:src="@mipmap/icon_forward" />
+    </RelativeLayout>
+
+    <View style="@style/GrayDividerStyle" />
+
+    <TextView
+        android:id="@+id/textview_my_prayer"
+        style="@style/InfoItemStyle"
+        android:drawableLeft="@mipmap/icon_my_prayer"
+        android:text="@string/text_my_prayer" />
+
+    <View style="@style/GrayDividerStyle" />
+
+    <TextView
+        style="@style/InfoItemStyle"
+        android:drawableLeft="@mipmap/icon_my_invitation"
+        android:text="@string/text_my_invitation" />
+
+    <View style="@style/GrayDividerStyle" />
+
+    <TextView
+        style="@style/InfoItemStyle"
+        android:drawableLeft="@mipmap/icon_feedback"
+        android:text="@string/text_feedback" />
+
+    <View style="@style/GrayDividerStyle" />
+
+    <TextView
+        style="@style/InfoItemStyle"
+        android:drawableLeft="@mipmap/icon_upgrade"
+        android:text="@string/text_upgrade" />
+
+    <View style="@style/GrayDividerStyle" />
+
+    <TextView
+        android:id="@+id/textview_logout"
+        style="@style/InfoItemStyle"
+        android:drawableLeft="@mipmap/icon_logout"
+        android:text="@string/text_logout" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/common_gray_dark_bg" />
+</LinearLayout>

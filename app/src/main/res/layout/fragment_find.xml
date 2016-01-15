@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/imageview_user"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_centerVertical="true"
+        fresco:backgroundImage="@android:color/black"
+        fresco:placeholderImage="@mipmap/icon_logo" />
+
+    <View style="@style/GrayDividerStyle" />
+
+
+    <LinearLayout
+        android:id="@+id/layout_interces"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/InfoItemStyle"
+            android:drawableLeft="@mipmap/icon_suffrage"
+            android:text="@string/text_suffrage" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/margin_normal"
+            android:layout_marginRight="@dimen/margin_normal"
+            android:background="@color/conmon_gray_line_divider" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/InfoItemStyle"
+            android:drawableLeft="@mipmap/icon_hymn"
+            android:text="@string/text_hymn" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/margin_normal"
+            android:layout_marginRight="@dimen/margin_normal"
+            android:background="@color/conmon_gray_line_divider" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/InfoItemStyle"
+            android:drawableLeft="@mipmap/icon_game"
+            android:text="@string/text_game" />
+
+    </LinearLayout>
+
+    <View style="@style/GrayDividerStyle" />
+
+    <LinearLayout
+        android:id="@+id/layout_five_two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/InfoItemStyle"
+            android:drawableLeft="@mipmap/icon_five_two"
+            android:text="@string/text_five_two" />
+
+    </LinearLayout>
+
+    <View style="@style/GrayDividerStyle" />
+
+    <LinearLayout
+        android:id="@+id/layout_share"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/InfoItemStyle"
+            android:drawableLeft="@mipmap/icon_share"
+            android:text="@string/text_share_huoshi" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/common_gray_dark_bg" />
+
+</LinearLayout>

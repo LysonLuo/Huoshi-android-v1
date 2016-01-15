@@ -1,0 +1,97 @@
+package im.huoshi.ui.bible;
+
+import android.content.Context;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import im.huoshi.R;
+import im.huoshi.common.OnRecClickListener;
+import im.huoshi.model.Section;
+import im.huoshi.utils.ViewInject;
+import im.huoshi.utils.ViewUtils;
+
+/**
+ * Created by Lyson on 16/1/1.
+ */
+public class SectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private static final int ITEM_VIEW_TYPE_HEADER = 1;
+    private static final int ITEM_VIEW_TYPE_NORMAL = 2;
+    private Context mContext;
+    private OnRecClickListener mItemClickListener;
+    private List<Section> mSectionList = new ArrayList<>();
+
+    public SectionAdapter(Context context, List<Section> sectionList) {
+        this.mContext = context;
+        this.mSectionList = sectionList;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (position == 0) {
+            return ITEM_VIEW_TYPE_HEADER;
+        }
+        return ITEM_VIEW_TYPE_NORMAL;
+    }
+
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View contentView;
+        if (viewType == ITEM_VIEW_TYPE_HEADER) {
+            contentView = LayoutInflater.from(mContext).inflate(R.layout.widget_chapter_header, parent, false);
+        }
+        contentView = LayoutInflater.from(mContext).inflate(R.layout.widget_chapter_details_item, parent, false);
+        ChapterDetailHolder holder = new ChapterDetailHolder(contentView);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mItemClickListener != null) {
+                    mItemClickListener.OnClick("");
+                }
+            }
+        });
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                return false;
+            }
+        });
+        return holder;
+    }
+
+    public void setItemClickListener(OnRecClickListener clickListener) {
+        this.mItemClickListener = clickListener;
+    }
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if (position == 0) {
+            return;
+        }
+        ChapterDetailHolder detailHolder = (ChapterDetailHolder) holder;
+        detailHolder.mIndexTextView.setText(mSectionList.get(position).getSectionNo() + "");
+        detailHolder.mContentTextView.setText(mSectionList.get(position).getNoteText());
+    }
+
+    @Override
+    public int getItemCount() {
+        return mSectionList.size();
+    }
+
+    class ChapterDetailHolder extends RecyclerView.ViewHolder {
+        @ViewInject(R.id.textview_index)
+        private TextView mIndexTextView;
+        @ViewInject(R.id.textview_content)
+        private TextView mContentTextView;
+
+        public ChapterDetailHolder(View itemView) {
+            super(itemView);
+            ViewUtils.inject(this, itemView);
+        }
+    }
+}

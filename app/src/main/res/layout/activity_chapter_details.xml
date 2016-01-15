@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager_section"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+    <TextView
+        android:id="@+id/textview_annotation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:text="[注释]我就是那一串注释啊啊啊啊啊"
+        android:background="@color/windowBackground"
+        android:padding="@dimen/margin_normal"
+        android:visibility="gone"/>
+
+</FrameLayout>

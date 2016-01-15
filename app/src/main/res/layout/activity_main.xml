@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/layout_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="55dp" />
+
+    <LinearLayout
+        android:id="@+id/layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/common_white_bg"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/conmon_gray_line_divider" />
+
+        <RadioGroup
+            android:id="@+id/rg_main"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_marginRight="@dimen/margin_small"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radio_huoshi"
+                style="@style/MainRadioStyle"
+                android:checked="true"
+                android:drawableTop="@drawable/drawable_huoshi_icon_selector"
+                android:text="@string/main_tab_huoshi" />
+
+            <RadioButton
+                android:id="@+id/radio_bible"
+                style="@style/MainRadioStyle"
+                android:drawableTop="@drawable/drawable_bible_icon_selector"
+                android:text="@string/main_tab_bible" />
+
+            <RadioButton
+                android:id="@+id/radio_find"
+                style="@style/MainRadioStyle"
+                android:drawableTop="@drawable/drawable_find_icon_selector"
+                android:text="@string/main_tab_find" />
+
+            <RadioButton
+                android:id="@+id/radio_me"
+                style="@style/MainRadioStyle"
+                android:drawableTop="@drawable/drawable_me_icon_selector"
+                android:text="@string/main_tab_me" />
+        </RadioGroup>
+    </LinearLayout>
+</FrameLayout>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/drawable_blue_circle_solid" android:state_checked="true" />
+    <item android:drawable="@drawable/drawable_white_circle_gray_border" />
+</selector>

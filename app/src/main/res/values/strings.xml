@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">活石</string>
+
+    <!--公用字符串-->
+    <string name="common_loading_text">正在加载</string>
+    <string name="common_retry_text">加载失败，点击重试</string>
+    <string name="common_nodata">暂无数据</string>
+
+    <!--主页面-->
+    <string name="main_tab_huoshi">活石</string>
+    <string name="main_tab_bible">圣经</string>
+    <string name="main_tab_find">发现</string>
+    <string name="main_tab_me">我</string>
+    <string name="text_suffrage">代祷</string>
+    <string name="text_hymn">赞美诗</string>
+    <string name="text_game">小游戏</string>
+    <string name="text_five_two">五饼二鱼</string>
+    <string name="text_share_huoshi">分享活石</string>
+    <string name="text_my_prayer">我的祷告箱</string>
+    <string name="text_my_invitation">我的邀请</string>
+    <string name="text_feedback">意见反馈</string>
+    <string name="text_upgrade">检查更新</string>
+    <string name="text_logout">退出登录</string>
+    <string name="text_join_suffrage">加入代祷</string>
+    <string name="text_share">分享</string>
+    <string name="text_avatar">头像</string>
+    <string name="text_nickname">昵称</string>
+    <string name="text_gender">性别</string>
+    <string name="text_district">地区</string>
+    <string name="text_birthday">生日</string>
+    <string name="text_time">信主时间</string>
+    <string name="text_phone_number">手机号：</string>
+    <string name="text_password">登录密码</string>
+    <string name="text_login">登录账号</string>
+    <string name="text_forget_pwd">忘记密码？</string>
+    <string name="text_verification_code">验证码：</string>
+    <string name="text_set_pwd">设置密码</string>
+    <string name="text_next">下一步</string>
+    <string name="text_account_to_login">已有账号，去登录</string>
+    <string name="text_send_code">发送验证码</string>
+    <string name="text_finish_register">完成注册</string>
+    <string name="text_predit_time">预计更新祷告时间</string>
+    <string name="text_remind_suffrage">（及时更新代祷事项进展会让兄弟姐妹们更有信心）</string>
+    <string name="text_phone_hint">您的手机号，我们会严格保密</string>
+    <string name="text_last_read_time">上次阅读时间：</string>
+    <string name="text_total_read_time">累计阅读时长：</string>
+    <string name="text_christ_life">基督生活 随身常在</string>
+    <string name="text_continue_read_days">连续读经天数</string>
+    <string name="text_continue_suffrage_days">连续代祷天数</string>
+</resources>

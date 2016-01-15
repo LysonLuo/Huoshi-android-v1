@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheckBox xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/checkbox_chapter"
+    android:layout_width="@dimen/chapter_item_height"
+    android:layout_height="@dimen/chapter_item_height"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginTop="@dimen/margin_small"
+    android:background="@drawable/drawable_bible_chapter_selector"
+    android:button="@null"
+    android:gravity="center"
+    android:text="1"
+    android:textColor="@color/text_color_chapter"
+    android:textSize="@dimen/text_size_small_">
+
+</CheckBox>

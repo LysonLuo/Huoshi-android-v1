@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:background="@mipmap/img_join_bg"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="80dp"
+        android:src="@mipmap/icon_bless" />
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="80dp"
+                android:text="这是你第十次祈祷" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:text="请为兄弟姐妹精心6秒，然后开始代祷\n神将赐福于你" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/margin_small"
+                android:text="6"
+                android:textColor="#25aeff"
+                android:textSize="50sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:src="@mipmap/icon_join_suffrage" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:paddingLeft="@dimen/margin_very_big"
+                android:paddingRight="@dimen/margin_very_big"
+                android:text="惟求耶和华我的神，垂顾仆人的祷告祈求，俯听仆人在你面前的祈祷呼吁" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_very_big"
+                android:layout_marginRight="@dimen/margin_very_big"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:background="#45dffe"
+                android:gravity="center_horizontal"
+                android:paddingBottom="@dimen/margin_small"
+                android:paddingTop="@dimen/margin_small"
+                android:text="我有感动，想说点什么"
+                android:textColor="@color/text_color_white" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_very_big"
+                android:layout_marginRight="@dimen/margin_very_big"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:background="#45dffe"
+                android:gravity="center_horizontal"
+                android:paddingBottom="@dimen/margin_small"
+                android:paddingTop="@dimen/margin_small"
+                android:text="让更多人为其代祷"
+                android:textColor="@color/text_color_white" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_very_big"
+                android:layout_marginRight="@dimen/margin_very_big"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:background="#45dffe"
+                android:gravity="center_horizontal"
+                android:paddingBottom="@dimen/margin_small"
+                android:paddingTop="@dimen/margin_small"
+                android:text="再看看其他的"
+                android:textColor="@color/text_color_white" />
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

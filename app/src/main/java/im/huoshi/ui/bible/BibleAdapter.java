@@ -1,0 +1,165 @@
+package im.huoshi.ui.bible;
+
+import android.animation.ObjectAnimator;
+import android.content.Context;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import im.huoshi.R;
+import im.huoshi.database.dao.ChapterDao;
+import im.huoshi.model.Book;
+import im.huoshi.model.Chapter;
+import im.huoshi.utils.DeviceUtils;
+import im.huoshi.utils.ViewInject;
+import im.huoshi.utils.ViewUtils;
+import im.huoshi.utils.ViewWrapperUtils;
+
+/**
+ * Created by Lyson on 15/12/24.
+ */
+public class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.BibleViewHolder> {
+    private Context mContext;
+    private ViewWrapperUtils mViewWrap;
+    private ViewWrapperUtils mDividerWrap;
+    private int mSelectedIndex = -1;
+    private int mSelectedColumnIndex = -1;
+    private CheckBox mSelectCheckBox;
+    private List<Book> mBookList = new ArrayList<>();
+    private ChapterDao mChapterDao;
+
+    public BibleAdapter(Context mContext, List<Book> bookList) {
+        this.mContext = mContext;
+        this.mBookList = bookList;
+        mChapterDao = new ChapterDao();
+    }
+
+    @Override
+    public BibleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View contentView = LayoutInflater.from(mContext).inflate(R.layout.widget_bible_item, parent, false);
+        BibleViewHolder holder = new BibleViewHolder(contentView);
+        return holder;
+    }
+
+    @Override
+    public void onBindViewHolder(final BibleViewHolder holder, final int position) {
+        final int basePosition = 3 * position;
+        holder.mFirstCheckBox.setText(mBookList.get(basePosition).getBookName());
+        holder.mSecondCheckBox.setText(mBookList.get(basePosition + 1).getBookName());
+        holder.mThirdCheckBox.setText(mBookList.get(basePosition + 2).getBookName());
+        holder.mFirstCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                hideOrShowChapter(holder, isChecked, 0, position, basePosition, holder.mFirstCheckBox);
+            }
+        });
+        holder.mSecondCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                hideOrShowChapter(holder, isChecked, 1, position, basePosition, holder.mSecondCheckBox);
+            }
+        });
+        holder.mThirdCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                hideOrShowChapter(holder, isChecked, 2, position, basePosition, holder.mThirdCheckBox);
+            }
+        });
+    }
+
+    private void hideOrShowChapter(final BibleViewHolder holder, boolean isChecked, int index, int position, int basePostion, CheckBox selectCheckBox) {
+        if ((mSelectedIndex != -1 && mSelectedIndex != position) || (mSelectedColumnIndex != -1 && mSelectedColumnIndex != index)) {
+            switch (index) {
+                case 0:
+                    holder.mFirstCheckBox.setChecked(false);
+                    break;
+                case 1:
+                    holder.mSecondCheckBox.setChecked(false);
+                    break;
+                case 2:
+                    holder.mThirdCheckBox.setChecked(false);
+                    break;
+            }
+            if (mSelectCheckBox != null) {
+                mSelectCheckBox.setChecked(false);
+            }
+            mSelectedIndex = -1;
+            mSelectedColumnIndex = -1;
+            ObjectAnimator.ofInt(mViewWrap, "height", DeviceUtils.dip2px(mContext, 130), 0).setDuration(500).start();
+            ObjectAnimator.ofInt(mViewWrap, "width", DeviceUtils.dip2px(mContext, 330), 0).setDuration(500).start();
+            return;
+        }
+        if (isChecked) {
+            mSelectedIndex = position;
+            mSelectCheckBox = selectCheckBox;
+            mSelectedColumnIndex = index;
+            holder.mLayoutManager = new GridLayoutManager(mContext, 8);
+            holder.mRecyclerView.setLayoutManager(holder.mLayoutManager);
+            holder.mChapterList = loadChapter(basePostion + index);
+            holder.mAdapter = new BibleChapterAdapter(mContext, holder.mChapterList);
+            holder.mRecyclerView.setAdapter(holder.mAdapter);
+            holder.mAdapter.setParentAdapter(this);
+            mViewWrap = new ViewWrapperUtils(holder.mRecyclerView);
+            mDividerWrap = new ViewWrapperUtils(holder.mDividerView);
+            ObjectAnimator.ofInt(mViewWrap, "height", 0, DeviceUtils.dip2px(mContext, 130)).setDuration(500).start();
+            ObjectAnimator.ofInt(mViewWrap, "width", 0, DeviceUtils.dip2px(mContext, 330)).setDuration(500).start();
+            ObjectAnimator.ofInt(mDividerWrap, "height", 0, DeviceUtils.dip2px(mContext, 10)).setDuration(200).start();
+        } else {
+            hideLayout();
+        }
+    }
+
+    private List<Chapter> loadChapter(int index) {
+        return mChapterDao.getList(mBookList.get(index).getBookNo());
+    }
+
+    public void hideLayout() {
+        if (mSelectCheckBox != null) {
+            mSelectCheckBox.setChecked(false);
+        }
+        mSelectedIndex = -1;
+        mSelectedColumnIndex = -1;
+        ObjectAnimator.ofInt(mViewWrap, "height", DeviceUtils.dip2px(mContext, 130), 0).setDuration(500).start();
+        ObjectAnimator.ofInt(mViewWrap, "width", DeviceUtils.dip2px(mContext, 330), 0).setDuration(500).start();
+        ObjectAnimator.ofInt(mDividerWrap, "height", DeviceUtils.dip2px(mContext, 10), 0).setDuration(500).start();
+    }
+
+
+    @Override
+    public int getItemCount() {
+        return (int) Math.ceil(mBookList.size() / 3.0);
+    }
+
+    public void resetData(List<Book> bookList) {
+        this.mBookList = bookList;
+        notifyDataSetChanged();
+    }
+
+    class BibleViewHolder extends RecyclerView.ViewHolder {
+        @ViewInject(R.id.checkbox_book_first)
+        private CheckBox mFirstCheckBox;
+        @ViewInject(R.id.checkbox_book_second)
+        private CheckBox mSecondCheckBox;
+        @ViewInject(R.id.checkbox_book_third)
+        private CheckBox mThirdCheckBox;
+        @ViewInject(R.id.view_divider)
+        private View mDividerView;
+        @ViewInject(R.id.recyclerview)
+        private RecyclerView mRecyclerView;
+        private GridLayoutManager mLayoutManager;
+        private BibleChapterAdapter mAdapter;
+        private List<Chapter> mChapterList = new ArrayList<>();
+
+        public BibleViewHolder(View itemView) {
+            super(itemView);
+            ViewUtils.inject(this, itemView);
+        }
+    }
+}
