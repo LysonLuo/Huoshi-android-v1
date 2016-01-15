@@ -1,20 +1,22 @@
 package im.huoshi.database.dao;
 
 import android.database.SQLException;
+
 import com.j256.ormlite.dao.Dao;
-import im.huoshi.database.helper.BibleDBHelper;
-import im.huoshi.model.Section;
+import com.j256.ormlite.stmt.PreparedQuery;
+import com.j256.ormlite.stmt.QueryBuilder;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import im.huoshi.database.helper.BibleDBHelper;
+import im.huoshi.model.Section;
 
 /**
  * Created by Lyson on 16/1/11.
  */
 public class SectionDao {
-    private Dao<Section, Integer> mSectionDao;
+    private Dao<Section, String> mSectionDao;
     private BibleDBHelper mHelper;
 
     public SectionDao() {
@@ -34,10 +36,11 @@ public class SectionDao {
     public List<Section> getList(int bookId, int chapterNo) {
         List<Section> sectionList = new ArrayList<>();
         try {
-            Map<String, Object> params = new HashMap<>();
-            params.put("bookId", bookId);
-            params.put("chapterNo", chapterNo);
-            sectionList = mSectionDao.queryForFieldValues(params);
+            QueryBuilder<Section, String> queryBuilder = mSectionDao.queryBuilder();
+            queryBuilder.orderBy("sectionIndex", true);
+            queryBuilder.where().eq("bookId", bookId).and().eq("chapterNo", chapterNo);
+            PreparedQuery<Section> preparedQuery = queryBuilder.prepare();
+            sectionList = mSectionDao.query(preparedQuery);
         } catch (java.sql.SQLException e) {
             e.printStackTrace();
         }

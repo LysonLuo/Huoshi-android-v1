@@ -108,11 +108,12 @@ public class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.BibleViewHol
             holder.mAdapter.setParentAdapter(this);
             mViewWrap = new ViewWrapperUtils(holder.mRecyclerView);
             mDividerWrap = new ViewWrapperUtils(holder.mDividerView);
-            ObjectAnimator.ofInt(mViewWrap, "height", 0, DeviceUtils.dip2px(mContext, 130)).setDuration(500).start();
+            holder.lineCount = (int) Math.ceil(holder.mChapterList.size() / 8.0);
+            ObjectAnimator.ofInt(mViewWrap, "height", 0, DeviceUtils.dip2px(mContext, holder.lineCount * (40) + 10)).setDuration(500).start();
             ObjectAnimator.ofInt(mViewWrap, "width", 0, DeviceUtils.dip2px(mContext, 330)).setDuration(500).start();
             ObjectAnimator.ofInt(mDividerWrap, "height", 0, DeviceUtils.dip2px(mContext, 10)).setDuration(200).start();
         } else {
-            hideLayout();
+            hideLayout(holder);
         }
     }
 
@@ -120,13 +121,13 @@ public class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.BibleViewHol
         return mChapterDao.getList(mBookList.get(index).getBookNo());
     }
 
-    public void hideLayout() {
+    public void hideLayout(BibleViewHolder holder) {
         if (mSelectCheckBox != null) {
             mSelectCheckBox.setChecked(false);
         }
         mSelectedIndex = -1;
         mSelectedColumnIndex = -1;
-        ObjectAnimator.ofInt(mViewWrap, "height", DeviceUtils.dip2px(mContext, 130), 0).setDuration(500).start();
+        ObjectAnimator.ofInt(mViewWrap, "height", DeviceUtils.dip2px(mContext, holder == null ? 100 : holder.lineCount * (40) + 10), 0).setDuration(500).start();
         ObjectAnimator.ofInt(mViewWrap, "width", DeviceUtils.dip2px(mContext, 330), 0).setDuration(500).start();
         ObjectAnimator.ofInt(mDividerWrap, "height", DeviceUtils.dip2px(mContext, 10), 0).setDuration(500).start();
     }
@@ -155,6 +156,7 @@ public class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.BibleViewHol
         private RecyclerView mRecyclerView;
         private GridLayoutManager mLayoutManager;
         private BibleChapterAdapter mAdapter;
+        private int lineCount;
         private List<Chapter> mChapterList = new ArrayList<>();
 
         public BibleViewHolder(View itemView) {

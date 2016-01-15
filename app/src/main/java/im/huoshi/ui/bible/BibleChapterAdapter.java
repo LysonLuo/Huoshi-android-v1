@@ -8,14 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import im.huoshi.R;
 import im.huoshi.model.Chapter;
 import im.huoshi.ui.main.MainActivity;
 import im.huoshi.utils.ViewInject;
 import im.huoshi.utils.ViewUtils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Lyson on 15/12/29.
@@ -34,24 +35,24 @@ public class BibleChapterAdapter extends RecyclerView.Adapter<BibleChapterAdapte
     public ChapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View contentView = LayoutInflater.from(mContext).inflate(R.layout.widget_chapter_item, parent, false);
         ChapterViewHolder holder = new ChapterViewHolder(contentView);
-        holder.mChapterCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                ChapterDetailsActivity.launch((MainActivity) mContext, mChapterList.toArray(new Chapter[mChapterList.size()]));
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mBibleAdapter.hideLayout();
-                    }
-                }, 500);
-            }
-        });
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(ChapterViewHolder holder, int position) {
+    public void onBindViewHolder(ChapterViewHolder holder, final int position) {
         holder.mChapterCheckBox.setText(mChapterList.get(position).getChapterNo() + "");
+        holder.mChapterCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                ChapterDetailsActivity.launch((MainActivity) mContext, mChapterList.toArray(new Chapter[mChapterList.size()]), position);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mBibleAdapter.hideLayout(null);
+                    }
+                }, 500);
+            }
+        });
     }
 
     @Override

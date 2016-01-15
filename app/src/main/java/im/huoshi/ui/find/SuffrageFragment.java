@@ -50,7 +50,7 @@ public class SuffrageFragment extends BaseFragment {
         mAdapter.setmRecClickListener(new OnRecClickListener<List<String>>() {
             @Override
             public void OnClick(List<String> strings) {
-                SuffrageDetailsActivity.launch((MyPrayerActivity) getActivity());
+                SuffrageDetailsActivity.launch((SuffrageActivity) getActivity());
             }
         });
     }

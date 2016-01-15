@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
@@ -25,9 +27,11 @@ public class ChapterDetailsActivity extends BaseActivity {
     private TextView mAnnotationTextView;
     private Animation mAnimationUp;
     private Animation mAnimationDown;
-    private boolean mIsChecked = false;
     private Chapter[] mChapters;
+    private int mCurrentPosition;
     private ChapterPagerAdapter mChapterAdapter;
+    private boolean mIsShow = false;
+    private SectionFragment mFragment;
 
 
     @Override
@@ -41,58 +45,67 @@ public class ChapterDetailsActivity extends BaseActivity {
 
     private void setupViews() {
         mChapters = (Chapter[]) getIntent().getSerializableExtra("chapters");
+        mCurrentPosition = getIntent().getIntExtra("position", 0);
         mAnimationUp = AnimationUtils.loadAnimation(this, R.anim.anim_translate_up);
         mAnimationDown = AnimationUtils.loadAnimation(this, R.anim.anim_translate_down);
         mChapterAdapter = new ChapterPagerAdapter(getSupportFragmentManager(), mChapters);
         mViewPager.setAdapter(mChapterAdapter);
+        mViewPager.setCurrentItem(mCurrentPosition);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-//        mLayoutManager = new LinearLayoutManager(this);
-//        mRecyclerView.setLayoutManager(mLayoutManager);
-//        mAdapter = new SectionAdapter(this);
-//        mRecyclerView.setAdapter(mAdapter);
-//        mAdapter.setItemClickListener(new OnRecClickListener() {
-//            @Override
-//            public void OnClick(Object o) {
-//                if (!mIsChecked) {
-//                    mIsChecked = true;
-//                    showLayout();
-//                } else {
-//                    mIsChecked = false;
-//                    hideLayout();
-//                }
-//            }
-//        });
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (mIsShow) {
+                    mFragment.setIsChecked(false);
+                    hideLayout();
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
-//    private void hideLayout() {
-//        mAnimationDown.setAnimationListener(new Animation.AnimationListener() {
-//            @Override
-//            public void onAnimationStart(Animation animation) {
-//
-//            }
-//
-//            @Override
-//            public void onAnimationEnd(Animation animation) {
-//                mAnnotationTextView.setVisibility(View.GONE);
-//            }
-//
-//            @Override
-//            public void onAnimationRepeat(Animation animation) {
-//
-//            }
-//        });
-//        mAnnotationTextView.startAnimation(mAnimationDown);
-//    }
+    public void hideLayout() {
+        mIsShow = false;
+        mAnimationDown.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
 
-//    private void showLayout() {
-//        mAnimationUp.setAnimationListener(null);
-//        mAnnotationTextView.setVisibility(View.VISIBLE);
-//        mAnnotationTextView.startAnimation(mAnimationUp);
-//    }
+            }
 
-    public static void launch(MainActivity activity, Chapter[] chapters) {
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                mAnnotationTextView.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        mAnnotationTextView.startAnimation(mAnimationDown);
+    }
+
+    public void showLayout(String noteText, SectionFragment sectionFragment) {
+        mIsShow = true;
+        mFragment = sectionFragment;
+        mAnimationUp.setAnimationListener(null);
+        mAnnotationTextView.setText(TextUtils.isEmpty(noteText) ? "暂无注释" : noteText);
+        mAnnotationTextView.setVisibility(View.VISIBLE);
+        mAnnotationTextView.startAnimation(mAnimationUp);
+    }
+
+    public static void launch(MainActivity activity, Chapter[] chapters, int position) {
         Intent intent = new Intent(activity, ChapterDetailsActivity.class);
         intent.putExtra("chapters", chapters);
+        intent.putExtra("position", position);
         activity.startActivity(intent);
     }
 }

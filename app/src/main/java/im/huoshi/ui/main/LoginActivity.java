@@ -1,5 +1,6 @@
 package im.huoshi.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
@@ -14,5 +15,9 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+    }
+
+    public static void launch(RegisterActivity registerActivity) {
+        registerActivity.startActivity(new Intent(registerActivity, LoginActivity.class));
     }
 }

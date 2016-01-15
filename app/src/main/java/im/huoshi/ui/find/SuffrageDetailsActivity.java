@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 
 import im.huoshi.R;
 import im.huoshi.base.BaseActivity;
-import im.huoshi.ui.me.MyPrayerActivity;
 import im.huoshi.utils.ViewInject;
 import im.huoshi.utils.ViewUtils;
 
@@ -40,7 +39,7 @@ public class SuffrageDetailsActivity extends BaseActivity {
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    public static void launch(MyPrayerActivity activity) {
+    public static void launch(SuffrageActivity activity) {
         activity.startActivity(new Intent(activity, SuffrageDetailsActivity.class));
     }
 }

@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.facebook.drawee.view.SimpleDraweeView
+    <ImageView
         android:id="@+id/imageview_user"
         android:layout_width="match_parent"
         android:layout_height="140dp"
         android:layout_centerVertical="true"
-        fresco:backgroundImage="@android:color/black"
-        fresco:placeholderImage="@mipmap/icon_logo" />
+        android:src="@mipmap/image_default_avatar" />
 
     <View style="@style/GrayDividerStyle" />
 

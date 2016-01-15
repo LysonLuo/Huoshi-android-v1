@@ -33,7 +33,7 @@ public class SectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemViewType(int position) {
-        if (position == 0) {
+        if (mSectionList.get(position).getSectionNo() == 0) {
             return ITEM_VIEW_TYPE_HEADER;
         }
         return ITEM_VIEW_TYPE_NORMAL;
@@ -41,17 +41,35 @@ public class SectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View contentView;
         if (viewType == ITEM_VIEW_TYPE_HEADER) {
-            contentView = LayoutInflater.from(mContext).inflate(R.layout.widget_chapter_header, parent, false);
+            View contentView = LayoutInflater.from(mContext).inflate(R.layout.widget_chapter_header, parent, false);
+            ChapterTitleHolder holder = new ChapterTitleHolder(contentView);
+            return holder;
         }
-        contentView = LayoutInflater.from(mContext).inflate(R.layout.widget_chapter_details_item, parent, false);
+        View contentView = LayoutInflater.from(mContext).inflate(R.layout.widget_chapter_details_item, parent, false);
         ChapterDetailHolder holder = new ChapterDetailHolder(contentView);
+        return holder;
+    }
+
+    public <Section> void setItemClickListener(OnRecClickListener<Section> clickListener) {
+        this.mItemClickListener = clickListener;
+    }
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+        if (getItemViewType(position) == ITEM_VIEW_TYPE_HEADER) {
+            ChapterTitleHolder chapterTitleHolder = (ChapterTitleHolder) holder;
+            chapterTitleHolder.mTitleTextView.setText(mSectionList.get(position).getSectionText());
+            return;
+        }
+        ChapterDetailHolder detailHolder = (ChapterDetailHolder) holder;
+        detailHolder.mIndexTextView.setText(mSectionList.get(position).getSectionNo() + "");
+        detailHolder.mContentTextView.setText(mSectionList.get(position).getSectionText());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mItemClickListener != null) {
-                    mItemClickListener.OnClick("");
+                    mItemClickListener.OnClick(mSectionList.get(position));
                 }
             }
         });
@@ -61,26 +79,21 @@ public class SectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 return false;
             }
         });
-        return holder;
-    }
-
-    public void setItemClickListener(OnRecClickListener clickListener) {
-        this.mItemClickListener = clickListener;
-    }
-
-    @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (position == 0) {
-            return;
-        }
-        ChapterDetailHolder detailHolder = (ChapterDetailHolder) holder;
-        detailHolder.mIndexTextView.setText(mSectionList.get(position).getSectionNo() + "");
-        detailHolder.mContentTextView.setText(mSectionList.get(position).getNoteText());
     }
 
     @Override
     public int getItemCount() {
         return mSectionList.size();
+    }
+
+    class ChapterTitleHolder extends RecyclerView.ViewHolder {
+        @ViewInject(R.id.textview_chapter_title)
+        private TextView mTitleTextView;
+
+        public ChapterTitleHolder(View itemView) {
+            super(itemView);
+            ViewUtils.inject(this, itemView);
+        }
     }
 
     class ChapterDetailHolder extends RecyclerView.ViewHolder {

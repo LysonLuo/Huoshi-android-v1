@@ -17,6 +17,7 @@ import im.huoshi.base.BaseActivity;
 import im.huoshi.base.ToolbarSetter;
 import im.huoshi.ui.bible.BibleFragment;
 import im.huoshi.ui.find.FindFragment;
+import im.huoshi.ui.find.SuffrageDialog;
 import im.huoshi.ui.huoshi.HuoshiFragment;
 import im.huoshi.ui.me.MeFragment;
 import im.huoshi.utils.ViewInject;
@@ -186,5 +187,11 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onToolBarMiddleRightViewClick(View v) {
         super.onToolBarMiddleRightViewClick(v);
+        Dialog dialog = new SuffrageDialog(this);
+        Window window = dialog.getWindow();
+        WindowManager.LayoutParams layoutParams = window.getAttributes();
+        window.setGravity(Gravity.CENTER);
+        window.setAttributes(layoutParams);
+        dialog.show();
     }
 }

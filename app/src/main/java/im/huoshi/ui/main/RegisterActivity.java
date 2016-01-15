@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import im.huoshi.R;
 import im.huoshi.base.BaseActivity;
@@ -26,6 +27,8 @@ public class RegisterActivity extends BaseActivity {
     private LinearLayout mPwdLayout;
     @ViewInject(R.id.button_next)
     private Button mNextButton;
+    @ViewInject(R.id.textview_to_login)
+    private TextView mToLoginTextView;
     private ViewWrapperUtils mPhoneWrapper;
     private ViewWrapperUtils mPwdWrapper;
     private static final int ANIM_TIME_MILL = 1000;
@@ -58,6 +61,12 @@ public class RegisterActivity extends BaseActivity {
                     return;
                 }
                 RegisterSettingActivity.launch(RegisterActivity.this);
+            }
+        });
+        mToLoginTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginActivity.launch(RegisterActivity.this);
             }
         });
     }
