@@ -175,7 +175,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void onToolBarRightViewClick(View v) {
-        super.onToolBarRightViewClick(v);
         Dialog dialog = new ReadDialog(this);
         Window window = dialog.getWindow();
         WindowManager.LayoutParams layoutParams = window.getAttributes();
@@ -186,7 +185,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void onToolBarMiddleRightViewClick(View v) {
-        super.onToolBarMiddleRightViewClick(v);
         Dialog dialog = new SuffrageDialog(this);
         Window window = dialog.getWindow();
         WindowManager.LayoutParams layoutParams = window.getAttributes();

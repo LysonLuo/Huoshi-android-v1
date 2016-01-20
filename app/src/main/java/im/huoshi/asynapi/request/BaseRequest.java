@@ -1,12 +1,11 @@
 package im.huoshi.asynapi.request;
 
 import com.loopj.android.http.RequestParams;
+import im.huoshi.BuildConfig;
+import im.huoshi.utils.SecurityUtils;
 
 import java.util.Map;
 import java.util.TreeMap;
-
-import im.huoshi.BuildConfig;
-import im.huoshi.utils.SecurityUtils;
 
 /**
  * Created by Lyson on 16/1/15.
@@ -15,6 +14,10 @@ public class BaseRequest {
 
     protected static String getBasePath(String path) {
         return "v1/" + path;
+    }
+
+    protected static TreeMap<String, String> initParams() {
+        return null;
     }
 
     protected static RequestParams buildRequestParams(TreeMap<String, String> _params) {
