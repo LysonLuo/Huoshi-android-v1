@@ -13,6 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.umeng.analytics.MobclickAgent;
+
 import im.huoshi.R;
 import im.huoshi.utils.LogUtils;
 import im.huoshi.utils.ToolbarUtils;
@@ -38,6 +40,19 @@ public class BaseActivity extends AppCompatActivity implements ToolbarUtils.OnTo
         View view = LayoutInflater.from(this).inflate(layoutResID, null);
         setContentView(view);
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+        MobclickAgent.setSessionContinueMillis(60);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     @Override
