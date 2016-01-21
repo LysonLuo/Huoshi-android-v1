@@ -22,7 +22,6 @@ public class RestApiClient {
 
     public static void addCustomHeader() {
         client.addHeader("Authorization", SecurityUtils.base64());
-        client.addHeader("version_code", BuildConfig.VERSION_CODE + "");
     }
 
     public static void get(final String path, RequestParams params, BaseActivity activity, final RestApiHandler handler) {

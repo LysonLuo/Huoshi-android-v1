@@ -1,18 +1,21 @@
 package im.huoshi.utils;
 
 import android.util.Base64;
+import im.huoshi.BuildConfig;
 
 import java.security.MessageDigest;
-
-import im.huoshi.BuildConfig;
 
 /**
  * Created by Lyson on 16/1/15.
  */
 public class SecurityUtils {
-
+    /**
+     * 这里有个坑,使用Base64.DEFAULT的时候,会出现自动换行的情况,所以要用Base64.NO_WRAP
+     *
+     * @return
+     */
     public static String base64() {
-        byte[] bytes = Base64.encode((BuildConfig.APP_KEY + ":" + BuildConfig.APP_SECRET).getBytes(), Base64.DEFAULT);
+        byte[] bytes = Base64.encode((BuildConfig.APP_KEY + ":" + BuildConfig.APP_SECRET).getBytes(), Base64.NO_WRAP);
         return "Basic " + new String(bytes);
     }
 

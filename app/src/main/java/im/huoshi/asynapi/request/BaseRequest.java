@@ -2,6 +2,7 @@ package im.huoshi.asynapi.request;
 
 import com.loopj.android.http.RequestParams;
 import im.huoshi.BuildConfig;
+import im.huoshi.utils.DeviceUtils;
 import im.huoshi.utils.SecurityUtils;
 
 import java.util.Map;
@@ -17,7 +18,11 @@ public class BaseRequest {
     }
 
     protected static TreeMap<String, String> initParams() {
-        return null;
+        TreeMap<String, String> treeMap = new TreeMap<>();
+        treeMap.put("version", BuildConfig.VERSION_NAME);
+        treeMap.put("uuid", DeviceUtils.getImeiCode());
+        treeMap.put("platform","android");
+        return treeMap;
     }
 
     protected static RequestParams buildRequestParams(TreeMap<String, String> _params) {

@@ -24,12 +24,12 @@ public class AccountRequest extends BaseRequest {
      * @param callback   回调
      */
     public static void getVerifyCode(BaseActivity activity, String phone, String nationCode, final RestApiCallback callback) {
-        TreeMap<String, String> params = new TreeMap<>();
-        params.put("phone", phone);
+        TreeMap<String, String> treeMap = initParams();
+        treeMap.put("phone", phone);
         if (!TextUtils.isEmpty(nationCode)) {
-            params.put("nation_code", nationCode);
+            treeMap.put("nation_code", nationCode);
         }
-        RestApiClient.get(getBasePath(RestApiPath.GET_VERIFICATION_CODE), buildRequestParams(params), activity, new RestApiHandler() {
+        RestApiClient.post(getBasePath(RestApiPath.GET_VERIFICATION_CODE), buildRequestParams(treeMap), activity, new RestApiHandler() {
             @Override
             public void onSuccess(String responseString) {
                 callback.onSuccess(responseString);
