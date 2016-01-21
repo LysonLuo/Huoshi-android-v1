@@ -33,8 +33,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "String", "API_URI", '\"http://119.29.108.48/bible/frontend/web/index.php/\"'
             buildConfigField "String", "WEB_URI", '\"http://www.baidu.com/\"'
-            buildConfigField "String", "APP_KEY", '\"XXX\"'
-            buildConfigField "String", "APP_SECRET", '\"XXX\"'
+            buildConfigField "String", "APP_KEY", '\"8B79509E413BBFD5470D1A219C31E67B180CD2CE\"'
+            buildConfigField "String", "APP_SECRET", '\"31DAB2BF005BE3312CF50577562D0D5367368D42\"'
             buildConfigField "String", "APP_PRIVATE_KEY",'\"huoshi2016!\"'
         }
     }
