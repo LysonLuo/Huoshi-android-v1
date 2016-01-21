@@ -23,11 +23,13 @@ import im.huoshi.utils.ViewUtils;
  */
 public class BibleChapterAdapter extends RecyclerView.Adapter<BibleChapterAdapter.ChapterViewHolder> {
     private Context mContext;
+    private String mBookName;
     private BibleAdapter mBibleAdapter;
     private List<Chapter> mChapterList = new ArrayList<>();
 
-    public BibleChapterAdapter(Context mContext, List<Chapter> chapterList) {
+    public BibleChapterAdapter(Context mContext, String bookName, List<Chapter> chapterList) {
         this.mContext = mContext;
+        this.mBookName = bookName;
         this.mChapterList = chapterList;
     }
 
@@ -44,7 +46,7 @@ public class BibleChapterAdapter extends RecyclerView.Adapter<BibleChapterAdapte
         holder.mChapterCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                ChapterDetailsActivity.launch((MainActivity) mContext, mChapterList.toArray(new Chapter[mChapterList.size()]), position);
+                ChapterDetailsActivity.launch((MainActivity) mContext, mBookName, mChapterList.toArray(new Chapter[mChapterList.size()]), position);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {

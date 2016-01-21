@@ -46,6 +46,13 @@ public class MainActivity extends BaseActivity {
         switchToHuoshiFragment();
     }
 
+    @Override
+    protected void initTitle() {
+        super.initTitle();
+        mToolbarUtils.setRightViewIcon(R.mipmap.icon_search_blue);
+        mToolbarUtils.setMiddleRightVIewIcon(R.mipmap.icon_ring_blue);
+    }
+
     private void setupViews() {
         mGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -69,6 +76,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void switchToHuoshiFragment() {
+        hideTitle();
         if (mHuoshiFragment == null) {
             mHuoshiFragment = new HuoshiFragment();
         }
@@ -94,6 +102,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void switchToBibleFragment() {
+        showTitle();
         if (mBibleFragment == null) {
             mBibleFragment = new BibleFragment();
         }
@@ -120,6 +129,7 @@ public class MainActivity extends BaseActivity {
 
 
     private void switchToFindFragment() {
+        hideTitle();
         if (mFindFragment == null) {
             mFindFragment = new FindFragment();
         }
@@ -145,6 +155,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void switchToMeFragment() {
+        hideTitle();
         if (mMeFragment == null) {
             mMeFragment = new MeFragment();
         }
@@ -169,8 +180,14 @@ public class MainActivity extends BaseActivity {
         transaction.commit();
     }
 
-    public static void launch(Activity act) {
-        act.startActivity(new Intent(act, MainActivity.class));
+    private void showTitle() {
+        mToolbarUtils.setRightViewVisibility(View.VISIBLE);
+        mToolbarUtils.setMiddleRightViewVisibility(View.VISIBLE);
+    }
+
+    private void hideTitle() {
+        mToolbarUtils.setRightViewVisibility(View.GONE);
+        mToolbarUtils.setMiddleRightViewVisibility(View.GONE);
     }
 
     @Override
@@ -191,5 +208,9 @@ public class MainActivity extends BaseActivity {
         window.setGravity(Gravity.CENTER);
         window.setAttributes(layoutParams);
         dialog.show();
+    }
+
+    public static void launch(Activity act) {
+        act.startActivity(new Intent(act, MainActivity.class));
     }
 }

@@ -9,7 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="140dp"
         android:layout_centerVertical="true"
-        android:src="@mipmap/image_default_avatar" />
+        android:src="@mipmap/image_default_avatar"
+        android:visibility="gone" />
 
     <View style="@style/GrayDividerStyle" />
 

@@ -32,6 +32,7 @@ public class ChapterDetailsActivity extends BaseActivity {
     private ChapterPagerAdapter mChapterAdapter;
     private boolean mIsShow = false;
     private SectionFragment mFragment;
+    private String mBookName;
 
 
     @Override
@@ -43,9 +44,16 @@ public class ChapterDetailsActivity extends BaseActivity {
         setupViews();
     }
 
+    @Override
+    protected void initTitle() {
+        super.initTitle();
+        mToolbarUtils.setTitleText(mBookName + "\t\t" + mChapters[mCurrentPosition].getChapterNo() + "章");
+    }
+
     private void setupViews() {
         mChapters = (Chapter[]) getIntent().getSerializableExtra("chapters");
         mCurrentPosition = getIntent().getIntExtra("position", 0);
+        mBookName = getIntent().getStringExtra("bookName");
         mAnimationUp = AnimationUtils.loadAnimation(this, R.anim.anim_translate_up);
         mAnimationDown = AnimationUtils.loadAnimation(this, R.anim.anim_translate_down);
         mChapterAdapter = new ChapterPagerAdapter(getSupportFragmentManager(), mChapters);
@@ -59,6 +67,7 @@ public class ChapterDetailsActivity extends BaseActivity {
 
             @Override
             public void onPageSelected(int position) {
+                mToolbarUtils.setTitleText(mBookName + "\t\t" + mChapters[position].getChapterNo() + "章");
                 if (mIsShow) {
                     mFragment.setIsChecked(false);
                     hideLayout();
@@ -102,10 +111,11 @@ public class ChapterDetailsActivity extends BaseActivity {
         mAnnotationTextView.startAnimation(mAnimationUp);
     }
 
-    public static void launch(MainActivity activity, Chapter[] chapters, int position) {
+    public static void launch(MainActivity activity, String bookName, Chapter[] chapters, int position) {
         Intent intent = new Intent(activity, ChapterDetailsActivity.class);
         intent.putExtra("chapters", chapters);
         intent.putExtra("position", position);
+        intent.putExtra("bookName", bookName);
         activity.startActivity(intent);
     }
 }

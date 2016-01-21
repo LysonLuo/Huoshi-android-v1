@@ -5,7 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.TextView;
 
 import im.huoshi.R;
 
@@ -14,16 +14,16 @@ import im.huoshi.R;
  */
 public class ToolbarUtils {
     private Context mContext;
-    private Toolbar mToolBar;
-    private ImageView mRightView;
-    private ImageView mMiddleRightView;
+    private TextView mRightView;
+    private TextView mTitleTextView;
+    private TextView mMiddleRightView;
     private OnToolBarClickListener mOnToolBarClickListener;
 
     public ToolbarUtils(Context mContext, Toolbar toolBar) {
         this.mContext = mContext;
-        this.mToolBar = toolBar;
-        this.mRightView = (ImageView) toolBar.findViewById(R.id.toolbar_right_view);
-        this.mMiddleRightView = (ImageView) toolBar.findViewById(R.id.toolbar_middle_right_view);
+        this.mTitleTextView = (TextView) toolBar.findViewById(R.id.toolbar_left_view);
+        this.mRightView = (TextView) toolBar.findViewById(R.id.toolbar_right_view);
+        this.mMiddleRightView = (TextView) toolBar.findViewById(R.id.toolbar_middle_right_view);
         initListener();
     }
 
@@ -51,15 +51,27 @@ public class ToolbarUtils {
         this.mOnToolBarClickListener = onToolBarClickListener;
     }
 
+    public void setRightViewVisibility(int visibleState) {
+        mRightView.setVisibility(visibleState);
+    }
+
+    public void setMiddleRightViewVisibility(int visibleState) {
+        mMiddleRightView.setVisibility(visibleState);
+    }
+
+    public void setTitleText(String titleText) {
+        mTitleTextView.setText(titleText);
+    }
+
     public void setRightViewIcon(int resId) {
         Drawable drawable = ContextCompat.getDrawable(mContext, resId);
-        mRightView.setImageDrawable(drawable);
+        mRightView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
 
     }
 
     public void setMiddleRightVIewIcon(int resId) {
         Drawable drawable = ContextCompat.getDrawable(mContext, resId);
-        mMiddleRightView.setImageDrawable(drawable);
+        mMiddleRightView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
     }
 
     public interface OnToolBarClickListener {

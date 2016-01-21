@@ -17,7 +17,7 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
     }
 
-    public static void launch(RegisterActivity registerActivity) {
-        registerActivity.startActivity(new Intent(registerActivity, LoginActivity.class));
+    public static void launch(BaseActivity activity) {
+        activity.startActivity(new Intent(activity, LoginActivity.class));
     }
 }

@@ -39,12 +39,12 @@ public class BaseActivity extends AppCompatActivity implements ToolbarUtils.OnTo
         super.setContentView(layoutResID);
         View view = LayoutInflater.from(this).inflate(layoutResID, null);
         setContentView(view);
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        initTitle();
         MobclickAgent.onResume(this);
         MobclickAgent.setSessionContinueMillis(60);
     }
@@ -54,10 +54,10 @@ public class BaseActivity extends AppCompatActivity implements ToolbarUtils.OnTo
         super.onPause();
         MobclickAgent.onPause(this);
     }
+    protected void initTitle(){}
 
     @Override
     public void setContentView(View view) {
-
         FrameLayout container = new FrameLayout(this);
         view.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         container.setId(R.id.content_layout_id);
