@@ -38,11 +38,11 @@
         <!--umeng key channel begin-->
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="569ef0fc67e58e17180015bb"></meta-data>
+            android:value="569ef0fc67e58e17180015bb"/>
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="Huoshi" />
-        <!--umeng key channer end-->
+        <!--umeng key channel end-->
     </application>
 
 </manifest>

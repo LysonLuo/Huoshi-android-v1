@@ -47,4 +47,5 @@
     <string name="text_christ_life">基督生活 随身常在</string>
     <string name="text_continue_read_days">连续读经天数</string>
     <string name="text_continue_suffrage_days">连续代祷天数</string>
+    <string name="lable_login_register_account">注册账号</string>
 </resources>
