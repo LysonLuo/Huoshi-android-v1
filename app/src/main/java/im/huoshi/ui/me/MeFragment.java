@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
+import com.umeng.update.UmengUpdateAgent;
 import de.hdodenhof.circleimageview.CircleImageView;
 import im.huoshi.R;
 import im.huoshi.base.BaseActivity;
@@ -32,6 +33,8 @@ public class MeFragment extends BaseFragment {
     private TextView mPrayerTextView;
     @ViewInject(R.id.textview_logout)
     private TextView mLogoutTextView;
+    @ViewInject(R.id.textview_check_update)
+    private TextView mCheckUpdateTextview;
 
     @Nullable
     @Override
@@ -80,6 +83,12 @@ public class MeFragment extends BaseFragment {
                 mLocalUser.logout();
                 ReadPreference.getInstance().clearData();
                 RegisterActivity.launch((MainActivity) getActivity());
+            }
+        });
+        mCheckUpdateTextview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UmengUpdateAgent.forceUpdate(getActivity());
             }
         });
     }

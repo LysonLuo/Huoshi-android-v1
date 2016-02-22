@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.RadioGroup;
+import com.umeng.update.UmengUpdateAgent;
 import im.huoshi.R;
 import im.huoshi.base.BaseActivity;
 import im.huoshi.base.ToolbarSetter;
@@ -43,6 +44,9 @@ public class MainActivity extends BaseActivity {
 
         setupViews();
         switchToHuoshiFragment();
+        //友盟版本更新
+//        UmengUpdateAgent.setUpdateOnlyWifi(false);
+        UmengUpdateAgent.update(this);
     }
 
     @Override

@@ -72,6 +72,7 @@
     <View style="@style/GrayDividerStyle" />
 
     <TextView
+        android:id="@+id/textview_check_update"
         style="@style/InfoItemStyle"
         android:drawableLeft="@mipmap/icon_upgrade"
         android:text="@string/text_upgrade" />
