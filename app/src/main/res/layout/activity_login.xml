@@ -32,8 +32,12 @@
                 android:text="@string/text_phone_number"/>
 
             <EditText
+                android:id="@+id/edit_login_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_very_small"
+                android:inputType="phone"
+                android:textSize="@dimen/text_size_small"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:background="@null"/>
@@ -58,9 +62,13 @@
                 android:text="@string/text_password"/>
 
             <EditText
+                android:id="@+id/edit_login_pwd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:inputType="textPassword"
+                android:layout_marginLeft="@dimen/margin_very_small"
+                android:textSize="@dimen/text_size_small"
                 android:layout_weight="1"
                 android:background="@null"/>
 
@@ -68,6 +76,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/button_login"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="@dimen/margin_extreme_big"
@@ -88,7 +97,7 @@
             android:text="@string/text_forget_pwd"/>
 
         <TextView
-            android:id="@+id/textview_register"
+            android:id="@+id/textview_login_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

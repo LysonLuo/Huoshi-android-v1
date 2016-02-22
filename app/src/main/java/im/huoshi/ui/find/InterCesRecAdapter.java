@@ -5,21 +5,20 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import im.huoshi.R;
+import im.huoshi.common.OnRecClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import im.huoshi.R;
-import im.huoshi.common.OnRecClickListener;
-
 /**
  * Created by Lyson on 15/12/26.
  */
-public class SuffrageRecAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class InterCesRecAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context mContext;
     private OnRecClickListener<List<String>> mRecClickListener;
 
-    public SuffrageRecAdapter(Context mContext) {
+    public InterCesRecAdapter(Context mContext) {
         this.mContext = mContext;
     }
 
@@ -29,7 +28,7 @@ public class SuffrageRecAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View contentView = LayoutInflater.from(mContext).inflate(R.layout.widget_suffrage_item, parent, false);
+        View contentView = LayoutInflater.from(mContext).inflate(R.layout.widget_interces_item, parent, false);
         IntercesViewHolder holder = new IntercesViewHolder(contentView);
         return holder;
     }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="@dimen/margin_normal">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:padding="@dimen/margin_normal">
 
 
     <ImageView
@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:padding="@dimen/margin_extreme_big"
-        android:src="@mipmap/icon_logo" />
+        android:src="@mipmap/icon_logo"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,15 +30,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="@string/text_phone_number" />
+                android:text="@string/text_phone_number"/>
 
             <EditText
+                android:id="@+id/edit_register_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_very_small"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
+                android:textSize="@dimen/text_size_small"
+                android:inputType="phone"
                 android:background="@null"
-                android:hint="@string/text_phone_hint" />
+                android:hint="@string/text_phone_hint"/>
 
         </LinearLayout>
 
@@ -58,27 +62,31 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="@string/text_verification_code" />
+                    android:text="@string/text_verification_code"/>
 
                 <EditText
+                    android:id="@+id/edit_register_code"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:hint="@string/text_input_verification_code"
                     android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_very_small"
                     android:layout_weight="1"
-                    android:background="@null" />
+                    android:textSize="@dimen/text_size_small"
+                    android:background="@null"/>
 
                 <Button
                     android:id="@+id/button_send_verification_code"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
-                    android:text="@string/text_send_code" />
+                    android:text="@string/text_send_code"/>
 
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/common_gray_dark_bg" />
+                android:background="@color/common_gray_dark_bg"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -90,14 +98,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="@string/text_set_pwd" />
+                    android:text="@string/text_set_pwd"/>
 
                 <EditText
+                    android:id="@+id/edit_register_pwd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:textSize="@dimen/text_size_small"
+                    android:inputType="textPassword"
+                    android:hint="@string/text_input_pwd"
+                    android:layout_marginLeft="@dimen/margin_very_small"
                     android:layout_weight="1"
-                    android:background="@null" />
+                    android:background="@null"/>
 
             </LinearLayout>
         </LinearLayout>
@@ -111,7 +124,7 @@
         android:background="@color/common_blue_light"
         android:text="@string/text_next"
         android:textColor="@color/text_color_white"
-        android:textSize="@dimen/text_size_small" />
+        android:textSize="@dimen/text_size_small"/>
 
 
     <TextView
@@ -121,5 +134,5 @@
         android:layout_gravity="right"
         android:layout_marginTop="@dimen/margin_normal"
         android:text="@string/text_account_to_login"
-        android:textColor="@color/common_blue_light" />
+        android:textColor="@color/common_blue_light"/>
 </LinearLayout>

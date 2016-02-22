@@ -11,13 +11,12 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.RadioGroup;
-
 import im.huoshi.R;
 import im.huoshi.base.BaseActivity;
 import im.huoshi.base.ToolbarSetter;
 import im.huoshi.ui.bible.BibleFragment;
 import im.huoshi.ui.find.FindFragment;
-import im.huoshi.ui.find.SuffrageDialog;
+import im.huoshi.ui.find.InterCesDialog;
 import im.huoshi.ui.huoshi.HuoshiFragment;
 import im.huoshi.ui.me.MeFragment;
 import im.huoshi.utils.ViewInject;
@@ -192,7 +191,10 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void onToolBarRightViewClick(View v) {
-        Dialog dialog = new ReadDialog(this);
+        if (isNotLogin()){
+            return;
+        }
+        Dialog dialog = new ReadDialog(this, mUser.getUserId(), mReadStat);
         Window window = dialog.getWindow();
         WindowManager.LayoutParams layoutParams = window.getAttributes();
         window.setGravity(Gravity.CENTER);
@@ -202,7 +204,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void onToolBarMiddleRightViewClick(View v) {
-        Dialog dialog = new SuffrageDialog(this);
+        Dialog dialog = new InterCesDialog(this);
         Window window = dialog.getWindow();
         WindowManager.LayoutParams layoutParams = window.getAttributes();
         window.setGravity(Gravity.CENTER);

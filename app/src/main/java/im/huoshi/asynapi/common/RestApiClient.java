@@ -1,5 +1,6 @@
 package im.huoshi.asynapi.common;
 
+import android.widget.Toast;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 
@@ -41,13 +42,14 @@ public class RestApiClient {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                responseString = responseString.replace("[","").replace("]","");
                 dispatchFailureResult(path, statusCode, responseString, handler);
             }
         });
     }
 
 
-    public static void post(final String path, RequestParams params, BaseActivity activity, final RestApiHandler handler) {
+    public static void post(final String path, RequestParams params, final BaseActivity activity, final RestApiHandler handler) {
         if (!checkNetWork()) {
             handler.onFailure(ApiError.errorFromString("请求失败，请重试！", 0));
             return;
@@ -64,6 +66,11 @@ public class RestApiClient {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                if (statusCode == 0) {
+                    Toast.makeText(activity, "网络不太给力,请重试!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                responseString = responseString.replace("[","").replace("]","");
                 dispatchFailureResult(path, statusCode, responseString, handler);
             }
         });

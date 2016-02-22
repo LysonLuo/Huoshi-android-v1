@@ -1,10 +1,16 @@
 package im.huoshi.base;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
+import im.huoshi.data.UserPreference;
+import im.huoshi.model.User;
+import im.huoshi.ui.main.LoginActivity;
 import im.huoshi.utils.LogUtils;
 
 /**
@@ -16,6 +22,8 @@ public class BaseFragment extends Fragment {
     private ProgressFragment mProgressFragment;
     private RetryFragment mRetryFragment;
     private NoDataFragment mNoDataFragment;
+    protected UserPreference mLocalUser;
+    protected User mUser;
 
     private boolean mIsFragmentAlive = true;
 
@@ -23,6 +31,32 @@ public class BaseFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         mIsFragmentAlive = false;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mLocalUser = UserPreference.getInstance();
+        mUser = mLocalUser.getUser();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mLocalUser = UserPreference.getInstance();
+        mUser = mLocalUser.getUser();
+    }
+
+    protected boolean isLogin() {
+        return mUser.getUserId() != -1;
+    }
+
+    protected boolean isNotLogin() {
+        if (mUser.getUserId() == -1) {
+            startActivity(new Intent(getActivity(), LoginActivity.class));
+            return true;
+        }
+        return false;
     }
 
     /**

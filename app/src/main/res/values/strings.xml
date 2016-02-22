@@ -29,8 +29,8 @@
     <string name="text_district">地区</string>
     <string name="text_birthday">生日</string>
     <string name="text_time">信主时间</string>
-    <string name="text_phone_number">手机号：</string>
-    <string name="text_password">登录密码</string>
+    <string name="text_phone_number">手机号:</string>
+    <string name="text_password">登录密码:</string>
     <string name="text_login">登录账号</string>
     <string name="text_forget_pwd">忘记密码？</string>
     <string name="text_verification_code">验证码：</string>
@@ -48,4 +48,23 @@
     <string name="text_continue_read_days">连续读经天数</string>
     <string name="text_continue_suffrage_days">连续代祷天数</string>
     <string name="lable_login_register_account">注册账号</string>
+    <string name="text_warn_phone_empty">手机号码不能为空!</string>
+    <string name="text_verification_sent_success">验证码发送成功!</string>
+    <string name="text_warn_verification_empty">验证码不能为空!</string>
+    <string name="text_warn_verification_length">验证码长度不对!</string>
+    <string name="text_warn_pwd_empty">密码不能为空!</string>
+    <string name="text_warn_pwd_length">密码长度不对!</string>
+    <string name="text_warn_pwd_regex">密码格式不正确!</string>
+    <string name="text_input_verification_code">请输入验证码</string>
+    <string name="text_input_pwd">请输入密码(字母数字下划线)</string>
+    <string name="text_click_to_send_verification">请点击发送验证码!</string>
+    <string name="text_register_success">注册成功!</string>
+    <string name="text_login_success">登录成功!</string>
+    <string name="text_setting_nickname">昵称设置</string>
+    <string name="text_cancle">取消</string>
+    <string name="text_confirm">确定</string>
+    <string name="text_choose_gender">请选择性别!</string>
+    <string name="text_empty_believe_date">信主时间不能为空!</string>
+    <string name="text_empty_birthday">生日不能为空!</string>
+    <string name="text_empty_nick_name">昵称不能为空!</string>
 </resources>

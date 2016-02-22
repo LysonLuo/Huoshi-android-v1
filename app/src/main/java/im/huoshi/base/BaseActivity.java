@@ -1,6 +1,9 @@
 package im.huoshi.base;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +19,11 @@ import android.widget.Toast;
 import com.umeng.analytics.MobclickAgent;
 
 import im.huoshi.R;
+import im.huoshi.data.ReadPreference;
+import im.huoshi.data.UserPreference;
+import im.huoshi.model.ReadStat;
+import im.huoshi.model.User;
+import im.huoshi.ui.main.LoginActivity;
 import im.huoshi.utils.LogUtils;
 import im.huoshi.utils.ToolbarUtils;
 
@@ -30,6 +38,10 @@ public class BaseActivity extends AppCompatActivity implements ToolbarUtils.OnTo
     private ProgressFragment mProgressFragment;
     private RetryFragment mRetryFragment;
     private NoDataFragment mNoDataFragment;
+    protected UserPreference mLocalUser;
+    protected User mUser;
+    protected ReadPreference mLocalRead;
+    protected ReadStat mReadStat;
 
     private boolean mIsActivityAlive = true;
     private boolean isShowToolbar = true;
@@ -42,11 +54,37 @@ public class BaseActivity extends AppCompatActivity implements ToolbarUtils.OnTo
     }
 
     @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mLocalUser = UserPreference.getInstance();
+        mUser = mLocalUser.getUser();
+        mLocalRead = ReadPreference.getInstance();
+        mReadStat = mLocalRead.getReadStat();
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
+        mLocalUser = UserPreference.getInstance();
+        mUser = mLocalUser.getUser();
+        mLocalRead = ReadPreference.getInstance();
+        mReadStat = mLocalRead.getReadStat();
         initTitle();
         MobclickAgent.onResume(this);
         MobclickAgent.setSessionContinueMillis(60);
+    }
+
+    protected boolean isLogin() {
+        return mUser.getUserId() != -1;
+    }
+
+
+    protected boolean isNotLogin() {
+        if (mUser.getUserId() == -1) {
+            startActivity(new Intent(this, LoginActivity.class));
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -54,7 +92,9 @@ public class BaseActivity extends AppCompatActivity implements ToolbarUtils.OnTo
         super.onPause();
         MobclickAgent.onPause(this);
     }
-    protected void initTitle(){}
+
+    protected void initTitle() {
+    }
 
     @Override
     public void setContentView(View view) {

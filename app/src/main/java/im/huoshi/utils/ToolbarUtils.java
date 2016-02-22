@@ -62,6 +62,9 @@ public class ToolbarUtils {
     public void setTitleText(String titleText) {
         mTitleTextView.setText(titleText);
     }
+    public void setRightText(String rightText){
+        mRightView.setText(rightText);
+    }
 
     public void setRightViewIcon(int resId) {
         Drawable drawable = ContextCompat.getDrawable(mContext, resId);

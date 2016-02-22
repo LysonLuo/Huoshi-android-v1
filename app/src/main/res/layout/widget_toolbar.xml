@@ -31,17 +31,21 @@
             android:id="@+id/toolbar_right_view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/text_color_black"
             android:layout_alignParentRight="true"
             android:paddingLeft="@dimen/margin_small"
-            android:paddingRight="@dimen/margin_small" />
+            android:paddingRight="@dimen/margin_small"/>
 
         <TextView
             android:id="@+id/toolbar_middle_right_view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:textColor="@color/text_color_black"
+            android:gravity="center"
             android:layout_toLeftOf="@+id/toolbar_right_view"
             android:paddingLeft="@dimen/margin_small"
-            android:paddingRight="@dimen/margin_small" />
+            android:paddingRight="@dimen/margin_small"/>
     </RelativeLayout>
 
 </android.support.v7.widget.Toolbar>

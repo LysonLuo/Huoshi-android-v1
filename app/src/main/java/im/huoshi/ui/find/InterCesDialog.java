@@ -8,9 +8,9 @@ import im.huoshi.R;
 /**
  * Created by Lyson on 16/1/13.
  */
-public class SuffrageDialog extends AppCompatDialog {
-    public SuffrageDialog(Context context) {
+public class InterCesDialog extends AppCompatDialog {
+    public InterCesDialog(Context context) {
         super(context, R.style.CustomPopup);
-        setContentView(R.layout.widget_suffrage_dialog);
+        setContentView(R.layout.widget_interces_dialog);
     }
 }

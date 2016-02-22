@@ -11,8 +11,8 @@ import java.util.List;
 
 import im.huoshi.R;
 import im.huoshi.base.BaseActivity;
-import im.huoshi.ui.find.SuffrageFragment;
-import im.huoshi.ui.find.SuffragePagerAdapter;
+import im.huoshi.ui.find.InterCesFragment;
+import im.huoshi.ui.find.InterCesPagerAdapter;
 import im.huoshi.ui.main.MainActivity;
 import im.huoshi.utils.ViewInject;
 import im.huoshi.utils.ViewUtils;
@@ -25,8 +25,8 @@ public class MyPrayerActivity extends BaseActivity {
     private TabLayout mTablayout;
     @ViewInject(R.id.viewpager)
     private ViewPager mViewPager;
-    private SuffragePagerAdapter mAdapter;
-    private List<SuffrageFragment> mFragments = new ArrayList<>();
+    private InterCesPagerAdapter mAdapter;
+    private List<InterCesFragment> mFragments = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,9 +38,9 @@ public class MyPrayerActivity extends BaseActivity {
     }
 
     private void setupViews() {
-        mFragments.add(SuffrageFragment.getInstance());
-        mFragments.add(SuffrageFragment.getInstance());
-        mAdapter = new SuffragePagerAdapter(getSupportFragmentManager(), mFragments);
+        mFragments.add(InterCesFragment.getInstance());
+        mFragments.add(InterCesFragment.getInstance());
+        mAdapter = new InterCesPagerAdapter(getSupportFragmentManager(), mFragments);
         mViewPager.setAdapter(mAdapter);
         mTablayout.setupWithViewPager(mViewPager);
     }

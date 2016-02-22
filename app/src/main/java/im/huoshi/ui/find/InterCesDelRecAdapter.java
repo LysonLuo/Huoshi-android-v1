@@ -11,23 +11,23 @@ import im.huoshi.R;
 /**
  * Created by Lyson on 15/12/26.
  */
-public class SuffrageDelRecAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class InterCesDelRecAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context mContext;
     private static final int ITEM_TYPE_TOP = 1;//头部
     private static final int ITEM_TYPE_NORMAL = 2;//祝福
 
-    public SuffrageDelRecAdapter(Context mContext) {
+    public InterCesDelRecAdapter(Context mContext) {
         this.mContext = mContext;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == ITEM_TYPE_TOP) {
-            View contentView = LayoutInflater.from(mContext).inflate(R.layout.widget_suffrage_details_top_item, parent, false);
+            View contentView = LayoutInflater.from(mContext).inflate(R.layout.widget_interces_details_top_item, parent, false);
             TopViewHolder topViewHolder = new TopViewHolder(contentView);
             return topViewHolder;
         } else {
-            View contentView = LayoutInflater.from(mContext).inflate(R.layout.widget_suffrage_details_normal_item, parent, false);
+            View contentView = LayoutInflater.from(mContext).inflate(R.layout.widget_interces_details_normal_item, parent, false);
             DetailViewHolder detailViewHolder = new DetailViewHolder(contentView);
             return detailViewHolder;
         }

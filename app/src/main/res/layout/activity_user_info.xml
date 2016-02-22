@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
-    <View style="@style/GrayDividerStyle" />
+    <View style="@style/GrayDividerStyle"/>
 
     <RelativeLayout
+        android:id="@+id/layout_avatar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/margin_normal">
@@ -15,14 +16,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="@string/text_avatar" />
+            android:text="@string/text_avatar"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageview_setting_avatar"
             android:layout_width="@dimen/avatar_width_normal"
             android:layout_height="@dimen/avatar_width_normal"
             android:layout_marginRight="@dimen/margin_normal"
             android:layout_toLeftOf="@+id/image_arrow"
-            android:src="@mipmap/image_default_avatar" />
+            android:src="@mipmap/image_default_avatar"/>
 
         <ImageView
             android:id="@+id/image_arrow"
@@ -30,25 +32,28 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@mipmap/icon_arrow_right" />
+            android:src="@mipmap/icon_arrow_right"/>
     </RelativeLayout>
 
-    <View style="@style/GrayDividerStyle" />
+    <View style="@style/GrayDividerStyle"/>
 
-    <RelativeLayout style="@style/UserInfoItemStyle">
+    <RelativeLayout
+        android:id="@+id/layout_nickname"
+        style="@style/UserInfoItemStyle">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="@string/text_nickname" />
+            android:text="@string/text_nickname"/>
 
         <TextView
+            android:id="@+id/textview_setting_nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/margin_normal"
             android:layout_toLeftOf="@+id/image_arrow1"
-            android:text="露西安 韦鲁斯" />
+            android:text="露西安 韦鲁斯"/>
 
         <ImageView
             android:id="@+id/image_arrow1"
@@ -56,25 +61,28 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@mipmap/icon_arrow_right" />
+            android:src="@mipmap/icon_arrow_right"/>
     </RelativeLayout>
 
-    <View style="@style/GrayDividerStyle" />
+    <View style="@style/GrayDividerStyle"/>
 
-    <RelativeLayout style="@style/UserInfoItemStyle">
+    <RelativeLayout
+        android:id="@+id/layout_gender"
+        style="@style/UserInfoItemStyle">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="@string/text_gender" />
+            android:text="@string/text_gender"/>
 
         <TextView
+            android:id="@+id/textview_setting_gender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/margin_normal"
             android:layout_toLeftOf="@+id/image_arrow2"
-            android:text="男" />
+            android:text="男"/>
 
         <ImageView
             android:id="@+id/image_arrow2"
@@ -82,25 +90,28 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@mipmap/icon_arrow_right" />
+            android:src="@mipmap/icon_arrow_right"/>
     </RelativeLayout>
 
-    <View style="@style/GrayDividerStyle" />
+    <View style="@style/GrayDividerStyle"/>
 
-    <RelativeLayout style="@style/UserInfoItemStyle">
+    <RelativeLayout
+        android:id="@+id/layout_district"
+        style="@style/UserInfoItemStyle">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="@string/text_district" />
+            android:text="@string/text_district"/>
 
         <TextView
+            android:id="@+id/textview_setting_district"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/margin_normal"
             android:layout_toLeftOf="@+id/image_arrow3"
-            android:text="广州" />
+            android:text="广州"/>
 
         <ImageView
             android:id="@+id/image_arrow3"
@@ -108,25 +119,28 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@mipmap/icon_arrow_right" />
+            android:src="@mipmap/icon_arrow_right"/>
     </RelativeLayout>
 
-    <View style="@style/GrayDividerStyle" />
+    <View style="@style/GrayDividerStyle"/>
 
-    <RelativeLayout style="@style/UserInfoItemStyle">
+    <RelativeLayout
+        android:id="@+id/layout_birthday"
+        style="@style/UserInfoItemStyle">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="@string/text_birthday" />
+            android:text="@string/text_birthday"/>
 
         <TextView
+            android:id="@+id/textview_setting_birthday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/margin_normal"
             android:layout_toLeftOf="@+id/image_arrow4"
-            android:text="1999-09" />
+            android:text="1999-09"/>
 
         <ImageView
             android:id="@+id/image_arrow4"
@@ -134,25 +148,28 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@mipmap/icon_arrow_right" />
+            android:src="@mipmap/icon_arrow_right"/>
     </RelativeLayout>
 
-    <View style="@style/GrayDividerStyle" />
+    <View style="@style/GrayDividerStyle"/>
 
-    <RelativeLayout style="@style/UserInfoItemStyle">
+    <RelativeLayout
+        android:id="@+id/layout_believe_date"
+        style="@style/UserInfoItemStyle">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="@string/text_time" />
+            android:text="@string/text_time"/>
 
         <TextView
+            android:id="@+id/textview_setting_believe_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/margin_normal"
             android:layout_toLeftOf="@+id/image_arrow5"
-            android:text="14:20" />
+            android:text="14:20"/>
 
         <ImageView
             android:id="@+id/image_arrow5"
@@ -160,12 +177,12 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@mipmap/icon_arrow_right" />
+            android:src="@mipmap/icon_arrow_right"/>
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@color/common_gray_dark_bg" />
+        android:background="@color/common_gray_dark_bg"/>
 </LinearLayout>

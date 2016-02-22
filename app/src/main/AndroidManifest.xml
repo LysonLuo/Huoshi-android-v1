@@ -1,13 +1,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="im.huoshi">
+          package="im.huoshi">
 
     <!--umeng permission begin-->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <!--umeng permission end-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".HuoshiApplication"
@@ -18,21 +20,22 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.main.MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.main.LoginActivity" />
-        <activity android:name=".ui.find.SuffrageActivity" />
-        <activity android:name=".ui.find.FiveTwoActivity" />
-        <activity android:name=".ui.find.SuffrageDetailsActivity" />
-        <activity android:name=".ui.find.ShareHuoshiActivity" />
-        <activity android:name=".ui.me.MyPrayerActivity" />
-        <activity android:name=".ui.me.UserInfoActivity" />
-        <activity android:name=".ui.find.PubSuffrageActivity" />
-        <activity android:name=".ui.bible.ChapterDetailsActivity" />
-        <activity android:name=".ui.main.RegisterActivity" />
-        <activity android:name=".ui.main.RegisterSettingActivity" />
+        <activity android:name=".ui.main.LoginActivity"/>
+        <activity android:name=".ui.find.InterCesActivity"/>
+        <activity android:name=".ui.find.FiveTwoActivity"/>
+        <activity android:name=".ui.find.InterCesDetailsActivity"/>
+        <activity android:name=".ui.find.ShareHuoshiActivity"/>
+        <activity android:name=".ui.me.MyPrayerActivity"/>
+        <activity android:name=".ui.me.UserInfoActivity"/>
+        <activity android:name=".ui.find.PubInterCesActivity"/>
+        <activity android:name=".ui.bible.ChapterDetailsActivity"/>
+        <activity android:name=".ui.main.RegisterActivity"/>
+        <activity android:name=".ui.main.RegisterSettingActivity"/>
+        <activity android:name=".ui.me.AreaChooseActivity"/>
 
 
         <!--umeng key channel begin-->
@@ -41,7 +44,7 @@
             android:value="569ef0fc67e58e17180015bb"/>
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="Huoshi" />
+            android:value="Huoshi"/>
         <!--umeng key channel end-->
     </application>
 

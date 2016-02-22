@@ -16,16 +16,16 @@ import im.huoshi.utils.ViewUtils;
  * <p>
  * Created by Lyson on 15/12/26.
  */
-public class SuffrageDetailsActivity extends BaseActivity {
+public class InterCesDetailsActivity extends BaseActivity {
     @ViewInject(R.id.recyclerview)
     private RecyclerView mRecyclerView;
     private LinearLayoutManager mLayoutManager;
-    private SuffrageDelRecAdapter mAdapter;
+    private InterCesDelRecAdapter mAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_suffrage_details);
+        setContentView(R.layout.activity_interces_details);
         ViewUtils.inject(this);
 
         setupViews();
@@ -35,11 +35,11 @@ public class SuffrageDetailsActivity extends BaseActivity {
     private void setupViews() {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new SuffrageDelRecAdapter(this);
+        mAdapter = new InterCesDelRecAdapter(this);
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    public static void launch(SuffrageActivity activity) {
-        activity.startActivity(new Intent(activity, SuffrageDetailsActivity.class));
+    public static void launch(InterCesActivity activity) {
+        activity.startActivity(new Intent(activity, InterCesDetailsActivity.class));
     }
 }

@@ -10,11 +10,11 @@ import java.util.List;
 /**
  * Created by Lyson on 15/12/27.
  */
-public class SuffragePagerAdapter extends FragmentStatePagerAdapter {
-    private List<SuffrageFragment> mFragments = new ArrayList<>();
+public class InterCesPagerAdapter extends FragmentStatePagerAdapter {
+    private List<InterCesFragment> mFragments = new ArrayList<>();
     private String[] mTitles = new String[]{"我的祷告", "我的代祷"};
 
-    public SuffragePagerAdapter(FragmentManager fm, List<SuffrageFragment> mFragments) {
+    public InterCesPagerAdapter(FragmentManager fm, List<InterCesFragment> mFragments) {
         super(fm);
         this.mFragments = mFragments;
     }

@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
 
     <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageview_avatar"
         android:layout_width="@dimen/avatar_width_large"
         android:layout_height="@dimen/avatar_width_large"
         android:layout_gravity="center_horizontal"
         android:layout_margin="@dimen/margin_extreme_big"
-        android:src="@mipmap/image_default_avatar" />
+        android:src="@mipmap/image_default_avatar"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,21 +30,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="@string/text_nickname" />
+                android:text="@string/text_nickname"/>
 
-            <EditText
+            <TextView
+                android:id="@+id/textview_nick_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:background="@null" />
+                android:textSize="@dimen/text_size_small"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:layout_weight="1"/>
 
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/common_gray_dark_bg" />
+            android:background="@color/common_gray_dark_bg"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,21 +59,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="@string/text_gender" />
+                android:text="@string/text_gender"/>
 
-            <EditText
+            <TextView
+                android:id="@+id/textview_gender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_small"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/margin_small"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:background="@null" />
+                android:layout_weight="1"/>
 
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/common_gray_dark_bg" />
+            android:background="@color/common_gray_dark_bg"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -81,21 +88,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="@string/text_birthday" />
+                android:text="@string/text_birthday"/>
 
-            <EditText
+            <TextView
+                android:id="@+id/textview_birthday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:background="@null" />
+                android:textSize="@dimen/text_size_small"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:layout_weight="1"/>
 
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/common_gray_dark_bg" />
+            android:background="@color/common_gray_dark_bg"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -107,24 +117,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="@string/text_time" />
+                android:text="@string/text_time"/>
 
-            <EditText
+            <TextView
+                android:id="@+id/textview_believe_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:textSize="@dimen/text_size_small"
+                android:gravity="center"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:background="@null" />
+                android:layout_weight="1"/>
         </LinearLayout>
     </LinearLayout>
 
     <Button
+        android:id="@+id/button_finish_register"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_margin="@dimen/margin_normal"
         android:background="@color/common_blue_light"
         android:text="@string/text_finish_register"
         android:textColor="@color/text_color_white"
-        android:textSize="@dimen/text_size_small" />
+        android:textSize="@dimen/text_size_small"/>
 
 </LinearLayout>

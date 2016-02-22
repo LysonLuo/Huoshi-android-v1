@@ -7,9 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
+import com.bumptech.glide.Glide;
+import de.hdodenhof.circleimageview.CircleImageView;
 import im.huoshi.R;
+import im.huoshi.base.BaseActivity;
 import im.huoshi.base.BaseFragment;
+import im.huoshi.data.ReadPreference;
 import im.huoshi.ui.main.MainActivity;
 import im.huoshi.ui.main.RegisterActivity;
 import im.huoshi.utils.ViewInject;
@@ -19,6 +22,10 @@ import im.huoshi.utils.ViewUtils;
  * Created by Lyson on 15/12/24.
  */
 public class MeFragment extends BaseFragment {
+    @ViewInject(R.id.imageview_user)
+    private CircleImageView mAvatarImageView;
+    @ViewInject(R.id.textview_nickname)
+    private TextView mNickNameTextView;
     @ViewInject(R.id.layout_user_info)
     private RelativeLayout mUserLayout;
     @ViewInject(R.id.textview_my_prayer)
@@ -36,23 +43,43 @@ public class MeFragment extends BaseFragment {
         return contentView;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (isLogin()) {
+            Glide.with(this).load(mUser.getAvatar()).into(mAvatarImageView);
+            mNickNameTextView.setText(mUser.getNickName());
+            return;
+        }
+        mAvatarImageView.setImageResource(R.mipmap.image_default_avatar);
+        mNickNameTextView.setText("");
+    }
+
     private void setupViews() {
         mUserLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UserInfoActivity.launch((MainActivity) getActivity());
+                if (isNotLogin()) {
+                    return;
+                }
+                UserInfoActivity.launch((BaseActivity) getActivity());
             }
         });
         mPrayerTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (isNotLogin()) {
+                    return;
+                }
                 MyPrayerActivity.launch((MainActivity) getActivity());
             }
         });
         mLogoutTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RegisterActivity.launch((MainActivity)getActivity());
+                mLocalUser.logout();
+                ReadPreference.getInstance().clearData();
+                RegisterActivity.launch((MainActivity) getActivity());
             }
         });
     }

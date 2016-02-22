@@ -9,7 +9,6 @@ android {
         minSdkVersion 14
         targetSdkVersion 23
         versionCode 1
-        versionName "1.0"
     }
     signingConfigs {
         release {
@@ -52,4 +51,8 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.0.0'
     compile 'com.github.bumptech.glide:glide:3.6.1'
     compile 'com.umeng.analytics:analytics:latest.integration'
+    compile 'com.qiniu:qiniu-android-sdk:7.0.9'
+    compile 'com.qiniu:happy-dns:0.2.3.2'
+    compile 'com.google.code.gson:gson:2.4'
+    compile 'com.bigkoo:pickerview:2.0.8'
 }

@@ -13,13 +13,13 @@ import im.huoshi.utils.ViewUtils;
 /**
  * Created by Lyson on 15/12/26.
  */
-public class SuffrageActivity extends BaseActivity {
-    private SuffrageFragment mSuffrageFragment;
+public class InterCesActivity extends BaseActivity {
+    private InterCesFragment mInterCesFragment;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_suffrage);
+        setContentView(R.layout.activity_interces);
         ViewUtils.inject(this);
 
         setupViews();
@@ -27,18 +27,18 @@ public class SuffrageActivity extends BaseActivity {
 
     private void setupViews() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        if (mSuffrageFragment == null) {
-            mSuffrageFragment = new SuffrageFragment();
+        if (mInterCesFragment == null) {
+            mInterCesFragment = new InterCesFragment();
         }
-        if (!mSuffrageFragment.isAdded()) {
-            transaction.add(R.id.layout_content, mSuffrageFragment);
+        if (!mInterCesFragment.isAdded()) {
+            transaction.add(R.id.layout_content, mInterCesFragment);
         } else {
-            transaction.show(mSuffrageFragment);
+            transaction.show(mInterCesFragment);
         }
         transaction.commit();
     }
 
     public static void launch(MainActivity act) {
-        act.startActivity(new Intent(act, SuffrageActivity.class));
+        act.startActivity(new Intent(act, InterCesActivity.class));
     }
 }

@@ -37,7 +37,7 @@ public class FindFragment extends BaseFragment {
         mLayoutInterces.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SuffrageActivity.launch((MainActivity)getActivity());
+                InterCesActivity.launch((MainActivity)getActivity());
             }
         });
 

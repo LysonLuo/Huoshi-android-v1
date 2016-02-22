@@ -9,11 +9,18 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
-
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import im.huoshi.R;
+import im.huoshi.asynapi.callback.RestApiCallback;
+import im.huoshi.asynapi.request.ReadRequest;
 import im.huoshi.base.BaseActivity;
+import im.huoshi.model.ApiError;
 import im.huoshi.model.Chapter;
+import im.huoshi.model.ReadStat;
 import im.huoshi.ui.main.MainActivity;
+import im.huoshi.utils.DateUtils;
+import im.huoshi.utils.LogUtils;
 import im.huoshi.utils.ViewInject;
 import im.huoshi.utils.ViewUtils;
 
@@ -21,6 +28,7 @@ import im.huoshi.utils.ViewUtils;
  * Created by Lyson on 16/1/1.
  */
 public class ChapterDetailsActivity extends BaseActivity {
+    private static final String LOG_TAG = ChapterDetailsActivity.class.getSimpleName();
     @ViewInject(R.id.viewpager_section)
     private ViewPager mViewPager;
     @ViewInject(R.id.textview_annotation)
@@ -33,6 +41,9 @@ public class ChapterDetailsActivity extends BaseActivity {
     private boolean mIsShow = false;
     private SectionFragment mFragment;
     private String mBookName;
+    private long mStartTime;
+    private long mStopTime;
+    private int mCurrentMinutes;
 
 
     @Override
@@ -42,6 +53,27 @@ public class ChapterDetailsActivity extends BaseActivity {
         ViewUtils.inject(this);
 
         setupViews();
+        asynReadData();
+    }
+
+    private void asynReadData() {
+        if (isLogin()) {
+            ReadRequest.readStat(ChapterDetailsActivity.this, mUser.getUserId(), mReadStat.getLastMinutes(), mReadStat.getTotalMinutes(), mReadStat.getContinuousDays(), mLocalRead.getAddStat(), new RestApiCallback() {
+                @Override
+                public void onSuccess(String responseString) {
+                    ReadStat readStat = new Gson().fromJson(responseString, new TypeToken<ReadStat>() {
+                    }.getType());
+                    mLocalRead.saveReadStat(readStat);
+                    mLocalRead.updateAddStat(true);
+                    LogUtils.d(LOG_TAG, "同步成功~");
+                }
+
+                @Override
+                public void onFailure(ApiError apiError) {
+                    LogUtils.d(LOG_TAG, apiError.errorMessage);
+                }
+            });
+        }
     }
 
     @Override
@@ -50,7 +82,29 @@ public class ChapterDetailsActivity extends BaseActivity {
         mToolbarUtils.setTitleText(mBookName + "\t\t" + mChapters[mCurrentPosition].getChapterNo() + "章");
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mStopTime = System.currentTimeMillis();
+        //本次阅读结束距离上次阅读结束的时间间隔
+        int dayBetweenLast = DateUtils.getDayBetween(mLocalRead.getLastReadLong());
+        //本次阅读结束距离本次阅读开始的时间间隔
+        int dayBetweenCurrent = DateUtils.getDayBetween(mStartTime);
+        mCurrentMinutes = (int) (mStopTime - mStartTime) / 60 * 1000;
+
+        if (mCurrentMinutes > 1) {
+            mLocalRead.updateLastMinutes(mCurrentMinutes);
+            mLocalRead.updateTotalMinutes();
+            //从上次阅读结束到这次阅读结束,时间间隔为1,或者从上次阅读结束到这次阅读结束,时间间隔为2,但是从开始阅读到结束阅读,时间间隔为1,也就是过了24点还在读~
+            if (dayBetweenLast == 1 || (dayBetweenLast == 2 && dayBetweenCurrent == 1)) {
+                mLocalRead.updateContinuousDays();
+            }
+            mLocalRead.updateLastReadLong(mStopTime);
+        }
+    }
+
     private void setupViews() {
+        mStartTime = System.currentTimeMillis();
         mChapters = (Chapter[]) getIntent().getSerializableExtra("chapters");
         mCurrentPosition = getIntent().getIntExtra("position", 0);
         mBookName = getIntent().getStringExtra("bookName");
