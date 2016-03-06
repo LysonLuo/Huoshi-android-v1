@@ -7,7 +7,7 @@
     android:background="?attr/colorPrimary"
     android:theme="@style/ToolBarTheme"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-    android:elevation="1dp"
+    android:elevation="2dp"
     android:translationZ="1dp"
     app:contentInsetEnd="0dp"
     app:contentInsetLeft="0dp"
@@ -29,7 +29,7 @@
             android:paddingRight="@dimen/margin_small"
             android:text="@string/main_tab_bible"
             android:textColor="@color/text_color_black"
-            android:textSize="@dimen/text_size_large" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/toolbar_right_view"

@@ -23,6 +23,7 @@ public class SectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private static final int ITEM_VIEW_TYPE_HEADER = 1;
     private static final int ITEM_VIEW_TYPE_NORMAL = 2;
     private Context mContext;
+    private ChapterDetailHolder mSelectedViewHolder;
     private OnRecClickListener mItemClickListener;
     private List<Section> mSectionList = new ArrayList<>();
 
@@ -56,19 +57,20 @@ public class SectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         if (getItemViewType(position) == ITEM_VIEW_TYPE_HEADER) {
             ChapterTitleHolder chapterTitleHolder = (ChapterTitleHolder) holder;
             chapterTitleHolder.mTitleTextView.setText(mSectionList.get(position).getSectionText());
             return;
         }
-        ChapterDetailHolder detailHolder = (ChapterDetailHolder) holder;
+        final ChapterDetailHolder detailHolder = (ChapterDetailHolder) holder;
         detailHolder.mIndexTextView.setText(mSectionList.get(position).getSectionNo() + "");
         detailHolder.mContentTextView.setText(mSectionList.get(position).getSectionText());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mItemClickListener != null) {
+                    mSelectedViewHolder = detailHolder;
                     mItemClickListener.OnClick(mSectionList.get(position));
                 }
             }
@@ -84,6 +86,12 @@ public class SectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public int getItemCount() {
         return mSectionList.size();
+    }
+
+    public void changeIndexColor(boolean isChecked) {
+        if (mSelectedViewHolder != null) {
+            mSelectedViewHolder.mIndexTextView.setTextColor(isChecked ? mContext.getResources().getColor(R.color.text_color_black) : mContext.getResources().getColor(R.color.text_section_index));
+        }
     }
 
     class ChapterTitleHolder extends RecyclerView.ViewHolder {

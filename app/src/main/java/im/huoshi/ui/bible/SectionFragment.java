@@ -46,6 +46,10 @@ public class SectionFragment extends BaseFragment {
         this.mIsChecked = isChecked;
     }
 
+    public void changeIndexColor(boolean isChecked) {
+        mSectionAdapter.changeIndexColor(isChecked);
+    }
+
     private void setupViews() {
         this.mSectionDao = new SectionDao();
         mChapter = getArguments().getParcelable("chapter");
@@ -60,8 +64,10 @@ public class SectionFragment extends BaseFragment {
             public void OnClick(Section section) {
                 if (!mIsChecked) {
                     mIsChecked = true;
+                    changeIndexColor(true);
                     mActivity.showLayout(section.getNoteText(), SectionFragment.this);
                 } else {
+                    changeIndexColor(false);
                     mIsChecked = false;
                     mActivity.hideLayout();
                 }

@@ -7,8 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import com.bumptech.glide.Glide;
 import com.umeng.update.UmengUpdateAgent;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 import im.huoshi.R;
 import im.huoshi.base.BaseActivity;
@@ -27,6 +29,8 @@ public class MeFragment extends BaseFragment {
     private CircleImageView mAvatarImageView;
     @ViewInject(R.id.textview_nickname)
     private TextView mNickNameTextView;
+    @ViewInject(R.id.textview_read_minutes)
+    private TextView mReadMinutesTextView;
     @ViewInject(R.id.layout_user_info)
     private RelativeLayout mUserLayout;
     @ViewInject(R.id.textview_my_prayer)
@@ -52,6 +56,7 @@ public class MeFragment extends BaseFragment {
         if (isLogin()) {
             Glide.with(this).load(mUser.getAvatar()).into(mAvatarImageView);
             mNickNameTextView.setText(mUser.getNickName());
+            mReadMinutesTextView.setText("阅读时间：" + mReadStat.getTotalMinutes() + "分钟");
             return;
         }
         mAvatarImageView.setImageResource(R.mipmap.image_default_avatar);

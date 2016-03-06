@@ -130,8 +130,9 @@ public class ChapterDetailsActivity extends BaseActivity {
 
             @Override
             public void onPageSelected(int position) {
-                mToolbarUtils.setTitleText(mBookName + "\t\t" + mChapters.get(position).getChapterNo() + "章");
+                mToolbarUtils.setTitleText(mBookName + "\t\t第" + mChapters.get(position).getChapterNo() + "章");
                 if (mIsShow) {
+                    mFragment.changeIndexColor(false);
                     mFragment.setIsChecked(false);
                     hideLayout();
                 }

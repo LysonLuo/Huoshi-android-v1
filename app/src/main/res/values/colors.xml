@@ -13,6 +13,7 @@
     <color name="text_color_black_light">#666666</color>
     <color name="text_color_chapter">#333333</color>
     <color name="text_color_orange">#ffffbb33</color>
+    <color name="text_section_index">#88444444</color>
 
     <!--背景颜色-->
     <color name="conmon_gray_line_divider">#CCCCCC</color>

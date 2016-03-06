@@ -58,19 +58,19 @@ public class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.BibleViewHol
     public void onBindViewHolder(final BibleViewHolder holder, final int position) {
         final int basePosition = 3 * position;
         SpannableString spannableString = new SpannableString(mBookList.get(basePosition).getBookName());
-        spannableString.setSpan(new RelativeSizeSpan(1.38f), 0, 1, 0);
+        spannableString.setSpan(new RelativeSizeSpan(1.63f), 0, 1, 0);
         spannableString.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.text_color_black)), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         spannableString.setSpan(new StyleSpan(Typeface.BOLD), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         holder.mFirstCheckBox.setText(spannableString);
 
         SpannableString spannableString1 = new SpannableString(mBookList.get(basePosition + 1).getBookName());
-        spannableString1.setSpan(new RelativeSizeSpan(1.38f), 0, 1, 0);
+        spannableString1.setSpan(new RelativeSizeSpan(1.63f), 0, 1, 0);
         spannableString1.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.text_color_black)), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         spannableString1.setSpan(new StyleSpan(Typeface.BOLD), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         holder.mSecondCheckBox.setText(spannableString1);
 
         SpannableString spannableString2 = new SpannableString(mBookList.get(basePosition + 2).getBookName());
-        spannableString2.setSpan(new RelativeSizeSpan(1.38f), 0, 1, 0);
+        spannableString2.setSpan(new RelativeSizeSpan(1.63f), 0, 1, 0);
         spannableString2.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.text_color_black)), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         spannableString2.setSpan(new StyleSpan(Typeface.BOLD), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         holder.mThirdCheckBox.setText(spannableString2);

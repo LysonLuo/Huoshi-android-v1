@@ -25,7 +25,7 @@
             android:paddingLeft="@dimen/margin_normal"
             android:text="创世纪"
             android:textColor="@color/text_color_black_light"
-            android:textSize="@dimen/text_size_small_" />
+            android:textSize="@dimen/text_size_very_small" />
 
 
         <CheckBox
@@ -42,7 +42,7 @@
             android:paddingLeft="@dimen/margin_normal"
             android:text="创世纪"
             android:textColor="@color/text_color_black_light"
-            android:textSize="@dimen/text_size_small_" />
+            android:textSize="@dimen/text_size_very_small"/>
 
 
         <CheckBox
@@ -59,7 +59,7 @@
             android:paddingLeft="@dimen/margin_normal"
             android:text="创世纪"
             android:textColor="@color/text_color_black_light"
-            android:textSize="@dimen/text_size_small_" />
+            android:textSize="@dimen/text_size_very_small" />
     </LinearLayout>
 
     <View

@@ -2,36 +2,55 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="300dp"
     android:layout_height="match_parent"
-    android:background="@color/common_white_bg"
-    android:paddingBottom="@dimen/margin_extreme_big"
-    android:orientation="vertical">
+    android:background="@drawable/drawable_white_circle_border"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/margin_extreme_big">
 
     <LinearLayout
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/margin_very_big"
-        android:background="@drawable/drawable_blue_circle_solid"
-        android:orientation="vertical">
+        android:background="@drawable/drawable_blue_circle_border"
+        android:orientation="vertical"
+        android:paddingTop="2.5dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="40dp"
-            android:text="连续阅读天数"
-            android:textColor="@color/text_color_white"
-            android:textSize="@dimen/text_size_small" />
+        <LinearLayout
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center"
+            android:background="@drawable/drawable_blue_circle_solid"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textview_continuous_read_days"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/margin_very_small"
-            android:text="25"
-            android:textColor="@color/text_color_white"
-            android:textSize="40sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
+                android:text="连续阅读天数"
+                android:textColor="@color/text_color_white"
+                android:textSize="@dimen/text_size_small" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textview_continuous_read_days"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="25"
+                    android:textColor="@color/text_color_white"
+                    android:textSize="40sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="天"
+                    android:textColor="@color/text_color_white" />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -41,7 +60,9 @@
         android:layout_marginLeft="@dimen/margin_very_big"
         android:layout_marginRight="@dimen/margin_very_big"
         android:layout_marginTop="@dimen/margin_very_big"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/margin_normal"
+        android:paddingRight="@dimen/margin_normal">
 
         <TextView
             android:layout_width="wrap_content"
@@ -70,7 +91,9 @@
         android:layout_marginLeft="@dimen/margin_very_big"
         android:layout_marginRight="@dimen/margin_very_big"
         android:layout_marginTop="@dimen/margin_very_big"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/margin_normal"
+        android:paddingRight="@dimen/margin_normal">
 
         <TextView
             android:layout_width="wrap_content"
