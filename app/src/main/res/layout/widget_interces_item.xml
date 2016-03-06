@@ -88,7 +88,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="right"
                 android:layout_marginLeft="20dp"
-                android:drawableLeft="@mipmap/icon_suffrage_small"
+                android:drawableLeft="@mipmap/icon_interces_small"
                 android:drawablePadding="@dimen/margin_small"
                 android:gravity="right|center_vertical"
                 android:text="2123"

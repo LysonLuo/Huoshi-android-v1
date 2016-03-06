@@ -60,6 +60,8 @@ public class LoginActivity extends BaseActivity {
                             User user = new Gson().fromJson(responseString, new TypeToken<User>() {
                             }.getType());
                             mLocalUser.saveUser(user);
+                            mLocalRead.updateContinuousDays(user.getContinuousDays());
+                            mLocalRead.updateContinuousIntercesDays(user.getContinuousIntercesDays());
                             mLocalRead.updateAddStat(false);
                             finish();
                         }

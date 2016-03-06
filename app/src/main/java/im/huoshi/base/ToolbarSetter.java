@@ -23,8 +23,8 @@ public class ToolbarSetter {
     }
 
     public static void setupMainToolbar(Context context, Toolbar toolbar) {
-        toolbar.setTitle(context.getString(R.string.app_name));
-        toolbar.setNavigationIcon(R.mipmap.icon_logo);
+//        toolbar.setTitle(context.getString(R.string.app_name));
+        toolbar.setNavigationIcon(null);
         toolbar.setNavigationOnClickListener(null);
     }
 }

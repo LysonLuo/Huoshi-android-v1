@@ -10,11 +10,10 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import im.huoshi.R;
+import im.huoshi.base.BaseActivity;
 import im.huoshi.model.Chapter;
-import im.huoshi.ui.main.MainActivity;
 import im.huoshi.utils.ViewInject;
 import im.huoshi.utils.ViewUtils;
 
@@ -25,9 +24,9 @@ public class BibleChapterAdapter extends RecyclerView.Adapter<BibleChapterAdapte
     private Context mContext;
     private String mBookName;
     private BibleAdapter mBibleAdapter;
-    private List<Chapter> mChapterList = new ArrayList<>();
+    private ArrayList<Chapter> mChapterList = new ArrayList<>();
 
-    public BibleChapterAdapter(Context mContext, String bookName, List<Chapter> chapterList) {
+    public BibleChapterAdapter(Context mContext, String bookName, ArrayList<Chapter> chapterList) {
         this.mContext = mContext;
         this.mBookName = bookName;
         this.mChapterList = chapterList;
@@ -46,7 +45,7 @@ public class BibleChapterAdapter extends RecyclerView.Adapter<BibleChapterAdapte
         holder.mChapterCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                ChapterDetailsActivity.launch((MainActivity) mContext, mBookName, mChapterList.toArray(new Chapter[mChapterList.size()]), position);
+                ChapterDetailsActivity.launch((BaseActivity) mContext, mBookName, mChapterList, position);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {

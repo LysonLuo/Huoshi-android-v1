@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -16,11 +17,13 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.bugtags.library.Bugtags;
 import com.umeng.analytics.MobclickAgent;
 
 import im.huoshi.R;
 import im.huoshi.data.ReadPreference;
 import im.huoshi.data.UserPreference;
+import im.huoshi.model.HuoshiData;
 import im.huoshi.model.ReadStat;
 import im.huoshi.model.User;
 import im.huoshi.ui.main.LoginActivity;
@@ -38,13 +41,15 @@ public class BaseActivity extends AppCompatActivity implements ToolbarUtils.OnTo
     private ProgressFragment mProgressFragment;
     private RetryFragment mRetryFragment;
     private NoDataFragment mNoDataFragment;
-    protected UserPreference mLocalUser;
-    protected User mUser;
-    protected ReadPreference mLocalRead;
-    protected ReadStat mReadStat;
+    public static UserPreference mLocalUser;
+    public static User mUser;
+    public static ReadPreference mLocalRead;
+    public static ReadStat mReadStat;
+    public static HuoshiData mHuoshiData;
 
     private boolean mIsActivityAlive = true;
     private boolean isShowToolbar = true;
+    private boolean mIsFromMain = false;
 
     @Override
     public void setContentView(int layoutResID) {
@@ -57,18 +62,22 @@ public class BaseActivity extends AppCompatActivity implements ToolbarUtils.OnTo
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mLocalUser = UserPreference.getInstance();
+        reloadLocalData();
+    }
+
+    protected void reloadLocalData() {
         mUser = mLocalUser.getUser();
         mLocalRead = ReadPreference.getInstance();
         mReadStat = mLocalRead.getReadStat();
+        mHuoshiData = mLocalRead.getHuoshiData();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        Bugtags.onResume(this);
         mLocalUser = UserPreference.getInstance();
-        mUser = mLocalUser.getUser();
-        mLocalRead = ReadPreference.getInstance();
-        mReadStat = mLocalRead.getReadStat();
+        reloadLocalData();
         initTitle();
         MobclickAgent.onResume(this);
         MobclickAgent.setSessionContinueMillis(60);
@@ -91,6 +100,13 @@ public class BaseActivity extends AppCompatActivity implements ToolbarUtils.OnTo
     protected void onPause() {
         super.onPause();
         MobclickAgent.onPause(this);
+        Bugtags.onPause(this);
+    }
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        //注：回调 3
+        Bugtags.onDispatchTouchEvent(this, event);
+        return super.dispatchTouchEvent(event);
     }
 
     protected void initTitle() {
@@ -104,6 +120,7 @@ public class BaseActivity extends AppCompatActivity implements ToolbarUtils.OnTo
         container.addView(view, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
         RelativeLayout topLevelLayout = null;
+        FrameLayout mainContainer = new FrameLayout(this);
 
         if (isShowToolbar) {
             topLevelLayout = new RelativeLayout(this);
@@ -121,8 +138,13 @@ public class BaseActivity extends AppCompatActivity implements ToolbarUtils.OnTo
             layoutParams1.addRule(RelativeLayout.BELOW, mToolbar.getId());
             topLevelLayout.addView(mToolbar);
             topLevelLayout.addView(container, layoutParams1);
+            if (mIsFromMain) {
+                view.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+                mainContainer.setId(R.id.main_layout_id);
+                mainContainer.addView(topLevelLayout, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            }
         }
-        super.setContentView(isShowToolbar ? topLevelLayout : container);
+        super.setContentView(isShowToolbar ? (mIsFromMain ? mainContainer : topLevelLayout) : container);
 
     }
 
@@ -138,6 +160,10 @@ public class BaseActivity extends AppCompatActivity implements ToolbarUtils.OnTo
      */
     public void setShowToolbar(boolean isShowToolbar) {
         this.isShowToolbar = isShowToolbar;
+    }
+
+    public void setIsFromMain(boolean isFromMain) {
+        this.mIsFromMain = isFromMain;
     }
 
 

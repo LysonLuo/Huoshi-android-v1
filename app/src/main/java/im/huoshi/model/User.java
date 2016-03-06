@@ -28,6 +28,10 @@ public class User extends ApiObject {
     private String provinceName;
     @SerializedName("city_name")
     private String cityName;
+    @SerializedName("continuous_interces_days")
+    private int continuousIntercesDays;
+    @SerializedName("continuous_days")
+    private int continuousDays;//连续阅读天数
 
     public int getUserId() {
         return userId;
@@ -81,6 +85,14 @@ public class User extends ApiObject {
         return cityName;
     }
 
+    public int getContinuousIntercesDays() {
+        return continuousIntercesDays;
+    }
+
+    public int getContinuousDays() {
+        return continuousDays;
+    }
+
     public void setUserId(int userId) {
         this.userId = userId;
     }
@@ -131,5 +143,13 @@ public class User extends ApiObject {
 
     public void setCityName(String cityName) {
         this.cityName = cityName;
+    }
+
+    public void setContinuousIntercesDays(int continuousIntercesDays) {
+        this.continuousIntercesDays = continuousIntercesDays;
+    }
+
+    public void setContinuousDays(int continuousDays) {
+        this.continuousDays = continuousDays;
     }
 }

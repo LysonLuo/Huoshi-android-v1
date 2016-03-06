@@ -19,10 +19,13 @@
             android:layout_weight="1"
             android:background="@drawable/drawable_bible_bg_color_selector"
             android:button="@null"
-            android:gravity="center"
-            android:padding="@dimen/margin_very_small"
+            android:ellipsize="end"
+            android:gravity="left|center_vertical"
+            android:maxLines="1"
+            android:paddingLeft="@dimen/margin_normal"
             android:text="创世纪"
-            android:textColor="@color/text_color_black_light" />
+            android:textColor="@color/text_color_black_light"
+            android:textSize="@dimen/text_size_small_" />
 
 
         <CheckBox
@@ -33,10 +36,13 @@
             android:layout_weight="1"
             android:background="@drawable/drawable_bible_bg_color_selector"
             android:button="@null"
-            android:gravity="center"
-            android:padding="@dimen/margin_very_small"
+            android:ellipsize="end"
+            android:gravity="left|center_vertical"
+            android:maxLines="1"
+            android:paddingLeft="@dimen/margin_normal"
             android:text="创世纪"
-            android:textColor="@color/text_color_black_light" />
+            android:textColor="@color/text_color_black_light"
+            android:textSize="@dimen/text_size_small_" />
 
 
         <CheckBox
@@ -47,10 +53,13 @@
             android:layout_weight="1"
             android:background="@drawable/drawable_bible_bg_color_selector"
             android:button="@null"
-            android:gravity="center"
-            android:padding="@dimen/margin_very_small"
+            android:ellipsize="end"
+            android:gravity="left|center_vertical"
+            android:maxLines="1"
+            android:paddingLeft="@dimen/margin_normal"
             android:text="创世纪"
-            android:textColor="@color/text_color_black_light" />
+            android:textColor="@color/text_color_black_light"
+            android:textSize="@dimen/text_size_small_" />
     </LinearLayout>
 
     <View

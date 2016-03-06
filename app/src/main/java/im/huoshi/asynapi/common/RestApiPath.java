@@ -15,5 +15,6 @@ public class RestApiPath {
     public static final String HUOSHI_TAB = "huoshi/tab";//活石页面统计
     public static final String PUB_INTERCES = "intercession";//发布代祷
     public static final String INTERCES_LIST = "intercession/list";//代祷列表
+    public static final String ASYN_CONTACTS = "contacts";//同步通讯录
 
 }

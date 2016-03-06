@@ -6,6 +6,7 @@
     <dimen name="margin_normal">16dp</dimen>
     <dimen name="margin_small">10dp</dimen>
     <dimen name="margin_very_small">6dp</dimen>
+    <dimen name="margin_very_very_small">4dp</dimen>
 
     <!-- 字体大小-->
     <dimen name="text_size_micro">10sp</dimen>

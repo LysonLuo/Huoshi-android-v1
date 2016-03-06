@@ -24,10 +24,11 @@
             android:textSize="@dimen/text_size_small" />
 
         <TextView
+            android:id="@+id/textview_continuous_read_days"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_very_small"
             android:text="25"
             android:textColor="@color/text_color_white"
             android:textSize="40sp" />
@@ -52,6 +53,7 @@
             android:textSize="@dimen/text_size_small" />
 
         <TextView
+            android:id="@+id/textview_last_read_minutes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -80,6 +82,7 @@
             android:textSize="@dimen/text_size_small" />
 
         <TextView
+            android:id="@+id/textview_total_read_minutes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -91,6 +94,7 @@
 
 
     <TextView
+        android:id="@+id/textview_remind_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_extreme_big"

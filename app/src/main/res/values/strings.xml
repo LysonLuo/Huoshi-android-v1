@@ -46,7 +46,7 @@
     <string name="text_total_read_time">累计阅读时长：</string>
     <string name="text_christ_life">基督生活 随身常在</string>
     <string name="text_continue_read_days">连续读经天数</string>
-    <string name="text_continue_suffrage_days">连续代祷天数</string>
+    <string name="text_continue_interces_days">连续代祷天数</string>
     <string name="lable_login_register_account">注册账号</string>
     <string name="text_warn_phone_empty">手机号码不能为空!</string>
     <string name="text_verification_sent_success">验证码发送成功!</string>

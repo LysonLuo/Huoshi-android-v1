@@ -23,7 +23,7 @@
 
         <TextView
             style="@style/InfoItemStyle"
-            android:drawableLeft="@mipmap/icon_suffrage"
+            android:drawableLeft="@mipmap/icon_interces"
             android:text="@string/text_suffrage" />
 
         <View

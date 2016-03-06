@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/margin_normal"
-                android:src="@mipmap/icon_join_suffrage" />
+                android:src="@mipmap/icon_join_interces" />
 
 
             <TextView

@@ -9,8 +9,12 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import java.util.ArrayList;
+
 import im.huoshi.R;
 import im.huoshi.asynapi.callback.RestApiCallback;
 import im.huoshi.asynapi.request.ReadRequest;
@@ -18,7 +22,6 @@ import im.huoshi.base.BaseActivity;
 import im.huoshi.model.ApiError;
 import im.huoshi.model.Chapter;
 import im.huoshi.model.ReadStat;
-import im.huoshi.ui.main.MainActivity;
 import im.huoshi.utils.DateUtils;
 import im.huoshi.utils.LogUtils;
 import im.huoshi.utils.ViewInject;
@@ -35,7 +38,7 @@ public class ChapterDetailsActivity extends BaseActivity {
     private TextView mAnnotationTextView;
     private Animation mAnimationUp;
     private Animation mAnimationDown;
-    private Chapter[] mChapters;
+    private ArrayList<Chapter> mChapters;
     private int mCurrentPosition;
     private ChapterPagerAdapter mChapterAdapter;
     private boolean mIsShow = false;
@@ -64,7 +67,7 @@ public class ChapterDetailsActivity extends BaseActivity {
                     ReadStat readStat = new Gson().fromJson(responseString, new TypeToken<ReadStat>() {
                     }.getType());
                     mLocalRead.saveReadStat(readStat);
-                    mLocalRead.updateAddStat(true);
+                    mLocalRead.updateAddStat(false);
                     LogUtils.d(LOG_TAG, "同步成功~");
                 }
 
@@ -79,33 +82,39 @@ public class ChapterDetailsActivity extends BaseActivity {
     @Override
     protected void initTitle() {
         super.initTitle();
-        mToolbarUtils.setTitleText(mBookName + "\t\t" + mChapters[mCurrentPosition].getChapterNo() + "章");
+        mToolbarUtils.setTitleText(mBookName + "\t\t" + mChapters.get(mCurrentPosition).getChapterNo() + "章");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        mStopTime = System.currentTimeMillis();
-        //本次阅读结束距离上次阅读结束的时间间隔
-        int dayBetweenLast = DateUtils.getDayBetween(mLocalRead.getLastReadLong());
-        //本次阅读结束距离本次阅读开始的时间间隔
-        int dayBetweenCurrent = DateUtils.getDayBetween(mStartTime);
-        mCurrentMinutes = (int) (mStopTime - mStartTime) / 60 * 1000;
+        if (isLogin()) {
+            mStopTime = System.currentTimeMillis();
+            //本次阅读结束距离上次阅读结束的时间间隔
+            int dayBetweenLast = DateUtils.getDayBetween(mLocalRead.getLastReadLong());
+            //本次阅读结束距离本次阅读开始的时间间隔
+            int dayBetweenCurrent = DateUtils.getDayBetween(mStartTime);
+            mCurrentMinutes = (int) (mStopTime - mStartTime) / (60 * 1000);
 
-        if (mCurrentMinutes > 1) {
-            mLocalRead.updateLastMinutes(mCurrentMinutes);
-            mLocalRead.updateTotalMinutes();
-            //从上次阅读结束到这次阅读结束,时间间隔为1,或者从上次阅读结束到这次阅读结束,时间间隔为2,但是从开始阅读到结束阅读,时间间隔为1,也就是过了24点还在读~
-            if (dayBetweenLast == 1 || (dayBetweenLast == 2 && dayBetweenCurrent == 1)) {
-                mLocalRead.updateContinuousDays();
+            if (mCurrentMinutes >= 1) {
+                mLocalRead.updateAddStat(true);
+                mLocalRead.updateLastMinutes(mCurrentMinutes);
+                mLocalRead.updateTotalMinutes();
+                //从上次阅读结束到这次阅读结束,时间间隔为1,或者从上次阅读结束到这次阅读结束,时间间隔为2,但是从开始阅读到结束阅读,时间间隔为1,也就是过了24点还在读~
+                if (dayBetweenLast == 1 || (dayBetweenLast == 2 && dayBetweenCurrent == 1)) {
+                    mLocalRead.updateContinuousDays();
+                } else {
+                    mLocalRead.updateContinuousDays(1);
+                }
+                mLocalRead.updateLastReadLong(mStopTime);
+                reloadLocalData();
             }
-            mLocalRead.updateLastReadLong(mStopTime);
         }
     }
 
     private void setupViews() {
         mStartTime = System.currentTimeMillis();
-        mChapters = (Chapter[]) getIntent().getSerializableExtra("chapters");
+        mChapters = getIntent().getParcelableArrayListExtra("chapters");
         mCurrentPosition = getIntent().getIntExtra("position", 0);
         mBookName = getIntent().getStringExtra("bookName");
         mAnimationUp = AnimationUtils.loadAnimation(this, R.anim.anim_translate_up);
@@ -121,7 +130,7 @@ public class ChapterDetailsActivity extends BaseActivity {
 
             @Override
             public void onPageSelected(int position) {
-                mToolbarUtils.setTitleText(mBookName + "\t\t" + mChapters[position].getChapterNo() + "章");
+                mToolbarUtils.setTitleText(mBookName + "\t\t" + mChapters.get(position).getChapterNo() + "章");
                 if (mIsShow) {
                     mFragment.setIsChecked(false);
                     hideLayout();
@@ -165,9 +174,9 @@ public class ChapterDetailsActivity extends BaseActivity {
         mAnnotationTextView.startAnimation(mAnimationUp);
     }
 
-    public static void launch(MainActivity activity, String bookName, Chapter[] chapters, int position) {
+    public static void launch(BaseActivity activity, String bookName, ArrayList<Chapter> chapters, int position) {
         Intent intent = new Intent(activity, ChapterDetailsActivity.class);
-        intent.putExtra("chapters", chapters);
+        intent.putParcelableArrayListExtra("chapters", chapters);
         intent.putExtra("position", position);
         intent.putExtra("bookName", bookName);
         activity.startActivity(intent);

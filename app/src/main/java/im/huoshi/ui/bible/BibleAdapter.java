@@ -2,8 +2,14 @@ package im.huoshi.ui.bible;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,9 +57,24 @@ public class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.BibleViewHol
     @Override
     public void onBindViewHolder(final BibleViewHolder holder, final int position) {
         final int basePosition = 3 * position;
-        holder.mFirstCheckBox.setText(mBookList.get(basePosition).getBookName());
-        holder.mSecondCheckBox.setText(mBookList.get(basePosition + 1).getBookName());
-        holder.mThirdCheckBox.setText(mBookList.get(basePosition + 2).getBookName());
+        SpannableString spannableString = new SpannableString(mBookList.get(basePosition).getBookName());
+        spannableString.setSpan(new RelativeSizeSpan(1.38f), 0, 1, 0);
+        spannableString.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.text_color_black)), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(new StyleSpan(Typeface.BOLD), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        holder.mFirstCheckBox.setText(spannableString);
+
+        SpannableString spannableString1 = new SpannableString(mBookList.get(basePosition + 1).getBookName());
+        spannableString1.setSpan(new RelativeSizeSpan(1.38f), 0, 1, 0);
+        spannableString1.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.text_color_black)), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString1.setSpan(new StyleSpan(Typeface.BOLD), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        holder.mSecondCheckBox.setText(spannableString1);
+
+        SpannableString spannableString2 = new SpannableString(mBookList.get(basePosition + 2).getBookName());
+        spannableString2.setSpan(new RelativeSizeSpan(1.38f), 0, 1, 0);
+        spannableString2.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.text_color_black)), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString2.setSpan(new StyleSpan(Typeface.BOLD), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        holder.mThirdCheckBox.setText(spannableString2);
+
         holder.mFirstCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -103,7 +124,7 @@ public class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.BibleViewHol
             holder.mLayoutManager = new GridLayoutManager(mContext, 8);
             holder.mRecyclerView.setLayoutManager(holder.mLayoutManager);
             holder.mChapterList = loadChapter(basePostion + index);
-            holder.mAdapter = new BibleChapterAdapter(mContext, mSelectCheckBox.getText().toString(),holder.mChapterList);
+            holder.mAdapter = new BibleChapterAdapter(mContext, mSelectCheckBox.getText().toString(), holder.mChapterList);
             holder.mRecyclerView.setAdapter(holder.mAdapter);
             holder.mAdapter.setParentAdapter(this);
             mViewWrap = new ViewWrapperUtils(holder.mRecyclerView);
@@ -117,7 +138,7 @@ public class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.BibleViewHol
         }
     }
 
-    private List<Chapter> loadChapter(int index) {
+    private ArrayList<Chapter> loadChapter(int index) {
         return mChapterDao.getList(mBookList.get(index).getBookNo());
     }
 
@@ -157,7 +178,7 @@ public class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.BibleViewHol
         private GridLayoutManager mLayoutManager;
         private BibleChapterAdapter mAdapter;
         private int lineCount;
-        private List<Chapter> mChapterList = new ArrayList<>();
+        private ArrayList<Chapter> mChapterList = new ArrayList<>();
 
         public BibleViewHolder(View itemView) {
             super(itemView);

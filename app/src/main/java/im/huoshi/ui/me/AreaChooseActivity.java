@@ -11,10 +11,10 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import im.huoshi.R;
 import im.huoshi.base.BaseActivity;
 import im.huoshi.model.City;
+import im.huoshi.utils.AmapUtils;
 import im.huoshi.utils.JsonUtils;
 import im.huoshi.utils.ViewInject;
 import im.huoshi.utils.ViewUtils;
@@ -31,6 +31,8 @@ import java.util.List;
  * Created by Lyson on 16/2/5.
  */
 public class AreaChooseActivity extends BaseActivity {
+    @ViewInject(R.id.textview_current_area)
+    private TextView mCurrentAreaTextView;
     @ViewInject(R.id.textview_province)
     private TextView mProvinceTextView;
     @ViewInject(R.id.textview_city)
@@ -55,6 +57,7 @@ public class AreaChooseActivity extends BaseActivity {
         ViewUtils.inject(this);
 
         getAddressInfo();
+        getLocation();
         setupViews();
     }
 
@@ -171,6 +174,22 @@ public class AreaChooseActivity extends BaseActivity {
             }
         }
         return content;
+    }
+
+    private void getLocation() {
+        new AmapUtils(this, new AmapUtils.GetLoc() {
+            @Override
+            public void onLoc(final String provinceName, final String cityName, final double latitude, final double longitude) {
+                String province = provinceName.length() > 2 ? provinceName.replace("省", "") : provinceName;
+                String city = cityName.length() > 2 ? cityName.replaceAll("市", "") : cityName;
+                mCurrentAreaTextView.setText(province + city);
+            }
+
+            @Override
+            public void onLocFailure() {
+                mCurrentAreaTextView.setText("定位失败");
+            }
+        });
     }
 
     class AreaAdapter extends BaseAdapter {

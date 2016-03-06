@@ -3,6 +3,7 @@ package im.huoshi.data;
 import android.content.Context;
 import android.content.SharedPreferences;
 import im.huoshi.HuoshiApplication;
+import im.huoshi.model.HuoshiData;
 import im.huoshi.model.ReadStat;
 
 /**
@@ -34,6 +35,7 @@ public class ReadPreference {
         editor.putInt("last_minutes", readStat.getLastMinutes());
         editor.putInt("total_minutes", readStat.getTotalMinutes());
         editor.putInt("continuous_days", readStat.getContinuousDays());
+        editor.putString("notice", readStat.getNotice());
         editor.apply();
     }
 
@@ -42,7 +44,24 @@ public class ReadPreference {
         readStat.setLastMinutes(mPreference.getInt("last_minutes", 0));
         readStat.setTotalMinutes(mPreference.getInt("total_minutes", 0));
         readStat.setContinuousDays(mPreference.getInt("continuous_days", 0));
+        readStat.setNotice(mPreference.getString("notice", ""));
         return readStat;
+    }
+
+    public void saveHuoshiData(HuoshiData huoshiData) {
+        SharedPreferences.Editor editor = mPreference.edit();
+        editor.putInt("continuous_interces_days", huoshiData.getContinuousIntercesDays());
+        editor.putInt("share_number", huoshiData.getShareNumber());
+        editor.putString("share_today", huoshiData.getShareToday());
+        editor.apply();
+    }
+
+    public HuoshiData getHuoshiData() {
+        HuoshiData huoshiData = new HuoshiData();
+        huoshiData.setContinuousIntercesDays(mPreference.getInt("continuous_interces_days", 0));
+        huoshiData.setShareNumber(mPreference.getInt("share_number", 0));
+        huoshiData.setShareToday(mPreference.getString("share_today", ""));
+        return huoshiData;
     }
 
     public void updateAddStat(boolean isAdd) {
@@ -73,9 +92,22 @@ public class ReadPreference {
         editor.apply();
     }
 
+
+    public void updateContinuousDays(int newDay) {
+        SharedPreferences.Editor editor = mPreference.edit();
+        editor.putInt("continuous_days", newDay);
+        editor.apply();
+    }
+
     public void updateLastReadLong(long lastReadLong) {
         SharedPreferences.Editor editor = mPreference.edit();
         editor.putLong("last_read_long", lastReadLong);
+        editor.apply();
+    }
+
+    public void updateContinuousIntercesDays(int newDay) {
+        SharedPreferences.Editor editor = mPreference.edit();
+        editor.putInt("continuous_interces_days", newDay);
         editor.apply();
     }
 
@@ -84,8 +116,12 @@ public class ReadPreference {
     }
 
     public void clearData() {
+        String shareToday = mPreference.getString("share_today", "");
+        int shareNumber = mPreference.getInt("share_number", 0);
         SharedPreferences.Editor editor = mPreference.edit();
         editor.clear();
-        editor.commit();
+        editor.putString("share_today", shareToday);
+        editor.putInt("share_number", shareNumber);
+        editor.apply();
     }
 }

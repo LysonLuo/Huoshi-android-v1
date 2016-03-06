@@ -5,7 +5,6 @@ import android.database.SQLException;
 import com.j256.ormlite.dao.Dao;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import im.huoshi.database.helper.BibleDBHelper;
 import im.huoshi.model.Chapter;
@@ -26,10 +25,10 @@ public class ChapterDao {
         }
     }
 
-    public List<Chapter> getList(int bookId) {
-        List<Chapter> chapterList = new ArrayList<>();
+    public ArrayList<Chapter> getList(int bookId) {
+        ArrayList<Chapter> chapterList = new ArrayList<>();
         try {
-            chapterList = mChapterDao.queryForEq("bookId", bookId);
+            chapterList = (ArrayList<Chapter>) mChapterDao.queryForEq("bookId", bookId);
         } catch (java.sql.SQLException e) {
             e.printStackTrace();
         }

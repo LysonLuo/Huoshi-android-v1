@@ -8,7 +8,7 @@ android {
         applicationId "im.huoshi"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 1
+        versionCode 4
     }
     signingConfigs {
         release {
@@ -26,7 +26,7 @@ android {
         release {
             minifyEnabled false//混淆代码
             debuggable true//开发日志
-            shrinkResources true//优化资源
+            shrinkResources false//优化资源
             versionNameSuffix "1.0." + new Date().format('MMdd')
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -55,4 +55,5 @@ dependencies {
     compile 'com.qiniu:happy-dns:0.2.3.2'
     compile 'com.google.code.gson:gson:2.4'
     compile 'com.bigkoo:pickerview:2.0.8'
+    compile 'com.bugtags.library:bugtags-lib:latest.integration'
 }

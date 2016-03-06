@@ -36,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:drawableLeft="@mipmap/icon_suffrage_small"
+                android:drawableLeft="@mipmap/icon_interces_small"
                 android:drawablePadding="@dimen/margin_small"
                 android:gravity="center_vertical"
                 android:paddingLeft="100dp"

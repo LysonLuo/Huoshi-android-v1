@@ -48,7 +48,7 @@ public class SectionFragment extends BaseFragment {
 
     private void setupViews() {
         this.mSectionDao = new SectionDao();
-        mChapter = (Chapter) getArguments().getSerializable("chapter");
+        mChapter = getArguments().getParcelable("chapter");
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
         List<Section> sectionList = mSectionDao.getList(mChapter.getBookId(), mChapter.getChapterNo());
@@ -72,7 +72,7 @@ public class SectionFragment extends BaseFragment {
     public static SectionFragment getInstance(Chapter chapter) {
         SectionFragment fragment = new SectionFragment();
         Bundle bundle = new Bundle();
-        bundle.putSerializable("chapter", chapter);
+        bundle.putParcelable("chapter", chapter);
         fragment.setArguments(bundle);
         return fragment;
     }

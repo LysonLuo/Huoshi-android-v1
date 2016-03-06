@@ -8,7 +8,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
+import im.huoshi.data.ReadPreference;
 import im.huoshi.data.UserPreference;
+import im.huoshi.model.HuoshiData;
+import im.huoshi.model.ReadStat;
 import im.huoshi.model.User;
 import im.huoshi.ui.main.LoginActivity;
 import im.huoshi.utils.LogUtils;
@@ -23,7 +26,10 @@ public class BaseFragment extends Fragment {
     private RetryFragment mRetryFragment;
     private NoDataFragment mNoDataFragment;
     protected UserPreference mLocalUser;
-    protected User mUser;
+    public static User mUser;
+    public static ReadPreference mLocalRead;
+    public static ReadStat mReadStat;
+    public static HuoshiData mHuoshiData;
 
     private boolean mIsFragmentAlive = true;
 
@@ -36,15 +42,21 @@ public class BaseFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mLocalUser = UserPreference.getInstance();
-        mUser = mLocalUser.getUser();
+        reloadLocalData();
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        reloadLocalData();
+    }
+
+    private void reloadLocalData() {
         mLocalUser = UserPreference.getInstance();
         mUser = mLocalUser.getUser();
+        mLocalRead = ReadPreference.getInstance();
+        mReadStat = mLocalRead.getReadStat();
+        mHuoshiData = mLocalRead.getHuoshiData();
     }
 
     protected boolean isLogin() {

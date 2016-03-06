@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-                                   xmlns:app="http://schemas.android.com/apk/res-auto"
-                                   android:id="@+id/widget_toolbar"
-                                   android:layout_width="match_parent"
-                                   android:layout_height="?attr/actionBarSize"
-                                   android:background="?attr/colorPrimary"
-                                   android:theme="@style/ToolBarTheme"
-                                   app:contentInsetEnd="0dp"
-                                   app:contentInsetLeft="0dp"
-                                   app:contentInsetRight="0dp"
-                                   app:contentInsetStart="0dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/widget_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="?attr/colorPrimary"
+    android:theme="@style/ToolBarTheme"
+    app:contentInsetEnd="0dp"
+    app:contentInsetLeft="0dp"
+    app:contentInsetRight="0dp"
+    app:contentInsetStart="0dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -22,30 +22,32 @@
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:gravity="center"
+            android:paddingLeft="@dimen/margin_small"
             android:paddingRight="@dimen/margin_small"
             android:text="@string/main_tab_bible"
             android:textColor="@color/text_color_black"
-            android:textSize="@dimen/text_size_medium"/>
+            android:textSize="@dimen/text_size_large"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/toolbar_right_view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:textColor="@color/text_color_black"
             android:layout_alignParentRight="true"
+            android:gravity="center"
             android:paddingLeft="@dimen/margin_small"
-            android:paddingRight="@dimen/margin_small"/>
+            android:paddingRight="@dimen/margin_small"
+            android:textColor="@color/text_color_black" />
 
         <TextView
             android:id="@+id/toolbar_middle_right_view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textColor="@color/text_color_black"
-            android:gravity="center"
             android:layout_toLeftOf="@+id/toolbar_right_view"
+            android:gravity="center"
             android:paddingLeft="@dimen/margin_small"
-            android:paddingRight="@dimen/margin_small"/>
+            android:paddingRight="@dimen/margin_small"
+            android:textColor="@color/text_color_black" />
     </RelativeLayout>
 
 </android.support.v7.widget.Toolbar>
