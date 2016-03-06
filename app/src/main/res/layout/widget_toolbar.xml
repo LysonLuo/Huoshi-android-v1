@@ -6,6 +6,9 @@
     android:layout_height="?attr/actionBarSize"
     android:background="?attr/colorPrimary"
     android:theme="@style/ToolBarTheme"
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+    android:elevation="2dp"
+    android:translationZ="2dp"
     app:contentInsetEnd="0dp"
     app:contentInsetLeft="0dp"
     app:contentInsetRight="0dp"
@@ -26,8 +29,7 @@
             android:paddingRight="@dimen/margin_small"
             android:text="@string/main_tab_bible"
             android:textColor="@color/text_color_black"
-            android:textSize="@dimen/text_size_large"
-            android:textStyle="bold" />
+            android:textSize="@dimen/text_size_large" />
 
         <TextView
             android:id="@+id/toolbar_right_view"
