@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
 
         <TextView
@@ -15,9 +15,9 @@
             android:layout_height="150dp"
             android:gravity="center"
             android:text="幸运大转盘"
-            android:textSize="50sp"/>
+            android:textSize="50sp" />
 
-        <View style="@style/GrayDividerStyle"/>
+        <View style="@style/GrayDividerStyle" />
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -26,9 +26,9 @@
             <RelativeLayout
                 android:id="@+id/layout_guide_login"
                 android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:layout_height="match_parent"
                 android:padding="@dimen/margin_normal">
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -36,7 +36,7 @@
                     android:layout_width="@dimen/avatar_width_normal"
                     android:layout_height="@dimen/avatar_width_normal"
                     android:layout_centerVertical="true"
-                    android:src="@mipmap/image_default_avatar"/>
+                    android:src="@mipmap/image_default_avatar" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -48,15 +48,15 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:textSize="@dimen/text_size_small"
+                        android:layout_height="wrap_content"
                         android:text="您还未登录"
-                        android:layout_height="wrap_content"/>
+                        android:textSize="@dimen/text_size_small" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/text_size_very_small_"
-                        android:text="点击登录,开启专属信仰生活"/>
+                        android:text="点此登录,开启专属信仰生活"
+                        android:textSize="@dimen/text_size_very_small_" />
 
                 </LinearLayout>
 
@@ -66,9 +66,9 @@
                 android:id="@+id/layout_normal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
                 android:layout_marginTop="@dimen/margin_very_small"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -80,7 +80,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/text_continue_read_days"/>
+                        android:text="@string/text_continue_read_days" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -93,12 +93,12 @@
                             android:layout_height="wrap_content"
                             android:text="10"
                             android:textColor="@color/text_color_blue_light"
-                            android:textSize="50sp"/>
+                            android:textSize="50sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="天"/>
+                            android:text="天" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -112,7 +112,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/text_continue_interces_days"/>
+                        android:text="@string/text_continue_interces_days" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -125,12 +125,12 @@
                             android:layout_height="wrap_content"
                             android:text="10"
                             android:textColor="@color/text_color_blue_light"
-                            android:textSize="50sp"/>
+                            android:textSize="50sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="天"/>
+                            android:text="天" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -141,9 +141,9 @@
         <!--android:layout_height="wrap_content"-->
         <!--android:orientation="vertical">-->
 
-        <View style="@style/GrayDividerStyle"/>
+        <View style="@style/GrayDividerStyle" />
 
-        <include layout="@layout/widget_green_edge_item"/>
+        <include layout="@layout/widget_green_edge_item" />
 
         <TextView
             android:id="@+id/textview_today_share"
@@ -151,11 +151,11 @@
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/margin_small"
             android:paddingRight="@dimen/margin_small"
-            android:text="\t\t今天手贱剪了个空气刘海，看教程下手的，用夹板弄的卷发，就是卷发啊啊啊啊啊啊，很倦的那种啊啊啊啊啊啊啊，好丑啊啊啊啊啊啊啊啊"/>
+            android:text="\t\t今天手贱剪了个空气刘海，看教程下手的，用夹板弄的卷发，就是卷发啊啊啊啊啊啊，很倦的那种啊啊啊啊啊啊啊，好丑啊啊啊啊啊啊啊啊" />
 
-        <View style="@style/GrayDividerStyle"/>
+        <View style="@style/GrayDividerStyle" />
 
-        <include layout="@layout/widget_green_edge_item"/>
+        <include layout="@layout/widget_green_edge_item" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -169,7 +169,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/margin_normal"
                 android:layout_weight="1"
-                android:text="昨日兄弟姐妹共分享活石321次"/>
+                android:text="昨日兄弟姐妹共分享活石321次" />
 
             <Button
                 android:id="@+id/button_share_join"
@@ -179,7 +179,7 @@
                 android:layout_marginRight="@dimen/margin_normal"
                 android:background="@drawable/drawable_blue_rec_solid"
                 android:text="为主效力"
-                android:textColor="@color/text_color_white"/>
+                android:textColor="@color/text_color_white" />
         </LinearLayout>
 
         <TextView
@@ -187,13 +187,13 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/margin_normal"
             android:text="用嘴说，用手点，分享也是为主效力"
-            android:textColor="@color/text_color_orange"/>
+            android:textColor="@color/text_color_orange" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/common_gray_dark_bg"/>
+            android:background="@color/common_gray_dark_bg" />
     </LinearLayout>
     <!--</LinearLayout>-->
 </ScrollView>

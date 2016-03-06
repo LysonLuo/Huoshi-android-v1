@@ -30,11 +30,11 @@
     <string name="text_birthday">生日</string>
     <string name="text_time">信主时间</string>
     <string name="text_phone_number">手机号:</string>
-    <string name="text_password">登录密码:</string>
+    <string name="text_password">密码:</string>
     <string name="text_login">登录账号</string>
     <string name="text_forget_pwd">忘记密码？</string>
-    <string name="text_verification_code">验证码：</string>
-    <string name="text_set_pwd">设置密码</string>
+    <string name="text_verification_code">验证码:</string>
+    <string name="text_set_pwd">设置密码:</string>
     <string name="text_next">下一步</string>
     <string name="text_account_to_login">已有账号，去登录</string>
     <string name="text_send_code">发送验证码</string>
