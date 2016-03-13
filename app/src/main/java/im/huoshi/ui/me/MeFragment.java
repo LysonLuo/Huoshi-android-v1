@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.umeng.fb.FeedbackAgent;
 import com.umeng.update.UmengUpdateAgent;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -16,8 +17,8 @@ import im.huoshi.R;
 import im.huoshi.base.BaseActivity;
 import im.huoshi.base.BaseFragment;
 import im.huoshi.data.ReadPreference;
+import im.huoshi.ui.main.LoginActivity;
 import im.huoshi.ui.main.MainActivity;
-import im.huoshi.ui.main.RegisterActivity;
 import im.huoshi.utils.ViewInject;
 import im.huoshi.utils.ViewUtils;
 
@@ -35,6 +36,10 @@ public class MeFragment extends BaseFragment {
     private RelativeLayout mUserLayout;
     @ViewInject(R.id.textview_my_prayer)
     private TextView mPrayerTextView;
+    @ViewInject(R.id.textview_my_invitation)
+    private TextView mInvitationTextView;
+    @ViewInject(R.id.textview_umeng_recom)
+    private TextView mRecomTextView;
     @ViewInject(R.id.textview_logout)
     private TextView mLogoutTextView;
     @ViewInject(R.id.textview_check_update)
@@ -59,8 +64,9 @@ public class MeFragment extends BaseFragment {
             mReadMinutesTextView.setText("阅读时间：" + mReadStat.getTotalMinutes() + "分钟");
             return;
         }
-        mAvatarImageView.setImageResource(R.mipmap.image_default_avatar);
-        mNickNameTextView.setText("");
+        mAvatarImageView.setImageResource(R.mipmap.img_default_avatar);
+        mNickNameTextView.setText("您还未登录");
+        mReadMinutesTextView.setText("点此登录，开启专属信仰生活");
     }
 
     private void setupViews() {
@@ -82,12 +88,28 @@ public class MeFragment extends BaseFragment {
                 MyPrayerActivity.launch((MainActivity) getActivity());
             }
         });
+        mInvitationTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isNotLogin()) {
+                    return;
+                }
+                MyPrayerActivity.launch((MainActivity) getActivity());
+            }
+        });
+        mRecomTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FeedbackAgent agent = new FeedbackAgent(getActivity());
+                agent.startFeedbackActivity();
+            }
+        });
         mLogoutTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mLocalUser.logout();
                 ReadPreference.getInstance().clearData();
-                RegisterActivity.launch((MainActivity) getActivity());
+                LoginActivity.launch((MainActivity) getActivity());
             }
         });
         mCheckUpdateTextview.setOnClickListener(new View.OnClickListener() {

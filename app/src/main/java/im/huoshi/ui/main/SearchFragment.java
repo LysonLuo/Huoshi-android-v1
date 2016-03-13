@@ -83,6 +83,7 @@ public class SearchFragment extends BaseFragment {
             @Override
             public void OnClick(History history) {
                 mKeyWord = history.getKeyWord();
+                toggleSearchEditTextFocus(true);
                 loadResult();
             }
         });
@@ -113,6 +114,7 @@ public class SearchFragment extends BaseFragment {
                     return;
                 }
                 mHistoryDao.addHistory(mKeyWord);
+                toggleSearchEditTextFocus(true);
                 loadResult();
             }
         });
@@ -135,16 +137,22 @@ public class SearchFragment extends BaseFragment {
             searchResult.setSectionText(cursor.getString(cursor.getColumnIndex("sectionText")));
             mResultList.add(searchResult);
         }
-        mResultTextView.setText("以下是'" + mKeyWord + "'的搜索结果,共" + mResultList.size() + "条");
-        mResultRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mResultAdapter = new ResultRecAdapter(getActivity(), mKeyWord, mResultList, new OnRecClickListener<SearchResult>() {
-            @Override
-            public void OnClick(SearchResult searchResult) {
-                ArrayList<Chapter> chapters = mChapterDao.getList(searchResult.getBookId());
-                ChapterDetailsActivity.launch((BaseActivity) getActivity(), searchResult.getBookName(), chapters, searchResult.getChapter() - 1);
-            }
-        });
-        mResultRecyclerView.setAdapter(mResultAdapter);
+        if (mResultList.size() > 0) {
+            removeNoDataFragment();
+            mResultTextView.setText("以下是'" + mKeyWord + "'的搜索结果,共" + mResultList.size() + "条");
+            mResultRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            mResultAdapter = new ResultRecAdapter(getActivity(), mKeyWord, mResultList, new OnRecClickListener<SearchResult>() {
+                @Override
+                public void OnClick(SearchResult searchResult) {
+                    ArrayList<Chapter> chapters = mChapterDao.getList(searchResult.getBookId());
+                    ChapterDetailsActivity.launch((BaseActivity) getActivity(), searchResult.getBookName(), mKeyWord, chapters, searchResult.getChapter() - 1);
+                }
+            });
+            mResultRecyclerView.setAdapter(mResultAdapter);
+            return;
+        }
+        showNoDataFragment(R.id.layout_search, "没有找到相关内容，换个内容搜索试试吧");
+
     }
 
     private void loadHistory() {

@@ -1,13 +1,12 @@
 package im.huoshi.asynapi.request;
 
+import java.util.TreeMap;
+
 import im.huoshi.asynapi.callback.RestApiCallback;
 import im.huoshi.asynapi.common.RestApiClient;
 import im.huoshi.asynapi.common.RestApiPath;
 import im.huoshi.asynapi.handler.RestApiHandler;
 import im.huoshi.base.BaseActivity;
-import im.huoshi.model.ApiError;
-
-import java.util.TreeMap;
 
 /**
  * Created by Lyson on 16/2/22.
@@ -23,8 +22,8 @@ public class HuoshiRequest extends BaseRequest {
             }
 
             @Override
-            public void onFailure(ApiError apiError) {
-                callback.onFailure(apiError);
+            public void onFailure() {
+                callback.onFailure();
             }
         });
     }

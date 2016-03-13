@@ -14,7 +14,6 @@ import im.huoshi.asynapi.callback.RestApiCallback;
 import im.huoshi.asynapi.request.ReadRequest;
 import im.huoshi.base.BaseActivity;
 import im.huoshi.data.ReadPreference;
-import im.huoshi.model.ApiError;
 import im.huoshi.model.ReadStat;
 import im.huoshi.utils.LogUtils;
 import im.huoshi.utils.ViewInject;
@@ -69,13 +68,13 @@ public class ReadDialog extends AppCompatDialog {
                 }.getType());
                 ReadPreference.getInstance().saveReadStat(readStat);
                 ReadPreference.getInstance().updateAddStat(false);
+                setupViews();
                 stopAnim();
                 LogUtils.d("ReadDialog", "同步成功~");
             }
 
             @Override
-            public void onFailure(ApiError apiError) {
-                LogUtils.d("ReadDialog", apiError.errorMessage);
+            public void onFailure() {
                 stopAnim();
             }
         });

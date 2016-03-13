@@ -2,13 +2,19 @@ package im.huoshi.ui.bible;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import im.huoshi.R;
 import im.huoshi.common.OnRecClickListener;
@@ -26,10 +32,14 @@ public class SectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private ChapterDetailHolder mSelectedViewHolder;
     private OnRecClickListener mItemClickListener;
     private List<Section> mSectionList = new ArrayList<>();
+    private Set<Integer> mViewShowIndex = new HashSet<>();
+    private int mSelectedIndex;
+    private String mKeyWord;
 
-    public SectionAdapter(Context context, List<Section> sectionList) {
+    public SectionAdapter(Context context, List<Section> sectionList, String keyWord) {
         this.mContext = context;
         this.mSectionList = sectionList;
+        this.mKeyWord = keyWord;
     }
 
     @Override
@@ -64,14 +74,48 @@ public class SectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             return;
         }
         final ChapterDetailHolder detailHolder = (ChapterDetailHolder) holder;
+
         detailHolder.mIndexTextView.setText(mSectionList.get(position).getSectionNo() + "");
-        detailHolder.mContentTextView.setText(mSectionList.get(position).getSectionText());
+        String content = mSectionList.get(position).getSectionText();
+
+        if (!TextUtils.isEmpty(mKeyWord) && content.indexOf(mKeyWord) != -1) {
+            SpannableString spannableString = new SpannableString(content);
+            spannableString.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.text_color_blue_light)), content.indexOf(mKeyWord), content.indexOf(mKeyWord) + mKeyWord.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            detailHolder.mContentTextView.setText(spannableString);
+        } else {
+            detailHolder.mContentTextView.setText(content);
+        }
+        if (mViewShowIndex.contains(position)) {
+            detailHolder.mIndexTextView.setTextColor(mContext.getResources().getColor(R.color.text_color_black));
+        } else {
+            detailHolder.mIndexTextView.setTextColor(mContext.getResources().getColor(R.color.text_section_index));
+        }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mItemClickListener != null) {
-                    mSelectedViewHolder = detailHolder;
+                if (mSelectedViewHolder != null) {
+                    mSelectedViewHolder.mIndexTextView.setTextColor(mContext.getResources().getColor(R.color.text_section_index));
+                    mSectionList.get(position).isChecked = false;
+                    mSectionList.get(mSelectedIndex).isChecked = false;
+                    mViewShowIndex.remove(position);
+                    mViewShowIndex.remove(mSelectedIndex);
+                    mSelectedViewHolder = null;
                     mItemClickListener.OnClick(mSectionList.get(position));
+                    return;
+                }
+                mSelectedViewHolder = detailHolder;
+                if (mItemClickListener != null) {
+//                    if (mSectionList.get(position).isChecked) {
+//                        mSectionList.get(position).isChecked = false;
+//                        mViewShowIndex.remove(position);
+//                        detailHolder.mIndexTextView.setTextColor(mContext.getResources().getColor(R.color.text_section_index));
+//                    } else {
+                    mSelectedIndex = position;
+                    mSectionList.get(position).isChecked = true;
+                    mViewShowIndex.add(position);
+                    detailHolder.mIndexTextView.setTextColor(mContext.getResources().getColor(R.color.text_color_black));
+                    mItemClickListener.OnClick(mSectionList.get(position));
+//                    }
                 }
             }
         });
@@ -88,9 +132,12 @@ public class SectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return mSectionList.size();
     }
 
-    public void changeIndexColor(boolean isChecked) {
+    public void changeIndexColor() {
         if (mSelectedViewHolder != null) {
-            mSelectedViewHolder.mIndexTextView.setTextColor(isChecked ? mContext.getResources().getColor(R.color.text_color_black) : mContext.getResources().getColor(R.color.text_section_index));
+            mSectionList.get(mSelectedIndex).isChecked = false;
+            mViewShowIndex.remove(mSelectedIndex);
+            mSelectedViewHolder.mIndexTextView.setTextColor(mContext.getResources().getColor(R.color.text_section_index));
+            mSelectedViewHolder = null;
         }
     }
 

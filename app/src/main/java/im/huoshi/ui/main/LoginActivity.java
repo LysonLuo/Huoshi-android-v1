@@ -7,13 +7,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
 import im.huoshi.R;
 import im.huoshi.asynapi.callback.RestApiCallback;
 import im.huoshi.asynapi.request.AccountRequest;
 import im.huoshi.base.BaseActivity;
-import im.huoshi.model.ApiError;
 import im.huoshi.model.User;
 import im.huoshi.utils.CTextUtils;
 import im.huoshi.utils.SecurityUtils;
@@ -55,11 +56,12 @@ public class LoginActivity extends BaseActivity {
                     AccountRequest.login(LoginActivity.this, mPhoneNumber, SecurityUtils.md5(mPwd), new RestApiCallback() {
                         @Override
                         public void onSuccess(String responseString) {
-                            showShortToast(getString(R.string.text_login_success));
                             dismissProgressDialog();
+                            showShortToast(getString(R.string.text_login_success));
                             User user = new Gson().fromJson(responseString, new TypeToken<User>() {
                             }.getType());
                             mLocalUser.saveUser(user);
+                            mLocalRead.updateTotalMinutes(user.getTotalMinutes());
                             mLocalRead.updateContinuousDays(user.getContinuousDays());
                             mLocalRead.updateContinuousIntercesDays(user.getContinuousIntercesDays());
                             mLocalRead.updateAddStat(false);
@@ -67,8 +69,7 @@ public class LoginActivity extends BaseActivity {
                         }
 
                         @Override
-                        public void onFailure(ApiError apiError) {
-                            showShortToast(apiError.errorMessage);
+                        public void onFailure() {
                             dismissProgressDialog();
                         }
                     });

@@ -17,6 +17,7 @@ public class Contacts extends ApiObject {
     private String contactsName;
     @DatabaseField
     private String phones;
+    @SerializedName("contacts_type")
     @DatabaseField
     private int contactsType;//1未注册,2好友
 

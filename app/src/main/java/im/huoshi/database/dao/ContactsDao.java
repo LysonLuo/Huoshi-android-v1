@@ -53,16 +53,22 @@ public class ContactsDao {
                 StringBuilder stringBuilder = new StringBuilder();
                 while (phones.moveToNext()) {
                     int phoneFieldIndex = phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
-                    String phoneNumber = phones.getString(phoneFieldIndex).replaceAll(" ","");
+                    String phoneNumber = phones.getString(phoneFieldIndex).replaceAll(" ", "");
                     stringBuilder.append(phoneNumber + ",");
                 }
                 contact.setContactsId(contactsId);
                 contact.setContactsName(contactsName);
                 contact.setPhones(stringBuilder.toString().substring(0, stringBuilder.toString().length() - 1));
                 contacts.add(contact);
+                if (phones != null) {
+                    phones.close();
+                }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
+        }
+        if (cursor != null) {
+            cursor.close();
         }
         return contacts;
     }

@@ -19,7 +19,7 @@ import im.huoshi.utils.ViewUtils;
 public class NoDataFragment extends BaseFragment {
     @ViewInject(R.id.textview_nodata)
     TextView mNoDataTextView;
-    private String mNoDataText;
+    private String mNoDataText = "暂无数据";
 
     @Nullable
     @Override

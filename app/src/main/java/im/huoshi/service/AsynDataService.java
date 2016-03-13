@@ -15,7 +15,6 @@ import im.huoshi.asynapi.callback.RestApiCallback;
 import im.huoshi.asynapi.request.ContactsRequest;
 import im.huoshi.base.BaseActivity;
 import im.huoshi.database.dao.ContactsDao;
-import im.huoshi.model.ApiError;
 import im.huoshi.model.Contacts;
 import im.huoshi.utils.LogUtils;
 
@@ -53,19 +52,10 @@ public class AsynDataService extends Service {
         private ContactsDao mContactsDao = new ContactsDao();
 
         public void asynContacts(final BaseActivity activity, final int userId) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    LogUtils.d("lyson", "get contacts from phone");
-                    List<Contacts> contactsList = ContactsDao.getRawContacts();
-                    mContactsDao.saveContactsList(contactsList);
-                    String contacts = new Gson().toJson(contactsList);
-                    asynContacts(contacts, activity, userId);
-                }
-            }).start();
-        }
-
-        private void asynContacts(final String contacts, final BaseActivity activity, final int userId) {
+            LogUtils.d("lyson", "get contacts from phone");
+            List<Contacts> contactsList = ContactsDao.getRawContacts();
+            mContactsDao.saveContactsList(contactsList);
+            String contacts = new Gson().toJson(contactsList);
             ContactsRequest.asynContacts(activity, userId, contacts, new RestApiCallback() {
                 @Override
                 public void onSuccess(String responseString) {
@@ -77,9 +67,8 @@ public class AsynDataService extends Service {
                 }
 
                 @Override
-                public void onFailure(ApiError apiError) {
+                public void onFailure() {
                     LogUtils.d("lyson", "asyn contacts fail");
-//                    asynContacts(contacts, activity, userId);
                 }
             });
         }

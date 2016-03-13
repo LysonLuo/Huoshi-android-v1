@@ -23,6 +23,8 @@ public class Section extends ApiObject {
     @DatabaseField
     private int bookId;
 
+    public boolean isChecked;
+
     public int getSeqId() {
         return seqId;
     }

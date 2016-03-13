@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
-        android:padding="@dimen/margin_small">
+        android:padding="@dimen/margin_10">
 
         <TextView
             android:layout_width="wrap_content"
@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/common_gray_dark_bg"
-        android:padding="@dimen/margin_small"
+        android:padding="@dimen/margin_10"
         android:text="全部地区" />
 
     <LinearLayout
@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:paddingLeft="@dimen/margin_small"
+            android:paddingLeft="@dimen/margin_10"
             android:text="选择区域" />
 
         <TextView
@@ -54,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:paddingLeft="@dimen/margin_small"
+            android:paddingLeft="@dimen/margin_10"
             android:text="" />
     </LinearLayout>
 

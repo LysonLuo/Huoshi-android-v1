@@ -29,20 +29,20 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:padding="@dimen/margin_normal">
+                android:padding="@dimen/margin_16">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imageview_user"
                     android:layout_width="@dimen/avatar_width_normal"
                     android:layout_height="@dimen/avatar_width_normal"
                     android:layout_centerVertical="true"
-                    android:src="@mipmap/image_default_avatar" />
+                    android:src="@mipmap/img_default_avatar" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/margin_normal"
+                    android:layout_marginLeft="@dimen/margin_16"
                     android:layout_toRightOf="@id/imageview_user"
                     android:orientation="vertical">
 
@@ -50,13 +50,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="您还未登录"
-                        android:textSize="@dimen/text_size_small" />
+                        android:textSize="@dimen/text_size_16" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="点此登录,开启专属信仰生活"
-                        android:textSize="@dimen/text_size_very_small_" />
+                        android:textSize="@dimen/text_size_16" />
 
                 </LinearLayout>
 
@@ -66,7 +66,7 @@
                 android:id="@+id/layout_normal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_very_small"
+                android:layout_marginTop="@dimen/margin_6"
                 android:orientation="horizontal"
                 android:visibility="gone">
 
@@ -149,8 +149,8 @@
             android:id="@+id/textview_today_share"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/margin_small"
-            android:paddingRight="@dimen/margin_small"
+            android:paddingLeft="@dimen/margin_10"
+            android:paddingRight="@dimen/margin_10"
             android:text="\t\t今天手贱剪了个空气刘海，看教程下手的，用夹板弄的卷发，就是卷发啊啊啊啊啊啊，很倦的那种啊啊啊啊啊啊啊，好丑啊啊啊啊啊啊啊啊" />
 
         <View style="@style/GrayDividerStyle" />
@@ -167,7 +167,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/margin_normal"
+                android:layout_marginLeft="@dimen/margin_16"
                 android:layout_weight="1"
                 android:text="昨日兄弟姐妹共分享活石321次" />
 
@@ -176,7 +176,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="25dp"
                 android:layout_gravity="right|center_vertical"
-                android:layout_marginRight="@dimen/margin_normal"
+                android:layout_marginRight="@dimen/margin_16"
                 android:background="@drawable/drawable_blue_rec_solid"
                 android:text="为主效力"
                 android:textColor="@color/text_color_white" />
@@ -185,7 +185,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/margin_normal"
+            android:padding="@dimen/margin_16"
             android:text="用嘴说，用手点，分享也是为主效力"
             android:textColor="@color/text_color_orange" />
 

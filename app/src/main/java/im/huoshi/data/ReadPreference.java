@@ -86,6 +86,12 @@ public class ReadPreference {
         editor.apply();
     }
 
+    public void updateTotalMinutes(int totalMinutes){
+        SharedPreferences.Editor editor = mPreference.edit();
+        editor.putInt("total_minutes", totalMinutes);
+        editor.apply();
+    }
+
     public void updateContinuousDays() {
         SharedPreferences.Editor editor = mPreference.edit();
         editor.putInt("continuous_days", mPreference.getInt("continuous_days", 0) + 1);

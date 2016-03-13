@@ -3,14 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingLeft="@dimen/margin_small"
-    android:paddingRight="@dimen/margin_small">
+    android:paddingLeft="@dimen/margin_10"
+    android:paddingRight="@dimen/margin_10">
 
     <TextView
         android:id="@+id/textview_history"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/margin_small" />
+        android:padding="@dimen/margin_10" />
 
     <View
         android:id="@+id/view_divider"

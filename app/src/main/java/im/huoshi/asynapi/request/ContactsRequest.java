@@ -7,7 +7,6 @@ import im.huoshi.asynapi.common.RestApiClient;
 import im.huoshi.asynapi.common.RestApiPath;
 import im.huoshi.asynapi.handler.RestApiHandler;
 import im.huoshi.base.BaseActivity;
-import im.huoshi.model.ApiError;
 
 /**
  * Created by Lyson on 16/2/25.
@@ -17,15 +16,15 @@ public class ContactsRequest extends BaseRequest {
         TreeMap<String, String> treeMap = initParams();
         treeMap.put("user_id", String.valueOf(userId));
         treeMap.put("contacts", contacts);
-        RestApiClient.spost(getBasePath(RestApiPath.ASYN_CONTACTS), buildRequestParams(treeMap), activity, new RestApiHandler() {
+        RestApiClient.post(getBasePath(RestApiPath.ASYN_CONTACTS), buildRequestParams(treeMap), activity, new RestApiHandler() {
             @Override
             public void onSuccess(String responseString) {
                 callback.onSuccess(responseString);
             }
 
             @Override
-            public void onFailure(ApiError apiError) {
-                callback.onFailure(apiError);
+            public void onFailure() {
+                callback.onFailure();
             }
         });
     }

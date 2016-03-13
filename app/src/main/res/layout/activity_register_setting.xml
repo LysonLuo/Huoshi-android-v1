@@ -10,13 +10,13 @@
         android:layout_width="@dimen/avatar_width_large"
         android:layout_height="@dimen/avatar_width_large"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="@dimen/margin_extreme_big"
-        android:src="@mipmap/image_default_avatar"/>
+        android:layout_margin="@dimen/margin_35"
+        android:src="@mipmap/img_default_avatar"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_normal"
+        android:layout_margin="@dimen/margin_16"
         android:background="@drawable/drawable_gray_border_white_bg"
         android:orientation="vertical">
 
@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="@dimen/margin_small">
+            android:padding="@dimen/margin_10">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -37,9 +37,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textSize="@dimen/text_size_small"
+                android:textSize="@dimen/text_size_15"
                 android:gravity="center"
-                android:layout_marginLeft="@dimen/margin_small"
+                android:layout_marginLeft="@dimen/margin_10"
                 android:layout_weight="1"/>
 
         </LinearLayout>
@@ -53,7 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="@dimen/margin_small">
+            android:padding="@dimen/margin_10">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -65,9 +65,9 @@
                 android:id="@+id/textview_gender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_small"
+                android:textSize="@dimen/text_size_15"
                 android:gravity="center"
-                android:layout_marginLeft="@dimen/margin_small"
+                android:layout_marginLeft="@dimen/margin_10"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"/>
 
@@ -82,7 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="@dimen/margin_small">
+            android:padding="@dimen/margin_10">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -95,9 +95,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textSize="@dimen/text_size_small"
+                android:textSize="@dimen/text_size_15"
                 android:gravity="center"
-                android:layout_marginLeft="@dimen/margin_small"
+                android:layout_marginLeft="@dimen/margin_10"
                 android:layout_weight="1"/>
 
         </LinearLayout>
@@ -111,7 +111,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="@dimen/margin_small">
+            android:padding="@dimen/margin_10">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -123,8 +123,8 @@
                 android:id="@+id/textview_believe_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_small"
-                android:textSize="@dimen/text_size_small"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:textSize="@dimen/text_size_15"
                 android:gravity="center"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"/>
@@ -135,10 +135,10 @@
         android:id="@+id/button_finish_register"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_margin="@dimen/margin_normal"
+        android:layout_margin="@dimen/margin_16"
         android:background="@color/common_blue_light"
         android:text="@string/text_finish_register"
         android:textColor="@color/text_color_white"
-        android:textSize="@dimen/text_size_small"/>
+        android:textSize="@dimen/text_size_15"/>
 
 </LinearLayout>

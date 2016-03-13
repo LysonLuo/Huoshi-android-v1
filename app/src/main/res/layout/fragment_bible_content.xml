@@ -4,4 +4,4 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/windowBackground"
-    android:paddingBottom="@dimen/margin_small" />
+    android:paddingBottom="@dimen/margin_10" />

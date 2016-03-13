@@ -45,7 +45,7 @@ public class BibleChapterAdapter extends RecyclerView.Adapter<BibleChapterAdapte
         holder.mChapterCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                ChapterDetailsActivity.launch((BaseActivity) mContext, mBookName, mChapterList, position);
+                ChapterDetailsActivity.launch((BaseActivity) mContext, mBookName, "", mChapterList, position);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {

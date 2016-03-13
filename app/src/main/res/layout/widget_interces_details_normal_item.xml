@@ -13,14 +13,14 @@
         android:visibility="gone">
 
         <View
-            android:layout_width="@dimen/margin_small"
+            android:layout_width="@dimen/margin_10"
             android:layout_height="20dp"
             android:background="@color/text_color_blue_light" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_normal"
+            android:layout_marginLeft="@dimen/margin_16"
             android:gravity="center_vertical"
             android:text="祝福" />
     </LinearLayout>
@@ -29,13 +29,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="@dimen/margin_normal">
+        android:padding="@dimen/margin_16">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/timeline_portrait_sd"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@mipmap/image_default_avatar" />
+            android:src="@mipmap/img_default_avatar" />
 
 
         <TextView
@@ -74,8 +74,8 @@
         android:layout_marginBottom="8dp"
         android:layout_marginTop="15dp"
         android:orientation="horizontal"
-        android:paddingLeft="@dimen/margin_normal"
-        android:paddingRight="@dimen/margin_normal">
+        android:paddingLeft="@dimen/margin_16"
+        android:paddingRight="@dimen/margin_16">
 
         <TextView
             android:id="@+id/timeline_likes_accb"
@@ -92,7 +92,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:drawableLeft="@mipmap/icon_like_blue"
-            android:drawablePadding="@dimen/margin_small"
+            android:drawablePadding="@dimen/margin_10"
             android:gravity="right|center_vertical"
             android:text="2123"
             android:textSize="12sp" />

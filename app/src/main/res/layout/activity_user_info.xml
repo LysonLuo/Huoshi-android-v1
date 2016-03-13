@@ -10,7 +10,7 @@
         android:id="@+id/layout_avatar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/margin_normal">
+        android:padding="@dimen/margin_16">
 
         <TextView
             android:layout_width="wrap_content"
@@ -22,9 +22,9 @@
             android:id="@+id/imageview_setting_avatar"
             android:layout_width="@dimen/avatar_width_normal"
             android:layout_height="@dimen/avatar_width_normal"
-            android:layout_marginRight="@dimen/margin_normal"
+            android:layout_marginRight="@dimen/margin_16"
             android:layout_toLeftOf="@+id/image_arrow"
-            android:src="@mipmap/image_default_avatar"/>
+            android:src="@mipmap/img_default_avatar"/>
 
         <ImageView
             android:id="@+id/image_arrow"
@@ -51,7 +51,7 @@
             android:id="@+id/textview_setting_nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/margin_normal"
+            android:layout_marginRight="@dimen/margin_16"
             android:layout_toLeftOf="@+id/image_arrow1"
             android:text="露西安 韦鲁斯"/>
 
@@ -80,7 +80,7 @@
             android:id="@+id/textview_setting_gender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/margin_normal"
+            android:layout_marginRight="@dimen/margin_16"
             android:layout_toLeftOf="@+id/image_arrow2"
             android:text="男"/>
 
@@ -109,7 +109,7 @@
             android:id="@+id/textview_setting_district"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/margin_normal"
+            android:layout_marginRight="@dimen/margin_16"
             android:layout_toLeftOf="@+id/image_arrow3"
             android:text="广州"/>
 
@@ -138,7 +138,7 @@
             android:id="@+id/textview_setting_birthday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/margin_normal"
+            android:layout_marginRight="@dimen/margin_16"
             android:layout_toLeftOf="@+id/image_arrow4"
             android:text="1999-09"/>
 
@@ -167,7 +167,7 @@
             android:id="@+id/textview_setting_believe_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/margin_normal"
+            android:layout_marginRight="@dimen/margin_16"
             android:layout_toLeftOf="@+id/image_arrow5"
             android:text="14:20"/>
 

@@ -31,6 +31,7 @@ public class SectionFragment extends BaseFragment {
     private SectionAdapter mSectionAdapter;
     private ChapterDetailsActivity mActivity;
     private boolean mIsChecked = false;
+    private String mKeyWord;
 
     @Nullable
     @Override
@@ -46,17 +47,18 @@ public class SectionFragment extends BaseFragment {
         this.mIsChecked = isChecked;
     }
 
-    public void changeIndexColor(boolean isChecked) {
-        mSectionAdapter.changeIndexColor(isChecked);
+    public void changeIndexColor() {
+        mSectionAdapter.changeIndexColor();
     }
 
     private void setupViews() {
         this.mSectionDao = new SectionDao();
         mChapter = getArguments().getParcelable("chapter");
+        mKeyWord = getArguments().getString("keyWord");
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
         List<Section> sectionList = mSectionDao.getList(mChapter.getBookId(), mChapter.getChapterNo());
-        mSectionAdapter = new SectionAdapter(getActivity(), sectionList);
+        mSectionAdapter = new SectionAdapter(getActivity(), sectionList, mKeyWord);
         mRecyclerView.setAdapter(mSectionAdapter);
         mActivity = (ChapterDetailsActivity) getActivity();
         mSectionAdapter.setItemClickListener(new OnRecClickListener<Section>() {
@@ -64,10 +66,10 @@ public class SectionFragment extends BaseFragment {
             public void OnClick(Section section) {
                 if (!mIsChecked) {
                     mIsChecked = true;
-                    changeIndexColor(true);
+//                    changeIndexColor(true);
                     mActivity.showLayout(section.getNoteText(), SectionFragment.this);
                 } else {
-                    changeIndexColor(false);
+//                    changeIndexColor(false);
                     mIsChecked = false;
                     mActivity.hideLayout();
                 }
@@ -75,10 +77,11 @@ public class SectionFragment extends BaseFragment {
         });
     }
 
-    public static SectionFragment getInstance(Chapter chapter) {
+    public static SectionFragment getInstance(Chapter chapter, String keyWord) {
         SectionFragment fragment = new SectionFragment();
         Bundle bundle = new Bundle();
         bundle.putParcelable("chapter", chapter);
+        bundle.putString("keyWord", keyWord);
         fragment.setArguments(bundle);
         return fragment;
     }

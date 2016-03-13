@@ -3,5 +3,5 @@
     android:id="@+id/recyclerview_section"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/margin_normal"
-    android:paddingRight="@dimen/margin_normal" />
+    android:paddingLeft="@dimen/margin_16"
+    android:paddingRight="@dimen/margin_16" />

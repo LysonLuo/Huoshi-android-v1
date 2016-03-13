@@ -5,12 +5,12 @@
     android:layout_height="@dimen/chapter_item_height"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
-    android:layout_marginTop="@dimen/margin_small"
+    android:layout_marginTop="@dimen/margin_10"
     android:background="@drawable/drawable_bible_chapter_selector"
     android:button="@null"
     android:gravity="center"
     android:text="1"
     android:textColor="@color/text_color_chapter"
-    android:textSize="@dimen/text_size_small_">
+    android:textSize="@dimen/text_size_13">
 
 </CheckBox>

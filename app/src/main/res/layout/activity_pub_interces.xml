@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="@dimen/margin_normal">
+        android:padding="@dimen/margin_16">
 
         <EditText
             android:layout_width="match_parent"
@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableLeft="@mipmap/icon_location_blue"
-            android:drawablePadding="@dimen/margin_small"
+            android:drawablePadding="@dimen/margin_10"
             android:gravity="center_vertical"
             android:text="广州市海珠区" />
     </LinearLayout>
@@ -34,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="@dimen/margin_normal">
+        android:padding="@dimen/margin_16">
 
         <CheckBox
             android:layout_width="wrap_content"

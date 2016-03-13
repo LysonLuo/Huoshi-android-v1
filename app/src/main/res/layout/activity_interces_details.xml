@@ -37,7 +37,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:drawableLeft="@mipmap/icon_interces_small"
-                android:drawablePadding="@dimen/margin_small"
+                android:drawablePadding="@dimen/margin_10"
                 android:gravity="center_vertical"
                 android:paddingLeft="100dp"
                 android:text="@string/text_join_suffrage" />
@@ -45,8 +45,8 @@
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/margin_very_small"
-                android:layout_marginTop="@dimen/margin_very_small"
+                android:layout_marginBottom="@dimen/margin_6"
+                android:layout_marginTop="@dimen/margin_6"
                 android:background="@color/conmon_gray_line_divider" />
 
             <TextView
@@ -54,8 +54,8 @@
                 android:layout_height="match_parent"
                 android:drawableLeft="@mipmap/icon_share"
                 android:gravity="center"
-                android:paddingLeft="@dimen/margin_very_big"
-                android:paddingRight="@dimen/margin_normal"
+                android:paddingLeft="@dimen/margin_25"
+                android:paddingRight="@dimen/margin_16"
                 android:text="@string/text_share" />
         </LinearLayout>
     </RelativeLayout>

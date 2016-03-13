@@ -2,14 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="@dimen/margin_small"
-    android:layout_marginRight="@dimen/margin_small"
+    android:layout_marginLeft="@dimen/margin_10"
+    android:layout_marginRight="@dimen/margin_10"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_10"
         android:orientation="horizontal">
 
         <CheckBox
@@ -22,44 +22,44 @@
             android:ellipsize="end"
             android:gravity="left|center_vertical"
             android:maxLines="1"
-            android:paddingLeft="@dimen/margin_normal"
+            android:paddingLeft="@dimen/margin_16"
             android:text="创世纪"
             android:textColor="@color/text_color_black_light"
-            android:textSize="@dimen/text_size_very_small" />
+            android:textSize="@dimen/text_size_18" />
 
 
         <CheckBox
             android:id="@+id/checkbox_book_second"
             android:layout_width="0dp"
             android:layout_height="@dimen/bible_item_height"
-            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_marginLeft="@dimen/margin_10"
             android:layout_weight="1"
             android:background="@drawable/drawable_bible_bg_color_selector"
             android:button="@null"
             android:ellipsize="end"
             android:gravity="left|center_vertical"
             android:maxLines="1"
-            android:paddingLeft="@dimen/margin_normal"
+            android:paddingLeft="@dimen/margin_16"
             android:text="创世纪"
             android:textColor="@color/text_color_black_light"
-            android:textSize="@dimen/text_size_very_small"/>
+            android:textSize="@dimen/text_size_18"/>
 
 
         <CheckBox
             android:id="@+id/checkbox_book_third"
             android:layout_width="0dp"
             android:layout_height="@dimen/bible_item_height"
-            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_marginLeft="@dimen/margin_10"
             android:layout_weight="1"
             android:background="@drawable/drawable_bible_bg_color_selector"
             android:button="@null"
             android:ellipsize="end"
             android:gravity="left|center_vertical"
             android:maxLines="1"
-            android:paddingLeft="@dimen/margin_normal"
+            android:paddingLeft="@dimen/margin_16"
             android:text="创世纪"
             android:textColor="@color/text_color_black_light"
-            android:textSize="@dimen/text_size_very_small" />
+            android:textSize="@dimen/text_size_18" />
     </LinearLayout>
 
     <View

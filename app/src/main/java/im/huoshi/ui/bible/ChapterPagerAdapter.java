@@ -13,10 +13,12 @@ import im.huoshi.model.Chapter;
  */
 public class ChapterPagerAdapter extends FragmentStatePagerAdapter {
     private ArrayList<Chapter> mChapters = null;
+    private String mKeyWord;
 
-    public ChapterPagerAdapter(FragmentManager fm, ArrayList<Chapter> chapters) {
+    public ChapterPagerAdapter(FragmentManager fm, ArrayList<Chapter> chapters, String keyWord) {
         super(fm);
         this.mChapters = chapters;
+        this.mKeyWord = keyWord;
     }
 
     @Override
@@ -26,7 +28,7 @@ public class ChapterPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        SectionFragment fragment = SectionFragment.getInstance(mChapters.get(position));
+        SectionFragment fragment = SectionFragment.getInstance(mChapters.get(position), mKeyWord);
         return fragment;
     }
 }

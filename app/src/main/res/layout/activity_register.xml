@@ -4,14 +4,14 @@
     android:layout_height="match_parent"
     android:background="@color/common_gray_light_bg"
     android:orientation="vertical"
-    android:padding="@dimen/margin_normal">
+    android:padding="@dimen/margin_16">
 
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:padding="@dimen/margin_extreme_big"
+        android:padding="@dimen/margin_35"
         android:src="@mipmap/icon_logo" />
 
     <LinearLayout
@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:orientation="horizontal"
-            android:padding="@dimen/margin_normal">
+            android:padding="@dimen/margin_16">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -38,12 +38,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/margin_very_small"
+                android:layout_marginLeft="@dimen/margin_6"
                 android:layout_weight="1"
                 android:background="@null"
                 android:hint="@string/text_phone_hint"
                 android:inputType="phone"
-                android:textSize="@dimen/text_size_small" />
+                android:textSize="@dimen/text_size_15" />
 
         </LinearLayout>
 
@@ -57,7 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="@dimen/margin_normal">
+                android:padding="@dimen/margin_16">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -70,11 +70,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/margin_very_small"
+                    android:layout_marginLeft="@dimen/margin_6"
                     android:layout_weight="1"
                     android:background="@null"
                     android:hint="@string/text_input_verification_code"
-                    android:textSize="@dimen/text_size_small" />
+                    android:textSize="@dimen/text_size_15" />
 
                 <Button
                     android:id="@+id/button_send_verification_code"
@@ -93,7 +93,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="@dimen/margin_normal">
+                android:padding="@dimen/margin_16">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -106,12 +106,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/margin_very_small"
+                    android:layout_marginLeft="@dimen/margin_6"
                     android:layout_weight="1"
                     android:background="@null"
                     android:hint="@string/text_input_pwd"
                     android:inputType="textPassword"
-                    android:textSize="@dimen/text_size_small" />
+                    android:textSize="@dimen/text_size_15" />
 
             </LinearLayout>
         </LinearLayout>
@@ -121,11 +121,11 @@
         android:id="@+id/button_next"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="@dimen/margin_extreme_big"
+        android:layout_marginTop="@dimen/margin_35"
         android:background="@color/common_blue_light"
         android:text="@string/text_next"
         android:textColor="@color/text_color_white"
-        android:textSize="@dimen/text_size_small" />
+        android:textSize="@dimen/text_size_15" />
 
 
     <TextView
@@ -133,7 +133,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/margin_16"
         android:text="@string/text_account_to_login"
         android:textColor="@color/common_blue_light" />
 </LinearLayout>

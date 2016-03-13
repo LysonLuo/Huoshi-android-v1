@@ -17,7 +17,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginRight="@dimen/margin_very_small">
+        android:layout_marginRight="@dimen/margin_6">
 
         <TextView
             android:id="@+id/toolbar_left_view"
@@ -25,8 +25,8 @@
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:gravity="center"
-            android:paddingLeft="@dimen/margin_small"
-            android:paddingRight="@dimen/margin_small"
+            android:paddingLeft="@dimen/margin_10"
+            android:paddingRight="@dimen/margin_10"
             android:text="@string/main_tab_bible"
             android:textColor="@color/text_color_black"
             android:textSize="20sp" />
@@ -37,8 +37,8 @@
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:gravity="center"
-            android:paddingLeft="@dimen/margin_small"
-            android:paddingRight="@dimen/margin_small"
+            android:paddingLeft="@dimen/margin_10"
+            android:paddingRight="@dimen/margin_10"
             android:textColor="@color/text_color_black" />
 
         <TextView
@@ -47,8 +47,8 @@
             android:layout_height="match_parent"
             android:layout_toLeftOf="@+id/toolbar_right_view"
             android:gravity="center"
-            android:paddingLeft="@dimen/margin_small"
-            android:paddingRight="@dimen/margin_small"
+            android:paddingLeft="@dimen/margin_10"
+            android:paddingRight="@dimen/margin_10"
             android:textColor="@color/text_color_black" />
     </RelativeLayout>
 

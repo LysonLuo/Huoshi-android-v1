@@ -16,7 +16,7 @@
         android:layout_gravity="bottom"
         android:text="[注释]我就是那一串注释啊啊啊啊啊"
         android:background="@color/windowBackground"
-        android:padding="@dimen/margin_normal"
+        android:padding="@dimen/margin_16"
         android:visibility="gone"/>
 
 </FrameLayout>

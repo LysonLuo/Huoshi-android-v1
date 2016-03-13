@@ -3,19 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingBottom="@dimen/margin_small"
-    android:paddingTop="@dimen/margin_small">
+    android:paddingBottom="@dimen/margin_10"
+    android:paddingTop="@dimen/margin_10">
 
     <View
         android:layout_width="5dp"
-        android:layout_height="@dimen/margin_normal"
+        android:layout_height="@dimen/margin_16"
         android:layout_gravity="center_vertical"
         android:background="@color/common_blue_light" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginLeft="@dimen/margin_10"
         android:text="今日分享" />
 
 </LinearLayout>

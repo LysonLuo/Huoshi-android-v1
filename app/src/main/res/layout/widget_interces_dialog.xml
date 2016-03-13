@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginTop="@dimen/margin_10"
                 android:text="6"
                 android:textColor="#25aeff"
                 android:textSize="50sp" />
@@ -58,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginTop="@dimen/margin_16"
                 android:src="@mipmap/icon_join_interces" />
 
 
@@ -66,46 +66,46 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:paddingLeft="@dimen/margin_very_big"
-                android:paddingRight="@dimen/margin_very_big"
+                android:paddingLeft="@dimen/margin_25"
+                android:paddingRight="@dimen/margin_25"
                 android:text="惟求耶和华我的神，垂顾仆人的祷告祈求，俯听仆人在你面前的祈祷呼吁" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_very_big"
-                android:layout_marginRight="@dimen/margin_very_big"
-                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginLeft="@dimen/margin_25"
+                android:layout_marginRight="@dimen/margin_25"
+                android:layout_marginTop="@dimen/margin_16"
                 android:background="#45dffe"
                 android:gravity="center_horizontal"
-                android:paddingBottom="@dimen/margin_small"
-                android:paddingTop="@dimen/margin_small"
+                android:paddingBottom="@dimen/margin_10"
+                android:paddingTop="@dimen/margin_10"
                 android:text="我有感动，想说点什么"
                 android:textColor="@color/text_color_white" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_very_big"
-                android:layout_marginRight="@dimen/margin_very_big"
-                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginLeft="@dimen/margin_25"
+                android:layout_marginRight="@dimen/margin_25"
+                android:layout_marginTop="@dimen/margin_16"
                 android:background="#45dffe"
                 android:gravity="center_horizontal"
-                android:paddingBottom="@dimen/margin_small"
-                android:paddingTop="@dimen/margin_small"
+                android:paddingBottom="@dimen/margin_10"
+                android:paddingTop="@dimen/margin_10"
                 android:text="让更多人为其代祷"
                 android:textColor="@color/text_color_white" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_very_big"
-                android:layout_marginRight="@dimen/margin_very_big"
-                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginLeft="@dimen/margin_25"
+                android:layout_marginRight="@dimen/margin_25"
+                android:layout_marginTop="@dimen/margin_16"
                 android:background="#45dffe"
                 android:gravity="center_horizontal"
-                android:paddingBottom="@dimen/margin_small"
-                android:paddingTop="@dimen/margin_small"
+                android:paddingBottom="@dimen/margin_10"
+                android:paddingTop="@dimen/margin_10"
                 android:text="再看看其他的"
                 android:textColor="@color/text_color_white" />
         </LinearLayout>

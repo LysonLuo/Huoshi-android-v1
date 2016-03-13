@@ -9,14 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="@dimen/margin_small">
+        android:padding="@dimen/margin_10">
 
         <ImageView
             android:id="@+id/imageview_back"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:paddingRight="@dimen/margin_small"
+            android:paddingRight="@dimen/margin_10"
             android:src="@mipmap/icon_back_black" />
 
         <EditText
@@ -30,16 +30,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_marginLeft="@dimen/margin_10"
             android:background="@drawable/drawable_blue_bg_round_corner"
-            android:padding="@dimen/margin_very_small"
+            android:padding="@dimen/margin_6"
             android:text="搜索"
             android:textColor="@color/text_color_white" />
     </LinearLayout>
 
     <FrameLayout
+        android:id="@+id/layout_search"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:id="@+id/layout_history"
@@ -51,7 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="@dimen/margin_small">
+                android:padding="@dimen/margin_10">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -66,7 +67,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:text="清除搜索记录"
-                    android:textSize="@dimen/text_size_medium" />
+                    android:textSize="@dimen/text_size_18" />
             </LinearLayout>
 
             <View
@@ -93,8 +94,7 @@
                 android:id="@+id/textview_search_result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/margin_normal"
-                android:text="以下是'XXX'搜索结果,共100条" />
+                android:padding="@dimen/margin_16" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerview_result"

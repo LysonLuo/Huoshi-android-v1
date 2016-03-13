@@ -4,7 +4,7 @@
     <!--公用字符串-->
     <string name="common_loading_text">正在加载</string>
     <string name="common_retry_text">加载失败，点击重试</string>
-    <string name="common_nodata">暂无数据</string>
+    <string name="common_nodata">没有找到相关内容，换个搜索试试</string>
 
     <!--主页面-->
     <string name="main_tab_huoshi">活石</string>
@@ -30,7 +30,7 @@
     <string name="text_birthday">生日</string>
     <string name="text_time">信主时间</string>
     <string name="text_phone_number">手机号:</string>
-    <string name="text_password">密码:</string>
+    <string name="text_password">密\t\t码:</string>
     <string name="text_login">登录账号</string>
     <string name="text_forget_pwd">忘记密码？</string>
     <string name="text_verification_code">验证码:</string>

@@ -32,6 +32,8 @@ public class User extends ApiObject {
     private int continuousIntercesDays;
     @SerializedName("continuous_days")
     private int continuousDays;//连续阅读天数
+    @SerializedName("total_minutes")
+    private int totalMinutes;
 
     public int getUserId() {
         return userId;
@@ -93,6 +95,10 @@ public class User extends ApiObject {
         return continuousDays;
     }
 
+    public int getTotalMinutes() {
+        return totalMinutes;
+    }
+
     public void setUserId(int userId) {
         this.userId = userId;
     }
@@ -151,5 +157,9 @@ public class User extends ApiObject {
 
     public void setContinuousDays(int continuousDays) {
         this.continuousDays = continuousDays;
+    }
+
+    public void setTotalMinutes(int totalMinutes) {
+        this.totalMinutes = totalMinutes;
     }
 }

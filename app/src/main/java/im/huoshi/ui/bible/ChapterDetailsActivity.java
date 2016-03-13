@@ -19,7 +19,6 @@ import im.huoshi.R;
 import im.huoshi.asynapi.callback.RestApiCallback;
 import im.huoshi.asynapi.request.ReadRequest;
 import im.huoshi.base.BaseActivity;
-import im.huoshi.model.ApiError;
 import im.huoshi.model.Chapter;
 import im.huoshi.model.ReadStat;
 import im.huoshi.utils.DateUtils;
@@ -44,6 +43,7 @@ public class ChapterDetailsActivity extends BaseActivity {
     private boolean mIsShow = false;
     private SectionFragment mFragment;
     private String mBookName;
+    private String mKeyWord;
     private long mStartTime;
     private long mStopTime;
     private int mCurrentMinutes;
@@ -72,8 +72,7 @@ public class ChapterDetailsActivity extends BaseActivity {
                 }
 
                 @Override
-                public void onFailure(ApiError apiError) {
-                    LogUtils.d(LOG_TAG, apiError.errorMessage);
+                public void onFailure() {
                 }
             });
         }
@@ -117,9 +116,10 @@ public class ChapterDetailsActivity extends BaseActivity {
         mChapters = getIntent().getParcelableArrayListExtra("chapters");
         mCurrentPosition = getIntent().getIntExtra("position", 0);
         mBookName = getIntent().getStringExtra("bookName");
+        mKeyWord = getIntent().getStringExtra("keyWord");
         mAnimationUp = AnimationUtils.loadAnimation(this, R.anim.anim_translate_up);
         mAnimationDown = AnimationUtils.loadAnimation(this, R.anim.anim_translate_down);
-        mChapterAdapter = new ChapterPagerAdapter(getSupportFragmentManager(), mChapters);
+        mChapterAdapter = new ChapterPagerAdapter(getSupportFragmentManager(), mChapters, mKeyWord);
         mViewPager.setAdapter(mChapterAdapter);
         mViewPager.setCurrentItem(mCurrentPosition);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -132,7 +132,7 @@ public class ChapterDetailsActivity extends BaseActivity {
             public void onPageSelected(int position) {
                 mToolbarUtils.setTitleText(mBookName + "\t\t第" + mChapters.get(position).getChapterNo() + "章");
                 if (mIsShow) {
-                    mFragment.changeIndexColor(false);
+                    mFragment.changeIndexColor();
                     mFragment.setIsChecked(false);
                     hideLayout();
                 }
@@ -175,11 +175,12 @@ public class ChapterDetailsActivity extends BaseActivity {
         mAnnotationTextView.startAnimation(mAnimationUp);
     }
 
-    public static void launch(BaseActivity activity, String bookName, ArrayList<Chapter> chapters, int position) {
+    public static void launch(BaseActivity activity, String bookName, String keyWord, ArrayList<Chapter> chapters, int position) {
         Intent intent = new Intent(activity, ChapterDetailsActivity.class);
         intent.putParcelableArrayListExtra("chapters", chapters);
         intent.putExtra("position", position);
         intent.putExtra("bookName", bookName);
+        intent.putExtra("keyWord", keyWord);
         activity.startActivity(intent);
     }
 }

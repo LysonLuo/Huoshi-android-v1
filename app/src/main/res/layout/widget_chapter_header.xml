@@ -8,5 +8,5 @@
     android:textStyle="bold"
     android:text="这是头部"
     android:textColor="#ff444444"
-    android:layout_marginBottom="@dimen/margin_small"
-    android:textSize="@dimen/text_size_medium"/>
+    android:layout_marginBottom="@dimen/margin_10"
+    android:textSize="@dimen/text_size_18"/>

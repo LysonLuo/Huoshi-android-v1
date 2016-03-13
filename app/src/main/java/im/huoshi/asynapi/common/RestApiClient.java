@@ -1,16 +1,18 @@
 package im.huoshi.asynapi.common;
 
 import android.widget.Toast;
+
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
-
 import com.loopj.android.http.SyncHttpClient;
+
 import cz.msebera.android.httpclient.Header;
 import im.huoshi.BuildConfig;
+import im.huoshi.HuoshiApplication;
 import im.huoshi.asynapi.handler.RestApiHandler;
 import im.huoshi.asynapi.handler.RestApiTextHttpHandler;
 import im.huoshi.base.BaseActivity;
-import im.huoshi.model.ApiError;
+import im.huoshi.utils.ConnectivityUtils;
 import im.huoshi.utils.LogUtils;
 import im.huoshi.utils.SecurityUtils;
 
@@ -27,9 +29,9 @@ public class RestApiClient {
         client.addHeader("Authorization", SecurityUtils.base64());
     }
 
-    public static void get(final String path, RequestParams params, BaseActivity activity, final RestApiHandler handler) {
+    public static void get(final String path, RequestParams params, final BaseActivity activity, final RestApiHandler handler) {
         if (!checkNetWork()) {
-            handler.onFailure(ApiError.errorFromString("请求失败，请重试！", 0));
+            handler.onFailure();
             return;
         }
         if (params == null) {
@@ -44,15 +46,20 @@ public class RestApiClient {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                responseString = responseString.replace("[", "").replace("]", "");
-                dispatchFailureResult(path, statusCode, responseString, handler);
+                if (statusCode == 0) {
+                    Toast.makeText(activity, "网络不太给力,请重试!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(activity, responseString, Toast.LENGTH_SHORT).show();
+                }
+                handler.onFailure();
+                dispatchFailureResult(activity, statusCode, path, responseString, handler);
             }
         });
     }
 
     public static void spost(final String path, RequestParams params, final BaseActivity activity, final RestApiHandler handler) {
         if (!checkNetWork()) {
-            handler.onFailure(ApiError.errorFromString("请求失败，请重试！", 0));
+            handler.onFailure();
             return;
         }
         if (params == null) {
@@ -69,17 +76,18 @@ public class RestApiClient {
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 if (statusCode == 0) {
                     Toast.makeText(activity, "网络不太给力,请重试!", Toast.LENGTH_SHORT).show();
-                    return;
+                } else {
+                    Toast.makeText(activity, responseString, Toast.LENGTH_SHORT).show();
                 }
-                responseString = responseString.replace("[", "").replace("]", "");
-                dispatchFailureResult(path, statusCode, responseString, handler);
+                handler.onFailure();
+                dispatchFailureResult(activity, statusCode, path, responseString, handler);
             }
         });
     }
 
     public static void post(final String path, RequestParams params, final BaseActivity activity, final RestApiHandler handler) {
         if (!checkNetWork()) {
-            handler.onFailure(ApiError.errorFromString("请求失败，请重试！", 0));
+            handler.onFailure();
             return;
         }
         if (params == null) {
@@ -94,12 +102,7 @@ public class RestApiClient {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                if (statusCode == 0) {
-                    Toast.makeText(activity, "网络不太给力,请重试!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                responseString = responseString.replace("[", "").replace("]", "");
-                dispatchFailureResult(path, statusCode, responseString, handler);
+                dispatchFailureResult(activity, statusCode, path, responseString, handler);
             }
         });
     }
@@ -127,21 +130,24 @@ public class RestApiClient {
      * 统一处理请求失败的结果
      *
      * @param path         路径
-     * @param statusCode   状态码
      * @param resultString json字符串
      * @param handler
      */
-    private static void dispatchFailureResult(String path, int statusCode, String resultString, RestApiHandler handler) {
+    private static void dispatchFailureResult(BaseActivity activity, int statusCode, String path, String resultString, RestApiHandler handler) {
         try {
             if (isDebug()) {
                 LogUtils.d(LOG_TAG, "path = " + path + ", result= ");
                 LogUtils.d(LOG_TAG, resultString);
             }
-            ApiError apiError = ApiError.errorFromString(resultString, statusCode);
-            handler.onFailure(apiError);
         } catch (Exception e) {
             LogUtils.d(LOG_TAG, e.getMessage());
         }
+        if (statusCode == 0) {
+            Toast.makeText(activity, "请先检查网络后再试一次!", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(activity, resultString, Toast.LENGTH_SHORT).show();
+        }
+        handler.onFailure();
     }
 
     /**
@@ -150,10 +156,10 @@ public class RestApiClient {
      * @return
      */
     private static boolean checkNetWork() {
-//        if (!ConnectivityUtils.isConnected(PandaApplication.getInstance())) {
-//            Toast.makeText(PandaApplication.getInstance(), "网络不太给力，请重试！", Toast.LENGTH_SHORT).show();
-//            return false;
-//        }
+        if (!ConnectivityUtils.isConnected(HuoshiApplication.getInstance())) {
+            Toast.makeText(HuoshiApplication.getInstance(), "网络不太给力，请重试！", Toast.LENGTH_SHORT).show();
+            return false;
+        }
         return true;
     }
 

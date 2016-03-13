@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -18,7 +17,6 @@ import im.huoshi.asynapi.callback.RestApiCallback;
 import im.huoshi.asynapi.request.HuoshiRequest;
 import im.huoshi.base.BaseActivity;
 import im.huoshi.base.BaseFragment;
-import im.huoshi.model.ApiError;
 import im.huoshi.model.HuoshiData;
 import im.huoshi.ui.main.LoginActivity;
 import im.huoshi.utils.ViewInject;
@@ -85,7 +83,7 @@ public class HuoshiFragment extends BaseFragment {
             }
 
             @Override
-            public void onFailure(ApiError apiError) {
+            public void onFailure() {
 
             }
         });

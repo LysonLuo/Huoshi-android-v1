@@ -56,4 +56,5 @@ dependencies {
     compile 'com.google.code.gson:gson:2.4'
     compile 'com.bigkoo:pickerview:2.0.8'
     compile 'com.bugtags.library:bugtags-lib:latest.integration'
+    compile 'com.umeng:fb:5.4.0'
 }

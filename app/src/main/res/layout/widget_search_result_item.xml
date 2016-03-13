@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/common_white_bg"
-        android:padding="@dimen/margin_normal">
+        android:padding="@dimen/margin_16">
 
         <TextView
             android:id="@+id/textview_result_book_name"
@@ -21,7 +21,7 @@
             android:id="@+id/textview_result_chapter_section"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_marginLeft="@dimen/margin_10"
             android:layout_toRightOf="@+id/textview_result_book_name"
             android:text="1:20"
             android:textColor="@color/text_color_black" />
@@ -32,16 +32,16 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/textview_result_book_name"
             android:layout_below="@+id/textview_result_book_name"
-            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_10"
             android:text="神说：水要多多滋养有生命的生物"
             android:textColor="@color/text_color_chapter"
-            android:textSize="@dimen/text_size_small_" />
+            android:textSize="@dimen/text_size_17" />
 
     </RelativeLayout>
 
     <View
         android:id="@+id/view_divider"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/margin_small"
+        android:layout_height="@dimen/margin_10"
         android:background="@color/common_gray_dark_bg" />
 </LinearLayout>

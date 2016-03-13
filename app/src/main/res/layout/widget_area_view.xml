@@ -9,6 +9,6 @@
         android:id="@+id/textview_address_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/margin_normal"/>
+        android:padding="@dimen/margin_16"/>
 
 </LinearLayout>

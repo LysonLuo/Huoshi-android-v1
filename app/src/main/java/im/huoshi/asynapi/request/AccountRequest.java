@@ -1,14 +1,14 @@
 package im.huoshi.asynapi.request;
 
 import android.text.TextUtils;
+
+import java.util.TreeMap;
+
 import im.huoshi.asynapi.callback.RestApiCallback;
 import im.huoshi.asynapi.common.RestApiClient;
 import im.huoshi.asynapi.common.RestApiPath;
 import im.huoshi.asynapi.handler.RestApiHandler;
 import im.huoshi.base.BaseActivity;
-import im.huoshi.model.ApiError;
-
-import java.util.TreeMap;
 
 /**
  * Created by Lyson on 16/1/15.
@@ -35,8 +35,8 @@ public class AccountRequest extends BaseRequest {
             }
 
             @Override
-            public void onFailure(ApiError apiError) {
-                callback.onFailure(apiError);
+            public void onFailure() {
+                callback.onFailure();
             }
         });
     }
@@ -66,8 +66,8 @@ public class AccountRequest extends BaseRequest {
             }
 
             @Override
-            public void onFailure(ApiError apiError) {
-                callback.onFailure(apiError);
+            public void onFailure() {
+                callback.onFailure();
             }
         });
     }
@@ -89,8 +89,8 @@ public class AccountRequest extends BaseRequest {
             }
 
             @Override
-            public void onFailure(ApiError apiError) {
-                callback.onFailure(apiError);
+            public void onFailure() {
+                callback.onFailure();
             }
         });
     }
@@ -106,8 +106,8 @@ public class AccountRequest extends BaseRequest {
             }
 
             @Override
-            public void onFailure(ApiError apiError) {
-                callback.onFailure(apiError);
+            public void onFailure() {
+                callback.onFailure();
             }
         });
     }
@@ -132,8 +132,8 @@ public class AccountRequest extends BaseRequest {
             }
 
             @Override
-            public void onFailure(ApiError apiError) {
-                callback.onFailure(apiError);
+            public void onFailure() {
+                callback.onFailure();
             }
         });
 

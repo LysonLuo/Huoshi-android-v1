@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="@dimen/margin_normal">
+    android:padding="@dimen/margin_16">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -15,24 +15,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/margin_16"
         android:text="代祷功能通过读取您的通讯录好友的方式，获取您的好友网络，并以此作为好友代祷的连接点" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/margin_16"
         android:text="授权我们读取您的通讯录，我们不会泄漏您的任何个人信息，也不会对您造成任何影响" />
 
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/margin_16"
         android:background="#45dffe"
         android:gravity="center_horizontal"
-        android:padding="@dimen/margin_small"
+        android:padding="@dimen/margin_10"
         android:text="同意授权"
         android:textColor="@color/text_color_white" />
 

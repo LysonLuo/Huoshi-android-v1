@@ -11,6 +11,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.TimePickerView;
 import com.bumptech.glide.Glide;
@@ -18,16 +19,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.qiniu.android.http.ResponseInfo;
 import com.qiniu.android.storage.UpCompletionHandler;
-import de.hdodenhof.circleimageview.CircleImageView;
-import im.huoshi.R;
-import im.huoshi.asynapi.callback.RestApiCallback;
-import im.huoshi.asynapi.request.AccountRequest;
-import im.huoshi.base.BaseActivity;
-import im.huoshi.model.ApiError;
-import im.huoshi.model.Gender;
-import im.huoshi.model.QiNiuToken;
-import im.huoshi.model.User;
-import im.huoshi.utils.*;
+
 import org.json.JSONObject;
 
 import java.io.File;
@@ -35,6 +27,19 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+import im.huoshi.R;
+import im.huoshi.asynapi.callback.RestApiCallback;
+import im.huoshi.asynapi.request.AccountRequest;
+import im.huoshi.base.BaseActivity;
+import im.huoshi.model.Gender;
+import im.huoshi.model.QiNiuToken;
+import im.huoshi.model.User;
+import im.huoshi.utils.AvatarUtils;
+import im.huoshi.utils.QiNiuUtils;
+import im.huoshi.utils.ViewInject;
+import im.huoshi.utils.ViewUtils;
 
 /**
  * Created by Lyson on 15/12/27.
@@ -143,10 +148,9 @@ public class UserInfoActivity extends BaseActivity {
             }
 
             @Override
-            public void onFailure(ApiError apiError) {
+            public void onFailure() {
                 dismissProgressDialog();
                 showShortToast("更新失败!");
-                LogUtils.d(Log_Tag, apiError.errorMessage);
             }
         });
     }
@@ -280,7 +284,7 @@ public class UserInfoActivity extends BaseActivity {
             }
 
             @Override
-            public void onFailure(ApiError apiError) {
+            public void onFailure() {
 
             }
         });

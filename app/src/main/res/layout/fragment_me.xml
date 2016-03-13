@@ -10,31 +10,33 @@
         android:id="@+id/layout_user_info"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:padding="@dimen/margin_normal">
+        android:padding="@dimen/margin_16">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageview_user"
             android:layout_width="@dimen/avatar_width_normal"
             android:layout_height="@dimen/avatar_width_normal"
-            android:src="@mipmap/image_default_avatar" />
+            android:src="@mipmap/img_default_avatar" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/margin_normal"
+            android:layout_marginLeft="@dimen/margin_16"
             android:layout_toRightOf="@id/imageview_user"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textview_nickname"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:textSize="@dimen/text_size_16"
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/textview_read_minutes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_16"
                 android:text="阅读时间：0分钟" />
 
         </LinearLayout>
@@ -44,7 +46,7 @@
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:padding="@dimen/margin_normal"
+            android:padding="@dimen/margin_16"
             android:src="@mipmap/icon_forward" />
     </RelativeLayout>
 
@@ -56,9 +58,13 @@
         android:drawableLeft="@mipmap/icon_my_prayer"
         android:text="@string/text_my_prayer" />
 
-    <View style="@style/GrayDividerStyle" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/conmon_gray_line_divider" />
 
     <TextView
+        android:id="@+id/textview_my_invitation"
         style="@style/InfoItemStyle"
         android:drawableLeft="@mipmap/icon_my_invitation"
         android:text="@string/text_my_invitation" />
@@ -66,11 +72,15 @@
     <View style="@style/GrayDividerStyle" />
 
     <TextView
+        android:id="@+id/textview_umeng_recom"
         style="@style/InfoItemStyle"
         android:drawableLeft="@mipmap/icon_feedback"
         android:text="@string/text_feedback" />
 
-    <View style="@style/GrayDividerStyle" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/conmon_gray_line_divider" />
 
     <TextView
         android:id="@+id/textview_check_update"
@@ -78,7 +88,10 @@
         android:drawableLeft="@mipmap/icon_upgrade"
         android:text="@string/text_upgrade" />
 
-    <View style="@style/GrayDividerStyle" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/conmon_gray_line_divider" />
 
     <TextView
         android:id="@+id/textview_logout"

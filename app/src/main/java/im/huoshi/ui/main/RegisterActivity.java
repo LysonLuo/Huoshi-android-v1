@@ -12,15 +12,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
 import im.huoshi.R;
 import im.huoshi.asynapi.callback.RestApiCallback;
 import im.huoshi.asynapi.request.AccountRequest;
 import im.huoshi.base.BaseActivity;
-import im.huoshi.model.ApiError;
 import im.huoshi.model.User;
-import im.huoshi.utils.*;
+import im.huoshi.utils.CTextUtils;
+import im.huoshi.utils.DeviceUtils;
+import im.huoshi.utils.LogUtils;
+import im.huoshi.utils.SecurityUtils;
+import im.huoshi.utils.ViewInject;
+import im.huoshi.utils.ViewUtils;
+import im.huoshi.utils.ViewWrapperUtils;
 
 /**
  * Created by Lyson on 15/12/28.
@@ -110,11 +117,10 @@ public class RegisterActivity extends BaseActivity {
                     }
 
                     @Override
-                    public void onFailure(ApiError apiError) {
+                    public void onFailure() {
                         LogUtils.d(Log_Tag, "failure");
                         mCountDownTimer.cancel();
                         mCountDownTimer.onFinish();
-                        showShortToast(apiError.errorMessage);
                     }
                 });
             }
@@ -164,9 +170,8 @@ public class RegisterActivity extends BaseActivity {
                 }
 
                 @Override
-                public void onFailure(ApiError apiError) {
+                public void onFailure() {
                     //// TODO: 16/1/26 做各种判断,什么被注册,什么不合法啊..
-                    LogUtils.d(Log_Tag, apiError.errorMessage);
                 }
             });
         }

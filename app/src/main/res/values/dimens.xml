@@ -1,21 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- 常用边距-->
-    <dimen name="margin_extreme_big">35dp</dimen>
-    <dimen name="margin_very_big">25dp</dimen>
-    <dimen name="margin_normal">16dp</dimen>
-    <dimen name="margin_small">10dp</dimen>
-    <dimen name="margin_very_small">6dp</dimen>
-    <dimen name="margin_very_very_small">4dp</dimen>
+    <dimen name="margin_4">4dp</dimen>
+    <dimen name="margin_5">5dp</dimen>
+    <dimen name="margin_6">6dp</dimen>
+    <dimen name="margin_10">10dp</dimen>
+    <dimen name="margin_16">16dp</dimen>
+    <dimen name="margin_25">25dp</dimen>
+    <dimen name="margin_30">30dp</dimen>
+    <dimen name="margin_35">35dp</dimen>
 
     <!-- 字体大小-->
-    <dimen name="text_size_micro">10sp</dimen>
-    <dimen name="text_size_very_small">11sp</dimen>
-    <dimen name="text_size_very_small_">12sp</dimen>
-    <dimen name="text_size_small_">13sp</dimen>
-    <dimen name="text_size_small">14sp</dimen>
-    <dimen name="text_size_medium">18sp</dimen>
-    <dimen name="text_size_large">22sp</dimen>
+    <dimen name="text_size_10">10sp</dimen>
+    <dimen name="text_size_11">11sp</dimen>
+    <dimen name="text_size_12">12sp</dimen>
+    <dimen name="text_size_13">13sp</dimen>
+    <dimen name="text_size_15">15sp</dimen>
+    <dimen name="text_size_16">16sp</dimen>
+    <dimen name="text_size_17">17sp</dimen>
+    <dimen name="text_size_18">18sp</dimen>
+    <dimen name="text_size_19">19sp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
+    <dimen name="text_size_21">21sp</dimen>
+    <dimen name="text_size_22">22sp</dimen>
 
     <!--常用尺寸-->
     <dimen name="bible_item_height">30dp</dimen>
