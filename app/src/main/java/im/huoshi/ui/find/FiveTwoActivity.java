@@ -18,7 +18,7 @@ public class FiveTwoActivity extends BaseActivity {
         setContentView(R.layout.activity_five_two);
     }
 
-    public static void launch(MainActivity activity) {
+    public static void launch(BaseActivity activity) {
         activity.startActivity(new Intent(activity, FiveTwoActivity.class));
     }
 }

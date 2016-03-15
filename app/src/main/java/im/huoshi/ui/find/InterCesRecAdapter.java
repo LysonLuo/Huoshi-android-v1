@@ -5,11 +5,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import im.huoshi.R;
-import im.huoshi.common.OnRecClickListener;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+import im.huoshi.R;
+import im.huoshi.common.OnRecClickListener;
+import im.huoshi.utils.ViewInject;
+import im.huoshi.utils.ViewUtils;
 
 /**
  * Created by Lyson on 15/12/26.
@@ -22,7 +27,7 @@ public class InterCesRecAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         this.mContext = mContext;
     }
 
-    public void  setmRecClickListener(OnRecClickListener<List<String>> recClickListener) {
+    public void setmRecClickListener(OnRecClickListener<List<String>> recClickListener) {
         this.mRecClickListener = recClickListener;
     }
 
@@ -51,11 +56,20 @@ public class InterCesRecAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     class IntercesViewHolder extends RecyclerView.ViewHolder {
-        View itemView;
+        @ViewInject(R.id.imageview_avatar)
+        private CircleImageView mAvatarImageView;
+        @ViewInject(R.id.textview_name)
+        private TextView mNameTextView;
+        @ViewInject(R.id.textview_interces_content)
+        private TextView mContentTextView;
+        @ViewInject(R.id.textview_interces_time)
+        private TextView mTimeTextView;
+        @ViewInject(R.id.textview_interces_count)
+        private TextView mCountTextView;
 
         public IntercesViewHolder(View itemView) {
             super(itemView);
-            this.itemView = itemView;
+            ViewUtils.inject(this, itemView);
         }
     }
 }

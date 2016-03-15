@@ -7,13 +7,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.List;
+
 import im.huoshi.R;
+import im.huoshi.base.BaseActivity;
 import im.huoshi.base.BaseFragment;
 import im.huoshi.common.OnRecClickListener;
 import im.huoshi.utils.ViewInject;
 import im.huoshi.utils.ViewUtils;
-
-import java.util.List;
 
 /**
  * 公用的祷告页面
@@ -21,15 +23,22 @@ import java.util.List;
  * Created by Lyson on 15/12/27.
  */
 public class InterCesFragment extends BaseFragment {
+    public static final String INTERCES_TYPE_INTERCES = "INTERCES";
+    public static final String INTERCES_TYPE_PRAYER = "PRAYER";
     @ViewInject(R.id.recyclerview)
     private RecyclerView mRecyclerView;
     private LinearLayoutManager mLayoutManager;
     private InterCesRecAdapter mAdapter;
+    private String mType;//类别，区分是代祷还是祷告箱
 
-    public static InterCesFragment getInstance(){
+    public static InterCesFragment getInstance(String type) {
         InterCesFragment fragment = new InterCesFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("type", type);
+        fragment.setArguments(bundle);
         return fragment;
     }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -41,6 +50,7 @@ public class InterCesFragment extends BaseFragment {
     }
 
     private void setupViews() {
+        mType = getArguments().getString("type");
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new InterCesRecAdapter(getActivity());
@@ -48,7 +58,7 @@ public class InterCesFragment extends BaseFragment {
         mAdapter.setmRecClickListener(new OnRecClickListener<List<String>>() {
             @Override
             public void OnClick(List<String> strings) {
-                InterCesDetailsActivity.launch((InterCesActivity) getActivity());
+                InterCesDetailsActivity.launch((BaseActivity) getActivity());
             }
         });
     }

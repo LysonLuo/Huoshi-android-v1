@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentTransaction;
 
 import im.huoshi.R;
 import im.huoshi.base.BaseActivity;
-import im.huoshi.ui.main.MainActivity;
 import im.huoshi.utils.ViewUtils;
 
 /**
@@ -26,9 +25,10 @@ public class InterCesActivity extends BaseActivity {
     }
 
     private void setupViews() {
+        mToolbarUtils.setTitleText(getString(R.string.text_interces));
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if (mInterCesFragment == null) {
-            mInterCesFragment = new InterCesFragment();
+            mInterCesFragment = InterCesFragment.getInstance(InterCesFragment.INTERCES_TYPE_INTERCES);
         }
         if (!mInterCesFragment.isAdded()) {
             transaction.add(R.id.layout_content, mInterCesFragment);
@@ -38,7 +38,7 @@ public class InterCesActivity extends BaseActivity {
         transaction.commit();
     }
 
-    public static void launch(MainActivity act) {
+    public static void launch(BaseActivity act) {
         act.startActivity(new Intent(act, InterCesActivity.class));
     }
 }

@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import im.huoshi.R;
+import im.huoshi.base.BaseActivity;
 import im.huoshi.base.BaseFragment;
-import im.huoshi.ui.main.MainActivity;
 import im.huoshi.utils.ViewInject;
 import im.huoshi.utils.ViewUtils;
 
@@ -37,21 +37,21 @@ public class FindFragment extends BaseFragment {
         mLayoutInterces.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InterCesActivity.launch((MainActivity)getActivity());
+                InterCesActivity.launch((BaseActivity) getActivity());
             }
         });
 
         mLayoutFiveTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FiveTwoActivity.launch((MainActivity)getActivity());
+                FiveTwoActivity.launch((BaseActivity)getActivity());
             }
         });
 
         mShareLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShareHuoshiActivity.launch((MainActivity)getActivity());
+                ShareHuoshiActivity.launch((BaseActivity)getActivity());
             }
         });
     }

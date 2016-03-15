@@ -38,8 +38,8 @@ public class MyPrayerActivity extends BaseActivity {
     }
 
     private void setupViews() {
-        mFragments.add(InterCesFragment.getInstance());
-        mFragments.add(InterCesFragment.getInstance());
+        mFragments.add(InterCesFragment.getInstance(InterCesFragment.INTERCES_TYPE_PRAYER));
+        mFragments.add(InterCesFragment.getInstance(InterCesFragment.INTERCES_TYPE_PRAYER));
         mAdapter = new InterCesPagerAdapter(getSupportFragmentManager(), mFragments);
         mViewPager.setAdapter(mAdapter);
         mTablayout.setupWithViewPager(mViewPager);

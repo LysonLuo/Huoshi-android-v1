@@ -67,4 +67,5 @@
     <string name="text_empty_believe_date">信主时间不能为空!</string>
     <string name="text_empty_birthday">生日不能为空!</string>
     <string name="text_empty_nick_name">昵称不能为空!</string>
+    <string name="text_interces">代祷</string>
 </resources>

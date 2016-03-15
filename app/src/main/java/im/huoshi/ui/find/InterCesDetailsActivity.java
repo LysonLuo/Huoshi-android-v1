@@ -39,7 +39,7 @@ public class InterCesDetailsActivity extends BaseActivity {
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    public static void launch(InterCesActivity activity) {
+    public static void launch(BaseActivity activity) {
         activity.startActivity(new Intent(activity, InterCesDetailsActivity.class));
     }
 }

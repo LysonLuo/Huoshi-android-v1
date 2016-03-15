@@ -18,7 +18,7 @@ public class ShareHuoshiActivity extends BaseActivity {
         setContentView(R.layout.activity_share_huoshi);
     }
 
-    public static void launch(MainActivity activity) {
+    public static void launch(BaseActivity activity) {
         activity.startActivity(new Intent(activity, ShareHuoshiActivity.class));
     }
 }
