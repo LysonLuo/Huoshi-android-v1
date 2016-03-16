@@ -5,8 +5,8 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="180dp"
-        android:layout_height="180dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/margin_25"
         android:background="@drawable/drawable_blue_circle_border"
@@ -20,15 +20,78 @@
             android:text="您已分享"
             android:textSize="@dimen/text_size_18" />
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/margin_10"
-            android:text="10"
-            android:textColor="@color/text_color_blue_light"
-            android:textSize="50sp" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textview_share_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10"
+                android:textColor="@color/text_color_blue_light"
+                android:textSize="50sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="次"
+                android:textColor="@color/text_color_blue_light" />
+        </LinearLayout>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_25"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_16">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="藉着您的分享，更多人有机会通过移动互联网的方式领受神的话语。"
+            android:textColor="@color/text_color_chapter"
+            android:textSize="@dimen/text_size_16" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:text="我们希望拥抱移动互联网时代带来的全新变化，用更简便的圣经阅读、更真诚的熟人代祷为更多兄弟姊妹的信仰生活注入新的选择。"
+            android:textColor="@color/text_color_chapter"
+            android:textSize="@dimen/text_size_16" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:text="未来我们还会陆续有更多惊喜。"
+            android:textColor="@color/text_color_chapter"
+            android:textSize="@dimen/text_size_16" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:text="所以这一切，都需要您和我们一起努力。"
+            android:textColor="@color/text_color_chapter"
+            android:textSize="@dimen/text_size_16" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_share_huoshi"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:layout_margin="@dimen/margin_16"
+        android:background="@drawable/drawable_blue_rec_solid"
+        android:text="@string/text_share_huoshi"
+        android:textColor="@color/text_color_white"
+        android:textSize="@dimen/text_size_20" />
 
 </LinearLayout>

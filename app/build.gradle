@@ -35,6 +35,13 @@ android {
             buildConfigField "String", "APP_KEY", '\"8B79509E413BBFD5470D1A219C31E67B180CD2CE\"'
             buildConfigField "String", "APP_SECRET", '\"31DAB2BF005BE3312CF50577562D0D5367368D42\"'
             buildConfigField "String", "APP_PRIVATE_KEY",'\"huoshi2016!\"'
+            buildConfigField "String", "BUGTAGS_ID", '\"8634c2abf3eb2f584688b083fdbb5b98\"'
+            buildConfigField "String", "WECHAT_ID", '\"wx4be13b2a34ae2c1c\"'
+            buildConfigField "String", "WECHAT_SECRET", '\"98f8f2053210c04eb40b2a9e18c9a1a3\"'
+            buildConfigField "String", "WEIBO_ID", '\"XXX\"'
+            buildConfigField "String", "WEIBO_SECRET", '\"XXX\"'
+            buildConfigField "String", "QQ_ID", '\"1105254632\"'
+            buildConfigField "String", "QQ_SECRET", '\"0EowbotBJdYwqMJj\"'
         }
     }
 }
@@ -66,4 +73,5 @@ dependencies {
     compile files('libs/mta-sdk-1.6.2.jar')
     compile files('libs/open_sdk_r5509.jar')
     compile files('libs/weiboSDKCore_3.1.4.jar')
+    compile files('libs/SocialSDK_sms.jar')
 }

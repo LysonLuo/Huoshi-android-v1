@@ -102,6 +102,7 @@ public class BaseActivity extends AppCompatActivity implements ToolbarUtils.OnTo
         MobclickAgent.onPause(this);
         Bugtags.onPause(this);
     }
+
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         //注：回调 3
@@ -319,7 +320,7 @@ public class BaseActivity extends AppCompatActivity implements ToolbarUtils.OnTo
      *
      * @param message
      */
-    protected void showShortToast(String message) {
+    public void showShortToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
@@ -328,7 +329,7 @@ public class BaseActivity extends AppCompatActivity implements ToolbarUtils.OnTo
      *
      * @param message
      */
-    protected void showLongToast(String message) {
+    public void showLongToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 

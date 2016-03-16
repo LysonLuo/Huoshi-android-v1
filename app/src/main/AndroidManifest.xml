@@ -119,7 +119,8 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="tencent100424468" />
+                <!--tencent前缀不能丢，不然分享成功也会回调oncancle-->
+                <data android:scheme="tencent1105254632" />
             </intent-filter>
         </activity>
         <activity

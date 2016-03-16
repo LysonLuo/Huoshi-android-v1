@@ -37,19 +37,19 @@ public class HuoshiApplication extends Application {
     private void startBugtags() {
         BugtagsOptions bugtagsOptions = new BugtagsOptions.Builder().trackingLocation(false).build();
         if (BuildConfig.BUILD_TYPE.equalsIgnoreCase("debug")) {
-            Bugtags.start("8634c2abf3eb2f584688b083fdbb5b98", this, Bugtags.BTGInvocationEventBubble, bugtagsOptions);
+            Bugtags.start(BuildConfig.BUGTAGS_ID, this, Bugtags.BTGInvocationEventBubble, bugtagsOptions);
         } else {
-            Bugtags.start("8634c2abf3eb2f584688b083fdbb5b98", this, Bugtags.BTGInvocationEventNone, bugtagsOptions);
+            Bugtags.start(BuildConfig.BUGTAGS_ID, this, Bugtags.BTGInvocationEventNone, bugtagsOptions);
         }
     }
 
     private void initAll() {
         //微信 appid appsecret
-        PlatformConfig.setWeixin("wx967daebe835fbeac", "5bb696d9ccd75a38c8a0bfe0675559b3");
+        PlatformConfig.setWeixin(BuildConfig.WECHAT_ID, BuildConfig.WECHAT_SECRET);
         //新浪微博 appkey appsecret
-        PlatformConfig.setSinaWeibo("3921700954","04b48b094faeb16683c32669824ebdad");
+        PlatformConfig.setSinaWeibo(BuildConfig.WEIBO_ID, BuildConfig.WEIBO_SECRET);
         // QQ和Qzone appid appkey
-        PlatformConfig.setQQZone("100424468", "c7394704798a158208a74ab60104f0ba");
+        PlatformConfig.setQQZone(BuildConfig.QQ_ID, BuildConfig.QQ_SECRET);
     }
 
     private void copyDataBase() {
