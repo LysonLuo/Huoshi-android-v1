@@ -96,6 +96,7 @@
     <TextView
         android:id="@+id/textview_logout"
         style="@style/InfoItemStyle"
+        android:textIsSelectable="true"
         android:drawableLeft="@mipmap/icon_logout"
         android:text="@string/text_logout" />
 
