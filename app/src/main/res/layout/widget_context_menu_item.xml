@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/textview_menu_name"
+    android:layout_width="50dp"
+    android:layout_height="40dp"
+    android:layout_gravity="center"
+    android:background="@drawable/drawable_context_menu_selector"
+    android:gravity="center"
+    android:padding="7dp"
+    android:textColor="#F0F0F0"
+    android:textSize="16sp" />

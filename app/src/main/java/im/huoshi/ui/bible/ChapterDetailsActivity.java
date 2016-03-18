@@ -47,6 +47,7 @@ public class ChapterDetailsActivity extends BaseActivity {
     private long mStartTime;
     private long mStopTime;
     private int mCurrentMinutes;
+    private boolean mIsFirstShow = true;//是否初次打开页面
 
 
     @Override
@@ -81,7 +82,10 @@ public class ChapterDetailsActivity extends BaseActivity {
     @Override
     protected void initTitle() {
         super.initTitle();
-        mToolbarUtils.setTitleText(mBookName + "\t\t" + mChapters.get(mCurrentPosition).getChapterNo() + "章");
+        if (mIsFirstShow) {
+            mToolbarUtils.setTitleText(mBookName + "\t\t" + mChapters.get(mCurrentPosition).getChapterNo() + "章");
+            mIsFirstShow = !mIsFirstShow;
+        }
     }
 
     @Override
@@ -100,8 +104,17 @@ public class ChapterDetailsActivity extends BaseActivity {
                 mLocalRead.updateLastMinutes(mCurrentMinutes);
                 mLocalRead.updateTotalMinutes();
                 //从上次阅读结束到这次阅读结束,时间间隔为1,或者从上次阅读结束到这次阅读结束,时间间隔为2,但是从开始阅读到结束阅读,时间间隔为1,也就是过了24点还在读~
-                if (dayBetweenLast == 1 || (dayBetweenLast == 2 && dayBetweenCurrent == 1)) {
+                if (dayBetweenLast == 1) {
                     mLocalRead.updateContinuousDays();
+                } else if (dayBetweenLast == 2 && dayBetweenCurrent == 1) {
+                    mLocalRead.updateContinuousDays();
+                    mLocalRead.setTodayShouldAdd(true);
+                } else if (dayBetweenLast == 0) {
+                    //今天读过了，不应该做任何事情，但是这种情况呢：从昨天十二点多，读到凌晨，那应该＋1。。。
+                    if (mLocalRead.todayShouldAdd()){
+                        mLocalRead.updateContinuousDays();
+                        mLocalRead.setTodayShouldAdd(false);
+                    }
                 } else {
                     mLocalRead.updateContinuousDays(1);
                 }

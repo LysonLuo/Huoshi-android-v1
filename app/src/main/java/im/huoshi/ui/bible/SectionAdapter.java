@@ -17,8 +17,12 @@ import java.util.List;
 import java.util.Set;
 
 import im.huoshi.R;
+import im.huoshi.base.BaseActivity;
 import im.huoshi.common.OnRecClickListener;
 import im.huoshi.model.Section;
+import im.huoshi.utils.PopupListAdapter;
+import im.huoshi.utils.PopupUtils;
+import im.huoshi.utils.ShareUtils;
 import im.huoshi.utils.ViewInject;
 import im.huoshi.utils.ViewUtils;
 
@@ -41,6 +45,7 @@ public class SectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         this.mSectionList = sectionList;
         this.mKeyWord = keyWord;
     }
+
 
     @Override
     public int getItemViewType(int position) {
@@ -90,9 +95,10 @@ public class SectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         } else {
             detailHolder.mIndexTextView.setTextColor(mContext.getResources().getColor(R.color.text_section_index));
         }
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        detailHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                detailHolder.mIndexTextView.requestFocus();
                 if (mSelectedViewHolder != null) {
                     mSelectedViewHolder.mIndexTextView.setTextColor(mContext.getResources().getColor(R.color.text_section_index));
                     mSectionList.get(position).isChecked = false;
@@ -105,23 +111,37 @@ public class SectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 }
                 mSelectedViewHolder = detailHolder;
                 if (mItemClickListener != null) {
-//                    if (mSectionList.get(position).isChecked) {
-//                        mSectionList.get(position).isChecked = false;
-//                        mViewShowIndex.remove(position);
-//                        detailHolder.mIndexTextView.setTextColor(mContext.getResources().getColor(R.color.text_section_index));
-//                    } else {
                     mSelectedIndex = position;
                     mSectionList.get(position).isChecked = true;
                     mViewShowIndex.add(position);
                     detailHolder.mIndexTextView.setTextColor(mContext.getResources().getColor(R.color.text_color_black));
                     mItemClickListener.OnClick(mSectionList.get(position));
-//                    }
                 }
             }
         });
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+        detailHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
+                detailHolder.mContentTextView.setTextIsSelectable(true);
+                detailHolder.mContentTextView.setSelectAllOnFocus(true);
+                detailHolder.mContentTextView.requestFocus();
+                PopupUtils popupUtils = new PopupUtils();
+                List<String> popupList = new ArrayList<>();
+                popupList.add("复制");
+                popupList.add("分享");
+                popupUtils.setOnItemClickListener(new PopupListAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View contextView, int contextPosition, View view, int position) {
+                        //复制
+                        if (contextPosition == 0) {
+
+                            return;
+                        }
+                        //分享
+                        ShareUtils.init((BaseActivity) mContext);
+                    }
+                });
+                popupUtils.showPopupWindow(mContext, detailHolder.itemView, position, popupList);
                 return false;
             }
         });

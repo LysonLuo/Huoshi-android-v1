@@ -38,10 +38,10 @@ public class SectionFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View contentView = inflater.inflate(R.layout.widget_section_container, container, false);
         ViewUtils.inject(this, contentView);
-
         setupViews();
         return contentView;
     }
+
 
     public void setIsChecked(boolean isChecked) {
         this.mIsChecked = isChecked;

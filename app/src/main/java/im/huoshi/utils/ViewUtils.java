@@ -8,7 +8,7 @@ import java.lang.reflect.Field;
 
 /**
  * 控件注入工具类
- * <p/>
+ * <p>
  * Created by Lyson on 15/12/24.
  */
 public class ViewUtils {

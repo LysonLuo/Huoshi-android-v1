@@ -2,6 +2,7 @@ package im.huoshi.data;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+
 import im.huoshi.HuoshiApplication;
 import im.huoshi.model.HuoshiData;
 import im.huoshi.model.ReadStat;
@@ -86,7 +87,7 @@ public class ReadPreference {
         editor.apply();
     }
 
-    public void updateTotalMinutes(int totalMinutes){
+    public void updateTotalMinutes(int totalMinutes) {
         SharedPreferences.Editor editor = mPreference.edit();
         editor.putInt("total_minutes", totalMinutes);
         editor.apply();
@@ -119,6 +120,19 @@ public class ReadPreference {
 
     public long getLastReadLong() {
         return mPreference.getLong("last_read_long", 0);
+    }
+
+    /**
+     * 设置今天是否应该累加，遇到这种情况，上一次阅读是从前一天到第二天凌晨的时候，需要这个标志
+     */
+    public void setTodayShouldAdd(boolean shouldAdd) {
+        SharedPreferences.Editor editor = mPreference.edit();
+        editor.putBoolean("today_should_add", shouldAdd);
+        editor.apply();
+    }
+
+    public boolean todayShouldAdd() {
+        return mPreference.getBoolean("today_should_add", false);
     }
 
     public void clearData() {
