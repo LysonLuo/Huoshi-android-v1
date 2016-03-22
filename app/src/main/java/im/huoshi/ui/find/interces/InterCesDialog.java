@@ -1,4 +1,4 @@
-package im.huoshi.ui.find;
+package im.huoshi.ui.find.interces;
 
 import android.content.Context;
 import android.support.v7.app.AppCompatDialog;

@@ -1,4 +1,4 @@
-package im.huoshi.ui.find;
+package im.huoshi.ui.find.interces;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

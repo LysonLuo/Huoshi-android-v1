@@ -1,4 +1,4 @@
-package im.huoshi.ui.find;
+package im.huoshi.ui.find.interces;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import im.huoshi.R;
 import im.huoshi.base.BaseActivity;
 import im.huoshi.base.BaseFragment;
+import im.huoshi.ui.find.interces.InterCesActivity;
 import im.huoshi.utils.ViewInject;
 import im.huoshi.utils.ViewUtils;
 
@@ -23,6 +24,7 @@ public class FindFragment extends BaseFragment {
     private LinearLayout mLayoutFiveTwo;
     @ViewInject(R.id.layout_share)
     private LinearLayout mShareLayout;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -37,6 +39,9 @@ public class FindFragment extends BaseFragment {
         mLayoutInterces.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (isNotLogin()) {
+                    return;
+                }
                 InterCesActivity.launch((BaseActivity) getActivity());
             }
         });
@@ -44,14 +49,14 @@ public class FindFragment extends BaseFragment {
         mLayoutFiveTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FiveTwoActivity.launch((BaseActivity)getActivity());
+                FiveTwoActivity.launch((BaseActivity) getActivity());
             }
         });
 
         mShareLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShareHuoshiActivity.launch((BaseActivity)getActivity());
+                ShareHuoshiActivity.launch((BaseActivity) getActivity());
             }
         });
     }

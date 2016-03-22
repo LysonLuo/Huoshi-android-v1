@@ -11,8 +11,8 @@ import java.util.List;
 
 import im.huoshi.R;
 import im.huoshi.base.BaseActivity;
-import im.huoshi.ui.find.InterCesFragment;
-import im.huoshi.ui.find.InterCesPagerAdapter;
+import im.huoshi.ui.find.interces.InterCesFragment;
+import im.huoshi.ui.find.interces.InterCesPagerAdapter;
 import im.huoshi.ui.main.MainActivity;
 import im.huoshi.utils.ViewInject;
 import im.huoshi.utils.ViewUtils;

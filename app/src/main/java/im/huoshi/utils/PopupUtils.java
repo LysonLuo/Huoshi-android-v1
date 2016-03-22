@@ -20,7 +20,7 @@ import im.huoshi.common.DividerItemDecoration;
  * Created by Lyson on 16/3/17.
  */
 public class PopupUtils {
-
+    private PopupWindow mPopupWindow;
     PopupListAdapter.OnItemClickListener onItemClickListener;
 
     public void setOnItemClickListener(PopupListAdapter.OnItemClickListener onItemClickListener) {
@@ -60,11 +60,16 @@ public class PopupUtils {
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ScreenUtils.dip2px(context, 15), ScreenUtils.dip2px(context, 7));
         layoutView.addView(iv, layoutParams);
         //实例化弹出窗口并显示
-        final PopupWindow popupWindow = new PopupWindow(layoutView, PopupWindowWidth,
-                PopupWindowHeight, true);
-        popupWindow.setTouchable(true);
+        mPopupWindow = new PopupWindow(layoutView, PopupWindowWidth, PopupWindowHeight, true);
+        mPopupWindow.setTouchable(true);
         //设置背景以便在外面包裹一层可监听触屏等事件的容器
-        popupWindow.setBackgroundDrawable(new BitmapDrawable());
-        popupWindow.showAsDropDown(parent, 0, 0);
+        mPopupWindow.setBackgroundDrawable(new BitmapDrawable());
+        mPopupWindow.showAsDropDown(parent, 0, 0);
+    }
+
+    public void dismiss() {
+        if (mPopupWindow != null && mPopupWindow.isShowing()) {
+            mPopupWindow.dismiss();
+        }
     }
 }

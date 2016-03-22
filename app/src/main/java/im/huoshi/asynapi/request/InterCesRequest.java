@@ -61,4 +61,20 @@ public class InterCesRequest extends BaseRequest {
             }
         });
     }
+
+    public static void verifyPermission(BaseActivity activity, int userId, final RestApiCallback callback) {
+        TreeMap<String, String> treeMap = initParams();
+        treeMap.put("user_id", String.valueOf(userId));
+        RestApiClient.post(getBasePath(RestApiPath.VERIFY_PERMISSION), buildRequestParams(treeMap), activity, new RestApiHandler() {
+            @Override
+            public void onSuccess(String responseString) {
+                callback.onSuccess(responseString);
+            }
+
+            @Override
+            public void onFailure() {
+                callback.onFailure();
+            }
+        });
+    }
 }

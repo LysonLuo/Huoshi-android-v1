@@ -1,5 +1,8 @@
 package im.huoshi.ui.bible;
 
+import android.app.Service;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
@@ -10,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -125,20 +129,27 @@ public class SectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 detailHolder.mContentTextView.setTextIsSelectable(true);
                 detailHolder.mContentTextView.setSelectAllOnFocus(true);
                 detailHolder.mContentTextView.requestFocus();
-                PopupUtils popupUtils = new PopupUtils();
-                List<String> popupList = new ArrayList<>();
+                final PopupUtils popupUtils = new PopupUtils();
+                final List<String> popupList = new ArrayList<>();
                 popupList.add("复制");
                 popupList.add("分享");
                 popupUtils.setOnItemClickListener(new PopupListAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(View contextView, int contextPosition, View view, int position) {
                         //复制
-                        if (contextPosition == 0) {
-
+                        if (position == 0) {
+                            ClipboardManager clipboardManager = (ClipboardManager) mContext.getSystemService(Service.CLIPBOARD_SERVICE);
+                            ClipData clipData = ClipData.newPlainText("data", detailHolder.mContentTextView.getText());
+                            clipboardManager.setPrimaryClip(clipData);
+                            Toast.makeText(mContext, "复制成功", Toast.LENGTH_SHORT).show();
+                            popupUtils.dismiss();
+                            detailHolder.mContentTextView.setSelected(false);
+                            detailHolder.mContentTextView.clearFocus();
                             return;
                         }
                         //分享
                         ShareUtils.init((BaseActivity) mContext);
+                        popupUtils.dismiss();
                     }
                 });
                 popupUtils.showPopupWindow(mContext, detailHolder.itemView, position, popupList);

@@ -2,16 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/common_white_bg"
     android:orientation="vertical"
     android:padding="@dimen/margin_16">
 
     <ImageView
+        android:id="@+id/imageview_bg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:src="@mipmap/img_auth_bg" />
 
     <TextView
+        android:id="@+id/textview_first"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -19,6 +22,7 @@
         android:text="代祷功能通过读取您的通讯录好友的方式，获取您的好友网络，并以此作为好友代祷的连接点" />
 
     <TextView
+        android:id="@+id/textview_second"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -27,13 +31,15 @@
 
 
     <TextView
+        android:id="@+id/textview_common"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="@dimen/margin_16"
         android:background="#45dffe"
-        android:gravity="center_horizontal"
+        android:gravity="center"
         android:padding="@dimen/margin_10"
         android:text="同意授权"
-        android:textColor="@color/text_color_white" />
+        android:textColor="@color/text_color_white"
+        android:textSize="@dimen/text_size_18" />
 
 </LinearLayout>

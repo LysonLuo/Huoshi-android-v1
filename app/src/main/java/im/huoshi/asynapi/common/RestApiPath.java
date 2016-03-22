@@ -16,5 +16,5 @@ public class RestApiPath {
     public static final String PUB_INTERCES = "intercession";//发布代祷
     public static final String INTERCES_LIST = "intercession/list";//代祷列表
     public static final String ASYN_CONTACTS = "contacts";//同步通讯录
-
+    public static final String VERIFY_PERMISSION = "permission";//检测是否有权限进入代祷
 }

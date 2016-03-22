@@ -1,4 +1,4 @@
-package im.huoshi.ui.find;
+package im.huoshi.ui.find.interces;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

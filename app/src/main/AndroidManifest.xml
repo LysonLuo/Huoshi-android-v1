@@ -45,13 +45,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.main.LoginActivity"/>
-        <activity android:name=".ui.find.InterCesActivity"/>
+        <activity android:name=".ui.find.interces.InterCesActivity"/>
         <activity android:name=".ui.find.FiveTwoActivity"/>
-        <activity android:name=".ui.find.InterCesDetailsActivity"/>
+        <activity android:name=".ui.find.interces.InterCesDetailsActivity"/>
         <activity android:name=".ui.find.ShareHuoshiActivity"/>
         <activity android:name=".ui.me.MyPrayerActivity"/>
         <activity android:name=".ui.me.UserInfoActivity"/>
-        <activity android:name=".ui.find.PubInterCesActivity"/>
+        <activity android:name=".ui.find.interces.PubInterCesActivity"/>
         <activity android:name=".ui.bible.ChapterDetailsActivity"/>
         <activity android:name=".ui.main.RegisterActivity"/>
         <activity android:name=".ui.main.RegisterSettingActivity"/>
