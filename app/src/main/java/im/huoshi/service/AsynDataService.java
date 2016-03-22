@@ -60,7 +60,7 @@ public class AsynDataService extends Service {
                 @Override
                 public void onSuccess(String responseString) {
                     LogUtils.d("lyson", "asyn contacts success");
-                    List<Contacts> contactsList = new Gson().fromJson(responseString, new TypeToken<Contacts>() {
+                    List<Contacts> contactsList = new Gson().fromJson(responseString, new TypeToken<List<Contacts>>() {
                     }.getType());
                     mContactsDao.saveContactsList(contactsList);
                     stopSelf();

@@ -13,7 +13,6 @@ import im.huoshi.R;
 import im.huoshi.base.BaseActivity;
 import im.huoshi.ui.find.interces.InterCesFragment;
 import im.huoshi.ui.find.interces.InterCesPagerAdapter;
-import im.huoshi.ui.main.MainActivity;
 import im.huoshi.utils.ViewInject;
 import im.huoshi.utils.ViewUtils;
 
@@ -45,7 +44,7 @@ public class MyPrayerActivity extends BaseActivity {
         mTablayout.setupWithViewPager(mViewPager);
     }
 
-    public static void launch(MainActivity activity) {
+    public static void launch(BaseActivity activity) {
         activity.startActivity(new Intent(activity, MyPrayerActivity.class));
     }
 }

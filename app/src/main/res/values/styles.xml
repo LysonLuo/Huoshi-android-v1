@@ -71,5 +71,14 @@
         <item name="android:windowNoTitle">true</item><!--无标题-->
         <item name="android:windowBackground">@android:color/transparent</item><!--背景透明-->
     </style>
-
+    <!--代祷时间样式-->
+    <style name="IntercesTimeStyle">
+        <item name="android:layout_height">30dp</item>
+        <item name="android:background">@drawable/drawable_interces_time_selector</item>
+        <item name="android:enabled">false</item>
+        <item name="android:textColor">@color/text_color_black</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:padding">@dimen/margin_4</item>
+        <item name="android:gravity">center</item>
+    </style>
 </resources>

@@ -85,7 +85,7 @@ public class MeFragment extends BaseFragment {
                 if (isNotLogin()) {
                     return;
                 }
-                MyPrayerActivity.launch((MainActivity) getActivity());
+                MyPrayerActivity.launch((BaseActivity) getActivity());
             }
         });
         mInvitationTextView.setOnClickListener(new View.OnClickListener() {

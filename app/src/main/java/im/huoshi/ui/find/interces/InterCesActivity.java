@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
+import android.view.View;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -18,6 +19,7 @@ import im.huoshi.base.BaseActivity;
 import im.huoshi.database.dao.ContactsDao;
 import im.huoshi.model.Contacts;
 import im.huoshi.model.Permission;
+import im.huoshi.ui.me.MyPrayerActivity;
 import im.huoshi.utils.LogUtils;
 import im.huoshi.utils.ShareUtils;
 import im.huoshi.utils.ViewUtils;
@@ -38,7 +40,27 @@ public class InterCesActivity extends BaseActivity {
         ViewUtils.inject(this);
 
         setupViews();
-        verifyPermission();
+        initFragment();
+//        verifyPermission();
+    }
+
+    @Override
+    protected void initTitle() {
+        super.initTitle();
+        mToolbarUtils.setRightViewIcon(R.mipmap.icon_edit_blue);
+        mToolbarUtils.setMiddleRightVIewIcon(R.mipmap.icon_prayer_blue);
+    }
+
+    @Override
+    public void onToolBarMiddleRightViewClick(View v) {
+        super.onToolBarMiddleRightViewClick(v);
+        MyPrayerActivity.launch(InterCesActivity.this);
+    }
+
+    @Override
+    public void onToolBarRightViewClick(View v) {
+        super.onToolBarRightViewClick(v);
+        PubInterCesActivity.launch(InterCesActivity.this);
     }
 
     private void setupViews() {
@@ -58,7 +80,7 @@ public class InterCesActivity extends BaseActivity {
                         dismissProgressDialog();
                         showShortToast("授权成功！");
                         LogUtils.d("lyson", "asyn contacts success");
-                        List<Contacts> contactsList = new Gson().fromJson(responseString, new TypeToken<Contacts>() {
+                        List<Contacts> contactsList = new Gson().fromJson(responseString, new TypeToken<List<Contacts>>() {
                         }.getType());
                         mContactsDao.saveContactsList(contactsList);
                         mAuthDialog.updateUI();
@@ -75,6 +97,7 @@ public class InterCesActivity extends BaseActivity {
 
             @Override
             public void OnMsg() {
+                mAuthDialog.dismiss();
                 ShareUtils.init(InterCesActivity.this);
             }
         });

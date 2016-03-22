@@ -1,5 +1,7 @@
 package im.huoshi.asynapi.request;
 
+import android.text.TextUtils;
+
 import java.util.TreeMap;
 
 import im.huoshi.asynapi.callback.RestApiCallback;
@@ -21,11 +23,17 @@ public class InterCesRequest extends BaseRequest {
      * @param privacy
      * @param callback
      */
-    public static void pubInterces(BaseActivity activity, int userId, String content, boolean privacy, final RestApiCallback callback) {
+    public static void pubInterces(BaseActivity activity, int userId, String content, boolean privacy, long updateAt, String location, final RestApiCallback callback) {
         TreeMap<String, String> treeMap = initParams();
         treeMap.put("user_id", String.valueOf(userId));
         treeMap.put("content", content);
         treeMap.put("privacy", String.valueOf(privacy));
+        if (updateAt != 0) {
+            treeMap.put("updated_at", String.valueOf(updateAt));
+        }
+        if (!TextUtils.isEmpty(location)) {
+            treeMap.put("location", location);
+        }
         RestApiClient.post(getBasePath(RestApiPath.PUB_INTERCES), buildRequestParams(treeMap), activity, new RestApiHandler() {
             @Override
             public void onSuccess(String responseString) {
