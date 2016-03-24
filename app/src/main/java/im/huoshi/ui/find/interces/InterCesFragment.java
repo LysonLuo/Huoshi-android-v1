@@ -8,18 +8,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import im.huoshi.R;
+import im.huoshi.asynapi.callback.RestApiCallback;
+import im.huoshi.asynapi.request.InterCesRequest;
 import im.huoshi.base.BaseActivity;
 import im.huoshi.base.BaseFragment;
 import im.huoshi.common.OnRecClickListener;
+import im.huoshi.model.Intercession;
 import im.huoshi.utils.ViewInject;
 import im.huoshi.utils.ViewUtils;
 
 /**
  * 公用的祷告页面
- * <p>
+ * <p/>
  * Created by Lyson on 15/12/27.
  */
 public class InterCesFragment extends BaseFragment {
@@ -30,14 +37,8 @@ public class InterCesFragment extends BaseFragment {
     private LinearLayoutManager mLayoutManager;
     private InterCesRecAdapter mAdapter;
     private String mType;//类别，区分是代祷还是祷告箱
+    private List<Intercession> mIntercessionList = new ArrayList<>();
 
-    public static InterCesFragment getInstance(String type) {
-        InterCesFragment fragment = new InterCesFragment();
-        Bundle bundle = new Bundle();
-        bundle.putString("type", type);
-        fragment.setArguments(bundle);
-        return fragment;
-    }
 
     @Nullable
     @Override
@@ -46,6 +47,7 @@ public class InterCesFragment extends BaseFragment {
         ViewUtils.inject(this, contentView);
 
         setupViews();
+        loadInterces();
         return contentView;
     }
 
@@ -53,7 +55,7 @@ public class InterCesFragment extends BaseFragment {
         mType = getArguments().getString("type");
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new InterCesRecAdapter(getActivity());
+        mAdapter = new InterCesRecAdapter(getActivity(), mIntercessionList);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setmRecClickListener(new OnRecClickListener<List<String>>() {
             @Override
@@ -61,5 +63,37 @@ public class InterCesFragment extends BaseFragment {
                 InterCesDetailsActivity.launch((BaseActivity) getActivity());
             }
         });
+    }
+
+    private void loadInterces() {
+        InterCesRequest.intercesList((BaseActivity) getActivity(), mUser.getUserId(), new RestApiCallback() {
+            @Override
+            public void onSuccess(String responseString) {
+                mIntercessionList = new Gson().fromJson(responseString, new TypeToken<List<Intercession>>() {
+                }.getType());
+                setupViewsByInters();
+            }
+
+            @Override
+            public void onFailure() {
+
+            }
+        });
+    }
+
+    private void setupViewsByInters() {
+        mAdapter.resetData(mIntercessionList);
+    }
+
+    public void dataNofify() {
+        loadInterces();
+    }
+
+    public static InterCesFragment getInstance(String type) {
+        InterCesFragment fragment = new InterCesFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("type", type);
+        fragment.setArguments(bundle);
+        return fragment;
     }
 }

@@ -32,7 +32,7 @@ public class InterCesRequest extends BaseRequest {
             treeMap.put("updated_at", String.valueOf(updateAt));
         }
         if (!TextUtils.isEmpty(location)) {
-            treeMap.put("location", location);
+            treeMap.put("position", location);
         }
         RestApiClient.post(getBasePath(RestApiPath.PUB_INTERCES), buildRequestParams(treeMap), activity, new RestApiHandler() {
             @Override

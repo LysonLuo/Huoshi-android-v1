@@ -9,6 +9,7 @@ import android.view.View;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import im.huoshi.R;
@@ -18,6 +19,7 @@ import im.huoshi.asynapi.request.InterCesRequest;
 import im.huoshi.base.BaseActivity;
 import im.huoshi.database.dao.ContactsDao;
 import im.huoshi.model.Contacts;
+import im.huoshi.model.Intercession;
 import im.huoshi.model.Permission;
 import im.huoshi.ui.me.MyPrayerActivity;
 import im.huoshi.utils.LogUtils;
@@ -32,6 +34,7 @@ public class InterCesActivity extends BaseActivity {
     private AuthDialog mAuthDialog;
     private Permission mPermission;
     private ContactsDao mContactsDao = new ContactsDao();
+    private List<Intercession> mIntercessionList = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -133,6 +136,7 @@ public class InterCesActivity extends BaseActivity {
         mAuthDialog.show();
     }
 
+
     private void initFragment() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if (mInterCesFragment == null) {
@@ -148,5 +152,17 @@ public class InterCesActivity extends BaseActivity {
 
     public static void launch(BaseActivity act) {
         act.startActivity(new Intent(act, InterCesActivity.class));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode != RESULT_OK) {
+            return;
+        }
+        if (requestCode == PubInterCesActivity.ACTION_PUB_INTERCES) {
+            //重新加载数据
+            mInterCesFragment.dataNofify();
+        }
     }
 }

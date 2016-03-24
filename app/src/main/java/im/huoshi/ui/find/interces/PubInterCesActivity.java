@@ -29,6 +29,7 @@ import im.huoshi.utils.ViewUtils;
  * Created by Lyson on 15/12/28.
  */
 public class PubInterCesActivity extends BaseActivity {
+    public static final int ACTION_PUB_INTERCES = 1;
     @ViewInject(R.id.edit_interces_content)
     private EditText mContentEdit;
     @ViewInject(R.id.checkbox_interces_loc)
@@ -61,7 +62,7 @@ public class PubInterCesActivity extends BaseActivity {
         mTimerPickerView = new TimePickerView(PubInterCesActivity.this, TimePickerView.Type.YEAR_MONTH_DAY);
         //控制时间范围
         Calendar calendar = Calendar.getInstance();
-        mTimerPickerView.setRange(calendar.get(Calendar.YEAR) - 50, calendar.get(Calendar.YEAR));
+        mTimerPickerView.setRange(calendar.get(Calendar.YEAR), calendar.get(Calendar.YEAR) + 10);
         mTimerPickerView.setTime(new Date());
         mTimerPickerView.setCyclic(false);
         mTimerPickerView.setOnTimeSelectListener(new TimePickerView.OnTimeSelectListener() {
@@ -146,15 +147,21 @@ public class PubInterCesActivity extends BaseActivity {
         if (mLocSuccess) {
             location = mLocCheckBox.getText().toString();
         }
+        if (preTime != 0 && preTime < System.currentTimeMillis()) {
+            showShortToast("更新代祷时间不能小于当前时间");
+            return;
+        }
         InterCesRequest.pubInterces(PubInterCesActivity.this, mUser.getUserId(), content, true, preTime, location, new RestApiCallback() {
             @Override
             public void onSuccess(String responseString) {
-
+                showShortToast("发布成功！");
+                setResult(RESULT_OK);
+                finish();
             }
 
             @Override
             public void onFailure() {
-
+                showShortToast("发布失败！");
             }
         });
     }
@@ -181,6 +188,6 @@ public class PubInterCesActivity extends BaseActivity {
 
     public static void launch(BaseActivity activity) {
         Intent intent = new Intent(activity, PubInterCesActivity.class);
-        activity.startActivity(intent);
+        activity.startActivityForResult(intent, ACTION_PUB_INTERCES);
     }
 }
