@@ -11,13 +11,6 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import im.huoshi.R;
-import im.huoshi.base.BaseActivity;
-import im.huoshi.model.City;
-import im.huoshi.utils.AmapUtils;
-import im.huoshi.utils.JsonUtils;
-import im.huoshi.utils.ViewInject;
-import im.huoshi.utils.ViewUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -26,6 +19,14 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import im.huoshi.R;
+import im.huoshi.base.BaseActivity;
+import im.huoshi.model.City;
+import im.huoshi.utils.AmapUtils;
+import im.huoshi.utils.JsonUtils;
+import im.huoshi.utils.ViewInject;
+import im.huoshi.utils.ViewUtils;
 
 /**
  * Created by Lyson on 16/2/5.
@@ -57,7 +58,7 @@ public class AreaChooseActivity extends BaseActivity {
         ViewUtils.inject(this);
 
         getAddressInfo();
-        getLocation();
+//        getLocation();
         setupViews();
     }
 
