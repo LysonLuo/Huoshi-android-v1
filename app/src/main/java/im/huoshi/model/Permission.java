@@ -6,11 +6,11 @@ import com.google.gson.annotations.SerializedName;
  * Created by Lyson on 16/3/22.
  */
 public class Permission extends ApiObject {
-    @SerializedName("is_auth")
-    private boolean isAuth;
+    @SerializedName("is_synced")
+    private int isAuth;
     private int permission;
 
-    public boolean isAuth() {
+    public int isAuth() {
         return isAuth;
     }
 
@@ -18,7 +18,7 @@ public class Permission extends ApiObject {
         return permission;
     }
 
-    public void setAuth(boolean auth) {
+    public void setAuth(int auth) {
         isAuth = auth;
     }
 

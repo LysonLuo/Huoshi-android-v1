@@ -18,7 +18,8 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:gravity="left|top"
-            android:maxLength="500"
+            android:hint="我们和你一起祷告"
+            android:maxLines="5"
             android:minLines="4"
             android:textSize="@dimen/text_size_15" />
 
@@ -26,17 +27,20 @@
             android:id="@+id/checkbox_interces_loc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
             android:button="@null"
             android:drawableLeft="@drawable/drawable_interces_loc_selector"
             android:drawablePadding="@dimen/margin_10"
             android:gravity="center_vertical"
-            android:text="广州市海珠区" />
+            android:text="广州市海珠区"
+            android:textColor="@color/text_color_gray_9" />
     </LinearLayout>
 
     <View style="@style/GrayDividerStyle" />
 
 
     <LinearLayout
+        android:id="@+id/layout_remind"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -51,14 +55,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/text_remind_suffrage" />
+            android:text="@string/text_remind_suffrage"
+            android:textColor="@color/text_color_gray_9" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/layout_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_10"
         android:layout_marginRight="@dimen/margin_10"
+        android:paddingBottom="@dimen/margin_20"
         android:orientation="horizontal">
 
         <TextView
@@ -104,8 +111,8 @@
             android:paddingRight="@dimen/margin_10"
             android:text="日" />
 
-        <EditText
-            android:id="@+id/edit_interces_hour"
+        <TextView
+            android:id="@+id/textview_interces_hour"
             style="@style/IntercesTimeStyle"
             android:layout_width="wrap_content"
             android:layout_weight="1" />
@@ -118,4 +125,10 @@
             android:paddingRight="@dimen/margin_10"
             android:text="时" />
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/windowBackground" />
 </LinearLayout>

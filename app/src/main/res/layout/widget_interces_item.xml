@@ -25,22 +25,56 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imageview_avatar"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@mipmap/img_default_avatar" />
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/textview_name"
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imageview_gender_bg"
+                    android:layout_width="43dp"
+                    android:layout_height="43dp"
+                    android:src="@mipmap/img_default_avatar"
+                    app:civ_border_color="@color/common_blue_light"
+                    app:civ_border_width="0.5dp" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imageview_avatar"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="1.5dp"
+                    android:layout_marginTop="1.5dp"
+                    android:src="@mipmap/img_default_avatar"
+                    app:civ_border_color="@color/common_white_bg"
+                    app:civ_border_width="0.5dp" />
+            </FrameLayout>
+
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_10"
-                android:layout_marginTop="@dimen/margin_4"
-                android:singleLine="true"
-                android:text="名字"
-                android:textColor="@color/text_color_blue_light"
-                android:textSize="@dimen/text_size_20" />
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/margin_10">
+
+                <TextView
+                    android:id="@+id/textview_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="名字"
+                    android:textColor="@color/text_color_blue_light"
+                    android:textSize="@dimen/text_size_15" />
+
+                <TextView
+                    android:id="@+id/textview_relation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textview_name"
+                    android:layout_marginTop="5dp"
+                    android:singleLine="true"
+                    android:text="朋友的朋友"
+                    android:textColor="@color/text_color_gray_9"
+                    android:textSize="@dimen/text_size_12" />
+            </RelativeLayout>
         </LinearLayout>
 
 
@@ -49,10 +83,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_10"
+            android:ellipsize="end"
             android:gravity="left|center_vertical"
+            android:maxLength="100"
             android:text="211212211212211212211212211212211212"
             android:textColor="@color/text_color_black_light"
-            android:textSize="@dimen/text_size_15" />
+            android:textSize="@dimen/text_size_13" />
 
 
         <LinearLayout
@@ -68,7 +104,7 @@
                 android:layout_weight="1"
                 android:text="一天前"
                 android:textColor="@color/text_color_gray_9"
-                android:textSize="12sp" />
+                android:textSize="@dimen/text_size_11" />
 
             <TextView
                 android:id="@+id/textview_interces_count"
@@ -80,7 +116,7 @@
                 android:drawablePadding="@dimen/margin_10"
                 android:gravity="right|center_vertical"
                 android:text="2123人"
-                android:textSize="12sp" />
+                android:textSize="@dimen/text_size_11" />
 
         </LinearLayout>
     </LinearLayout>

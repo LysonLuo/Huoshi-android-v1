@@ -1,13 +1,18 @@
 package im.huoshi.ui.find.interces;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.TimePickerView;
@@ -29,9 +34,13 @@ import im.huoshi.utils.ViewUtils;
  * Created by Lyson on 15/12/28.
  */
 public class PubInterCesActivity extends BaseActivity {
-    public static final int ACTION_PUB_INTERCES = 1;
+    public static final int ACTION_PUB_OR_UPDATE_INTERCES = 101;
     @ViewInject(R.id.edit_interces_content)
     private EditText mContentEdit;
+    @ViewInject(R.id.layout_remind)
+    private LinearLayout mRemidLayout;
+    @ViewInject(R.id.layout_time)
+    private LinearLayout mTimeLayout;
     @ViewInject(R.id.checkbox_interces_loc)
     private CheckBox mLocCheckBox;
     @ViewInject(R.id.checkbox_interces_pre)
@@ -42,10 +51,11 @@ public class PubInterCesActivity extends BaseActivity {
     private TextView mMonthTextView;
     @ViewInject(R.id.textview_interces_day)
     private TextView mDayTextView;
-    @ViewInject(R.id.edit_interces_hour)
-    private EditText mHourEdit;
+    @ViewInject(R.id.textview_interces_hour)
+    private TextView mHourTextView;
     private boolean mLocSuccess = true;
-
+    private boolean mIsUpdateInterces = false;//标志，是否更新代祷
+    private int mIntercessionId;
     private TimePickerView mTimerPickerView;
 
     @Override
@@ -55,11 +65,22 @@ public class PubInterCesActivity extends BaseActivity {
         ViewUtils.inject(this);
 
         setupViews();
-        getLocation();
+        //发布代祷才需要定位
+        if (!mIsUpdateInterces) {
+            getLocation();
+        }
     }
 
     private void setupViews() {
-        mTimerPickerView = new TimePickerView(PubInterCesActivity.this, TimePickerView.Type.YEAR_MONTH_DAY);
+        mIsUpdateInterces = getIntent().getBooleanExtra("is_update", false);
+        mIntercessionId = getIntent().getIntExtra("intercession_id", -1);
+        if (mIsUpdateInterces) {
+            mRemidLayout.setVisibility(View.GONE);
+            mTimeLayout.setVisibility(View.GONE);
+            mLocCheckBox.setVisibility(View.GONE);
+            return;
+        }
+        mTimerPickerView = new TimePickerView(PubInterCesActivity.this, TimePickerView.Type.YEAR_MONTH_DAY_HOUR);
         //控制时间范围
         Calendar calendar = Calendar.getInstance();
         mTimerPickerView.setRange(calendar.get(Calendar.YEAR), calendar.get(Calendar.YEAR) + 10);
@@ -71,6 +92,7 @@ public class PubInterCesActivity extends BaseActivity {
                 setPreUpdateTime(true, date.getTime());
             }
         });
+
         mLocCheckBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,60 +108,131 @@ public class PubInterCesActivity extends BaseActivity {
         mYearTextView.setOnClickListener(onClickListener);
         mMonthTextView.setOnClickListener(onClickListener);
         mDayTextView.setOnClickListener(onClickListener);
+        mHourTextView.setOnClickListener(onClickListener);
         mPreCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 setPreUpdateTime(isChecked, 0);
             }
         });
+        mContentEdit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.toString().trim().length() > 500) {
+                    mToolbarUtils.setMiddleRightText("超出" + (s.toString().trim().length() - 500) + "字");
+                    mToolbarUtils.setRightViewEnable(false);
+                    return;
+                }
+                mToolbarUtils.setMiddleRightText("");
+                mToolbarUtils.setRightViewEnable(true);
+            }
+        });
     }
 
     private void setPreUpdateTime(boolean isChecked, long time) {
         mYearTextView.setEnabled(isChecked);
         mMonthTextView.setEnabled(isChecked);
         mDayTextView.setEnabled(isChecked);
-        mHourEdit.setEnabled(isChecked);
+        mHourTextView.setEnabled(isChecked);
         if (isChecked) {
             String currentTime = DateUtils.formatToString(time == 0 ? (System.currentTimeMillis()) : time, "yyyy,MM,dd,HH");
             String[] times = currentTime.split(",");
             mYearTextView.setText(times[0]);
             mMonthTextView.setText(times[1]);
             mDayTextView.setText(times[2]);
+            int startHour;
             if (time == 0) {
-                mHourEdit.setText((Integer.parseInt(times[3]) + 1) + "");
+                startHour = (Integer.parseInt(times[3]) + 1);
+            } else {
+                startHour = (Integer.parseInt(times[3]));
             }
+            mHourTextView.setText(startHour + "");
             return;
         }
         mYearTextView.setText("");
         mMonthTextView.setText("");
         mDayTextView.setText("");
-        mHourEdit.setText("");
+        mHourTextView.setText("");
     }
 
     @Override
     protected void initTitle() {
         super.initTitle();
-        mToolbarUtils.setTitleText("发布代祷");
+        if (mIsUpdateInterces) {
+            mToolbarUtils.setTitleText("更新代祷");
+        } else {
+            mToolbarUtils.setTitleText("发布代祷");
+        }
+        mToolbarUtils.setRightViewBg(R.drawable.drawable_button_blue_gray_selector);
+        mToolbarUtils.setRightViewColor(R.color.text_color_white);
+        mToolbarUtils.setMiddleRightViewColor(R.color.text_color_red_light);
         mToolbarUtils.setRightText("发布");
     }
 
     @Override
     public void onToolBarRightViewClick(View v) {
-        pubInterces();
+        pubOrUpdateInterces();
     }
 
-    private void pubInterces() {
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (!TextUtils.isEmpty(mContentEdit.getText().toString())) {
+            new AlertDialog.Builder(PubInterCesActivity.this)
+                    .setTitle("提示")
+                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            }).create().show();
+        }
+    }
+
+    private void pubOrUpdateInterces() {
         String content = mContentEdit.getText().toString();
-        long preTime = 0;
         String location = "";
         if (TextUtils.isEmpty(content)) {
-            showShortToast("代祷内容不能为空！");
+            showShortToast(mIsUpdateInterces ? "代祷更新内容不能为空！" : "代祷内容不能为空！");
             return;
         }
+        if (mIsUpdateInterces) {
+            InterCesRequest.updateInterces(PubInterCesActivity.this, mUser.getUserId(), mIntercessionId, content, new RestApiCallback() {
+                @Override
+                public void onSuccess(String responseString) {
+                    showShortToast("更新成功！");
+                    setResult(RESULT_OK);
+                    finish();
+                }
+
+                @Override
+                public void onFailure() {
+                    showShortToast("更新失败！");
+                }
+            });
+            return;
+        }
+
+        long preTime = 0;
         if (mPreCheckBox.isChecked()) {
             try {
-                preTime = DateUtils.formatToLong(mYearTextView.getText().toString() + "-" + mMonthTextView.getText().toString() + "-" + mDayTextView.getText().toString() + ":" + mHourEdit.getText().toString());
+                preTime = DateUtils.formatToLong(mYearTextView.getText().toString() + "-" + mMonthTextView.getText().toString() + "-" + mDayTextView.getText().toString() + ":" + mHourTextView.getText().toString());
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -186,8 +279,10 @@ public class PubInterCesActivity extends BaseActivity {
         });
     }
 
-    public static void launch(BaseActivity activity) {
+    public static void launch(BaseActivity activity, boolean isUpdate, int intercessionId) {
         Intent intent = new Intent(activity, PubInterCesActivity.class);
-        activity.startActivityForResult(intent, ACTION_PUB_INTERCES);
+        intent.putExtra("is_update", isUpdate);
+        intent.putExtra("intercession_id", intercessionId);
+        activity.startActivityForResult(intent, ACTION_PUB_OR_UPDATE_INTERCES);
     }
 }

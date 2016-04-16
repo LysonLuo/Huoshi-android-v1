@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textview_interces_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/textview_nick_name"
+        android:includeFontPadding="false"
+        android:singleLine="true"
+        android:enabled="false"
+        android:text="2015-11-02"
+        android:textColor="@color/color_interces_update_time_text_color_selector"
+        android:textSize="@dimen/text_size_11" />
+
+    <TextView
+        android:id="@+id/textview_interces_content"
+        android:includeFontPadding="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left|center_vertical"
+        android:paddingBottom="@dimen/margin_20"
+        android:paddingTop="@dimen/margin_12"
+        android:enabled="false"
+        android:text="测试测试测试了"
+        android:textColor="@color/color_interces_update_content_text_color_selector"
+        android:textSize="@dimen/text_size_13" />
+</LinearLayout>

@@ -5,19 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:background="?attr/colorPrimary"
-    android:theme="@style/ToolBarTheme"
-    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
     android:elevation="2dp"
+    android:theme="@style/ToolBarTheme"
     android:translationZ="1dp"
     app:contentInsetEnd="0dp"
     app:contentInsetLeft="0dp"
     app:contentInsetRight="0dp"
-    app:contentInsetStart="0dp">
+    app:contentInsetStart="0dp"
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginRight="@dimen/margin_6">
+        android:layout_marginRight="@dimen/margin_16">
 
         <TextView
             android:id="@+id/toolbar_left_view"
@@ -28,27 +28,34 @@
             android:paddingLeft="@dimen/margin_10"
             android:paddingRight="@dimen/margin_10"
             android:text="@string/main_tab_bible"
-            android:textColor="@color/text_color_black"
+            android:textColor="@color/text_color_black_3"
             android:textSize="20sp" />
 
         <TextView
             android:id="@+id/toolbar_right_view"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:gravity="center"
+            android:paddingBottom="@dimen/margin_5"
             android:paddingLeft="@dimen/margin_10"
             android:paddingRight="@dimen/margin_10"
+            android:paddingTop="@dimen/margin_5"
             android:textColor="@color/text_color_black" />
 
         <TextView
             android:id="@+id/toolbar_middle_right_view"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/margin_16"
             android:layout_toLeftOf="@+id/toolbar_right_view"
             android:gravity="center"
+            android:paddingBottom="@dimen/margin_5"
             android:paddingLeft="@dimen/margin_10"
             android:paddingRight="@dimen/margin_10"
+            android:paddingTop="@dimen/margin_5"
             android:textColor="@color/text_color_black" />
     </RelativeLayout>
 

@@ -144,4 +144,14 @@ public class ReadPreference {
         editor.putInt("share_number", shareNumber);
         editor.apply();
     }
+
+    public void updateTotalShareTimes(int totalShareTimes) {
+        SharedPreferences.Editor editor = mPreference.edit();
+        editor.putInt("total_share_times", totalShareTimes);
+        editor.apply();
+    }
+
+    public int getTotalShareTimes() {
+        return mPreference.getInt("total_share_times", 0);
+    }
 }

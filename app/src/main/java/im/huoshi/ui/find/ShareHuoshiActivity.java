@@ -9,8 +9,12 @@ import android.widget.TextView;
 
 import com.umeng.socialize.UMShareAPI;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import im.huoshi.R;
 import im.huoshi.base.BaseActivity;
+import im.huoshi.model.event.ShareEvent;
 import im.huoshi.utils.ShareUtils;
 import im.huoshi.utils.ViewInject;
 import im.huoshi.utils.ViewUtils;
@@ -29,13 +33,20 @@ public class ShareHuoshiActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share_huoshi);
         ViewUtils.inject(this);
+        EventBus.getDefault().register(this);
 
         setupViews();
-
     }
+
+    @Subscribe
+    public void onEvent(ShareEvent shareEvent) {
+        mShareNumberTextView.setText(mLocalRead.getTotalShareTimes() + "");
+    }
+
 
     private void setupViews() {
         mToolbarUtils.setTitleText(getString(R.string.text_share_huoshi));
+        mShareNumberTextView.setText(mLocalRead.getTotalShareTimes() + "");
         mShareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

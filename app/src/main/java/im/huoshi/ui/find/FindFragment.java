@@ -56,6 +56,9 @@ public class FindFragment extends BaseFragment {
         mShareLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (isNotLogin()) {
+                    return;
+                }
                 ShareHuoshiActivity.launch((BaseActivity) getActivity());
             }
         });

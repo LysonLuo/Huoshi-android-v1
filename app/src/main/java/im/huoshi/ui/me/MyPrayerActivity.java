@@ -36,6 +36,12 @@ public class MyPrayerActivity extends BaseActivity {
         setupViews();
     }
 
+    @Override
+    protected void initTitle() {
+        super.initTitle();
+        mToolbarUtils.setTitleText("我的祷告箱");
+    }
+
     private void setupViews() {
         mFragments.add(InterCesFragment.getInstance(InterCesFragment.INTERCES_TYPE_PRAYER));
         mFragments.add(InterCesFragment.getInstance(InterCesFragment.INTERCES_TYPE_PRAYER));

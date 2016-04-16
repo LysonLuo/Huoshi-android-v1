@@ -2,11 +2,13 @@ package im.huoshi.utils;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
+import im.huoshi.HuoshiApplication;
 import im.huoshi.R;
 
 /**
@@ -62,8 +64,21 @@ public class ToolbarUtils {
     public void setTitleText(String titleText) {
         mTitleTextView.setText(titleText);
     }
-    public void setRightText(String rightText){
+
+    public void setRightText(String rightText) {
         mRightView.setText(rightText);
+    }
+
+    public void setMiddleRightText(String rightText) {
+        mMiddleRightView.setText(rightText);
+    }
+
+    public void setRightViewColor(int resId) {
+        mRightView.setTextColor(ContextCompat.getColor(HuoshiApplication.getInstance(), resId));
+    }
+
+    public void setMiddleRightViewColor(int resId) {
+        mMiddleRightView.setTextColor(ContextCompat.getColor(HuoshiApplication.getInstance(), resId));
     }
 
     public void setRightViewIcon(int resId) {
@@ -75,6 +90,27 @@ public class ToolbarUtils {
     public void setMiddleRightVIewIcon(int resId) {
         Drawable drawable = ContextCompat.getDrawable(mContext, resId);
         mMiddleRightView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
+    }
+    public void setRightViewEnable(boolean enable){
+        mRightView.setEnabled(enable);
+    }
+
+    public void setRightViewBg(int resId) {
+        Drawable drawable = ContextCompat.getDrawable(mContext, resId);
+        if (Build.VERSION.SDK_INT > 16) {
+            mRightView.setBackground(drawable);
+            return;
+        }
+        mRightView.setBackgroundDrawable(drawable);
+    }
+
+    public void setMiddleRightViewBg(int resId) {
+        Drawable drawable = ContextCompat.getDrawable(mContext, resId);
+        if (Build.VERSION.SDK_INT > 16) {
+            mMiddleRightView.setBackground(drawable);
+            return;
+        }
+        mMiddleRightView.setBackgroundDrawable(drawable);
     }
 
     public interface OnToolBarClickListener {

@@ -1,29 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/windowBackground"
     android:orientation="vertical">
-
-    <LinearLayout
-        android:id="@+id/layout_bless"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:visibility="gone">
-
-        <View
-            android:layout_width="@dimen/margin_10"
-            android:layout_height="20dp"
-            android:background="@color/text_color_blue_light" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_16"
-            android:gravity="center_vertical"
-            android:text="祝福" />
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,71 +11,86 @@
         android:orientation="horizontal"
         android:padding="@dimen/margin_16">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/timeline_portrait_sd"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@mipmap/img_default_avatar" />
-
-
-        <TextView
-            android:id="@+id/timeline_name_tv"
+        <FrameLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:singleLine="true"
-            android:text="fdfdf"
-            android:textSize="12sp" />
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageview_gender_bg"
+                android:layout_width="43dp"
+                android:layout_height="43dp"
+                android:src="@mipmap/img_default_avatar"
+                app:civ_border_color="@color/common_blue_light"
+                app:civ_border_width="0.5dp" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageview_avatar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="1.5dp"
+                android:layout_marginTop="1.5dp"
+                android:src="@mipmap/img_default_avatar"
+                app:civ_border_color="@color/common_white_bg"
+                app:civ_border_width="0.5dp" />
+        </FrameLayout>
 
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="48dp"
-        android:layout_marginTop="5dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/timeline_text_tv"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="left|center_vertical"
-            android:text="211212"
-            android:textSize="13sp" />
+            android:paddingTop="@dimen/margin_5"
+            android:layout_marginLeft="@dimen/margin_10"
+            android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/textview_nick_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="名字"
+                android:textColor="@color/text_color_blue_dark"
+                android:textSize="@dimen/text_size_15" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/textview_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left|center_vertical"
+                android:text="测试测试了"
+                android:textSize="@dimen/text_size_13" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="15dp"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/margin_16"
-        android:paddingRight="@dimen/margin_16">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/timeline_likes_accb"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:drawablePadding="3dp"
-            android:gravity="left"
-            android:text="2015-11-03"
-            android:textSize="12sp" />
+                <TextView
+                    android:id="@+id/textview_create_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:drawablePadding="3dp"
+                    android:gravity="left"
+                    android:text="2015-11-03"
+                    android:textSize="@dimen/text_size_11" />
 
-        <TextView
-            android:id="@+id/timeline_replays_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:drawableLeft="@mipmap/icon_like_blue"
-            android:drawablePadding="@dimen/margin_10"
-            android:gravity="right|center_vertical"
-            android:text="2123"
-            android:textSize="12sp" />
+                <CheckBox
+                    android:id="@+id/textview_like_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:button="@null"
+                    android:checked="false"
+                    android:drawableLeft="@drawable/drawable_like_src_selector"
+                    android:drawablePadding="@dimen/margin_10"
+                    android:gravity="right|center_vertical"
+                    android:text="2123"
+                    android:textSize="@dimen/text_size_11" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
 
     </LinearLayout>
 

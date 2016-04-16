@@ -43,8 +43,8 @@ public class InterCesActivity extends BaseActivity {
         ViewUtils.inject(this);
 
         setupViews();
-        initFragment();
-//        verifyPermission();
+//        initFragment();
+        verifyPermission();
     }
 
     @Override
@@ -63,7 +63,7 @@ public class InterCesActivity extends BaseActivity {
     @Override
     public void onToolBarRightViewClick(View v) {
         super.onToolBarRightViewClick(v);
-        PubInterCesActivity.launch(InterCesActivity.this);
+        PubInterCesActivity.launch(InterCesActivity.this, false, -1);
     }
 
     private void setupViews() {
@@ -101,7 +101,8 @@ public class InterCesActivity extends BaseActivity {
             @Override
             public void OnMsg() {
                 mAuthDialog.dismiss();
-                ShareUtils.init(InterCesActivity.this);
+                ShareUtils.smsShare(InterCesActivity.this);
+                finish();
             }
         });
     }
@@ -125,13 +126,15 @@ public class InterCesActivity extends BaseActivity {
     }
 
     private void showDialogByPermission() {
-        if (mPermission.isAuth() && mPermission.getPermission() == 1) {
+        //// TODO: 16/4/1 临时修改permission的值，得以进入代祷页面
+        mPermission.setPermission(1);
+        if (mPermission.isAuth() == 1 && mPermission.getPermission() == 1) {
             initFragment();
             return;
         }
-        if (mPermission.isAuth() && mPermission.getPermission() != 1) {
+        if (mPermission.isAuth() == 1 && mPermission.getPermission() != 1) {
             mAuthDialog.updateUI();
-            return;
+
         }
         mAuthDialog.show();
     }
@@ -157,10 +160,10 @@ public class InterCesActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode != RESULT_OK) {
+        if (resultCode != RESULT_OK) {
             return;
         }
-        if (requestCode == PubInterCesActivity.ACTION_PUB_INTERCES) {
+        if (requestCode == PubInterCesActivity.ACTION_PUB_OR_UPDATE_INTERCES) {
             //重新加载数据
             mInterCesFragment.dataNofify();
         }

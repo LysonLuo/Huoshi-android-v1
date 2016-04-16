@@ -64,6 +64,7 @@ public class LoginActivity extends BaseActivity {
                             mLocalRead.updateTotalMinutes(user.getTotalMinutes());
                             mLocalRead.updateContinuousDays(user.getContinuousDays());
                             mLocalRead.updateContinuousIntercesDays(user.getContinuousIntercesDays());
+                            mLocalRead.updateTotalShareTimes(user.getTotalShareTimes());
                             mLocalRead.updateAddStat(false);
                             finish();
                         }

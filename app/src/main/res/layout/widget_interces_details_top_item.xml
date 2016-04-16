@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,90 +17,118 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/timeline_portrait_sd"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@mipmap/img_default_avatar" />
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imageview_gender_bg"
+                    android:layout_width="43dp"
+                    android:layout_height="43dp"
+                    android:src="@mipmap/img_default_avatar"
+                    app:civ_border_color="@color/common_blue_light"
+                    app:civ_border_width="0.5dp" />
 
-            <LinearLayout
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imageview_avatar"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="1.5dp"
+                    android:layout_marginTop="1.5dp"
+                    android:src="@mipmap/img_default_avatar"
+                    app:civ_border_color="@color/common_white_bg"
+                    app:civ_border_width="0.5dp" />
+            </FrameLayout>
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="8dp"
-                android:orientation="vertical">
+                android:paddingTop="@dimen/margin_5"
+                android:layout_marginLeft="@dimen/margin_10">
 
                 <TextView
-                    android:id="@+id/timeline_name_tv"
+                    android:id="@+id/textview_nick_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
-                    android:text="name"
-                    android:textSize="12sp" />
+                    android:text="名字"
+                    android:textColor="@color/text_color_blue_dark"
+                    android:textSize="@dimen/text_size_15" />
 
                 <TextView
-                    android:id="@+id/timeline_time_tv"
+                    android:id="@+id/textview_relation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/textview_nick_name"
                     android:layout_marginTop="5dp"
                     android:singleLine="true"
-                    android:text="2015-11-02"
-                    android:textSize="10sp" />
+                    android:text="朋友的朋友"
+                    android:textColor="@color/text_color_gray_9"
+                    android:textSize="@dimen/text_size_12" />
 
-            </LinearLayout>
+                <TextView
+                    android:id="@+id/textview_create_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/textview_relation"
+                    android:layout_alignParentRight="true"
+                    android:layout_toRightOf="@+id/textview_relation"
+                    android:drawablePadding="3dp"
+                    android:gravity="right"
+                    android:text="2015-11-03"
+                    android:textSize="@dimen/text_size_11" />
+
+
+            </RelativeLayout>
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/layout_interces_update"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="@dimen/margin_10"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/timeline_text_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:gravity="left|center_vertical"
-                android:text="211212211212211212211212211212211212"
-                android:textSize="13sp" />
-
-
         </LinearLayout>
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/textview_intercessor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="15dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/timeline_likes_accb"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="2123"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/timeline_replays_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="right"
-                android:layout_marginLeft="20dp"
-                android:drawableLeft="@mipmap/icon_interces_small"
-                android:drawablePadding="@dimen/margin_10"
-                android:gravity="right|center_vertical"
-                android:text="2123"
-                android:textSize="12sp" />
-
-        </LinearLayout>
+            android:layout_marginTop="@dimen/margin_20"
+            android:background="@color/windowBackground"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="2"
+            android:padding="@dimen/margin_5"
+            android:textSize="@dimen/text_size_11" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="0.5dp" />
-
+            android:layout_height="1dp"
+            android:background="@color/conmon_gray_line_divider" />
     </LinearLayout>
-</android.support.v7.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <View
+            android:layout_width="@dimen/margin_10"
+            android:layout_height="20dp"
+            android:background="@color/text_color_blue_light" />
+
+        <TextView
+            android:id="@+id/textview_bless_tip"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/margin_16"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/text_size_13"
+            android:text="祝福" />
+    </LinearLayout>
+</LinearLayout>

@@ -62,6 +62,12 @@ public class AreaChooseActivity extends BaseActivity {
         setupViews();
     }
 
+    @Override
+    protected void initTitle() {
+        super.initTitle();
+        mToolbarUtils.setTitleText("地区");
+    }
+
     private void setupViews() {
         mAdapter = new AreaAdapter(this, mProvinceList);
         mListView.setAdapter(mAdapter);

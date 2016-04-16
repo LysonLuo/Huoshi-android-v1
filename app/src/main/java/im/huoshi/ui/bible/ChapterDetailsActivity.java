@@ -2,6 +2,7 @@ package im.huoshi.ui.bible;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
@@ -28,6 +29,7 @@ import im.huoshi.utils.ViewUtils;
 
 /**
  * Created by Lyson on 16/1/1.
+ * 在某个页面超过300s，结束统计，如果在300s之内有切换页面，记录下最后一次切换的时间，再重新倒计时
  */
 public class ChapterDetailsActivity extends BaseActivity {
     private static final String LOG_TAG = ChapterDetailsActivity.class.getSimpleName();
@@ -49,6 +51,10 @@ public class ChapterDetailsActivity extends BaseActivity {
     private int mCurrentMinutes;
     private boolean mIsFirstShow = true;//是否初次打开页面
 
+    private CountDownTimer mCountDownTimer;//300s的计时器，如果没有页面切换，统计结束
+    private boolean mHasChangePage = false;//是否有做页面切换的操作
+    private boolean mHasSavedData = false;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,6 +64,35 @@ public class ChapterDetailsActivity extends BaseActivity {
 
         setupViews();
         asynReadData();
+        startTimer();
+    }
+
+    private void startTimer() {
+        if (mCountDownTimer != null) {
+            mCountDownTimer.cancel();
+            mCountDownTimer = null;
+        }
+        mCountDownTimer = new CountDownTimer(300 * 1000, 30 * 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                //到了三百秒，没有切换页面操作，结束计时，结束倒计时
+                if (!mHasChangePage) {
+                    updateReadStat();
+                    if (mCountDownTimer != null) {
+                        mCountDownTimer.cancel();
+                        mCountDownTimer = null;
+                    }
+                    return;
+                }
+                //到了三百秒，有切换页面操作，继续倒计时
+                startTimer();
+            }
+        }.start();
     }
 
     private void asynReadData() {
@@ -91,7 +126,16 @@ public class ChapterDetailsActivity extends BaseActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        if (isLogin()) {
+        updateReadStat();
+
+        if (mCountDownTimer != null) {
+            mCountDownTimer.cancel();
+            mCountDownTimer = null;
+        }
+    }
+
+    private void updateReadStat() {
+        if (isLogin() && !mHasSavedData) {
             mStopTime = System.currentTimeMillis();
             //本次阅读结束距离上次阅读结束的时间间隔
             int dayBetweenLast = DateUtils.getDayBetween(mLocalRead.getLastReadLong());
@@ -111,7 +155,7 @@ public class ChapterDetailsActivity extends BaseActivity {
                     mLocalRead.setTodayShouldAdd(true);
                 } else if (dayBetweenLast == 0) {
                     //今天读过了，不应该做任何事情，但是这种情况呢：从昨天十二点多，读到凌晨，那应该＋1。。。
-                    if (mLocalRead.todayShouldAdd()){
+                    if (mLocalRead.todayShouldAdd()) {
                         mLocalRead.updateContinuousDays();
                         mLocalRead.setTodayShouldAdd(false);
                     }
@@ -121,6 +165,9 @@ public class ChapterDetailsActivity extends BaseActivity {
                 mLocalRead.updateLastReadLong(mStopTime);
                 reloadLocalData();
             }
+            mStartTime = System.currentTimeMillis();
+            mHasSavedData = true;
+            mHasChangePage = false;
         }
     }
 
@@ -149,6 +196,16 @@ public class ChapterDetailsActivity extends BaseActivity {
                     mFragment.setIsChecked(false);
                     hideLayout();
                 }
+                mHasChangePage = true;
+                //已经保存过数据，说明超过了300s，或者执行了onstop
+                if (mHasSavedData) {
+                    mStartTime = System.currentTimeMillis();
+                    startTimer();
+                    mHasSavedData = false;
+                    return;
+                }
+                //没保存过数据，直接重新倒计时即可
+                startTimer();
             }
 
             @Override

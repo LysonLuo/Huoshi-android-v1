@@ -19,6 +19,7 @@ import im.huoshi.base.BaseActivity;
 import im.huoshi.base.BaseFragment;
 import im.huoshi.model.HuoshiData;
 import im.huoshi.ui.main.LoginActivity;
+import im.huoshi.utils.DateUtils;
 import im.huoshi.utils.ViewInject;
 import im.huoshi.utils.ViewUtils;
 
@@ -46,6 +47,7 @@ public class HuoshiFragment extends BaseFragment {
         ViewUtils.inject(this, contentView);
 
         setupViews();
+        handleReadData();
         loadData();
         return contentView;
     }
@@ -70,6 +72,14 @@ public class HuoshiFragment extends BaseFragment {
             mGuideLoginLayout.setVisibility(View.VISIBLE);
         }
         setupViewsByHuoshi();
+    }
+
+    private void handleReadData() {
+        int dayBetween = DateUtils.getDayBetween(mLocalRead.getLastReadLong());
+        if (dayBetween > 0) {
+            //时间间隔超过一天，就应该重置了！
+            mLocalRead.updateContinuousDays(0);
+        }
     }
 
     private void loadData() {

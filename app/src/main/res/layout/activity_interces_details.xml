@@ -1,63 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <View
-        android:id="@+id/layout_top"
-        style="@style/GrayDividerStyle" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerview"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/layout_top" />
+        android:layout_height="wrap_content">
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/widget_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="2dp"
+            android:theme="@style/ToolBarTheme"
+            android:translationZ="1dp"
+            app:contentInsetEnd="0dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetRight="0dp"
+            app:contentInsetStart="0dp"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/margin_16">
+
+                <TextView
+                    android:id="@+id/toolbar_left_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:drawableLeft="@mipmap/icon_back_black"
+                    android:drawablePadding="@dimen/margin_20"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/margin_10"
+                    android:paddingRight="@dimen/margin_10"
+                    android:text="代祷详情"
+                    android:textColor="@color/text_color_black_3"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/toolbar_right_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/drawable_blue_stoke_white_solid"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/margin_5"
+                    android:paddingLeft="@dimen/margin_10"
+                    android:paddingRight="@dimen/margin_10"
+                    android:paddingTop="@dimen/margin_5"
+                    android:text="分享"
+                    android:textColor="@color/common_blue_light" />
+
+                <TextView
+                    android:id="@+id/toolbar_middle_right_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin_16"
+                    android:layout_toLeftOf="@+id/toolbar_right_view"
+                    android:background="@drawable/drawable_blue_stoke_white_solid"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/margin_5"
+                    android:paddingLeft="@dimen/margin_10"
+                    android:paddingRight="@dimen/margin_10"
+                    android:paddingTop="@dimen/margin_5"
+                    android:text="祝福"
+                    android:textColor="@color/common_blue_light" />
+            </RelativeLayout>
+
+        </android.support.v7.widget.Toolbar>
+
+        <View
+            style="@style/GrayDividerStyle"
+            app:layout_scrollFlags="scroll|enterAlways" />
+
+    </android.support.design.widget.AppBarLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <View
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/refresh_layout"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/conmon_gray_line_divider" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentBottom="true"
-            android:background="@color/common_white_bg"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:drawableLeft="@mipmap/icon_interces_small"
-                android:drawablePadding="@dimen/margin_10"
-                android:gravity="center_vertical"
-                android:paddingLeft="100dp"
-                android:text="@string/text_join_suffrage" />
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/margin_6"
-                android:layout_marginTop="@dimen/margin_6"
-                android:background="@color/conmon_gray_line_divider" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:drawableLeft="@mipmap/icon_share"
-                android:gravity="center"
-                android:paddingLeft="@dimen/margin_25"
-                android:paddingRight="@dimen/margin_16"
-                android:text="@string/text_share" />
-        </LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </android.support.v4.widget.SwipeRefreshLayout>
     </RelativeLayout>
 
-</RelativeLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="@dimen/margin_16"
+        android:elevation="2dp"
+        android:src="@mipmap/icon_interces_white"
+        app:borderWidth="0dp"
+        app:layout_behavior="im.huoshi.common.ScrollingFABBehavior" />
+</android.support.design.widget.CoordinatorLayout>

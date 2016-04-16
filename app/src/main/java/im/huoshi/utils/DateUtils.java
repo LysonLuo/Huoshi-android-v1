@@ -17,6 +17,22 @@ public class DateUtils {
         return Math.abs((int) (start - today));
     }
 
+    public static String getDayBetweenString(long dayLong) {
+        int dayBetweenInt = getDayBetween(dayLong);
+        switch (dayBetweenInt) {
+            case 0:
+                return formatToString(dayLong, "HH:MM");
+            case 1:
+                return "一天前";
+            case 2:
+                return "两天前";
+            case 3:
+                return "三天前";
+            default:
+                return formatToString(dayLong, "yyyy-MM-dd");
+        }
+    }
+
     public static String formatToString(long timestamp, String format) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(format, Locale.CHINA);
         return dateFormat.format(new Date((timestamp)));

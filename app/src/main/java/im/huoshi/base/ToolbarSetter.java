@@ -11,7 +11,7 @@ import im.huoshi.R;
  */
 public class ToolbarSetter {
     public static void setupDefaultToolbar(final Context context, Toolbar toolbar) {
-        toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
+        toolbar.setNavigationIcon(R.mipmap.icon_back_black);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -68,4 +68,6 @@
     <string name="text_empty_birthday">生日不能为空!</string>
     <string name="text_empty_nick_name">昵称不能为空!</string>
     <string name="text_interces">代祷</string>
+    <string name="text_intercesing">代祷中</string>
+    <string name="text_interces_finished">代祷完成</string>
 </resources>

@@ -1,8 +1,11 @@
 package im.huoshi.utils;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.DisplayMetrics;
 import android.view.Display;
+
+import im.huoshi.R;
 
 /**
  * Created by Lyson on 16/3/17.
@@ -17,5 +20,14 @@ public class ScreenUtils {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         display.getMetrics(displayMetrics);
         return displayMetrics.widthPixels;
+    }
+
+    public static int getToolbarHeight(Context context) {
+        final TypedArray styledAttributes = context.getTheme().obtainStyledAttributes(
+                new int[]{R.attr.actionBarSize});
+        int toolbarHeight = (int) styledAttributes.getDimension(0, 0);
+        styledAttributes.recycle();
+
+        return toolbarHeight;
     }
 }

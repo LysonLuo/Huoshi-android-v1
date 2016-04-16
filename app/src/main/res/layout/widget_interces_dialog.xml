@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="50dp"
         android:src="@mipmap/icon_bless" />
 
 
@@ -19,95 +19,141 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/layout_pre_interces"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/textview_total_interce_times"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="80dp"
+                android:text="这是你第十次代祷"
+                android:textColor="@color/text_color_black_3"
+                android:textSize="@dimen/text_size_14" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="@dimen/margin_10"
+                android:paddingTop="@dimen/margin_10"
+                android:text="请为兄弟姐妹精心6秒，然后开始代祷\n神将赐福于你"
+                android:textColor="@color/text_color_black_3"
+                android:textSize="@dimen/text_size_14" />
+
+            <TextView
+                android:id="@+id/textview_interces_count_down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/margin_30"
+                android:text="6"
+                android:textColor="#25aeff"
+                android:textSize="80sp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/layout_intercesing"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:visibility="gone">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="80dp"
-                android:text="这是你第十次祈祷" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal"
-                android:text="请为兄弟姐妹精心6秒，然后开始代祷\n神将赐福于你" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/margin_10"
-                android:text="6"
-                android:textColor="#25aeff"
-                android:textSize="50sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/margin_16"
+                android:layout_marginTop="@dimen/margin_20"
                 android:src="@mipmap/icon_join_interces" />
 
-
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:paddingLeft="@dimen/margin_25"
-                android:paddingRight="@dimen/margin_25"
-                android:text="惟求耶和华我的神，垂顾仆人的祷告祈求，俯听仆人在你面前的祈祷呼吁" />
-
-            <TextView
+                android:id="@+id/textview_intercesing"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_25"
-                android:layout_marginRight="@dimen/margin_25"
-                android:layout_marginTop="@dimen/margin_16"
-                android:background="#45dffe"
-                android:gravity="center_horizontal"
-                android:paddingBottom="@dimen/margin_10"
-                android:paddingTop="@dimen/margin_10"
-                android:text="我有感动，想说点什么"
-                android:textColor="@color/text_color_white" />
+                android:layout_marginLeft="@dimen/margin_35"
+                android:layout_marginRight="@dimen/margin_35"
+                android:layout_marginTop="@dimen/margin_50"
+                android:background="@drawable/drawable_intercesing_bg"
+                android:enabled="false"
+                android:gravity="center"
+                android:padding="@dimen/margin_5"
+                android:text="@string/text_intercesing"
+                android:textColor="@color/text_color_white"
+                android:visibility="visible" />
 
-            <TextView
+            <LinearLayout
+                android:id="@+id/layout_interces_finished"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_25"
-                android:layout_marginRight="@dimen/margin_25"
-                android:layout_marginTop="@dimen/margin_16"
-                android:background="#45dffe"
-                android:gravity="center_horizontal"
-                android:paddingBottom="@dimen/margin_10"
-                android:paddingTop="@dimen/margin_10"
-                android:text="让更多人为其代祷"
-                android:textColor="@color/text_color_white" />
+                android:orientation="vertical"
+                android:visibility="gone">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_25"
-                android:layout_marginRight="@dimen/margin_25"
-                android:layout_marginTop="@dimen/margin_16"
-                android:background="#45dffe"
-                android:gravity="center_horizontal"
-                android:paddingBottom="@dimen/margin_10"
-                android:paddingTop="@dimen/margin_10"
-                android:text="再看看其他的"
-                android:textColor="@color/text_color_white" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:text="@string/text_interces_finished" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:paddingLeft="@dimen/margin_25"
+                    android:paddingRight="@dimen/margin_25"
+                    android:text="惟求耶和华我的神，垂顾仆人的祷告祈求，俯听仆人在你面前的祈祷呼吁"
+                    android:textSize="@dimen/text_size_14" />
+
+                <TextView
+                    android:id="@+id/textview_pub_bless"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_25"
+                    android:layout_marginRight="@dimen/margin_25"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:background="#45dffe"
+                    android:gravity="center_horizontal"
+                    android:paddingBottom="@dimen/margin_10"
+                    android:paddingTop="@dimen/margin_10"
+                    android:text="我有感动，想说点什么"
+                    android:textColor="@color/text_color_white" />
+
+                <TextView
+                    android:id="@+id/textview_share"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_25"
+                    android:layout_marginRight="@dimen/margin_25"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:background="#45dffe"
+                    android:gravity="center_horizontal"
+                    android:paddingBottom="@dimen/margin_10"
+                    android:paddingTop="@dimen/margin_10"
+                    android:text="让更多人为其代祷"
+                    android:textColor="@color/text_color_white" />
+
+                <TextView
+                    android:id="@+id/textview_close"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_25"
+                    android:layout_marginRight="@dimen/margin_25"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:background="#45dffe"
+                    android:gravity="center_horizontal"
+                    android:paddingBottom="@dimen/margin_10"
+                    android:paddingTop="@dimen/margin_10"
+                    android:text="再看看其他的"
+                    android:textColor="@color/text_color_white" />
+            </LinearLayout>
         </LinearLayout>
     </FrameLayout>
 </LinearLayout>

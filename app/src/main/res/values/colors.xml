@@ -2,19 +2,22 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#46deff</color>
     <color name="windowBackground">#f2f2f2</color>
 
     <!-- 字体颜色-->
     <color name="text_color_white">@android:color/white</color>
     <color name="text_color_black">@android:color/black</color>
+    <color name="text_color_black_3">#333333</color>
     <color name="text_color_gray">#9B9B9B</color>
     <color name="text_color_blue_light">#46deff</color>
+    <color name="text_color_blue_dark">#46aeff</color>
     <color name="text_color_black_light">#666666</color>
     <color name="text_color_chapter">#333333</color>
     <color name="text_color_orange">#ffffbb33</color>
     <color name="text_section_index">#88444444</color>
     <color name="text_color_gray_9">#999999</color>
+    <color name="text_color_red_light">#FD4F4F</color>
 
     <!--背景颜色-->
     <color name="conmon_gray_line_divider">#CCCCCC</color>
@@ -23,4 +26,7 @@
     <color name="common_gray_dark_bg">#e8e8e8</color>
     <color name="common_white_bg">@android:color/white</color>
     <color name="common_black_bg">@android:color/black</color>
+    <color name="common_blue_dark">#32B1FC</color>
+    <color name="avatar_border_red_color">#ffb0b0</color>
+    <color name="avatar_border_blue_color">#89d4ff</color>
 </resources>

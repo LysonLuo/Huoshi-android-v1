@@ -2,8 +2,6 @@ package im.huoshi.ui.main;
 
 import android.content.Context;
 import android.support.v7.app.AppCompatDialog;
-import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -32,7 +30,7 @@ public class ReadDialog extends AppCompatDialog {
     @ViewInject(R.id.textview_remind_info)
     private TextView mInfoTextView;
     private ReadStat mReadStat;
-    private TranslateAnimation mDayTransAnimation;
+//    private TranslateAnimation mDayTransAnimation;
 
     public ReadDialog(Context context, int userId, ReadStat readStat) {
         super(context, R.style.CustomPopup);
@@ -50,15 +48,15 @@ public class ReadDialog extends AppCompatDialog {
         mInfoTextView.setText(mReadStat.getNotice());
     }
 
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        mDayTransAnimation = new TranslateAnimation(0, 0, 0, mDayTextView.getMeasuredHeight());
-        mDayTransAnimation.setRepeatCount(Animation.INFINITE);
-        mDayTransAnimation.setRepeatMode(Animation.RESTART);
-        mDayTransAnimation.setDuration(1000);
-        mDayTextView.startAnimation(mDayTransAnimation);
-    }
+//    @Override
+//    public void onWindowFocusChanged(boolean hasFocus) {
+//        super.onWindowFocusChanged(hasFocus);
+//        mDayTransAnimation = new TranslateAnimation(0, 0, 0, mDayTextView.getMeasuredHeight());
+//        mDayTransAnimation.setRepeatCount(Animation.INFINITE);
+//        mDayTransAnimation.setRepeatMode(Animation.RESTART);
+//        mDayTransAnimation.setDuration(1000);
+//        mDayTextView.startAnimation(mDayTransAnimation);
+//    }
 
     private void asynReadData(BaseActivity activity, int userId) {
         ReadRequest.readStat(activity, userId, mReadStat.getLastMinutes(), mReadStat.getTotalMinutes(), mReadStat.getContinuousDays(), ReadPreference.getInstance().getAddStat(), new RestApiCallback() {
@@ -69,20 +67,20 @@ public class ReadDialog extends AppCompatDialog {
                 ReadPreference.getInstance().saveReadStat(readStat);
                 ReadPreference.getInstance().updateAddStat(false);
                 setupViews();
-                stopAnim();
+//                stopAnim();
                 LogUtils.d("ReadDialog", "同步成功~");
             }
 
             @Override
             public void onFailure() {
-                stopAnim();
+//                stopAnim();
             }
         });
     }
 
-    private void stopAnim() {
-        if (mDayTransAnimation != null) {
-            mDayTextView.clearAnimation();
-        }
-    }
+//    private void stopAnim() {
+//        if (mDayTransAnimation != null) {
+//            mDayTextView.clearAnimation();
+//        }
+//    }
 }

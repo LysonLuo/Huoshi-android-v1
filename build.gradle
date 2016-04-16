@@ -5,9 +5,10 @@ buildscript {
         jcenter()
         mavenCentral()
         maven { url "https://raw.githubusercontent.com/umeng/mvn-repo-umeng/master/repository" }
+        maven { url "http://dl.bintray.com/jjhesk/maven" }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.2.3'
+        classpath 'com.android.tools.build:gradle:2.1.0-alpha1'
         classpath 'com.bugtags.library:bugtags-gradle:latest.integration'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -19,6 +20,7 @@ allprojects {
         jcenter()
         mavenCentral()
         maven { url "https://raw.githubusercontent.com/umeng/mvn-repo-umeng/master/repository" }
+        maven { url "http://dl.bintray.com/jjhesk/maven" }
     }
 }
 

@@ -2,6 +2,7 @@ package im.huoshi.ui.find.interces;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -21,8 +22,10 @@ import im.huoshi.base.BaseActivity;
 import im.huoshi.base.BaseFragment;
 import im.huoshi.common.OnRecClickListener;
 import im.huoshi.model.Intercession;
+import im.huoshi.utils.LogUtils;
 import im.huoshi.utils.ViewInject;
 import im.huoshi.utils.ViewUtils;
+import im.huoshi.views.RecyclerViewScrollListener;
 
 /**
  * 公用的祷告页面
@@ -32,12 +35,19 @@ import im.huoshi.utils.ViewUtils;
 public class InterCesFragment extends BaseFragment {
     public static final String INTERCES_TYPE_INTERCES = "INTERCES";
     public static final String INTERCES_TYPE_PRAYER = "PRAYER";
+    @ViewInject(R.id.refresh_layout)
+    private SwipeRefreshLayout mRefreshLayout;
     @ViewInject(R.id.recyclerview)
     private RecyclerView mRecyclerView;
     private LinearLayoutManager mLayoutManager;
     private InterCesRecAdapter mAdapter;
     private String mType;//类别，区分是代祷还是祷告箱
     private List<Intercession> mIntercessionList = new ArrayList<>();
+    private RecyclerViewScrollListener mScrollListener;
+    private int mStartPage = 1;
+    private boolean mIsLoadMore = false;
+    private boolean mNoMoreData = false;
+    private boolean mIsLoading = false;
 
 
     @Nullable
@@ -57,32 +67,73 @@ public class InterCesFragment extends BaseFragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new InterCesRecAdapter(getActivity(), mIntercessionList);
         mRecyclerView.setAdapter(mAdapter);
-        mAdapter.setmRecClickListener(new OnRecClickListener<List<String>>() {
+        mScrollListener = new RecyclerViewScrollListener() {
             @Override
-            public void OnClick(List<String> strings) {
-                InterCesDetailsActivity.launch((BaseActivity) getActivity());
+            public void onLoadMore() {
+                if (!mNoMoreData) {
+                    mIsLoadMore = true;
+                    loadInterces();
+                }
+            }
+        };
+        mRecyclerView.addOnScrollListener(mScrollListener);
+        mAdapter.setmRecClickListener(new OnRecClickListener<Intercession>() {
+            @Override
+            public void OnClick(Intercession intercession) {
+                InterCesDetailsActivity.launch((BaseActivity) getActivity(), intercession.getIntercessionId());
+            }
+        });
+        mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mStartPage = 1;
+                mNoMoreData = false;
+                mIntercessionList.clear();
+                mAdapter.setNoMoreData(mNoMoreData);
+                mScrollListener.reSetPreviousTotal();
+                loadInterces();
             }
         });
     }
 
     private void loadInterces() {
-        InterCesRequest.intercesList((BaseActivity) getActivity(), mUser.getUserId(), new RestApiCallback() {
+        if (mIsLoading) {
+            return;
+        }
+        mIsLoading = true;
+        if (!mIsLoadMore) {
+            showProgressFragment(R.id.framelayout);
+        }
+        InterCesRequest.intercesList((BaseActivity) getActivity(), mUser.getUserId(), mStartPage, new RestApiCallback() {
             @Override
             public void onSuccess(String responseString) {
-                mIntercessionList = new Gson().fromJson(responseString, new TypeToken<List<Intercession>>() {
+                mIsLoading = false;
+                mRefreshLayout.setRefreshing(false);
+                removeProgressFragment();
+                List<Intercession> intercessionList = new Gson().fromJson(responseString, new TypeToken<List<Intercession>>() {
                 }.getType());
-                setupViewsByInters();
+                setupViewsByInters(intercessionList);
             }
 
             @Override
             public void onFailure() {
-
+                mIsLoading = false;
+                mRefreshLayout.setRefreshing(false);
+                removeProgressFragment();
+                LogUtils.d("XXX", "what");
             }
         });
     }
 
-    private void setupViewsByInters() {
-        mAdapter.resetData(mIntercessionList);
+    private void setupViewsByInters(List<Intercession> intercessionList) {
+        if (intercessionList.size() > 0) {
+            mStartPage++;
+            mIntercessionList.addAll(intercessionList);
+            mAdapter.resetData(mIntercessionList);
+            return;
+        }
+        mNoMoreData = true;
+        mAdapter.setNoMoreData(mNoMoreData);
     }
 
     public void dataNofify() {

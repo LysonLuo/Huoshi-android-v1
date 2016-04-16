@@ -2,11 +2,12 @@ package im.huoshi.utils;
 
 import android.text.TextUtils;
 import android.widget.Toast;
-import im.huoshi.R;
-import im.huoshi.base.BaseActivity;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import im.huoshi.R;
+import im.huoshi.base.BaseActivity;
 
 /**
  * Created by Lyson on 16/2/1.
@@ -40,5 +41,19 @@ public class CTextUtils {
             return false;
         }
         return true;
+    }
+
+    public static String getRelation(int relation) {
+        switch (relation) {
+            case 0:
+                return "";
+            case 1:
+                return "朋友";
+            case 2:
+                return "朋友的朋友";
+            case 3:
+                return "朋友代祷过";
+        }
+        return "";
     }
 }

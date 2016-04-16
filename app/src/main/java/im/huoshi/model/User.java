@@ -34,6 +34,8 @@ public class User extends ApiObject {
     private int continuousDays;//连续阅读天数
     @SerializedName("total_minutes")
     private int totalMinutes;
+    @SerializedName("total_share_times")
+    private int totalShareTimes;
 
     public int getUserId() {
         return userId;
@@ -99,6 +101,10 @@ public class User extends ApiObject {
         return totalMinutes;
     }
 
+    public int getTotalShareTimes() {
+        return totalShareTimes;
+    }
+
     public void setUserId(int userId) {
         this.userId = userId;
     }
@@ -161,5 +167,9 @@ public class User extends ApiObject {
 
     public void setTotalMinutes(int totalMinutes) {
         this.totalMinutes = totalMinutes;
+    }
+
+    public void setTotalShareTimes(int totalShareTimes) {
+        this.totalShareTimes = totalShareTimes;
     }
 }
