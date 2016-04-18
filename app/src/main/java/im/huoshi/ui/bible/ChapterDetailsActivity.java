@@ -6,6 +6,7 @@ import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -179,6 +180,7 @@ public class ChapterDetailsActivity extends BaseActivity {
         mKeyWord = getIntent().getStringExtra("keyWord");
         mAnimationUp = AnimationUtils.loadAnimation(this, R.anim.anim_translate_up);
         mAnimationDown = AnimationUtils.loadAnimation(this, R.anim.anim_translate_down);
+        mAnnotationTextView.setMovementMethod(new ScrollingMovementMethod());
         mChapterAdapter = new ChapterPagerAdapter(getSupportFragmentManager(), mChapters, mKeyWord);
         mViewPager.setAdapter(mChapterAdapter);
         mViewPager.setCurrentItem(mCurrentPosition);
