@@ -25,6 +25,7 @@ public class BaseFragment extends Fragment {
     private ProgressFragment mProgressFragment;
     private RetryFragment mRetryFragment;
     private NoDataFragment mNoDataFragment;
+    private NetWorkFailFragment mNetWorkFailFragment;
     protected UserPreference mLocalUser;
     public static User mUser;
     public static ReadPreference mLocalRead;
@@ -181,6 +182,37 @@ public class BaseFragment extends Fragment {
         if (mNoDataFragment != null) {
             mNoDataFragment.setText(text);
         }
+    }
+
+    protected void showNetWorkFailFragment(int layoutId) {
+        if (!mIsFragmentAlive) {
+            LogUtils.d(LOG_TAG, "fragment is not alive");
+            return;
+        }
+        if (mNetWorkFailFragment == null) {
+            mNetWorkFailFragment = new NetWorkFailFragment();
+        }
+        FragmentManager fm = getChildFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        if (!mNetWorkFailFragment.isAdded()) {
+            ft.add(layoutId, mNetWorkFailFragment, "");
+        }
+        ft.show(mNetWorkFailFragment);
+        ft.commitAllowingStateLoss();
+    }
+
+    protected void removeFailFragment() {
+        if (!mIsFragmentAlive) {
+            LogUtils.d(LOG_TAG, "fragment is not alive");
+            return;
+        }
+        if (mNetWorkFailFragment == null) {
+            return;
+        }
+        FragmentManager fm = getChildFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.remove(mNetWorkFailFragment);
+        ft.commitAllowingStateLoss();
     }
 
     /**

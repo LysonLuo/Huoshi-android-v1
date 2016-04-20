@@ -41,6 +41,7 @@ public class BaseActivity extends AppCompatActivity implements ToolbarUtils.OnTo
     private ProgressFragment mProgressFragment;
     private RetryFragment mRetryFragment;
     private NoDataFragment mNoDataFragment;
+    private NetWorkFailFragment mNetWorkFailFragment;
     public static UserPreference mLocalUser;
     public static User mUser;
     public static ReadPreference mLocalRead;
@@ -286,6 +287,37 @@ public class BaseActivity extends AppCompatActivity implements ToolbarUtils.OnTo
         if (mNoDataFragment != null) {
             mNoDataFragment.setText(text);
         }
+    }
+
+    protected void showNetWorkFailFragment() {
+        if (!mIsActivityAlive) {
+            LogUtils.d(LOG_TAG, "activity is not alive");
+            return;
+        }
+        if (mNetWorkFailFragment == null) {
+            mNetWorkFailFragment = new NetWorkFailFragment();
+        }
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        if (!mNetWorkFailFragment.isAdded()) {
+            ft.add(R.id.content_layout_id, mNetWorkFailFragment, "");
+        }
+        ft.show(mNetWorkFailFragment);
+        ft.commitAllowingStateLoss();
+    }
+
+    protected void removeFailFragment() {
+        if (!mIsActivityAlive) {
+            LogUtils.d(LOG_TAG, "activity is not alive");
+            return;
+        }
+        if (mNetWorkFailFragment == null) {
+            return;
+        }
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.remove(mNetWorkFailFragment);
+        ft.commitAllowingStateLoss();
     }
 
     /**
