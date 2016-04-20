@@ -56,7 +56,7 @@
     <string name="text_warn_pwd_length">密码长度不对!</string>
     <string name="text_warn_pwd_regex">密码格式不正确!</string>
     <string name="text_input_verification_code">请输入验证码</string>
-    <string name="text_input_pwd">请输入密码(字母数字下划线)</string>
+    <string name="text_input_pwd">输入6-X位数字、字母或下划线</string>
     <string name="text_click_to_send_verification">请点击发送验证码!</string>
     <string name="text_register_success">注册成功!</string>
     <string name="text_login_success">登录成功!</string>
