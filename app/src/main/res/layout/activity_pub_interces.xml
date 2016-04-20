@@ -20,7 +20,7 @@
             android:gravity="left|top"
             android:hint="我们和你一起祷告"
             android:maxLines="5"
-            android:minLines="4"
+            android:minLines="8"
             android:textSize="@dimen/text_size_15" />
 
         <CheckBox

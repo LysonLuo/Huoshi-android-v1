@@ -97,12 +97,13 @@ public class InterCesDelRecAdapter extends LoadMoreAdapter<Comment> {
                 if (i == 0) {
                     mContentTextView.setEnabled(true);
                     mTimeTextView.setEnabled(true);
-                    viewHolder.mCreateTimeTextView.setText(DateUtils.getDayBetweenString(content.getCreateTime()));
+                    viewHolder.mCreateTimeTextView.setText(DateUtils.getDayBetweenString(content.getCreateTime()) + " 发布");
                 } else {
                     mContentTextView.setEnabled(false);
                     mTimeTextView.setEnabled(false);
                 }
-                mTimeTextView.setText(DateUtils.getDayBetweenString(content.getCreateTime()) + (mIntercession.getContentList().size() == 1 ? "" : "更新"));
+//                mTimeTextView.setText(DateUtils.getDayBetweenString(content.getCreateTime()) + (mIntercession.getContentList().size() == 1 ? "" : " 更新"));
+                mTimeTextView.setText(DateUtils.getDayBetweenString(content.getCreateTime()) + " 更新");
                 viewHolder.mUpdateLayout.addView(contentView);
             }
             viewHolder.mRelationTextView.setText(CTextUtils.getRelation(mIntercession.getRelationship()));

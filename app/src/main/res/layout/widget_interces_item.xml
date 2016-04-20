@@ -85,7 +85,7 @@
             android:layout_marginTop="@dimen/margin_10"
             android:ellipsize="end"
             android:gravity="left|center_vertical"
-            android:maxLength="100"
+            android:maxLines="3"
             android:text="211212211212211212211212211212211212"
             android:textColor="@color/text_color_black_light"
             android:textSize="@dimen/text_size_13" />
@@ -102,6 +102,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:paddingTop="@dimen/margin_2"
                 android:text="一天前"
                 android:textColor="@color/text_color_gray_9"
                 android:textSize="@dimen/text_size_11" />
