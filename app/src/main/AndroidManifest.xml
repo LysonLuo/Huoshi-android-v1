@@ -46,7 +46,8 @@
         </activity>
         <activity
             android:name=".ui.main.LoginActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysVisible|adjustPan" />
         <activity
             android:name=".ui.find.interces.InterCesActivity"
             android:screenOrientation="portrait" />
