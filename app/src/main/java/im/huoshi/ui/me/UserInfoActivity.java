@@ -167,12 +167,6 @@ public class UserInfoActivity extends BaseActivity {
         mGenderPickerView.setTitle("选择性别");
         mGenderPickerView.setCyclic(false);
 
-        mTimerPickerView = new TimePickerView(UserInfoActivity.this, TimePickerView.Type.YEAR_MONTH_DAY);
-        //控制时间范围
-        Calendar calendar = Calendar.getInstance();
-        mTimerPickerView.setRange(calendar.get(Calendar.YEAR) - 50, calendar.get(Calendar.YEAR));
-        mTimerPickerView.setTime(new Date());
-        mTimerPickerView.setCyclic(false);
 
         Glide.with(this).load(mUser.getAvatar()).into(mAvatarImageView);
         mNickName = mUser.getNickName();
@@ -232,19 +226,47 @@ public class UserInfoActivity extends BaseActivity {
                 mContentHasChanged = true;
             }
         });
+        final TimePickerView.OnTimeSelectListener onTimeSelectListener = new TimePickerView.OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date) {
+                mContentHasChanged = true;
+                if (mIsBirthday) {
+                    mBirthday = new SimpleDateFormat("yyyy-MM-dd").format(date);
+                    mBirthdayTextView.setText(mBirthday);
+                    return;
+                }
+                mBelieveDate = new SimpleDateFormat("yyyy").format(date);
+                mBelieveDateTextView.setText(mBelieveDate);
+            }
+        };
         mBirthdayLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mIsBirthday = true;
+                mTimerPickerView = new TimePickerView(UserInfoActivity.this, TimePickerView.Type.YEAR_MONTH_DAY);
+                //控制时间范围
+                Calendar calendar = Calendar.getInstance();
+                mTimerPickerView.setRange(calendar.get(Calendar.YEAR) - 50, calendar.get(Calendar.YEAR));
+                mTimerPickerView.setTime(new Date());
+                mTimerPickerView.setCyclic(false);
                 mTimerPickerView.setTitle("选择生日");
+                mTimerPickerView.setOnTimeSelectListener(onTimeSelectListener);
                 mTimerPickerView.show();
             }
         });
+
         mBelieveLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mIsBirthday = false;
+                mTimerPickerView = new TimePickerView(UserInfoActivity.this, TimePickerView.Type.YEAR);
+                //控制时间范围
+                Calendar calendar = Calendar.getInstance();
+                mTimerPickerView.setRange(calendar.get(Calendar.YEAR) - 50, calendar.get(Calendar.YEAR));
+                mTimerPickerView.setTime(new Date());
+                mTimerPickerView.setCyclic(false);
                 mTimerPickerView.setTitle("选择信主时间");
+                mTimerPickerView.setOnTimeSelectListener(onTimeSelectListener);
                 mTimerPickerView.show();
             }
         });
@@ -258,19 +280,20 @@ public class UserInfoActivity extends BaseActivity {
             }
         });
 
-        mTimerPickerView.setOnTimeSelectListener(new TimePickerView.OnTimeSelectListener() {
-            @Override
-            public void onTimeSelect(Date date) {
-                mContentHasChanged = true;
-                if (mIsBirthday) {
-                    mBirthday = new SimpleDateFormat("yyyy-MM-dd").format(date);
-                    mBirthdayTextView.setText(mBirthday);
-                    return;
-                }
-                mBelieveDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
-                mBelieveDateTextView.setText(mBelieveDate);
-            }
-        });
+//        mTimerPickerView.setOnTimeSelectListener(onTimeSelectListener);
+//        mTimerPickerView.setOnTimeSelectListener(new TimePickerView.OnTimeSelectListener() {
+//            @Override
+//            public void onTimeSelect(Date date) {
+//                mContentHasChanged = true;
+//                if (mIsBirthday) {
+//                    mBirthday = new SimpleDateFormat("yyyy-MM-dd").format(date);
+//                    mBirthdayTextView.setText(mBirthday);
+//                    return;
+//                }
+//                mBelieveDate = new SimpleDateFormat("yyyy").format(date);
+//                mBelieveDateTextView.setText(mBelieveDate);
+//            }
+//        });
     }
 
     private void preUploadAvatar() {
