@@ -88,8 +88,7 @@ public class InterCesDialog extends AppCompatDialog {
         mIntercesingTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mIntercesingTextView.setVisibility(View.GONE);
-                mIntercesFinishedLayout.setVisibility(View.VISIBLE);
+                mListener.onFinish();
             }
         });
         setOnDismissListener(new OnDismissListener() {
@@ -137,7 +136,7 @@ public class InterCesDialog extends AppCompatDialog {
             @Override
             public void onFinish() {
                 mIntercesingTextView.setEnabled(true);
-                mIntercesingTextView.setText("代祷完成");
+                mIntercesingTextView.setText("感谢代祷，愿天父垂听悦纳");
             }
         }.start();
     }
@@ -146,7 +145,14 @@ public class InterCesDialog extends AppCompatDialog {
         mIntercesingTextView.setText("请至少静心祷告30秒");
     }
 
+    public void finishJoinInterces() {
+        mIntercesingTextView.setVisibility(View.GONE);
+        mIntercesFinishedLayout.setVisibility(View.VISIBLE);
+    }
+
     public interface IntercesListener {
+        void onFinish();
+
         void onBless();
 
         void onShare();

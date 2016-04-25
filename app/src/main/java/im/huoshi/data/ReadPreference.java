@@ -154,4 +154,14 @@ public class ReadPreference {
     public int getTotalShareTimes() {
         return mPreference.getInt("total_share_times", 0);
     }
+
+    public void updateTotalJoinIntercession(int totalJoinIntercession) {
+        SharedPreferences.Editor editor = mPreference.edit();
+        editor.putInt("total_join_intercession", totalJoinIntercession);
+        editor.apply();
+    }
+
+    public int getTotalJoinIntercession() {
+        return mPreference.getInt("total_join_intercession", 0);
+    }
 }

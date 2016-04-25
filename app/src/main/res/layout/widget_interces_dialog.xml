@@ -56,6 +56,27 @@
                 android:textColor="#25aeff"
                 android:textSize="80sp" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/margin_25"
+                    android:paddingRight="@dimen/margin_25"
+                    android:text="我劝你第一要为万人恳求、祷告、代求、祝谢，为君王和一切在位的，也该如此。" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:paddingRight="@dimen/margin_25"
+                    android:gravity="right"
+                    android:text="——提摩太前书2章1-2节" />
+            </LinearLayout>
         </LinearLayout>
 
 
@@ -123,7 +144,7 @@
                     android:gravity="center_horizontal"
                     android:paddingBottom="@dimen/margin_10"
                     android:paddingTop="@dimen/margin_10"
-                    android:text="我有感动，想说点什么"
+                    android:text="我有感动，想说点什么。"
                     android:textColor="@color/text_color_white" />
 
                 <TextView
@@ -137,7 +158,7 @@
                     android:gravity="center_horizontal"
                     android:paddingBottom="@dimen/margin_10"
                     android:paddingTop="@dimen/margin_10"
-                    android:text="让更多人为其代祷"
+                    android:text="让更多人为其代祷。"
                     android:textColor="@color/text_color_white" />
 
                 <TextView
@@ -151,7 +172,7 @@
                     android:gravity="center_horizontal"
                     android:paddingBottom="@dimen/margin_10"
                     android:paddingTop="@dimen/margin_10"
-                    android:text="再看看其他的"
+                    android:text="再看看其他的。"
                     android:textColor="@color/text_color_white" />
             </LinearLayout>
         </LinearLayout>

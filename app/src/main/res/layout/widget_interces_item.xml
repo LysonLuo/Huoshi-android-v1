@@ -33,7 +33,7 @@
                     android:id="@+id/imageview_gender_bg"
                     android:layout_width="43dp"
                     android:layout_height="43dp"
-                    android:src="@mipmap/img_default_avatar"
+                    android:src="@mipmap/img_default_avatar_white"
                     app:civ_border_color="@color/common_blue_light"
                     app:civ_border_width="0.5dp" />
 

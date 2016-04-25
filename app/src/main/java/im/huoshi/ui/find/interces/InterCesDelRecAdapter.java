@@ -83,6 +83,8 @@ public class InterCesDelRecAdapter extends LoadMoreAdapter<Comment> {
             TopViewHolder viewHolder = (TopViewHolder) holder;
             if (!TextUtils.isEmpty(mIntercession.getPortrait())) {
                 Glide.with(mContext).load(mIntercession.getPortrait()).into(viewHolder.mAvatarImageView);
+            } else {
+                Glide.with(mContext).load(R.mipmap.img_default_avatar).into(viewHolder.mAvatarImageView);
             }
             viewHolder.mNickNameTextView.setText(mIntercession.getNickName());
             viewHolder.mUpdateLayout.removeAllViews();
@@ -134,6 +136,8 @@ public class InterCesDelRecAdapter extends LoadMoreAdapter<Comment> {
             final Comment comment = mItemList.get(position - 1);
             if (!TextUtils.isEmpty(comment.getAvatar())) {
                 Glide.with(mContext).load(comment.getAvatar()).into(viewHolder.mAvatarImageView);
+            } else {
+                Glide.with(mContext).load(R.mipmap.img_default_avatar).into(viewHolder.mAvatarImageView);
             }
 
             int borderColor = comment.getGender() == 1 ? R.color.avatar_border_blue_color : R.color.avatar_border_red_color;

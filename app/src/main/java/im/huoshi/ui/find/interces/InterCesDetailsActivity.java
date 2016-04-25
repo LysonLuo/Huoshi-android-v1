@@ -33,7 +33,7 @@ import im.huoshi.views.RecyclerViewScrollListener;
 
 /**
  * 代祷详情
- * <p>
+ * <p/>
  * Created by Lyson on 15/12/26.
  */
 public class InterCesDetailsActivity extends BaseActivity {
@@ -142,40 +142,46 @@ public class InterCesDetailsActivity extends BaseActivity {
             showShortToast("已加入过该代祷！");
             return;
         }
-        InterCesRequest.joinInterces(InterCesDetailsActivity.this, mUser.getUserId(), mIntercessionId, new RestApiCallback() {
+        mIntercesDialog = new InterCesDialog(InterCesDetailsActivity.this, mLocalRead.getTotalJoinIntercession());
+        mIntercesDialog.setIntercesListener(new InterCesDialog.IntercesListener() {
             @Override
-            public void onSuccess(String responseString) {
-                int totalTimes = 0;
-                try {
-                    totalTimes = new JSONObject(responseString).getInt("total_join_intercession");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                mIntercesDialog = new InterCesDialog(InterCesDetailsActivity.this, totalTimes);
-                mIntercesDialog.setIntercesListener(new InterCesDialog.IntercesListener() {
+            public void onFinish() {
+                InterCesRequest.joinInterces(InterCesDetailsActivity.this, mUser.getUserId(), mIntercessionId, new RestApiCallback() {
                     @Override
-                    public void onBless() {
-                        CommentActivity.launch(InterCesDetailsActivity.this, mIntercessionId);
+                    public void onSuccess(String responseString) {
+                        int totalTimes = 0;
+                        try {
+                            totalTimes = new JSONObject(responseString).getInt("total_join_intercession");
+                            mLocalRead.updateTotalJoinIntercession(totalTimes);
+                            mIntercesDialog.finishJoinInterces();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override
-                    public void onShare() {
-                        ShareUtils.init(InterCesDetailsActivity.this);
-                    }
-
-                    @Override
-                    public void onClose() {
-                        finish();
+                    public void onFailure() {
+                        LogUtils.d("XXX", "what");
                     }
                 });
-                mIntercesDialog.show();
             }
 
             @Override
-            public void onFailure() {
-                LogUtils.d("XXX", "what");
+            public void onBless() {
+                CommentActivity.launch(InterCesDetailsActivity.this, mIntercessionId);
+            }
+
+            @Override
+            public void onShare() {
+                ShareUtils.init(InterCesDetailsActivity.this);
+            }
+
+            @Override
+            public void onClose() {
+                finish();
             }
         });
+        mIntercesDialog.show();
     }
 
     private void loadComments() {

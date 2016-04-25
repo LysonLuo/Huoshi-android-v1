@@ -36,6 +36,8 @@ public class User extends ApiObject {
     private int totalMinutes;
     @SerializedName("total_share_times")
     private int totalShareTimes;
+    @SerializedName("total_join_intercession")
+    private int totalJoinIntercession;
 
     public int getUserId() {
         return userId;
@@ -105,6 +107,10 @@ public class User extends ApiObject {
         return totalShareTimes;
     }
 
+    public int getTotalJoinIntercession() {
+        return totalJoinIntercession;
+    }
+
     public void setUserId(int userId) {
         this.userId = userId;
     }
@@ -171,5 +177,9 @@ public class User extends ApiObject {
 
     public void setTotalShareTimes(int totalShareTimes) {
         this.totalShareTimes = totalShareTimes;
+    }
+
+    public void setTotalJoinIntercession(int totalJoinIntercession) {
+        this.totalJoinIntercession = totalJoinIntercession;
     }
 }
