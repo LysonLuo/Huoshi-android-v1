@@ -10,12 +10,10 @@
         android:orientation="vertical">
 
 
-        <TextView
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:gravity="center"
-            android:text="幸运大转盘"
-            android:textSize="50sp" />
+            android:background="@mipmap/img_huoshi_banner_bg" />
 
         <View style="@style/GrayDividerStyle" />
 
