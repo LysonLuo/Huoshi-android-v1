@@ -55,6 +55,8 @@ public class ChapterDetailsActivity extends BaseActivity {
     private CountDownTimer mCountDownTimer;//300s的计时器，如果没有页面切换，统计结束
     private boolean mHasChangePage = false;//是否有做页面切换的操作
     private boolean mHasSavedData = false;
+    private boolean mIsFinalChapter = false;//是否最后一章，用于提示
+    private boolean mHasShowToast = false;//是否显示最后一章提示，只显示一次
 
 
     @Override
@@ -187,11 +189,22 @@ public class ChapterDetailsActivity extends BaseActivity {
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+                if (mIsFinalChapter && !mHasShowToast) {
+                    showLongToast("当前为最后一章");
+                    mHasShowToast = true;
+                    return;
+                }
+                if (position == mChapters.size() - 1) {
+                    mIsFinalChapter = true;
+                } else {
+                    mHasShowToast = false;
+                    mIsFinalChapter = false;
+                }
             }
 
             @Override
             public void onPageSelected(int position) {
+
                 mToolbarUtils.setTitleText(mBookName + "\t\t" + mChapters.get(position).getChapterNo() + "章");
                 if (mIsShow) {
                     mFragment.changeIndexColor();
