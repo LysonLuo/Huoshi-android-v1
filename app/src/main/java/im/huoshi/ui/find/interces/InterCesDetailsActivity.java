@@ -33,7 +33,7 @@ import im.huoshi.views.RecyclerViewScrollListener;
 
 /**
  * 代祷详情
- * <p/>
+ * <p>
  * Created by Lyson on 15/12/26.
  */
 public class InterCesDetailsActivity extends BaseActivity {
@@ -149,7 +149,7 @@ public class InterCesDetailsActivity extends BaseActivity {
                 InterCesRequest.joinInterces(InterCesDetailsActivity.this, mUser.getUserId(), mIntercessionId, new RestApiCallback() {
                     @Override
                     public void onSuccess(String responseString) {
-                        int totalTimes = 0;
+                        int totalTimes;
                         try {
                             totalTimes = new JSONObject(responseString).getInt("total_join_intercession");
                             mLocalRead.updateTotalJoinIntercession(totalTimes);

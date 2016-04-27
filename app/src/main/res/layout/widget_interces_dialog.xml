@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="340dp"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
     android:background="@mipmap/img_join_bg"
@@ -51,6 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/margin_30"
                 android:layout_marginTop="@dimen/margin_30"
                 android:text="6"
                 android:textColor="#25aeff"
@@ -72,9 +73,9 @@
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:paddingRight="@dimen/margin_25"
+                    android:layout_height="35dp"
                     android:gravity="right"
+                    android:paddingRight="@dimen/margin_25"
                     android:text="——提摩太前书2章1-2节" />
             </LinearLayout>
         </LinearLayout>
@@ -113,6 +114,7 @@
                 android:id="@+id/layout_interces_finished"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_25"
                 android:orientation="vertical"
                 android:visibility="gone">
 

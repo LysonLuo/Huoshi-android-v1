@@ -104,7 +104,7 @@ public class InterCesDelRecAdapter extends LoadMoreAdapter<Comment> {
                     mContentTextView.setEnabled(false);
                     mTimeTextView.setEnabled(false);
                 }
-//                mTimeTextView.setText(DateUtils.getDayBetweenString(content.getCreateTime()) + (mIntercession.getContentList().size() == 1 ? "" : " 更新"));
+                mTimeTextView.setVisibility((mIntercession.getContentList().size() == 1 || i == mIntercession.getContentList().size() - 1) ? View.GONE : View.VISIBLE);
                 mTimeTextView.setText(DateUtils.getDayBetweenString(content.getCreateTime()) + " 更新");
                 viewHolder.mUpdateLayout.addView(contentView);
             }

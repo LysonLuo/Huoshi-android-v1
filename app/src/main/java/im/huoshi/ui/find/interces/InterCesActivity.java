@@ -43,7 +43,6 @@ public class InterCesActivity extends BaseActivity {
         ViewUtils.inject(this);
 
         setupViews();
-//        initFragment();
         verifyPermission();
     }
 
@@ -126,8 +125,6 @@ public class InterCesActivity extends BaseActivity {
     }
 
     private void showDialogByPermission() {
-        //// TODO: 16/4/1 临时修改permission的值，得以进入代祷页面
-        mPermission.setPermission(1);
         if (mPermission.isAuth() == 1 && mPermission.getPermission() == 1) {
             initFragment();
             return;
