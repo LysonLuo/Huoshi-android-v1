@@ -49,6 +49,8 @@ public class UserInfoActivity extends BaseActivity {
     private static final int ACTION_CHOOSE_AREA = 10;
     @ViewInject(R.id.layout_avatar)
     private RelativeLayout mAvatarLayout;
+    @ViewInject(R.id.textview_setting_id)
+    private TextView mIdTextView;
     @ViewInject(R.id.layout_nickname)
     private RelativeLayout mNickNameLayout;
     @ViewInject(R.id.layout_gender)
@@ -169,6 +171,7 @@ public class UserInfoActivity extends BaseActivity {
 
 
         Glide.with(this).load(mUser.getAvatar()).into(mAvatarImageView);
+        mIdTextView.setText(mUser.getNickId());
         mNickName = mUser.getNickName();
         mNickNameTextView.setText(mNickName);
         mGender = mUser.getGender();
