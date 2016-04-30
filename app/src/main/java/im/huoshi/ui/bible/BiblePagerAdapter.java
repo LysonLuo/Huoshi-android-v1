@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class BiblePagerAdapter extends FragmentStatePagerAdapter {
     private List<Fragment> mFragments = new ArrayList<>();
-    private String[] mTitiles = new String[]{"旧约", "新约"};
+    private String[] mTitiles = new String[]{"新约", "旧约"};
 
     public BiblePagerAdapter(FragmentManager fm, List<Fragment> mFragments) {
         super(fm);

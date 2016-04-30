@@ -46,7 +46,7 @@ public class BibleFragment extends BaseFragment {
     }
 
     private void initFragments() {
-        mFragments.add(BibleContentFragment.getInstance(false));
         mFragments.add(BibleContentFragment.getInstance(true));
+        mFragments.add(BibleContentFragment.getInstance(false));
     }
 }

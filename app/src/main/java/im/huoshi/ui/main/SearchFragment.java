@@ -145,7 +145,7 @@ public class SearchFragment extends BaseFragment {
                 @Override
                 public void OnClick(SearchResult searchResult) {
                     ArrayList<Chapter> chapters = mChapterDao.getList(searchResult.getBookId());
-                    ChapterDetailsActivity.launch((BaseActivity) getActivity(), searchResult.getBookName(), mKeyWord, chapters, searchResult.getChapter() - 1);
+                    ChapterDetailsActivity.launch((BaseActivity) getActivity(), searchResult.getBookName(), searchResult.getBookId(), mKeyWord, chapters, searchResult.getChapter() - 1, 0);
                 }
             });
             mResultRecyclerView.setAdapter(mResultAdapter);

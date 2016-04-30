@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 import im.huoshi.HuoshiApplication;
 import im.huoshi.model.HuoshiData;
+import im.huoshi.model.LastHistory;
 import im.huoshi.model.ReadStat;
 
 /**
@@ -63,6 +64,38 @@ public class ReadPreference {
         huoshiData.setShareNumber(mPreference.getInt("share_number", 0));
         huoshiData.setShareToday(mPreference.getString("share_today", ""));
         return huoshiData;
+    }
+
+    /**
+     * 保存上次阅读记录
+     *
+     * @param history
+     */
+    public void saveLastHistory(LastHistory history) {
+        SharedPreferences.Editor editor = mPreference.edit();
+        editor.putInt("book_id", history.getBookId());
+        editor.putString("book_name", history.getBookName());
+        editor.putInt("chapter_no", history.getChapterNo());
+        editor.putInt("section_no", history.getSectionNo());
+        editor.putInt("last_position", history.getLastPosition());
+        editor.putLong("time", history.getTime());
+        editor.apply();
+    }
+
+    /**
+     * 获取上次阅读记录
+     *
+     * @return
+     */
+    public LastHistory getLastHistory() {
+        LastHistory lastHistory = new LastHistory();
+        lastHistory.setBookId(mPreference.getInt("book_id", 0));
+        lastHistory.setBookName(mPreference.getString("book_name", ""));
+        lastHistory.setChapterNo(mPreference.getInt("chapter_no", 0));
+        lastHistory.setSectionNo(mPreference.getInt("section_no", 0));
+        lastHistory.setLastPosition(mPreference.getInt("last_position", 0));
+        lastHistory.setTime(mPreference.getLong("time", 0));
+        return lastHistory;
     }
 
     public void updateAddStat(boolean isAdd) {

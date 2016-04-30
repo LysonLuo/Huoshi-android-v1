@@ -15,6 +15,8 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 
 import im.huoshi.R;
@@ -22,7 +24,9 @@ import im.huoshi.asynapi.callback.RestApiCallback;
 import im.huoshi.asynapi.request.ReadRequest;
 import im.huoshi.base.BaseActivity;
 import im.huoshi.model.Chapter;
+import im.huoshi.model.LastHistory;
 import im.huoshi.model.ReadStat;
+import im.huoshi.model.event.RefreshEvent;
 import im.huoshi.utils.DateUtils;
 import im.huoshi.utils.LogUtils;
 import im.huoshi.utils.ViewInject;
@@ -42,10 +46,12 @@ public class ChapterDetailsActivity extends BaseActivity {
     private Animation mAnimationDown;
     private ArrayList<Chapter> mChapters;
     private int mCurrentPosition;
+    private int mLastPosition;
     private ChapterPagerAdapter mChapterAdapter;
     private boolean mIsShow = false;
     private SectionFragment mFragment;
     private String mBookName;
+    private int mBookId;
     private String mKeyWord;
     private long mStartTime;
     private long mStopTime;
@@ -129,12 +135,28 @@ public class ChapterDetailsActivity extends BaseActivity {
     @Override
     protected void onStop() {
         super.onStop();
+        recordHistory();
         updateReadStat();
 
         if (mCountDownTimer != null) {
             mCountDownTimer.cancel();
             mCountDownTimer = null;
         }
+    }
+
+    /**
+     * 记录阅读历史
+     */
+    private void recordHistory() {
+        LastHistory lastHistory = new LastHistory();
+        lastHistory.setTime(System.currentTimeMillis());
+        lastHistory.setChapterNo(mChapters.get(mCurrentPosition).getChapterNo());
+        lastHistory.setSectionNo(((SectionFragment) mChapterAdapter.getItem(mCurrentPosition)).getLastSectionNo());
+        lastHistory.setLastPosition(((SectionFragment) mChapterAdapter.getItem(mCurrentPosition)).getLastPosition());
+        lastHistory.setBookId(mBookId);
+        lastHistory.setBookName(mBookName);
+        mLocalRead.saveLastHistory(lastHistory);
+        EventBus.getDefault().post(new RefreshEvent());
     }
 
     private void updateReadStat() {
@@ -178,12 +200,14 @@ public class ChapterDetailsActivity extends BaseActivity {
         mStartTime = System.currentTimeMillis();
         mChapters = getIntent().getParcelableArrayListExtra("chapters");
         mCurrentPosition = getIntent().getIntExtra("position", 0);
+        mLastPosition = getIntent().getIntExtra("last_position", 0);
         mBookName = getIntent().getStringExtra("bookName");
+        mBookId = getIntent().getIntExtra("bookId", 0);
         mKeyWord = getIntent().getStringExtra("keyWord");
         mAnimationUp = AnimationUtils.loadAnimation(this, R.anim.anim_translate_up);
         mAnimationDown = AnimationUtils.loadAnimation(this, R.anim.anim_translate_down);
         mAnnotationTextView.setMovementMethod(new ScrollingMovementMethod());
-        mChapterAdapter = new ChapterPagerAdapter(getSupportFragmentManager(), mChapters, mKeyWord);
+        mChapterAdapter = new ChapterPagerAdapter(getSupportFragmentManager(), mChapters, mKeyWord, mCurrentPosition + 1, mLastPosition);
         mViewPager.setAdapter(mChapterAdapter);
         mViewPager.setCurrentItem(mCurrentPosition);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -204,8 +228,8 @@ public class ChapterDetailsActivity extends BaseActivity {
 
             @Override
             public void onPageSelected(int position) {
-
-                mToolbarUtils.setTitleText(mBookName + "\t\t" + mChapters.get(position).getChapterNo() + "章");
+                mCurrentPosition = position;
+                mToolbarUtils.setTitleText(mBookName + "\t\t" + mChapters.get(mCurrentPosition).getChapterNo() + "章");
                 if (mIsShow) {
                     mFragment.changeIndexColor();
                     mFragment.setIsChecked(false);
@@ -260,12 +284,14 @@ public class ChapterDetailsActivity extends BaseActivity {
         mAnnotationTextView.startAnimation(mAnimationUp);
     }
 
-    public static void launch(BaseActivity activity, String bookName, String keyWord, ArrayList<Chapter> chapters, int position) {
+    public static void launch(BaseActivity activity, String bookName, int bookId, String keyWord, ArrayList<Chapter> chapters, int position, int lastPosition) {
         Intent intent = new Intent(activity, ChapterDetailsActivity.class);
         intent.putParcelableArrayListExtra("chapters", chapters);
         intent.putExtra("position", position);
         intent.putExtra("bookName", bookName);
+        intent.putExtra("bookId", bookId);
         intent.putExtra("keyWord", keyWord);
+        intent.putExtra("last_position", lastPosition);
         activity.startActivity(intent);
     }
 }

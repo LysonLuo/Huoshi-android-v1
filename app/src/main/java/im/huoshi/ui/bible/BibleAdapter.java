@@ -127,7 +127,7 @@ public class BibleAdapter extends RecyclerView.Adapter<BibleAdapter.BibleViewHol
             holder.mLayoutManager = new GridLayoutManager(mContext, 8);
             holder.mRecyclerView.setLayoutManager(holder.mLayoutManager);
             holder.mChapterList = loadChapter(basePostion + index);
-            holder.mAdapter = new BibleChapterAdapter(mContext, mSelectCheckBox.getText().toString(), holder.mChapterList);
+            holder.mAdapter = new BibleChapterAdapter(mContext, mSelectCheckBox.getText().toString(), mBookList.get(basePostion + index).getBookNo(), holder.mChapterList);
             holder.mRecyclerView.setAdapter(holder.mAdapter);
             holder.mAdapter.setParentAdapter(this);
             mViewWrap = new ViewWrapperUtils(holder.mRecyclerView);

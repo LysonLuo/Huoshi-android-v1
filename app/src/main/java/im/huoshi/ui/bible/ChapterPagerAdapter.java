@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import im.huoshi.model.Chapter;
 
@@ -13,12 +14,16 @@ import im.huoshi.model.Chapter;
  */
 public class ChapterPagerAdapter extends FragmentStatePagerAdapter {
     private ArrayList<Chapter> mChapters = null;
+    private List<SectionFragment> mFragmentList = new ArrayList<>();
     private String mKeyWord;
 
-    public ChapterPagerAdapter(FragmentManager fm, ArrayList<Chapter> chapters, String keyWord) {
+    public ChapterPagerAdapter(FragmentManager fm, ArrayList<Chapter> chapters, String keyWord,int chapterNo, int sectionNo) {
         super(fm);
         this.mChapters = chapters;
         this.mKeyWord = keyWord;
+        for (Chapter chapter : mChapters) {
+            mFragmentList.add(SectionFragment.getInstance(chapter, mKeyWord, (chapter.getChapterNo() == chapterNo ? sectionNo : 0)));
+        }
     }
 
     @Override
@@ -28,7 +33,6 @@ public class ChapterPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        SectionFragment fragment = SectionFragment.getInstance(mChapters.get(position), mKeyWord);
-        return fragment;
+        return mFragmentList.get(position);
     }
 }
