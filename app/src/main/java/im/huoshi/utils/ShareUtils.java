@@ -26,17 +26,26 @@ import im.huoshi.model.event.ShareEvent;
  * Created by Lyson on 16/3/16.
  */
 public class ShareUtils {
+
+    public interface UmengShareListener {
+        void onSuccess();
+    }
+
     public static void init(final BaseActivity activity) {
+       init(activity, null);
+    }
+
+    public static void init(final BaseActivity activity, final UmengShareListener listener) {
         SHARE_MEDIA[] displaylist = new SHARE_MEDIA[]{SHARE_MEDIA.WEIXIN, SHARE_MEDIA.SMS, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE};
         new ShareAction(activity).setDisplayList(displaylist).setShareboardclickCallback(new ShareBoardlistener() {
             @Override
             public void onclick(SnsPlatform snsPlatform, SHARE_MEDIA share_media) {
-                share(activity, share_media);
+                share(activity, share_media, listener);
             }
         }).open();
     }
 
-    public static void share(final BaseActivity activity, SHARE_MEDIA share_media) {
+    public static void share(final BaseActivity activity, SHARE_MEDIA share_media, final UmengShareListener listener) {
         if (share_media.equals(SHARE_MEDIA.SMS)) {
             smsShare(activity);
         } else {
@@ -50,6 +59,9 @@ public class ShareUtils {
                         public void onResult(SHARE_MEDIA share_media) {
                             activity.showShortToast(share_media.name() + "分享成功");
                             updateShareRecord(activity);
+                            if (listener != null) {
+                                listener.onSuccess();
+                            }
                         }
 
                         @Override

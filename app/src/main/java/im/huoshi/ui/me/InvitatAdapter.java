@@ -12,7 +12,9 @@ import android.widget.TextView;
 import java.util.List;
 
 import im.huoshi.R;
+import im.huoshi.base.BaseActivity;
 import im.huoshi.model.Contacts;
+import im.huoshi.utils.ShareUtils;
 import im.huoshi.utils.ViewInject;
 import im.huoshi.utils.ViewUtils;
 
@@ -35,7 +37,7 @@ public class InvitatAdapter extends RecyclerView.Adapter<InvitatAdapter.InvitatV
     }
 
     @Override
-    public void onBindViewHolder(InvitatViewHolder holder, int position) {
+    public void onBindViewHolder(final InvitatViewHolder holder, int position) {
         Contacts contacts = mContactsList.get(position);
         holder.tvContactName.setText(contacts.getContactsName());
         if (contacts.getContactsType() == 1) {
@@ -46,6 +48,7 @@ public class InvitatAdapter extends RecyclerView.Adapter<InvitatAdapter.InvitatV
                 holder.tvContactStatus.setBackgroundDrawable(null);
             }
             holder.tvContactStatus.setText("已邀请");
+            holder.tvContactStatus.setOnClickListener(null);
         } else {
             holder.tvContactStatus.setTextColor(ContextCompat.getColor(mContext, R.color.common_blue_light));
             if (Build.VERSION.SDK_INT > 16) {
@@ -54,6 +57,24 @@ public class InvitatAdapter extends RecyclerView.Adapter<InvitatAdapter.InvitatV
                 holder.tvContactStatus.setBackgroundDrawable(ContextCompat.getDrawable(mContext, R.drawable.shape_blue_rec_whilte_solid));
             }
             holder.tvContactStatus.setText("邀请");
+            holder.tvContactStatus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ShareUtils.init((BaseActivity) mContext, new ShareUtils.UmengShareListener() {
+                        @Override
+                        public void onSuccess() {
+                            holder.tvContactStatus.setTextColor(ContextCompat.getColor(mContext, R.color.text_color_invitat));
+                            if (Build.VERSION.SDK_INT > 16) {
+                                holder.tvContactStatus.setBackground(null);
+                            } else {
+                                holder.tvContactStatus.setBackgroundDrawable(null);
+                            }
+                            holder.tvContactStatus.setText("已邀请");
+                            holder.tvContactStatus.setOnClickListener(null);
+                        }
+                    });
+                }
+            });
         }
     }
 
