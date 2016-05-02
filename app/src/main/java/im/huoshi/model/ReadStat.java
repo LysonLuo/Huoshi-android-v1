@@ -12,6 +12,10 @@ public class ReadStat extends ApiObject {
     private int continuousDays;//连续阅读天数
     @SerializedName("total_minutes")
     private int totalMinutes;//总阅读时间
+    @SerializedName("yesterday_minutes")
+    private int yesterdayMinutes;//昨日阅读时间
+    @SerializedName("today_minutes")
+    private int todayMinutes;//今日阅读时间
     private String notice;//一句话提示
 
 
@@ -25,6 +29,14 @@ public class ReadStat extends ApiObject {
 
     public int getTotalMinutes() {
         return totalMinutes;
+    }
+
+    public int getYesterdayMinutes() {
+        return yesterdayMinutes;
+    }
+
+    public int getTodayMinutes() {
+        return todayMinutes;
     }
 
     public String getNotice() {
@@ -41,6 +53,14 @@ public class ReadStat extends ApiObject {
 
     public void setTotalMinutes(int totalMinutes) {
         this.totalMinutes = totalMinutes;
+    }
+
+    public void setYesterdayMinutes(int yesterdayMinutes) {
+        this.yesterdayMinutes = yesterdayMinutes;
+    }
+
+    public void setTodayMinutes(int todayMinutes) {
+        this.todayMinutes = todayMinutes;
     }
 
     public void setNotice(String notice) {

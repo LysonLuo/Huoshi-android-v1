@@ -37,6 +37,8 @@ public class ReadPreference {
         editor.putInt("last_minutes", readStat.getLastMinutes());
         editor.putInt("total_minutes", readStat.getTotalMinutes());
         editor.putInt("continuous_days", readStat.getContinuousDays());
+        editor.putInt("yesterday_minutes", readStat.getYesterdayMinutes());
+        editor.putInt("today_minutes", readStat.getTodayMinutes());
         editor.putString("notice", readStat.getNotice());
         editor.apply();
     }
@@ -46,6 +48,8 @@ public class ReadPreference {
         readStat.setLastMinutes(mPreference.getInt("last_minutes", 0));
         readStat.setTotalMinutes(mPreference.getInt("total_minutes", 0));
         readStat.setContinuousDays(mPreference.getInt("continuous_days", 0));
+        readStat.setYesterdayMinutes(mPreference.getInt("yesterday_minutes", 0));
+        readStat.setTodayMinutes(mPreference.getInt("today_minutes", 0));
         readStat.setNotice(mPreference.getString("notice", ""));
         return readStat;
     }
@@ -150,6 +154,58 @@ public class ReadPreference {
         editor.putInt("continuous_interces_days", newDay);
         editor.apply();
     }
+
+    /**
+     * 更新昨日阅读时间，直接取今日阅读时间
+     */
+    public void updateYesterdayMinutes() {
+        SharedPreferences.Editor editor = mPreference.edit();
+        editor.putInt("yesterday_minutes", mPreference.getInt("today_minutes", 0));
+        editor.apply();
+    }
+
+    /**
+     * 更新昨日阅读时间，存储服务器返回数据
+     *
+     * @param yesterdayMinutes
+     */
+    public void updateYesterdayMinutes(int yesterdayMinutes) {
+        SharedPreferences.Editor editor = mPreference.edit();
+        editor.putInt("yesterday_minutes", yesterdayMinutes);
+        editor.apply();
+    }
+
+    /**
+     * 置空昨日阅读时间
+     */
+    public void clearYesterdayMinutes() {
+        SharedPreferences.Editor editor = mPreference.edit();
+        editor.putInt("yesterday_minutes", 0);
+        editor.apply();
+    }
+
+    /**
+     * 更新今日阅读时间，在原有基础上累加
+     *
+     * @param currentMinutes 本次阅读时间
+     */
+    public void addTodayMinutes(int currentMinutes) {
+        SharedPreferences.Editor editor = mPreference.edit();
+        editor.putInt("today_minutes", mPreference.getInt("today_minutes", 0) + currentMinutes);
+        editor.apply();
+    }
+
+    /**
+     * 更新今日阅读时间，存储服务端返回数据/今日初次阅读时间
+     *
+     * @param todayMinutes
+     */
+    public void updateTodayMinutes(int todayMinutes) {
+        SharedPreferences.Editor editor = mPreference.edit();
+        editor.putInt("today_minutes", todayMinutes);
+        editor.apply();
+    }
+
 
     public long getLastReadLong() {
         return mPreference.getLong("last_read_long", 0);

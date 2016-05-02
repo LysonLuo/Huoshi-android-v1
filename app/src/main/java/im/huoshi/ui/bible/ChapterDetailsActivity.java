@@ -107,7 +107,7 @@ public class ChapterDetailsActivity extends BaseActivity {
 
     private void asynReadData() {
         if (isLogin()) {
-            ReadRequest.readStat(ChapterDetailsActivity.this, mUser.getUserId(), mReadStat.getLastMinutes(), mReadStat.getTotalMinutes(), mReadStat.getContinuousDays(), mLocalRead.getAddStat(), new RestApiCallback() {
+            ReadRequest.readStat(ChapterDetailsActivity.this, mUser.getUserId(), mReadStat.getLastMinutes(), mReadStat.getYesterdayMinutes(), mReadStat.getTodayMinutes(), mReadStat.getTotalMinutes(), mReadStat.getContinuousDays(), mLocalRead.getAddStat(), new RestApiCallback() {
                 @Override
                 public void onSuccess(String responseString) {
                     ReadStat readStat = new Gson().fromJson(responseString, new TypeToken<ReadStat>() {
@@ -175,17 +175,28 @@ public class ChapterDetailsActivity extends BaseActivity {
                 mLocalRead.updateTotalMinutes();
                 //从上次阅读结束到这次阅读结束,时间间隔为1,或者从上次阅读结束到这次阅读结束,时间间隔为2,但是从开始阅读到结束阅读,时间间隔为1,也就是过了24点还在读~
                 if (dayBetweenLast == 1) {
+                    //这里应该把今日阅读时间变成昨日阅读时间了，今日阅读时间就变成此次阅读时间
                     mLocalRead.updateContinuousDays();
+                    mLocalRead.updateYesterdayMinutes();
+                    mLocalRead.updateTodayMinutes(mCurrentMinutes);
                 } else if (dayBetweenLast == 2 && dayBetweenCurrent == 1) {
+                    //这里也应该把今日阅读时间变成昨日阅读时间了，今日阅读时间就变成此次阅读时间
+                    mLocalRead.updateYesterdayMinutes();
+                    mLocalRead.updateTodayMinutes(mCurrentMinutes);
                     mLocalRead.updateContinuousDays();
                     mLocalRead.setTodayShouldAdd(true);
                 } else if (dayBetweenLast == 0) {
+                    //今日阅读时间累加
+                    mLocalRead.addTodayMinutes(mCurrentMinutes);
                     //今天读过了，不应该做任何事情，但是这种情况呢：从昨天十二点多，读到凌晨，那应该＋1。。。
                     if (mLocalRead.todayShouldAdd()) {
                         mLocalRead.updateContinuousDays();
                         mLocalRead.setTodayShouldAdd(false);
                     }
                 } else {
+                    //这里要把昨日阅读时间置空，今日阅读时间就变成此次阅读时间
+                    mLocalRead.clearYesterdayMinutes();
+                    mLocalRead.updateTodayMinutes(mCurrentMinutes);
                     mLocalRead.updateContinuousDays(1);
                 }
                 mLocalRead.updateLastReadLong(mStopTime);

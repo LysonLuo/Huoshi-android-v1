@@ -34,6 +34,10 @@ public class User extends ApiObject {
     private int continuousDays;//连续阅读天数
     @SerializedName("total_minutes")
     private int totalMinutes;
+    @SerializedName("yesterday_minutes")
+    private int yesterdayMinutes;//昨日阅读时间
+    @SerializedName("today_minutes")
+    private int todayMinutes;//今日阅读时间
     @SerializedName("total_share_times")
     private int totalShareTimes;
     @SerializedName("total_join_intercession")
@@ -101,6 +105,14 @@ public class User extends ApiObject {
 
     public int getTotalMinutes() {
         return totalMinutes;
+    }
+
+    public int getYesterdayMinutes() {
+        return yesterdayMinutes;
+    }
+
+    public int getTodayMinutes() {
+        return todayMinutes;
     }
 
     public int getTotalShareTimes() {
@@ -173,6 +185,14 @@ public class User extends ApiObject {
 
     public void setTotalMinutes(int totalMinutes) {
         this.totalMinutes = totalMinutes;
+    }
+
+    public void setYesterdayMinutes(int yesterdayMinutes) {
+        this.yesterdayMinutes = yesterdayMinutes;
+    }
+
+    public void setTodayMinutes(int todayMinutes) {
+        this.todayMinutes = todayMinutes;
     }
 
     public void setTotalShareTimes(int totalShareTimes) {

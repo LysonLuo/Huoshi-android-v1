@@ -23,10 +23,12 @@ public class ReadRequest extends BaseRequest {
      * @param continuousDays 持续阅读天数
      * @param callback
      */
-    public static void readStat(BaseActivity activity, int userId, int lastMinutes, int totalMinutes, int continuousDays, boolean isAdd, final RestApiCallback callback) {
+    public static void readStat(BaseActivity activity, int userId, int lastMinutes, int yesterdayMinutes, int todayMinutes, int totalMinutes, int continuousDays, boolean isAdd, final RestApiCallback callback) {
         TreeMap<String, String> treeMap = initParams();
         treeMap.put("user_id", String.valueOf(userId));
         treeMap.put("last_minutes", String.valueOf(lastMinutes));
+        treeMap.put("yesterday_minutes", String.valueOf(yesterdayMinutes));
+        treeMap.put("today_minutes", String.valueOf(todayMinutes));
         treeMap.put("total_minutes", String.valueOf(totalMinutes));
         treeMap.put("continuous_days", String.valueOf(continuousDays));
         treeMap.put("is_add", String.valueOf(isAdd));

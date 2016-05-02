@@ -42,7 +42,7 @@
     <string name="text_predit_time">预计更新祷告时间</string>
     <string name="text_remind_suffrage">（及时更新代祷事项进展会让兄弟姐妹们更有信心）</string>
     <string name="text_phone_hint">您的手机号，我们会严格保密</string>
-    <string name="text_last_read_time">上次阅读时间：</string>
+    <string name="text_yesterday_read_time">昨日阅读时间：</string>
     <string name="text_total_read_time">累计阅读时长：</string>
     <string name="text_christ_life">基督生活 随身常在</string>
     <string name="text_continue_read_days">连续读经天数</string>
