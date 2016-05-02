@@ -19,7 +19,7 @@ import im.huoshi.base.BaseFragment;
 import im.huoshi.database.dao.BookDao;
 import im.huoshi.model.Book;
 import im.huoshi.model.LastHistory;
-import im.huoshi.model.event.RefreshEvent;
+import im.huoshi.model.event.RefreshBibleEvent;
 import im.huoshi.utils.ViewInject;
 import im.huoshi.utils.ViewUtils;
 
@@ -61,7 +61,7 @@ public class BibleContentFragment extends BaseFragment {
     }
 
     @Subscribe
-    public void onEvent(RefreshEvent refreshEvent) {
+    public void onEvent(RefreshBibleEvent refreshBibleEvent) {
         mHistory = mLocalRead.getLastHistory();
         mAdapter.updateLastHistory(mHistory);
     }
@@ -76,22 +76,6 @@ public class BibleContentFragment extends BaseFragment {
         loadBook();
         return contentView;
     }
-
-
-//    private void setupViewsByHistory() {
-//        if (mIsNew) {
-//            mHistory = mLocalRead.getLastHistory();
-//            if (mHistory != null && mHistory.getBookId() != 0) {
-////                mHistoryLayout.setVisibility(View.VISIBLE);
-//                mTvHistoryTime.setText(DateUtils.formatToString(mHistory.getTime(), "MM/dd HH:mm"));
-//                mTvBookDetail.setText(" 读到 ：" + mHistory.getBookName() + " " + mHistory.getChapterNo() + "章" + mHistory.getSectionNo() + "节");
-//                return;
-//            }
-//            mHistoryLayout.setVisibility(View.GONE);
-//            return;
-//        }
-//        mHistoryLayout.setVisibility(View.GONE);
-//    }
 
     private void setupViews() {
         mIsNew = getArguments().getBoolean("isNew", false);

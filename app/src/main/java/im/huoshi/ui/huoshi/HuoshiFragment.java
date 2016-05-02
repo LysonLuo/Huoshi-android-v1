@@ -12,12 +12,16 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import im.huoshi.R;
 import im.huoshi.asynapi.callback.RestApiCallback;
 import im.huoshi.asynapi.request.HuoshiRequest;
 import im.huoshi.base.BaseActivity;
 import im.huoshi.base.BaseFragment;
 import im.huoshi.model.HuoshiData;
+import im.huoshi.model.event.RefreshHuoshiEvent;
 import im.huoshi.ui.main.LoginActivity;
 import im.huoshi.utils.DateUtils;
 import im.huoshi.utils.ViewInject;
@@ -40,6 +44,24 @@ public class HuoshiFragment extends BaseFragment {
     @ViewInject(R.id.textview_today_share)
     private TextView mShareTextView;
 
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe
+    public void onEvent(RefreshHuoshiEvent refreshHuoshiEvent) {
+        setupViewsByHuoshi();
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -51,6 +73,7 @@ public class HuoshiFragment extends BaseFragment {
         loadData();
         return contentView;
     }
+
 
     private void setupViews() {
         mGuideLoginLayout.setOnClickListener(new View.OnClickListener() {

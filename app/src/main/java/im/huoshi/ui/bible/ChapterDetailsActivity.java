@@ -26,7 +26,8 @@ import im.huoshi.base.BaseActivity;
 import im.huoshi.model.Chapter;
 import im.huoshi.model.LastHistory;
 import im.huoshi.model.ReadStat;
-import im.huoshi.model.event.RefreshEvent;
+import im.huoshi.model.event.RefreshBibleEvent;
+import im.huoshi.model.event.RefreshHuoshiEvent;
 import im.huoshi.utils.DateUtils;
 import im.huoshi.utils.LogUtils;
 import im.huoshi.utils.ViewInject;
@@ -156,7 +157,7 @@ public class ChapterDetailsActivity extends BaseActivity {
         lastHistory.setBookId(mBookId);
         lastHistory.setBookName(mBookName);
         mLocalRead.saveLastHistory(lastHistory);
-        EventBus.getDefault().post(new RefreshEvent());
+        EventBus.getDefault().post(new RefreshBibleEvent());
     }
 
     private void updateReadStat() {
@@ -193,6 +194,7 @@ public class ChapterDetailsActivity extends BaseActivity {
             mStartTime = System.currentTimeMillis();
             mHasSavedData = true;
             mHasChangePage = false;
+            EventBus.getDefault().post(new RefreshHuoshiEvent());
         }
     }
 
