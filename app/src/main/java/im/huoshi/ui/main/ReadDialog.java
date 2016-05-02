@@ -12,7 +12,10 @@ import im.huoshi.asynapi.callback.RestApiCallback;
 import im.huoshi.asynapi.request.ReadRequest;
 import im.huoshi.base.BaseActivity;
 import im.huoshi.data.ReadPreference;
+import im.huoshi.database.dao.CourageDao;
+import im.huoshi.model.CourageWord;
 import im.huoshi.model.ReadStat;
+import im.huoshi.utils.DateUtils;
 import im.huoshi.utils.LogUtils;
 import im.huoshi.utils.ViewInject;
 import im.huoshi.utils.ViewUtils;
@@ -30,13 +33,16 @@ public class ReadDialog extends AppCompatDialog {
     @ViewInject(R.id.textview_remind_info)
     private TextView mInfoTextView;
     private ReadStat mReadStat;
+    private CourageDao mCourageDao;
 
     public ReadDialog(Context context, int userId, ReadStat readStat) {
         super(context, R.style.CustomPopup);
         setContentView(R.layout.widget_read_dialog);
         mReadStat = readStat;
         ViewUtils.inject(this);
+        mCourageDao = new CourageDao();
         setupViews();
+        handleNote();
         asynReadData((BaseActivity) context, userId);
     }
 
@@ -44,7 +50,60 @@ public class ReadDialog extends AppCompatDialog {
         mDayTextView.setText(mReadStat.getContinuousDays() + "");
         mLastTextView.setText(mReadStat.getYesterdayMinutes() + "分钟");
         mTotalTextView.setText(mReadStat.getTotalMinutes() + "分钟");
-        mInfoTextView.setText(mReadStat.getNotice());
+    }
+
+    private void handleNote() {
+        //上次阅读结束到现在的时间间隔
+        int dayBetweenLast = DateUtils.getDayBetween(ReadPreference.getInstance().getLastReadLong());
+        if (dayBetweenLast > 1) {
+            ReadPreference.getInstance().clearYesterdayMinutes();
+            ReadPreference.getInstance().clearTodayMinutes();
+        }
+        int todayMinutes = mReadStat.getTodayMinutes();
+        CourageWord courageWord;
+        String note = "您真是一个虔诚的教徒，希望您再接再厉";
+        if (todayMinutes < 1) {
+            //类型1
+            courageWord = mCourageDao.getCourageByTypeAndStatus(1, true);
+            if (6 == courageWord.getId()) {
+                mCourageDao.updateStatusByTypeAndId(1, courageWord.getId(), false);
+                mCourageDao.updateStatusByTypeAndId(1, 1, true);
+            } else {
+                mCourageDao.updateStatusByTypeAndId(1, courageWord.getId(), false);
+                mCourageDao.updateStatusByTypeAndId(1, courageWord.getId() + 1, true);
+            }
+            note = courageWord.getWord();
+
+        } else if (todayMinutes >= 1 && todayMinutes < 60) {
+            //类型2
+            courageWord = mCourageDao.getCourageByTypeAndStatus(2, true);
+            if (16 == courageWord.getId()) {
+                mCourageDao.updateStatusByTypeAndId(2, courageWord.getId(), false);
+                mCourageDao.updateStatusByTypeAndId(2, 7, true);
+            } else {
+                mCourageDao.updateStatusByTypeAndId(2, courageWord.getId(), false);
+                mCourageDao.updateStatusByTypeAndId(2, courageWord.getId() + 1, true);
+            }
+            note = courageWord.getWord();
+
+        } else if (todayMinutes >= 60 && todayMinutes < 120) {
+            //类型3
+            courageWord = mCourageDao.getCourageByTypeAndStatus(3, true);
+            if (26 == courageWord.getId()) {
+                mCourageDao.updateStatusByTypeAndId(3, courageWord.getId(), false);
+                mCourageDao.updateStatusByTypeAndId(3, 17, true);
+            } else {
+                mCourageDao.updateStatusByTypeAndId(3, courageWord.getId(), false);
+                mCourageDao.updateStatusByTypeAndId(3, courageWord.getId() + 1, true);
+            }
+            note = courageWord.getWord();
+
+        } else if (todayMinutes >= 120 || mReadStat.getContinuousDays() > 30) {
+            //类型4
+            courageWord = mCourageDao.getCourageByTypeAndStatus(4, true);
+            note = courageWord.getWord();
+        }
+        mInfoTextView.setText(note);
     }
 
 

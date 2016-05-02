@@ -206,6 +206,15 @@ public class ReadPreference {
         editor.apply();
     }
 
+    /**
+     * 置空今日阅读时间，从阅读统计弹框进入的时候调用
+     */
+    public void clearTodayMinutes(){
+        SharedPreferences.Editor editor = mPreference.edit();
+        editor.putInt("today_minutes", 0);
+        editor.apply();
+    }
+
 
     public long getLastReadLong() {
         return mPreference.getLong("last_read_long", 0);
