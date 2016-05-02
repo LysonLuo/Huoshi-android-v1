@@ -18,6 +18,7 @@
     <color name="text_section_index">#88444444</color>
     <color name="text_color_gray_9">#999999</color>
     <color name="text_color_red_light">#FD4F4F</color>
+    <color name="text_color_invitat">#98999A</color>
 
     <!--背景颜色-->
     <color name="conmon_gray_line_divider">#CCCCCC</color>

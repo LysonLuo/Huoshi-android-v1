@@ -23,12 +23,11 @@
             android:minLines="8"
             android:textSize="@dimen/text_size_15" />
 
-        <CheckBox
-            android:id="@+id/checkbox_interces_loc"
+        <TextView
+            android:id="@+id/tv_interces_loc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_10"
-            android:button="@null"
             android:drawableLeft="@drawable/drawable_interces_loc_selector"
             android:drawablePadding="@dimen/margin_10"
             android:gravity="center_vertical"

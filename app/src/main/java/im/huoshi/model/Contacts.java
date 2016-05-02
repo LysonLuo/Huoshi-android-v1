@@ -19,7 +19,7 @@ public class Contacts extends ApiObject {
     private String phones;
     @SerializedName("contacts_type")
     @DatabaseField
-    private int contactsType;//1未注册,2好友
+    private int contactsType;//2未注册,1好友
 
     public String getContactsId() {
         return contactsId;

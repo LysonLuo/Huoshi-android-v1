@@ -138,6 +138,9 @@ public class InterCesFragment extends BaseFragment {
     }
 
     public void dataNofify() {
+        mStartPage = 1;
+        mNoMoreData = false;
+        mIntercessionList.clear();
         loadInterces();
     }
 

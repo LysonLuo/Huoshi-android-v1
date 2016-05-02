@@ -76,7 +76,7 @@ public class HuoshiFragment extends BaseFragment {
 
     private void handleReadData() {
         int dayBetween = DateUtils.getDayBetween(mLocalRead.getLastReadLong());
-        if (dayBetween > 0) {
+        if (dayBetween > 1) {
             //时间间隔超过一天，就应该重置了！
             mLocalRead.updateContinuousDays(0);
         }

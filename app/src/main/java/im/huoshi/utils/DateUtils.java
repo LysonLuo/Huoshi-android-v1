@@ -21,7 +21,7 @@ public class DateUtils {
         int dayBetweenInt = getDayBetween(dayLong);
         switch (dayBetweenInt) {
             case 0:
-                return formatToString(dayLong, "HH:MM");
+                return formatToString(dayLong, "HH:mm");
             case 1:
                 return "一天前";
             case 2:

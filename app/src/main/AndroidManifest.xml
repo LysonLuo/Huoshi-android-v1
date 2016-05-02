@@ -64,6 +64,9 @@
             android:name=".ui.me.MyPrayerActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".ui.me.MyInvitationActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.me.UserInfoActivity"
             android:screenOrientation="portrait" />
         <activity

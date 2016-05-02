@@ -41,8 +41,8 @@ public class PubInterCesActivity extends BaseActivity {
     private LinearLayout mRemidLayout;
     @ViewInject(R.id.layout_time)
     private LinearLayout mTimeLayout;
-    @ViewInject(R.id.checkbox_interces_loc)
-    private CheckBox mLocCheckBox;
+    @ViewInject(R.id.tv_interces_loc)
+    private TextView mTvLoc;
     @ViewInject(R.id.checkbox_interces_pre)
     private CheckBox mPreCheckBox;
     @ViewInject(R.id.textview_interces_year)
@@ -77,7 +77,7 @@ public class PubInterCesActivity extends BaseActivity {
         if (mIsUpdateInterces) {
             mRemidLayout.setVisibility(View.GONE);
             mTimeLayout.setVisibility(View.GONE);
-            mLocCheckBox.setVisibility(View.GONE);
+            mTvLoc.setVisibility(View.GONE);
             return;
         }
         mTimerPickerView = new TimePickerView(PubInterCesActivity.this, TimePickerView.Type.YEAR_MONTH_DAY_HOUR);
@@ -93,7 +93,7 @@ public class PubInterCesActivity extends BaseActivity {
             }
         });
 
-        mLocCheckBox.setOnClickListener(new View.OnClickListener() {
+        mTvLoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getLocation();
@@ -238,7 +238,7 @@ public class PubInterCesActivity extends BaseActivity {
             }
         }
         if (mLocSuccess) {
-            location = mLocCheckBox.getText().toString();
+            location = mTvLoc.getText().toString();
         }
         if (preTime != 0 && preTime < System.currentTimeMillis()) {
             showShortToast("更新代祷时间不能小于当前时间");
@@ -265,15 +265,16 @@ public class PubInterCesActivity extends BaseActivity {
             public void onLoc(final String provinceName, final String cityName, final double latitude, final double longitude) {
                 String province = provinceName.length() > 2 ? provinceName.replace("省", "") : provinceName;
                 String city = cityName.length() > 2 ? cityName.replaceAll("市", "") : cityName;
-                mLocCheckBox.setText(province + city);
+                mTvLoc.setText(province + city);
                 mLocSuccess = true;
-                mLocCheckBox.setEnabled(true);
+                mTvLoc.setActivated(true);
             }
 
             @Override
             public void onLocFailure() {
-                mLocCheckBox.setText("点我获取位置信息");
-                mLocCheckBox.setEnabled(false);
+                mTvLoc.setText("点我获取位置信息");
+                mTvLoc.setActivated(false);
+                mTvLoc.setSelected(true);
                 mLocSuccess = false;
             }
         });
