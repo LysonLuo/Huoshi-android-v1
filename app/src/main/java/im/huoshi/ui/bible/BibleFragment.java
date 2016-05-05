@@ -43,10 +43,11 @@ public class BibleFragment extends BaseFragment {
         mAdapter = new BiblePagerAdapter(getChildFragmentManager(), mFragments);
         mViewPager.setAdapter(mAdapter);
         mTablayout.setupWithViewPager(mViewPager);
+        mViewPager.setCurrentItem(1);
     }
 
     private void initFragments() {
-        mFragments.add(BibleContentFragment.getInstance(true));
         mFragments.add(BibleContentFragment.getInstance(false));
+        mFragments.add(BibleContentFragment.getInstance(true));
     }
 }

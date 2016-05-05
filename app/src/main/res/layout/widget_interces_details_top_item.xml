@@ -44,8 +44,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:paddingTop="@dimen/margin_5"
-                android:layout_marginLeft="@dimen/margin_10">
+                android:layout_marginLeft="@dimen/margin_10"
+                android:paddingTop="@dimen/margin_5">
 
                 <TextView
                     android:id="@+id/textview_nick_name"
@@ -88,22 +88,19 @@
             android:id="@+id/layout_interces_update"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/margin_10"
-            android:orientation="vertical">
-
-        </LinearLayout>
+            android:orientation="vertical"
+            android:paddingTop="@dimen/margin_10"></LinearLayout>
 
         <TextView
             android:id="@+id/textview_intercessor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_20"
             android:background="@mipmap/img_intercessor"
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:maxLines="2"
-            android:text="测试数据啊"
             android:padding="@dimen/margin_5"
+            android:text="测试数据啊"
             android:textSize="@dimen/text_size_11" />
 
         <View
@@ -129,7 +126,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/margin_16"
             android:gravity="center_vertical"
-            android:textSize="@dimen/text_size_13"
-            android:text="祝福" />
+            android:text="祝福"
+            android:textSize="@dimen/text_size_13" />
     </LinearLayout>
 </LinearLayout>

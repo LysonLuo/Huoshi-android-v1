@@ -173,7 +173,7 @@ public class PubInterCesActivity extends BaseActivity {
         } else {
             mToolbarUtils.setTitleText("发布代祷");
         }
-        mToolbarUtils.setRightViewBg(R.drawable.drawable_button_blue_gray_selector);
+        mToolbarUtils.setRightViewBg(R.drawable.shape_white_rec_blue_solid);
         mToolbarUtils.setRightViewColor(R.color.text_color_white);
         mToolbarUtils.setMiddleRightViewColor(R.color.text_color_red_light);
         mToolbarUtils.setRightText("发布");

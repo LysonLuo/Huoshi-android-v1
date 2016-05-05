@@ -39,7 +39,7 @@ public class SectionFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View contentView = inflater.inflate(R.layout.widget_section_container, container, false);
+        View contentView = inflater.inflate(R.layout.fragment_section, container, false);
         ViewUtils.inject(this, contentView);
         setupViews();
         return contentView;

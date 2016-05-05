@@ -42,7 +42,7 @@ public class CommentActivity extends BaseActivity {
         super.initTitle();
         mToolbarUtils.setTitleText("发布祝福");
         mToolbarUtils.setRightText("发布");
-        mToolbarUtils.setRightViewBg(R.drawable.drawable_button_blue_gray_selector);
+        mToolbarUtils.setRightViewBg(R.drawable.shape_white_rec_blue_solid);
         mToolbarUtils.setRightViewColor(R.color.text_color_white);
     }
 

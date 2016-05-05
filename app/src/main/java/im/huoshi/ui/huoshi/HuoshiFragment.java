@@ -59,6 +59,7 @@ public class HuoshiFragment extends BaseFragment {
 
     @Subscribe
     public void onEvent(RefreshHuoshiEvent refreshHuoshiEvent) {
+        reloadLocalData();
         setupViewsByHuoshi();
     }
 

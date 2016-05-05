@@ -101,8 +101,8 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initTitle() {
         super.initTitle();
-        mToolbarUtils.setRightViewIcon(R.mipmap.icon_search_blue);
-        mToolbarUtils.setMiddleRightVIewIcon(R.mipmap.icon_ring_blue);
+        mToolbarUtils.setRightViewIcon(R.mipmap.icon_search_white);
+        mToolbarUtils.setMiddleRightVIewIcon(R.mipmap.icon_time_white);
     }
 
     private void setupViews() {

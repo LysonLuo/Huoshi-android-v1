@@ -110,7 +110,7 @@ public class UserInfoActivity extends BaseActivity {
         super.initTitle();
         mToolbarUtils.setRightText("保存");
         mToolbarUtils.setTitleText("个人信息");
-        mToolbarUtils.setRightViewBg(R.drawable.drawable_button_blue_gray_selector);
+        mToolbarUtils.setRightViewBg(R.drawable.shape_white_rec_blue_solid);
         mToolbarUtils.setRightViewColor(R.color.text_color_white);
     }
 

@@ -49,8 +49,8 @@ public class InterCesActivity extends BaseActivity {
     @Override
     protected void initTitle() {
         super.initTitle();
-        mToolbarUtils.setRightViewIcon(R.mipmap.icon_edit_blue);
-        mToolbarUtils.setMiddleRightVIewIcon(R.mipmap.icon_prayer_blue);
+        mToolbarUtils.setRightViewIcon(R.mipmap.icon_edite_white);
+        mToolbarUtils.setMiddleRightVIewIcon(R.mipmap.icon_prayer_white);
     }
 
     @Override
@@ -140,7 +140,7 @@ public class InterCesActivity extends BaseActivity {
     private void initFragment() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if (mInterCesFragment == null) {
-            mInterCesFragment = InterCesFragment.getInstance(InterCesFragment.INTERCES_TYPE_INTERCES);
+            mInterCesFragment = InterCesFragment.getInstance(InterCesFragment.INTECES_TYPE_ALL);
         }
         if (!mInterCesFragment.isAdded()) {
             transaction.add(R.id.layout_content, mInterCesFragment);

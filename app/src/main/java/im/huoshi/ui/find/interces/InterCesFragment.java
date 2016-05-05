@@ -29,19 +29,20 @@ import im.huoshi.views.RecyclerViewScrollListener;
 
 /**
  * 公用的祷告页面
- * <p>
+ * <p/>
  * Created by Lyson on 15/12/27.
  */
 public class InterCesFragment extends BaseFragment {
-    public static final String INTERCES_TYPE_INTERCES = "INTERCES";
-    public static final String INTERCES_TYPE_PRAYER = "PRAYER";
+    public static final int INTECES_TYPE_ALL = 0;//代祷
+    public static final int INTECES_TYPE_MINE = 1;//我的祷告
+    public static final int INTECES_TYPE_JOIN = 2;//我的代祷
     @ViewInject(R.id.refresh_layout)
     private SwipeRefreshLayout mRefreshLayout;
     @ViewInject(R.id.recyclerview)
     private RecyclerView mRecyclerView;
     private LinearLayoutManager mLayoutManager;
     private InterCesRecAdapter mAdapter;
-    private String mType;//类别，区分是代祷还是祷告箱
+    private int mIntercesType;//类别，区分是代祷、我的祷告，我的代祷
     private List<Intercession> mIntercessionList = new ArrayList<>();
     private RecyclerViewScrollListener mScrollListener;
     private int mStartPage = 1;
@@ -62,7 +63,7 @@ public class InterCesFragment extends BaseFragment {
     }
 
     private void setupViews() {
-        mType = getArguments().getString("type");
+        mIntercesType = getArguments().getInt("type");
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new InterCesRecAdapter(getActivity(), mIntercessionList);
@@ -104,7 +105,7 @@ public class InterCesFragment extends BaseFragment {
         if (!mIsLoadMore) {
             showProgressFragment(R.id.framelayout);
         }
-        InterCesRequest.intercesList((BaseActivity) getActivity(), mUser.getUserId(), mStartPage, new RestApiCallback() {
+        InterCesRequest.intercesList((BaseActivity) getActivity(), mUser.getUserId(), mStartPage, mIntercesType, new RestApiCallback() {
             @Override
             public void onSuccess(String responseString) {
                 mIsLoading = false;
@@ -144,10 +145,10 @@ public class InterCesFragment extends BaseFragment {
         loadInterces();
     }
 
-    public static InterCesFragment getInstance(String type) {
+    public static InterCesFragment getInstance(int type) {
         InterCesFragment fragment = new InterCesFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("type", type);
+        bundle.putInt("type", type);
         fragment.setArguments(bundle);
         return fragment;
     }

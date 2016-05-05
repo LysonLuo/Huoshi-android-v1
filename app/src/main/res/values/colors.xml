@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimaryDark">#42a0c0</color>
     <color name="colorAccent">#46deff</color>
     <color name="windowBackground">#f2f2f2</color>
 
@@ -19,6 +19,8 @@
     <color name="text_color_gray_9">#999999</color>
     <color name="text_color_red_light">#FD4F4F</color>
     <color name="text_color_invitat">#98999A</color>
+    <color name="text_color_main_tab">#79d6f9</color>
+    <color name="text_color_huoshi_tab">#75cbec</color>//活石tab的蓝色字体颜色
 
     <!--背景颜色-->
     <color name="conmon_gray_line_divider">#CCCCCC</color>
@@ -30,4 +32,6 @@
     <color name="common_blue_dark">#32B1FC</color>
     <color name="avatar_border_red_color">#ffb0b0</color>
     <color name="avatar_border_blue_color">#89d4ff</color>
+    <color name="toolbar_bg">#75cbec</color>
+    <color name="common_huoshi_tab_bg">#75cbec</color>//活石tab的蓝色背景颜色
 </resources>

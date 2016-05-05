@@ -61,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:singleLine="true"
                     android:text="名字"
-                    android:textColor="@color/text_color_blue_light"
+                    android:textColor="@color/text_color_blue_dark"
                     android:textSize="@dimen/text_size_15" />
 
                 <TextView

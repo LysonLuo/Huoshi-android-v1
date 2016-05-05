@@ -52,7 +52,7 @@ public class BaseFragment extends Fragment {
         reloadLocalData();
     }
 
-    private void reloadLocalData() {
+    protected void reloadLocalData() {
         mLocalUser = UserPreference.getInstance();
         mUser = mLocalUser.getUser();
         mLocalRead = ReadPreference.getInstance();

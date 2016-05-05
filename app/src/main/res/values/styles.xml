@@ -11,7 +11,7 @@
 
     <style name="ToolBarTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- toolbar背景色 -->
-        <item name="colorPrimary">@android:color/white</item>
+        <item name="colorPrimary">@color/toolbar_bg</item>
         <!-- 标题字体颜色 -->
         <item name="android:textColorPrimary">@android:color/black</item>
         <!-- 菜单(字体/按钮)颜色 -->

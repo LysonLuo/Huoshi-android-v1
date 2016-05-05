@@ -53,11 +53,13 @@ public class InterCesRequest extends BaseRequest {
      * @param activity
      * @param userId
      * @param callback
+     * @param intercessionType 代祷类型：0-所有，1-我的代祷，2-我参与的代祷；
      */
-    public static void intercesList(BaseActivity activity, int userId, int startPage, final RestApiCallback callback) {
+    public static void intercesList(BaseActivity activity, int userId, int startPage, int intercessionType, final RestApiCallback callback) {
         TreeMap<String, String> treeMap = initParams();
         treeMap.put("user_id", String.valueOf(userId));
         treeMap.put("start_page", String.valueOf(startPage));
+        treeMap.put("intercession_type", String.valueOf(intercessionType));
         RestApiClient.post(getBasePath(RestApiPath.INTERCES_LIST), buildRequestParams(treeMap), activity, new RestApiHandler() {
             @Override
             public void onSuccess(String responseString) {

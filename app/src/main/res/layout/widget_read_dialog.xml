@@ -123,6 +123,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_35"
         android:gravity="center_horizontal"
+        android:paddingLeft="@dimen/margin_5"
+        android:paddingRight="@dimen/margin_5"
         android:text="您真是一个虔诚的教徒，希望您再接再厉"
         android:textColor="@color/text_color_black_light"
         android:textSize="@dimen/text_size_15" />
