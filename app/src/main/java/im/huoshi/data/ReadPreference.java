@@ -39,6 +39,7 @@ public class ReadPreference {
         editor.putInt("continuous_days", readStat.getContinuousDays());
         editor.putInt("yesterday_minutes", readStat.getYesterdayMinutes());
         editor.putInt("today_minutes", readStat.getTodayMinutes());
+        editor.putLong("last_read_long", readStat.getLastReadLong());
         editor.putString("notice", readStat.getNotice());
         editor.apply();
     }
@@ -50,6 +51,7 @@ public class ReadPreference {
         readStat.setContinuousDays(mPreference.getInt("continuous_days", 0));
         readStat.setYesterdayMinutes(mPreference.getInt("yesterday_minutes", 0));
         readStat.setTodayMinutes(mPreference.getInt("today_minutes", 0));
+        readStat.setLastReadLong(mPreference.getLong("last_read_long", 0));
         readStat.setNotice(mPreference.getString("notice", ""));
         return readStat;
     }
@@ -209,7 +211,7 @@ public class ReadPreference {
     /**
      * 置空今日阅读时间，从阅读统计弹框进入的时候调用
      */
-    public void clearTodayMinutes(){
+    public void clearTodayMinutes() {
         SharedPreferences.Editor editor = mPreference.edit();
         editor.putInt("today_minutes", 0);
         editor.apply();

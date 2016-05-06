@@ -59,7 +59,6 @@ public class HuoshiFragment extends BaseFragment {
 
     @Subscribe
     public void onEvent(RefreshHuoshiEvent refreshHuoshiEvent) {
-        reloadLocalData();
         setupViewsByHuoshi();
     }
 
@@ -124,6 +123,7 @@ public class HuoshiFragment extends BaseFragment {
     }
 
     private void setupViewsByHuoshi() {
+        reloadLocalData();
         mReadTextView.setText(mReadStat.getContinuousDays() + "");
         mIntercesTextView.setText(mHuoshiData.getContinuousIntercesDays() + "");
         mShareTextView.setText(mHuoshiData.getShareToday());

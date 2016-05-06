@@ -107,7 +107,7 @@ public class ChapterDetailsActivity extends BaseActivity {
 
     private void asynReadData() {
         if (isLogin()) {
-            ReadRequest.readStat(ChapterDetailsActivity.this, mUser.getUserId(), mReadStat.getLastMinutes(), mReadStat.getYesterdayMinutes(), mReadStat.getTodayMinutes(), mReadStat.getTotalMinutes(), mReadStat.getContinuousDays(), mLocalRead.getAddStat(), new RestApiCallback() {
+            ReadRequest.readStat(ChapterDetailsActivity.this, mUser.getUserId(), mReadStat.getLastMinutes(), mReadStat.getYesterdayMinutes(), mReadStat.getTodayMinutes(), mReadStat.getTotalMinutes(), mReadStat.getContinuousDays(), mLocalRead.getAddStat(), mLocalRead.getLastReadLong(), new RestApiCallback() {
                 @Override
                 public void onSuccess(String responseString) {
                     ReadStat readStat = new Gson().fromJson(responseString, new TypeToken<ReadStat>() {

@@ -23,7 +23,7 @@ public class ReadRequest extends BaseRequest {
      * @param continuousDays 持续阅读天数
      * @param callback
      */
-    public static void readStat(BaseActivity activity, int userId, int lastMinutes, int yesterdayMinutes, int todayMinutes, int totalMinutes, int continuousDays, boolean isAdd, final RestApiCallback callback) {
+    public static void readStat(BaseActivity activity, int userId, int lastMinutes, int yesterdayMinutes, int todayMinutes, int totalMinutes, int continuousDays, boolean isAdd, long lastReadLong, final RestApiCallback callback) {
         TreeMap<String, String> treeMap = initParams();
         treeMap.put("user_id", String.valueOf(userId));
         treeMap.put("last_minutes", String.valueOf(lastMinutes));
@@ -32,6 +32,7 @@ public class ReadRequest extends BaseRequest {
         treeMap.put("total_minutes", String.valueOf(totalMinutes));
         treeMap.put("continuous_days", String.valueOf(continuousDays));
         treeMap.put("is_add", String.valueOf(isAdd));
+        treeMap.put("last_read_long", String.valueOf(lastReadLong));
         RestApiClient.post(getBasePath(RestApiPath.READ_STAT), buildRequestParams(treeMap), activity, new RestApiHandler() {
             @Override
             public void onSuccess(String responseString) {

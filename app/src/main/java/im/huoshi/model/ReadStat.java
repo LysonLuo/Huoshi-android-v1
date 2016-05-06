@@ -16,6 +16,8 @@ public class ReadStat extends ApiObject {
     private int yesterdayMinutes;//昨日阅读时间
     @SerializedName("today_minutes")
     private int todayMinutes;//今日阅读时间
+    @SerializedName("last_read_long")
+    private long lastReadLong;//上次阅读结束时间
     private String notice;//一句话提示
 
 
@@ -37,6 +39,10 @@ public class ReadStat extends ApiObject {
 
     public int getTodayMinutes() {
         return todayMinutes;
+    }
+
+    public long getLastReadLong() {
+        return lastReadLong;
     }
 
     public String getNotice() {
@@ -61,6 +67,10 @@ public class ReadStat extends ApiObject {
 
     public void setTodayMinutes(int todayMinutes) {
         this.todayMinutes = todayMinutes;
+    }
+
+    public void setLastReadLong(long lastReadLong) {
+        this.lastReadLong = lastReadLong;
     }
 
     public void setNotice(String notice) {

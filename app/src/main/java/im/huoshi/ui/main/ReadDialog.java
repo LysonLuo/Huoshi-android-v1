@@ -108,7 +108,7 @@ public class ReadDialog extends AppCompatDialog {
 
 
     private void asynReadData(BaseActivity activity, int userId) {
-        ReadRequest.readStat(activity, userId, mReadStat.getLastMinutes(), mReadStat.getYesterdayMinutes(), mReadStat.getTodayMinutes(), mReadStat.getTotalMinutes(), mReadStat.getContinuousDays(), ReadPreference.getInstance().getAddStat(), new RestApiCallback() {
+        ReadRequest.readStat(activity, userId, mReadStat.getLastMinutes(), mReadStat.getYesterdayMinutes(), mReadStat.getTodayMinutes(), mReadStat.getTotalMinutes(), mReadStat.getContinuousDays(), ReadPreference.getInstance().getAddStat(), mReadStat.getLastReadLong(), new RestApiCallback() {
             @Override
             public void onSuccess(String responseString) {
                 ReadStat readStat = new Gson().fromJson(responseString, new TypeToken<ReadStat>() {

@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#42a0c0</color>
-    <color name="colorAccent">#46deff</color>
+    <color name="colorAccent">#75cbec</color>
     <color name="windowBackground">#f2f2f2</color>
 
     <!-- 字体颜色-->
@@ -10,7 +10,7 @@
     <color name="text_color_black">@android:color/black</color>
     <color name="text_color_black_3">#333333</color>
     <color name="text_color_gray">#9B9B9B</color>
-    <color name="text_color_blue_light">#46deff</color>
+    <color name="text_color_blue_light">#75cbec</color>
     <color name="text_color_blue_dark">#46aeff</color>
     <color name="text_color_black_light">#666666</color>
     <color name="text_color_chapter">#333333</color>
@@ -24,7 +24,7 @@
 
     <!--背景颜色-->
     <color name="conmon_gray_line_divider">#CCCCCC</color>
-    <color name="common_blue_light">#46deff</color>
+    <color name="common_blue_light">#75cbec</color>
     <color name="common_gray_light_bg">#F4F5F6</color>
     <color name="common_gray_dark_bg">#e8e8e8</color>
     <color name="common_white_bg">@android:color/white</color>

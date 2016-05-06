@@ -236,6 +236,7 @@ public class InterCesDetailsActivity extends BaseActivity {
             return;
         }
         if (requestCode == CommentActivity.ACTION_PUB_COMMENT) {
+            resetStatus();
             loadComments();
         }
         if (requestCode == PubInterCesActivity.ACTION_PUB_OR_UPDATE_INTERCES) {
