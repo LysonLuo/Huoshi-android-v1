@@ -170,6 +170,7 @@ public class ChapterDetailsActivity extends BaseActivity {
             mCurrentMinutes = (int) (mStopTime - mStartTime) / (60 * 1000);
 
             if (mCurrentMinutes >= 1) {
+                getContentResolver();
                 mLocalRead.updateAddStat(true);
                 mLocalRead.updateLastMinutes(mCurrentMinutes);
                 mLocalRead.updateTotalMinutes();

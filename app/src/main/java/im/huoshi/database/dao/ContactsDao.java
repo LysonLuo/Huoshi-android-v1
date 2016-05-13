@@ -80,6 +80,7 @@ public class ContactsDao {
      */
     public void saveContactsList(final List<Contacts> contactsList) {
         try {
+            mContactsDao.delete(getContacts());
             TransactionManager.callInTransaction(mHelper.getConnectionSource(), new Callable<Void>() {
                 @Override
                 public Void call() throws Exception {

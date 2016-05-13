@@ -154,10 +154,12 @@ public class InterCesRequest extends BaseRequest {
      * @param intercessionId
      * @param callback
      */
-    public static void joinInterces(BaseActivity activity, int userId, int intercessionId, final RestApiCallback callback) {
+    public static void joinInterces(BaseActivity activity, int userId, int intercessionId, int continuousIntercesDays, long lastIntercesTime, final RestApiCallback callback) {
         TreeMap<String, String> treeMap = initParams();
         treeMap.put("user_id", String.valueOf(userId));
         treeMap.put("intercession_id", String.valueOf(intercessionId));
+        treeMap.put("continuous_interces_days", String.valueOf(continuousIntercesDays));
+        treeMap.put("last_interces_time", String.valueOf(lastIntercesTime));
         RestApiClient.post(getBasePath(RestApiPath.JOIN_INTERCES), buildRequestParams(treeMap), activity, new RestApiHandler() {
             @Override
             public void onSuccess(String responseString) {

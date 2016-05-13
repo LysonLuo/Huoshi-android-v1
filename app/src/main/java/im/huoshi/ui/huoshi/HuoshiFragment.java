@@ -69,7 +69,7 @@ public class HuoshiFragment extends BaseFragment {
         ViewUtils.inject(this, contentView);
 
         setupViews();
-        handleReadData();
+        handleData();
         loadData();
         return contentView;
     }
@@ -97,16 +97,25 @@ public class HuoshiFragment extends BaseFragment {
         setupViewsByHuoshi();
     }
 
-    private void handleReadData() {
-        int dayBetween = DateUtils.getDayBetween(mLocalRead.getLastReadLong());
-        if (dayBetween > 1) {
+    private void handleData() {
+        int dayBetweenRead = DateUtils.getDayBetween(mLocalRead.getLastReadLong());
+        int dayBetweenInterces = DateUtils.getDayBetween(mLocalRead.getLastIntercesTime());
+        if (dayBetweenRead > 1) {
             //时间间隔超过一天，就应该重置了！
             mLocalRead.updateContinuousDays(0);
+            mLocalRead.updateTodayMinutes(0);
+            mLocalRead.updateYesterdayMinutes(0);
+            mLocalRead.updateAddStat(true);
+        }
+        if (dayBetweenInterces > 1) {
+            mLocalRead.updateContinuousIntercesDays(0);
+            mLocalRead.updateLastIntercesTime(0);
         }
     }
 
     private void loadData() {
-        HuoshiRequest.tab((BaseActivity) getActivity(), mUser.getUserId(), new RestApiCallback() {
+        reloadLocalData();
+        HuoshiRequest.tab((BaseActivity) getActivity(), mUser.getUserId(), mHuoshiData.getContinuousIntercesDays(), new RestApiCallback() {
             @Override
             public void onSuccess(String responseString) {
                 HuoshiData huoshiData = new Gson().fromJson(responseString, new TypeToken<HuoshiData>() {

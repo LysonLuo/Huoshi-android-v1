@@ -17,6 +17,7 @@ public class HuoshiData extends ApiObject {
         return continuousIntercesDays;
     }
 
+
     public int getShareNumber() {
         return shareNumber;
     }

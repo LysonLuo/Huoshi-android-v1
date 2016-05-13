@@ -146,13 +146,16 @@ public class InterCesDetailsActivity extends BaseActivity {
         mIntercesDialog.setIntercesListener(new InterCesDialog.IntercesListener() {
             @Override
             public void onFinish() {
-                InterCesRequest.joinInterces(InterCesDetailsActivity.this, mUser.getUserId(), mIntercessionId, new RestApiCallback() {
+                InterCesRequest.joinInterces(InterCesDetailsActivity.this, mUser.getUserId(), mIntercessionId, mLocalRead.getContinuousIntercesDays(), mLocalRead.getLastIntercesTime(), new RestApiCallback() {
                     @Override
                     public void onSuccess(String responseString) {
                         int totalTimes;
                         try {
                             totalTimes = new JSONObject(responseString).getInt("total_join_intercession");
                             mLocalRead.updateTotalJoinIntercession(totalTimes);
+                            mLocalRead.updateContinuousIntercesDays();
+                            mLocalRead.updateLastIntercesTime(System.currentTimeMillis());
+                            mIntercession.setInterceded(true);
                             mIntercesDialog.finishJoinInterces();
                         } catch (JSONException e) {
                             e.printStackTrace();

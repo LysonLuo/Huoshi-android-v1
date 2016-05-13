@@ -53,7 +53,7 @@ public class ShareUtils {
                     .withText("籍着你的分享，更多的弟兄姊妹有机会拥抱移动互联网下的信仰生活。")
                     .withTitle("我来自活石app")
                     .withTargetUrl("http://www.baidu.com")
-                    .withMedia(new UMImage(activity, R.mipmap.icon_logo))
+                    .withMedia(new UMImage(activity, R.mipmap.ic_launcher))
                     .setCallback(new UMShareListener() {
                         @Override
                         public void onResult(SHARE_MEDIA share_media) {

@@ -151,10 +151,30 @@ public class ReadPreference {
         editor.apply();
     }
 
+    public void updateLastIntercesTime(long lastIntercesTime) {
+        SharedPreferences.Editor editor = mPreference.edit();
+        editor.putLong("last_interces_time", lastIntercesTime);
+        editor.apply();
+    }
+
+    public long getLastIntercesTime() {
+        return mPreference.getLong("last_interces_time", 0);
+    }
+
     public void updateContinuousIntercesDays(int newDay) {
         SharedPreferences.Editor editor = mPreference.edit();
         editor.putInt("continuous_interces_days", newDay);
         editor.apply();
+    }
+
+    public void updateContinuousIntercesDays() {
+        SharedPreferences.Editor editor = mPreference.edit();
+        editor.putInt("continuous_interces_days", mPreference.getInt("continuous_interces_days", 0) + 1);
+        editor.apply();
+    }
+
+    public int getContinuousIntercesDays() {
+        return mPreference.getInt("continuous_interces_days", 0);
     }
 
     /**
@@ -238,10 +258,12 @@ public class ReadPreference {
     public void clearData() {
         String shareToday = mPreference.getString("share_today", "");
         int shareNumber = mPreference.getInt("share_number", 0);
+        LastHistory lastHistory = getLastHistory();
         SharedPreferences.Editor editor = mPreference.edit();
         editor.clear();
         editor.putString("share_today", shareToday);
         editor.putInt("share_number", shareNumber);
+        saveLastHistory(lastHistory);
         editor.apply();
     }
 

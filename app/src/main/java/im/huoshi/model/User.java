@@ -44,6 +44,8 @@ public class User extends ApiObject {
     private int totalJoinIntercession;
     @SerializedName("last_read_long")
     private long lastReadLong;
+    @SerializedName("last_interces_time")
+    private long lastIntercesTime;
 
     public int getUserId() {
         return userId;
@@ -129,6 +131,10 @@ public class User extends ApiObject {
         return lastReadLong;
     }
 
+    public long getLastIntercesTime() {
+        return lastIntercesTime;
+    }
+
     public void setUserId(int userId) {
         this.userId = userId;
     }
@@ -211,5 +217,9 @@ public class User extends ApiObject {
 
     public void setLastReadLong(long lastReadLong) {
         this.lastReadLong = lastReadLong;
+    }
+
+    public void setLastIntercesTime(long lastIntercesTime) {
+        this.lastIntercesTime = lastIntercesTime;
     }
 }

@@ -70,6 +70,7 @@ public class LoginActivity extends BaseActivity {
                             mLocalRead.updateYesterdayMinutes(user.getYesterdayMinutes());
                             mLocalRead.updateTodayMinutes(user.getTodayMinutes());
                             mLocalRead.updateLastReadLong(user.getLastReadLong());
+                            mLocalRead.updateLastIntercesTime(user.getLastIntercesTime());
                             finish();
                         }
 

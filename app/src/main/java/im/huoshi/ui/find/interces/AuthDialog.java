@@ -59,8 +59,8 @@ public class AuthDialog extends AppCompatDialog {
 
     public void updateUI() {
         mBgImageView.setBackgroundResource(R.mipmap.img_share_bg);
-        mFirstTextView.setText("由于代祷是针对通讯录好友之间的熟人关系，所以需要您的通讯录好友里至少有3位安装活石APP。");
-        mSecondTextView.setText("现在就请你把活石APP分享给更多朋友，体验熟人代祷");
+        mFirstTextView.setText("活石熟人代祷功能是基于好友关系的半私密代祷空间。因此需要你的通讯录里至少有3个主内好友安装并注册了活石APP，才能解锁此项功能。（好友注册情况可以在【我】——【我的邀请】里查看)");
+        mSecondTextView.setText("现在就请你把活石APP分享给更多弟兄姊妹，一起来体验手机上的全新代祷吧");
         mCommonTextView.setText("通过短信分享");
         mIsAuthView = false;
     }

@@ -147,7 +147,7 @@ public class InterCesDelRecAdapter extends LoadMoreAdapter<Comment> {
 
             viewHolder.mNickNameTextView.setText(comment.getNickName());
             viewHolder.mContentTextView.setText(comment.getContent());
-            viewHolder.mCreateTimeTextView.setText(DateUtils.getDayBetweenString(mIntercession.getTime()));
+            viewHolder.mCreateTimeTextView.setText(DateUtils.getDayBetweenString(comment.getCreateAt()));
             viewHolder.mCountCheckBox.setText(comment.getPraiseNumber() + "");
             viewHolder.mCountCheckBox.setChecked(comment.getIsPraised() == 1 ? true : false);
             viewHolder.mCountCheckBox.setOnClickListener(new View.OnClickListener() {
