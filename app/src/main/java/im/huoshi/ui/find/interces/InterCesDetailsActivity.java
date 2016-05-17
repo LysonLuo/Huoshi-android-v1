@@ -33,7 +33,7 @@ import im.huoshi.views.RecyclerViewScrollListener;
 
 /**
  * 代祷详情
- * <p>
+ * <p/>
  * Created by Lyson on 15/12/26.
  */
 public class InterCesDetailsActivity extends BaseActivity {
@@ -146,15 +146,16 @@ public class InterCesDetailsActivity extends BaseActivity {
         mIntercesDialog.setIntercesListener(new InterCesDialog.IntercesListener() {
             @Override
             public void onFinish() {
-                InterCesRequest.joinInterces(InterCesDetailsActivity.this, mUser.getUserId(), mIntercessionId, mLocalRead.getContinuousIntercesDays(), mLocalRead.getLastIntercesTime(), new RestApiCallback() {
+                InterCesRequest.joinInterces(InterCesDetailsActivity.this, mUser.getUserId(), mIntercessionId, mLocalRead.getContinuousIntercesDays() + 1, System.currentTimeMillis(), new RestApiCallback() {
                     @Override
                     public void onSuccess(String responseString) {
                         int totalTimes;
                         try {
-                            totalTimes = new JSONObject(responseString).getInt("total_join_intercession");
+                            JSONObject jsonObject = new JSONObject(responseString);
+                            totalTimes = jsonObject.getInt("total_join_intercession");
                             mLocalRead.updateTotalJoinIntercession(totalTimes);
                             mLocalRead.updateContinuousIntercesDays();
-                            mLocalRead.updateLastIntercesTime(System.currentTimeMillis());
+                            mLocalRead.updateLastIntercesTime(jsonObject.getInt("last_interces_time"));
                             mIntercession.setInterceded(true);
                             mIntercesDialog.finishJoinInterces();
                         } catch (JSONException e) {

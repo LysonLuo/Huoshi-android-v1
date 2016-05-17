@@ -12,6 +12,8 @@ public class HuoshiData extends ApiObject {
     private int shareNumber;
     @SerializedName("share_today")
     private String shareToday;
+    @SerializedName("last_interces_time")
+    private long lastIntercesTime;
 
     public int getContinuousIntercesDays() {
         return continuousIntercesDays;
@@ -26,6 +28,10 @@ public class HuoshiData extends ApiObject {
         return shareToday;
     }
 
+    public long getLastIntercesTime() {
+        return lastIntercesTime;
+    }
+
     public void setContinuousIntercesDays(int continuousIntercesDays) {
         this.continuousIntercesDays = continuousIntercesDays;
     }
@@ -36,5 +42,9 @@ public class HuoshiData extends ApiObject {
 
     public void setShareToday(String shareToday) {
         this.shareToday = shareToday;
+    }
+
+    public void setLastIntercesTime(long lastIntercesTime) {
+        this.lastIntercesTime = lastIntercesTime;
     }
 }

@@ -89,6 +89,7 @@ public class InterCesActivity extends BaseActivity {
                     public void onFailure() {
                         dismissProgressDialog();
                         showShortToast("授权失败，请重试！");
+                        mAuthDialog.show();
                         LogUtils.d("lyson", "asyn contacts fail");
                     }
                 });
@@ -117,6 +118,8 @@ public class InterCesActivity extends BaseActivity {
             @Override
             public void onFailure() {
                 dismissProgressDialog();
+                showShortToast("验证失败，请重试！");
+                finish();
             }
         });
     }

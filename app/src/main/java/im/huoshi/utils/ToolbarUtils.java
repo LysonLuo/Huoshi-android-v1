@@ -91,8 +91,13 @@ public class ToolbarUtils {
         Drawable drawable = ContextCompat.getDrawable(mContext, resId);
         mMiddleRightView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
     }
-    public void setRightViewEnable(boolean enable){
+
+    public void setRightViewEnable(boolean enable) {
         mRightView.setEnabled(enable);
+    }
+
+    public void setmMiddleRightViewEnable(boolean enable) {
+        mMiddleRightView.setEnabled(enable);
     }
 
     public void setRightViewBg(int resId) {

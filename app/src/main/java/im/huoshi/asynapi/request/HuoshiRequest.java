@@ -12,9 +12,10 @@ import im.huoshi.base.BaseActivity;
  * Created by Lyson on 16/2/22.
  */
 public class HuoshiRequest extends BaseRequest {
-    public static void tab(BaseActivity activity, int userId, int continuousIntercesDays, final RestApiCallback callback) {
+    public static void tab(BaseActivity activity, int userId, int continuousIntercesDays, long lastIntercesTime, final RestApiCallback callback) {
         TreeMap<String, String> treeMap = initParams();
         treeMap.put("user_id", String.valueOf(userId));
+        treeMap.put("last_interces_time", String.valueOf(lastIntercesTime));
         treeMap.put("continuous_interces_days", String.valueOf(continuousIntercesDays));
         RestApiClient.post(getBasePath(RestApiPath.HUOSHI_TAB), buildRequestParams(treeMap), activity, new RestApiHandler() {
             @Override

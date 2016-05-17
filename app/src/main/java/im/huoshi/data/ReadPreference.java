@@ -61,6 +61,7 @@ public class ReadPreference {
         editor.putInt("continuous_interces_days", huoshiData.getContinuousIntercesDays());
         editor.putInt("share_number", huoshiData.getShareNumber());
         editor.putString("share_today", huoshiData.getShareToday());
+        editor.putLong("last_interces_time", huoshiData.getLastIntercesTime());
         editor.apply();
     }
 
@@ -69,6 +70,7 @@ public class ReadPreference {
         huoshiData.setContinuousIntercesDays(mPreference.getInt("continuous_interces_days", 0));
         huoshiData.setShareNumber(mPreference.getInt("share_number", 0));
         huoshiData.setShareToday(mPreference.getString("share_today", ""));
+        huoshiData.setLastIntercesTime(mPreference.getLong("last_interces_time", 0));
         return huoshiData;
     }
 

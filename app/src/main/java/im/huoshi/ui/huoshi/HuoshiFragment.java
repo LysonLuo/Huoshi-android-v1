@@ -105,6 +105,8 @@ public class HuoshiFragment extends BaseFragment {
             mLocalRead.updateContinuousDays(0);
             mLocalRead.updateTodayMinutes(0);
             mLocalRead.updateYesterdayMinutes(0);
+            mLocalRead.updateLastReadLong(0);
+            mLocalRead.updateLastMinutes(0);
             mLocalRead.updateAddStat(true);
         }
         if (dayBetweenInterces > 1) {
@@ -115,7 +117,7 @@ public class HuoshiFragment extends BaseFragment {
 
     private void loadData() {
         reloadLocalData();
-        HuoshiRequest.tab((BaseActivity) getActivity(), mUser.getUserId(), mHuoshiData.getContinuousIntercesDays(), new RestApiCallback() {
+        HuoshiRequest.tab((BaseActivity) getActivity(), mUser.getUserId(), mHuoshiData.getContinuousIntercesDays(), mHuoshiData.getLastIntercesTime(), new RestApiCallback() {
             @Override
             public void onSuccess(String responseString) {
                 HuoshiData huoshiData = new Gson().fromJson(responseString, new TypeToken<HuoshiData>() {
