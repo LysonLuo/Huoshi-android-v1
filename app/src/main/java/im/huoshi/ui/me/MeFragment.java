@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.umeng.fb.FeedbackAgent;
-import com.umeng.update.UmengUpdateAgent;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import im.huoshi.R;
@@ -115,7 +114,7 @@ public class MeFragment extends BaseFragment {
         mCheckUpdateTextview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UmengUpdateAgent.forceUpdate(getActivity());
+
             }
         });
     }

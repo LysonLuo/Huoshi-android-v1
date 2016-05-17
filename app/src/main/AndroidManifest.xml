@@ -105,14 +105,6 @@
             android:excludeFromRecents="true"
             android:theme="@style/Theme.UMDefault" />
         <!--umeng key channel end-->
-        <!--umeng update begin-->
-        <service
-            android:name="com.umeng.update.net.DownloadingService"
-            android:process=":DownloadingService"></service>
-        <activity
-            android:name="com.umeng.update.UpdateDialogActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
-        <!--umeng share begin-->
         <!--wechat-->
         <activity
             android:name="im.huoshi.wxapi.WXEntryActivity"
