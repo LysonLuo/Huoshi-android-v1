@@ -25,6 +25,7 @@ import im.huoshi.asynapi.request.InterCesRequest;
 import im.huoshi.base.BaseActivity;
 import im.huoshi.model.Comment;
 import im.huoshi.model.Intercession;
+import im.huoshi.utils.DateUtils;
 import im.huoshi.utils.LogUtils;
 import im.huoshi.utils.ShareUtils;
 import im.huoshi.utils.ViewInject;
@@ -146,7 +147,13 @@ public class InterCesDetailsActivity extends BaseActivity {
         mIntercesDialog.setIntercesListener(new InterCesDialog.IntercesListener() {
             @Override
             public void onFinish() {
-                InterCesRequest.joinInterces(InterCesDetailsActivity.this, mUser.getUserId(), mIntercessionId, mLocalRead.getContinuousIntercesDays() + 1, System.currentTimeMillis(), new RestApiCallback() {
+                int dayBetweenInterces = DateUtils.getDayBetween(mLocalRead.getLastIntercesTime());
+                int continuousIntercesDays = mLocalRead.getContinuousIntercesDays();
+                //只有时间间隔为1的时候，连续代祷天数累加
+                if (dayBetweenInterces == 1) {
+                    continuousIntercesDays++;
+                }
+                InterCesRequest.joinInterces(InterCesDetailsActivity.this, mUser.getUserId(), mIntercessionId, continuousIntercesDays, System.currentTimeMillis(), new RestApiCallback() {
                     @Override
                     public void onSuccess(String responseString) {
                         int totalTimes;
@@ -154,8 +161,8 @@ public class InterCesDetailsActivity extends BaseActivity {
                             JSONObject jsonObject = new JSONObject(responseString);
                             totalTimes = jsonObject.getInt("total_join_intercession");
                             mLocalRead.updateTotalJoinIntercession(totalTimes);
-                            mLocalRead.updateContinuousIntercesDays();
-                            mLocalRead.updateLastIntercesTime(jsonObject.getInt("last_interces_time"));
+                            mLocalRead.updateContinuousIntercesDays(jsonObject.getInt("continuous_interces_days"));
+                            mLocalRead.updateLastIntercesTime(jsonObject.getLong("last_interces_time"));
                             mIntercession.setInterceded(true);
                             mIntercesDialog.finishJoinInterces();
                         } catch (JSONException e) {
