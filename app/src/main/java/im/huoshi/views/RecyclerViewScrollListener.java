@@ -17,6 +17,8 @@ public abstract class RecyclerViewScrollListener extends RecyclerView.OnScrollLi
 
     public abstract void onLoadMore();
 
+    public abstract void onNoMore();
+
     @Override
     public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
         super.onScrolled(recyclerView, dx, dy);
@@ -38,6 +40,10 @@ public abstract class RecyclerViewScrollListener extends RecyclerView.OnScrollLi
             }
         }
 
+        if (mTotalItemCount - mVisibleItemCount == 0) {
+            onNoMore();
+            return;
+        }
         if (!mLoading && (mTotalItemCount - mVisibleItemCount <= mFirstVisibleItem + 1)) {
             onLoadMore();
             mLoading = true;

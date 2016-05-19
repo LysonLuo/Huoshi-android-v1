@@ -108,6 +108,12 @@ public class InterCesDetailsActivity extends BaseActivity {
                     loadComments();
                 }
             }
+
+            @Override
+            public void onNoMore() {
+                mNoMoreData = true;
+                mAdapter.setNoMoreData(mNoMoreData);
+            }
         };
         mRecyclerView.addOnScrollListener(mScrollListener);
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -152,6 +158,10 @@ public class InterCesDetailsActivity extends BaseActivity {
                 //只有时间间隔为1的时候，连续代祷天数累加
                 if (dayBetweenInterces == 1) {
                     continuousIntercesDays++;
+                } else if (dayBetweenInterces == 0) {
+
+                } else {
+                    continuousIntercesDays = 1;
                 }
                 InterCesRequest.joinInterces(InterCesDetailsActivity.this, mUser.getUserId(), mIntercessionId, continuousIntercesDays, System.currentTimeMillis(), new RestApiCallback() {
                     @Override

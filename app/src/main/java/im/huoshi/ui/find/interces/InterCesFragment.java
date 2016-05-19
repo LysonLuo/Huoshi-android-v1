@@ -29,7 +29,7 @@ import im.huoshi.views.RecyclerViewScrollListener;
 
 /**
  * 公用的祷告页面
- * <p/>
+ * <p>
  * Created by Lyson on 15/12/27.
  */
 public class InterCesFragment extends BaseFragment {
@@ -75,6 +75,12 @@ public class InterCesFragment extends BaseFragment {
                     mIsLoadMore = true;
                     loadInterces();
                 }
+            }
+
+            @Override
+            public void onNoMore() {
+                mNoMoreData = true;
+                mAdapter.setNoMoreData(mNoMoreData);
             }
         };
         mRecyclerView.addOnScrollListener(mScrollListener);
