@@ -2,7 +2,7 @@ package im.huoshi.asynapi.common;
 
 /**
  * API请求路径
- * <p/>
+ * <p>
  * Created by Lyson on 16/1/15.
  */
 public class RestApiPath {
@@ -13,6 +13,7 @@ public class RestApiPath {
     public static final String USER_DATA = "users/data";//完善用户信息
     public static final String READ_STAT = "reading/time";//阅读统计
     public static final String HUOSHI_TAB = "huoshi/tab";//活石页面统计
+    public static final String DAILY_ASKED = "asked/daily";//每日一问
     public static final String PUB_INTERCES = "intercession";//发布代祷
     public static final String INTERCES_LIST = "intercession/list";//代祷列表
     public static final String INTERCES_BY_ID = "intercession/detail";//代祷详情
@@ -24,4 +25,5 @@ public class RestApiPath {
     public static final String UPDATE_INTERCES = "intercession/update";//更新代祷
     public static final String PUB_COMMENT = "intercession/comments/publication";//发表评论
     public static final String PRAISE_COMMENT = "intercession/comments/praise";//评论点赞
+    public static final String GET_VERSION = "version";//版本更新
 }

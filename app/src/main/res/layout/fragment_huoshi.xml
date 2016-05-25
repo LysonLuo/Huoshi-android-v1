@@ -142,15 +142,36 @@
 
         <View style="@style/GrayDividerStyle" />
 
-        <include layout="@layout/widget_green_edge_item" />
-
-        <TextView
-            android:id="@+id/textview_today_share"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/ll_daily_asked"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/margin_10"
             android:paddingLeft="@dimen/margin_10"
-            android:paddingRight="@dimen/margin_10"
-            android:text="\t\t今天手贱剪了个空气刘海，看教程下手的，用夹板弄的卷发，就是卷发啊啊啊啊啊啊，很倦的那种啊啊啊啊啊啊啊，好丑啊啊啊啊啊啊啊啊" />
+            android:paddingRight="@dimen/margin_10">
+
+            <include layout="@layout/widget_green_edge_item" />
+
+
+            <TextView
+                android:id="@+id/tv_asked_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:textColor="#ff444444"
+                android:textSize="@dimen/text_size_18"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_asked_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:textColor="#ff444444"
+                android:textSize="@dimen/text_size_17" />
+        </LinearLayout>
 
         <View style="@style/GrayDividerStyle" />
 

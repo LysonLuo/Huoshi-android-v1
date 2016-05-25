@@ -15,14 +15,21 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.RadioGroup;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import im.huoshi.R;
+import im.huoshi.asynapi.callback.RestApiCallback;
+import im.huoshi.asynapi.request.AppRequest;
 import im.huoshi.base.BaseActivity;
 import im.huoshi.base.ToolbarSetter;
+import im.huoshi.model.AppVersion;
 import im.huoshi.service.AsynDataService;
 import im.huoshi.ui.bible.BibleFragment;
 import im.huoshi.ui.find.FindFragment;
 import im.huoshi.ui.huoshi.HuoshiFragment;
 import im.huoshi.ui.me.MeFragment;
+import im.huoshi.utils.UpgradeUtils;
 import im.huoshi.utils.ViewInject;
 import im.huoshi.utils.ViewUtils;
 
@@ -66,6 +73,8 @@ public class MainActivity extends BaseActivity {
         if (isLogin()) {
             asyncContacts();
         }
+
+        checkAppUpgrade();
     }
 
     @Override
@@ -176,7 +185,6 @@ public class MainActivity extends BaseActivity {
         transaction.commit();
     }
 
-
     private void switchToFindFragment() {
         hideTitle();
         mToolbarUtils.setTitleText("发现");
@@ -203,6 +211,7 @@ public class MainActivity extends BaseActivity {
         }
         transaction.commit();
     }
+
 
     private void switchToMeFragment() {
         hideTitle();
@@ -256,12 +265,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void onToolBarMiddleRightViewClick(View v) {
-//        Dialog dialog = new InterCesDialog(this);
-//        Window window = dialog.getWindow();
-//        WindowManager.LayoutParams layoutParams = window.getAttributes();
-//        window.setGravity(Gravity.CENTER);
-//        window.setAttributes(layoutParams);
-//        dialog.show();
         if (isNotLogin()) {
             return;
         }
@@ -278,5 +281,21 @@ public class MainActivity extends BaseActivity {
 
     public static void launch(Activity act) {
         act.startActivity(new Intent(act, MainActivity.class));
+    }
+
+    private void checkAppUpgrade() {
+        AppRequest.getVersion(MainActivity.this, new RestApiCallback() {
+            @Override
+            public void onSuccess(String responseString) {
+                AppVersion appVersion = new Gson().fromJson(responseString, new TypeToken<AppVersion>() {
+                }.getType());
+                UpgradeUtils.showAppUpgradeDialog(appVersion, MainActivity.this);
+            }
+
+            @Override
+            public void onFailure() {
+
+            }
+        });
     }
 }

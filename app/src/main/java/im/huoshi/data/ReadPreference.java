@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import im.huoshi.HuoshiApplication;
+import im.huoshi.model.DailyAsked;
 import im.huoshi.model.HuoshiData;
 import im.huoshi.model.LastHistory;
 import im.huoshi.model.ReadStat;
@@ -88,6 +89,44 @@ public class ReadPreference {
         editor.putInt("last_position", history.getLastPosition());
         editor.putLong("time", history.getTime());
         editor.apply();
+    }
+
+    /**
+     * 保存今日一问数据
+     *
+     * @param dailyAsked
+     */
+    public void saveDailyAsked(DailyAsked dailyAsked) {
+        SharedPreferences.Editor editor = mPreference.edit();
+        editor.putInt("question_id", dailyAsked.getQuestionId());
+        editor.putString("title", dailyAsked.getTitle());
+        editor.putString("content", dailyAsked.getContent());
+        editor.putString("url", dailyAsked.getUrl());
+        editor.putLong("last_daily_asked_time", System.currentTimeMillis());
+        editor.apply();
+    }
+
+    /**
+     * 获取今日一问拉取的时间
+     *
+     * @return
+     */
+    public long getDailyAskedTime() {
+        return mPreference.getLong("last_daily_asked_time", 0);
+    }
+
+    /**
+     * 获取今日一问
+     *
+     * @return
+     */
+    public DailyAsked getDailyAsked() {
+        DailyAsked dailyAsked = new DailyAsked();
+        dailyAsked.setQuestionId(mPreference.getInt("question_id", 0));
+        dailyAsked.setTitle(mPreference.getString("title", ""));
+        dailyAsked.setContent(mPreference.getString("content", ""));
+        dailyAsked.setUrl(mPreference.getString("url", ""));
+        return dailyAsked;
     }
 
     /**

@@ -2,6 +2,7 @@ package im.huoshi.data;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+
 import im.huoshi.HuoshiApplication;
 import im.huoshi.model.User;
 
@@ -77,6 +78,33 @@ public class UserPreference {
         SharedPreferences.Editor editor = mPreference.edit();
         editor.putString("avatar", avatar);
         editor.apply();
+    }
+
+    /**
+     * 用户取消升级，保存当前时间和版本号，用于对比升级时间是否显示升级提示框
+     *
+     * @param version
+     */
+    public void setAppUpdateCancelConfig(int version) {
+        SharedPreferences.Editor editor = mPreference.edit();
+        editor.putLong("app_update_cancel_time", System.currentTimeMillis());
+        editor.putInt("app_update_cancel_version", version);
+        editor.apply();
+
+    }
+
+    /**
+     * 获取上次取消升级的版本号
+     */
+    public int getAppUpdateCancelVersion() {
+        return mPreference.getInt("app_update_cancel_version", 0);
+    }
+
+    /**
+     * 获取上次取消升级的时间
+     */
+    public long getAppUpdateCancelTime() {
+        return mPreference.getLong("app_update_cancel_time", 0);
     }
 
     public void logout() {

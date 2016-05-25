@@ -29,4 +29,25 @@ public class HuoshiRequest extends BaseRequest {
             }
         });
     }
+
+    /**
+     * 获取今日一问
+     *
+     * @param activity
+     * @param callback
+     */
+    public static void getDailyAsked(BaseActivity activity, final RestApiCallback callback) {
+        TreeMap<String, String> treeMap = initParams();
+        RestApiClient.post(getBasePath(RestApiPath.DAILY_ASKED), buildRequestParams(treeMap), activity, new RestApiHandler() {
+            @Override
+            public void onSuccess(String responseString) {
+                callback.onSuccess(responseString);
+            }
+
+            @Override
+            public void onFailure() {
+                callback.onFailure();
+            }
+        });
+    }
 }

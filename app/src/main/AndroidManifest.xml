@@ -89,7 +89,9 @@
             android:name=".ui.find.interces.CommentActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysVisible|adjustPan" />
-
+        <activity
+            android:name=".ui.huoshi.DailyAskedDetailActivity"
+            android:screenOrientation="portrait" />
 
         <!--umeng key channel begin-->
         <meta-data

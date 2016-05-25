@@ -1,7 +1,9 @@
 package im.huoshi.ui.huoshi;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,7 @@ import im.huoshi.asynapi.callback.RestApiCallback;
 import im.huoshi.asynapi.request.HuoshiRequest;
 import im.huoshi.base.BaseActivity;
 import im.huoshi.base.BaseFragment;
+import im.huoshi.model.DailyAsked;
 import im.huoshi.model.HuoshiData;
 import im.huoshi.model.event.RefreshHuoshiEvent;
 import im.huoshi.ui.main.LoginActivity;
@@ -41,8 +44,12 @@ public class HuoshiFragment extends BaseFragment {
     private TextView mIntercesTextView;
     @ViewInject(R.id.textview_share_number)
     private TextView mShareNumberTextView;
-    @ViewInject(R.id.textview_today_share)
-    private TextView mShareTextView;
+    @ViewInject(R.id.ll_daily_asked)
+    private LinearLayout mLlDailyAsked;
+    @ViewInject(R.id.tv_asked_title)
+    private TextView mTvAskedTitle;
+    @ViewInject(R.id.tv_asked_content)
+    private TextView mTvAskedContent;
 
 
     @Override
@@ -71,9 +78,9 @@ public class HuoshiFragment extends BaseFragment {
         setupViews();
         handleData();
         loadData();
+        loadDailyAsked();
         return contentView;
     }
-
 
     private void setupViews() {
         mGuideLoginLayout.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +89,14 @@ public class HuoshiFragment extends BaseFragment {
                 LoginActivity.launch((BaseActivity) getActivity());
             }
         });
+        mLlDailyAsked.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), DailyAskedDetailActivity.class));
+            }
+        });
     }
+
 
     @Override
     public void onResume() {
@@ -133,11 +147,43 @@ public class HuoshiFragment extends BaseFragment {
         });
     }
 
+    private void loadDailyAsked() {
+        long dailyAskedTime = mLocalRead.getDailyAskedTime();
+        int dayBetweenLast = DateUtils.getDayBetween(dailyAskedTime);
+        DailyAsked dailyAsked = mLocalRead.getDailyAsked();
+        if (dailyAskedTime != 0 && dayBetweenLast == 0 && dailyAsked.getQuestionId() != 0 && !TextUtils.isEmpty(dailyAsked.getContent())) {
+            setupViewsByDailyAsked(dailyAsked);
+            return;
+        }
+        HuoshiRequest.getDailyAsked((BaseActivity) getActivity(), new RestApiCallback() {
+            @Override
+            public void onSuccess(String responseString) {
+                DailyAsked dailyAsked = new Gson().fromJson(responseString, new TypeToken<DailyAsked>() {
+                }.getType());
+
+                mLocalRead.saveDailyAsked(dailyAsked);
+                setupViewsByDailyAsked(dailyAsked);
+            }
+
+            @Override
+            public void onFailure() {
+
+            }
+        });
+    }
+
+    private void setupViewsByDailyAsked(DailyAsked dailyAsked) {
+        if (dailyAsked != null && dailyAsked.getQuestionId() != 0) {
+            mTvAskedTitle.setText(dailyAsked.getTitle());
+            mTvAskedContent.setText(dailyAsked.getContent());
+        }
+    }
+
     private void setupViewsByHuoshi() {
         reloadLocalData();
         mReadTextView.setText(mReadStat.getContinuousDays() + "");
         mIntercesTextView.setText(mHuoshiData.getContinuousIntercesDays() + "");
-        mShareTextView.setText(mHuoshiData.getShareToday());
         mShareNumberTextView.setText("昨日兄弟姐妹共分享活石" + mHuoshiData.getShareNumber() + "次");
+        setupViewsByDailyAsked(mLocalRead.getDailyAsked());
     }
 }
