@@ -44,6 +44,7 @@ public class InterCesDialog extends AppCompatDialog {
     private CountDownTimer mPreCountDown;
     private CountDownTimer mIntercesCountDown;
     private IntercesListener mListener;
+    private boolean mHasCompleteInterces;
 
     public InterCesDialog(Context context, int totalTimes) {
         super(context, R.style.CustomPopup);
@@ -101,7 +102,7 @@ public class InterCesDialog extends AppCompatDialog {
         setOnKeyListener(new OnKeyListener() {
             @Override
             public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                if (keyCode == KeyEvent.KEYCODE_BACK && mIntercesCountDown != null) {
+                if (keyCode == KeyEvent.KEYCODE_BACK && mIntercesCountDown != null && !mHasCompleteInterces) {
                     changeTipText();
                     return true;
                 }
@@ -136,6 +137,7 @@ public class InterCesDialog extends AppCompatDialog {
             @Override
             public void onFinish() {
                 mIntercesingTextView.setEnabled(true);
+                mHasCompleteInterces = true;
                 mIntercesingTextView.setText("感谢代祷，愿天父垂听悦纳");
             }
         }.start();

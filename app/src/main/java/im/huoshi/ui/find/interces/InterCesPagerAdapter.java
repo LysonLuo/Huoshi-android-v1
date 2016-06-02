@@ -11,10 +11,10 @@ import java.util.List;
  * Created by Lyson on 15/12/27.
  */
 public class InterCesPagerAdapter extends FragmentStatePagerAdapter {
-    private List<InterCesFragment> mFragments = new ArrayList<>();
+    private List<NewIntercesFragment> mFragments = new ArrayList<>();
     private String[] mTitles = new String[]{"我的祷告", "我的代祷"};
 
-    public InterCesPagerAdapter(FragmentManager fm, List<InterCesFragment> mFragments) {
+    public InterCesPagerAdapter(FragmentManager fm, List<NewIntercesFragment> mFragments) {
         super(fm);
         this.mFragments = mFragments;
     }

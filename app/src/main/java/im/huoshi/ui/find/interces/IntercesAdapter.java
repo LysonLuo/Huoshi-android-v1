@@ -21,36 +21,33 @@ import im.huoshi.utils.CTextUtils;
 import im.huoshi.utils.DateUtils;
 import im.huoshi.utils.ViewInject;
 import im.huoshi.utils.ViewUtils;
-import im.huoshi.views.LoadMoreAdapter;
 
 /**
- * Created by Lyson on 15/12/26.
+ * Created by Lyson on 16/5/31.
  */
-public class InterCesRecAdapter extends LoadMoreAdapter<Intercession> {
+public class IntercesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context mContext;
+    protected List<Intercession> mItemList;
     private OnRecClickListener<Intercession> mRecClickListener;
 
-    public InterCesRecAdapter(Context mContext, List<Intercession> intercessionList) {
-        super(mContext, intercessionList);
+    public IntercesAdapter(Context mContext, List<Intercession> intercessionList) {
         this.mContext = mContext;
-
+        this.mItemList = intercessionList;
     }
 
-    public void setmRecClickListener(OnRecClickListener<Intercession> recClickListener) {
+    public void setRecClickListener(OnRecClickListener<Intercession> recClickListener) {
         this.mRecClickListener = recClickListener;
     }
 
-
     @Override
-    public RecyclerView.ViewHolder getNewItemViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View contentView = LayoutInflater.from(mContext).inflate(R.layout.widget_interces_item, parent, false);
         IntercesViewHolder holder = new IntercesViewHolder(contentView);
         return holder;
     }
 
-
     @Override
-    public void bindNewViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         final Intercession intercession = mItemList.get(position);
         IntercesViewHolder intercesViewHolder = (IntercesViewHolder) holder;
         int borderColor = intercession.getGender() == 1 ? R.color.avatar_border_blue_color : R.color.avatar_border_red_color;
@@ -76,16 +73,8 @@ public class InterCesRecAdapter extends LoadMoreAdapter<Intercession> {
     }
 
     @Override
-    public long getNewItemId(int position) {
-        return mItemList.get(position).getIntercessionId();
-    }
-
-    @Override
     public int getItemCount() {
-        if (mItemList == null || mItemList.size() == 0) {
-            return 0;
-        }
-        return mItemList.size() + 1;
+        return mItemList.size();
     }
 
     class IntercesViewHolder extends RecyclerView.ViewHolder {

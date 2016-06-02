@@ -25,7 +25,10 @@ import im.huoshi.base.BaseFragment;
 import im.huoshi.model.DailyAsked;
 import im.huoshi.model.HuoshiData;
 import im.huoshi.model.event.RefreshHuoshiEvent;
+import im.huoshi.ui.find.interces.InterCesActivity;
 import im.huoshi.ui.main.LoginActivity;
+import im.huoshi.ui.main.MainActivity;
+import im.huoshi.ui.main.SearchFragment;
 import im.huoshi.utils.DateUtils;
 import im.huoshi.utils.ViewInject;
 import im.huoshi.utils.ViewUtils;
@@ -42,6 +45,10 @@ public class HuoshiFragment extends BaseFragment {
     private TextView mReadTextView;
     @ViewInject(R.id.textview_continuous_interces_days)
     private TextView mIntercesTextView;
+    @ViewInject(R.id.tv_interces)
+    private TextView mTvInterces;
+    @ViewInject(R.id.tv_search)
+    private TextView mTvSearch;
     @ViewInject(R.id.textview_share_number)
     private TextView mShareNumberTextView;
     @ViewInject(R.id.ll_daily_asked)
@@ -50,6 +57,8 @@ public class HuoshiFragment extends BaseFragment {
     private TextView mTvAskedTitle;
     @ViewInject(R.id.tv_asked_content)
     private TextView mTvAskedContent;
+
+    private SearchFragment mSearchFragment;
 
 
     @Override
@@ -93,6 +102,18 @@ public class HuoshiFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), DailyAskedDetailActivity.class));
+            }
+        });
+        mTvInterces.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InterCesActivity.launch((BaseActivity) getActivity());
+            }
+        });
+        mTvSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addSearchFragment();
             }
         });
     }
@@ -184,6 +205,9 @@ public class HuoshiFragment extends BaseFragment {
         mReadTextView.setText(mReadStat.getContinuousDays() + "");
         mIntercesTextView.setText(mHuoshiData.getContinuousIntercesDays() + "");
         mShareNumberTextView.setText("昨日兄弟姐妹共分享活石" + mHuoshiData.getShareNumber() + "次");
-        setupViewsByDailyAsked(mLocalRead.getDailyAsked());
+    }
+
+    private void addSearchFragment() {
+        ((MainActivity)getActivity()).addSearchFragment();
     }
 }

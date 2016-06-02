@@ -1,6 +1,7 @@
 package im.huoshi.ui.find.interces;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -10,6 +11,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.chanven.lib.cptr.loadmore.OnLoadMoreListener;
+import com.chanven.lib.cptr.loadmore.SwipeRefreshHelper;
+import com.chanven.lib.cptr.recyclerview.RecyclerAdapterWithHF;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -30,7 +34,6 @@ import im.huoshi.utils.LogUtils;
 import im.huoshi.utils.ShareUtils;
 import im.huoshi.utils.ViewInject;
 import im.huoshi.utils.ViewUtils;
-import im.huoshi.views.RecyclerViewScrollListener;
 
 /**
  * 代祷详情
@@ -51,17 +54,17 @@ public class InterCesDetailsActivity extends BaseActivity {
     @ViewInject(R.id.fabButton)
     private FloatingActionButton mFabButton;
     private LinearLayoutManager mLayoutManager;
-    private InterCesDelRecAdapter mAdapter;
+    private InterCesDelAdapter mAdapter;
+    private RecyclerAdapterWithHF mAdapterHf;
     private Intercession mIntercession;
     private int mIntercessionId;
     private List<Comment> mCommentList = new ArrayList<>();
     private InterCesDialog mIntercesDialog;
-    private RecyclerViewScrollListener mScrollListener;
+    private SwipeRefreshHelper mSwipeRefreshHelper;
     private int mStartPage = 1;
-    private boolean mIsLoadMore = false;
-    private boolean mNoMoreData = false;
     private boolean mIsLoading = false;
     private boolean mIsFirtResetData = true;
+    private boolean mIsPubOrUpdateInterces = false;
 
 
     @Override
@@ -72,16 +75,18 @@ public class InterCesDetailsActivity extends BaseActivity {
         ViewUtils.inject(this);
 
         setupViews();
-        loadInterces();
     }
 
 
     private void setupViews() {
         mIntercessionId = getIntent().getIntExtra("intercession_id", 0);
         mLayoutManager = new LinearLayoutManager(this);
+        mRefreshLayout.setColorSchemeColors(Color.BLUE);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new InterCesDelRecAdapter(this, mIntercession, mCommentList);
-        mRecyclerView.setAdapter(mAdapter);
+        mAdapter = new InterCesDelAdapter(this, mIntercession, mCommentList);
+        mAdapterHf = new RecyclerAdapterWithHF(mAdapter);
+        mRecyclerView.setAdapter(mAdapterHf);
+        mSwipeRefreshHelper = new SwipeRefreshHelper(mRefreshLayout);
         mLeftTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,27 +105,23 @@ public class InterCesDetailsActivity extends BaseActivity {
                 CommentActivity.launch(InterCesDetailsActivity.this, mIntercessionId);
             }
         });
-        mScrollListener = new RecyclerViewScrollListener() {
+        mSwipeRefreshHelper.setOnSwipeRefreshListener(new SwipeRefreshHelper.OnSwipeRefreshListener() {
             @Override
-            public void onLoadMore() {
-                if (!mNoMoreData) {
-                    mIsLoadMore = true;
-                    loadComments();
-                }
-            }
-
-            @Override
-            public void onNoMore() {
-                mNoMoreData = true;
-                mAdapter.setNoMoreData(mNoMoreData);
-            }
-        };
-        mRecyclerView.addOnScrollListener(mScrollListener);
-        mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
+            public void onfresh() {
                 resetStatus();
                 loadInterces();
+            }
+        });
+        mSwipeRefreshHelper.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void loadMore() {
+                loadComments();
+            }
+        });
+        mRefreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                mSwipeRefreshHelper.autoRefresh();
             }
         });
         mFabButton.setOnClickListener(new View.OnClickListener() {
@@ -137,11 +138,9 @@ public class InterCesDetailsActivity extends BaseActivity {
     }
 
     private void resetStatus() {
+        mSwipeRefreshHelper.setLoadMoreEnable(false);
         mStartPage = 1;
-        mNoMoreData = false;
         mCommentList.clear();
-        mAdapter.setNoMoreData(mNoMoreData);
-        mScrollListener.reSetPreviousTotal();
     }
 
     private void joinInterces() {
@@ -210,15 +209,12 @@ public class InterCesDetailsActivity extends BaseActivity {
             return;
         }
         mIsLoading = true;
-        if (!mIsLoadMore) {
-            showProgressFragment();
-        }
         InterCesRequest.intercesComments(this, mUser.getUserId(), mIntercessionId, mStartPage, new RestApiCallback() {
             @Override
             public void onSuccess(String responseString) {
-                removeProgressFragment();
                 mIsLoading = false;
-                mRefreshLayout.setRefreshing(false);
+                mSwipeRefreshHelper.setLoadMoreEnable(true);
+                mSwipeRefreshHelper.refreshComplete();
                 List<Comment> commentList = new Gson().fromJson(responseString, new TypeToken<List<Comment>>() {
                 }.getType());
                 setupViewsByComments(commentList);
@@ -226,14 +222,14 @@ public class InterCesDetailsActivity extends BaseActivity {
 
             @Override
             public void onFailure() {
-                removeProgressFragment();
                 mIsLoading = false;
-                mRefreshLayout.setRefreshing(false);
+                mSwipeRefreshHelper.loadMoreComplete(true);
             }
         });
     }
 
     private void setupViewsByComments(List<Comment> commentList) {
+        mSwipeRefreshHelper.loadMoreComplete(true);
         if (commentList.size() > 0) {
             mIsFirtResetData = false;
             mStartPage++;
@@ -241,13 +237,13 @@ public class InterCesDetailsActivity extends BaseActivity {
             mAdapter.resetData(mIntercession, mCommentList);
             return;
         }
+        mSwipeRefreshHelper.setNoMoreData();
+        mSwipeRefreshHelper.setLoadMoreEnable(false);
         if (mIsFirtResetData) {
             mAdapter.resetData(mIntercession, mCommentList);
             mIsFirtResetData = false;
             return;
         }
-        mNoMoreData = true;
-        mAdapter.setNoMoreData(mNoMoreData);
     }
 
     @Override
@@ -261,7 +257,7 @@ public class InterCesDetailsActivity extends BaseActivity {
             loadComments();
         }
         if (requestCode == PubInterCesActivity.ACTION_PUB_OR_UPDATE_INTERCES) {
-            resetStatus();
+            mIsPubOrUpdateInterces = true;
             loadInterces();
         }
     }
@@ -272,6 +268,13 @@ public class InterCesDetailsActivity extends BaseActivity {
             public void onSuccess(String responseString) {
                 mIntercession = new Gson().fromJson(responseString, new TypeToken<Intercession>() {
                 }.getType());
+                if (mIsPubOrUpdateInterces) {
+                    setupViewsByIntercession();
+                    mIsPubOrUpdateInterces = false;
+                    mSwipeRefreshHelper.setLoadMoreEnable(true);
+                    mSwipeRefreshHelper.refreshComplete();
+                    return;
+                }
                 loadComments();
             }
 
@@ -280,6 +283,10 @@ public class InterCesDetailsActivity extends BaseActivity {
                 LogUtils.d("XXX", "what");
             }
         });
+    }
+
+    private void setupViewsByIntercession() {
+        mAdapter.resetData(mIntercession);
     }
 
     public static void launch(BaseActivity activity, int intercessionId) {

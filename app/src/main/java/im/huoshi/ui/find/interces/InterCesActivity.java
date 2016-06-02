@@ -28,7 +28,7 @@ import im.huoshi.utils.ViewUtils;
  * Created by Lyson on 15/12/26.
  */
 public class InterCesActivity extends BaseActivity {
-    private InterCesFragment mInterCesFragment;
+    private NewIntercesFragment mInterCesFragment;
     private AuthDialog mAuthDialog;
     private Permission mPermission;
     private ContactsDao mContactsDao = new ContactsDao();
@@ -140,7 +140,7 @@ public class InterCesActivity extends BaseActivity {
     private void initFragment() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if (mInterCesFragment == null) {
-            mInterCesFragment = InterCesFragment.getInstance(InterCesFragment.INTECES_TYPE_ALL);
+            mInterCesFragment = NewIntercesFragment.getInstance(NewIntercesFragment.INTECES_TYPE_ALL);
         }
         if (!mInterCesFragment.isAdded()) {
             transaction.add(R.id.layout_content, mInterCesFragment);

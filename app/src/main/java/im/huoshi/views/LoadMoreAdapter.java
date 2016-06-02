@@ -27,7 +27,10 @@ public abstract class LoadMoreAdapter<T> extends RecyclerView.Adapter<RecyclerVi
 
     public void setNoMoreData(boolean noMoreData) {
         this.mNomoreData = noMoreData;
-        notifyDataSetChanged();
+        if (this.mNomoreData && getItemCount() > 0) {
+            notifyItemChanged(getItemCount() - 1);
+        }
+//        notifyDataSetChanged();
     }
 
     public void resetData(List<T> list) {
@@ -59,13 +62,13 @@ public abstract class LoadMoreAdapter<T> extends RecyclerView.Adapter<RecyclerVi
         bindNewViewHolder(holder, position);
     }
 
-    @Override
-    public int getItemCount() {
-        if (mItemList == null || mItemList.size() == 0) {
-            return 0;
-        }
-        return mItemList.size() + 1;
-    }
+//    @Override
+//    public int getItemCount() {
+//        if (mItemList == null || mItemList.size() == 0) {
+//            return 0;
+//        }
+//        return mItemList.size() + 1;
+//    }
 
     @Override
     public long getItemId(int position) {

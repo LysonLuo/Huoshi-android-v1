@@ -240,7 +240,7 @@ public class MainActivity extends BaseActivity {
         transaction.commit();
     }
 
-    private void addSearchFragment() {
+    public void addSearchFragment() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         mSearchFragment = new SearchFragment();
         transaction.add(R.id.main_layout_id, mSearchFragment);

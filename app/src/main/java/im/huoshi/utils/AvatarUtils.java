@@ -30,7 +30,7 @@ public class AvatarUtils {
                 switch (position) {
                     case 0: {
                         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);// 打开相机
-                        intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
+                        intent.putExtra("outputFormat", Bitmap.CompressFormat.PNG.toString());
                         intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
                         intent.putExtra("return-data", true);
                         activity.startActivityForResult(Intent.createChooser(intent, "请选择"), CAMERA_REQUEST_CODE);

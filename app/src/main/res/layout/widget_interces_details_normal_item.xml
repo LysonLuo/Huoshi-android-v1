@@ -21,17 +21,17 @@
                 android:layout_height="43dp"
                 android:src="@mipmap/img_default_avatar_white"
                 app:civ_border_color="@color/common_blue_light"
-                app:civ_border_width="0.5dp" />
+                app:civ_border_width="1dp" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imageview_avatar"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginLeft="1.3dp"
-                android:layout_marginTop="1.3dp"
+                android:layout_marginLeft="1.4dp"
+                android:layout_marginTop="1.5dp"
                 android:src="@mipmap/img_default_avatar"
                 app:civ_border_color="@color/common_white_bg"
-                app:civ_border_width="0.5dp" />
+                app:civ_border_width="1dp" />
         </FrameLayout>
 
 

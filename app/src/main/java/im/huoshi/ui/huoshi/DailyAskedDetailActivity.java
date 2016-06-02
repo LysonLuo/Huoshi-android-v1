@@ -7,6 +7,7 @@ import android.widget.TextView;
 import im.huoshi.R;
 import im.huoshi.base.BaseActivity;
 import im.huoshi.model.DailyAsked;
+import im.huoshi.utils.DateUtils;
 import im.huoshi.utils.ViewInject;
 import im.huoshi.utils.ViewUtils;
 
@@ -18,6 +19,8 @@ public class DailyAskedDetailActivity extends BaseActivity {
     private TextView mTvAskedTitle;
     @ViewInject(R.id.tv_asked_content)
     private TextView mTvAskedContent;
+    @ViewInject(R.id.tv_asked_time)
+    private TextView mTvAskedTime;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,5 +40,6 @@ public class DailyAskedDetailActivity extends BaseActivity {
         DailyAsked dailyAsked = mLocalRead.getDailyAsked();
         mTvAskedTitle.setText(dailyAsked.getTitle());
         mTvAskedContent.setText(dailyAsked.getContent());
+        mTvAskedTime.setText(DateUtils.formatToString(System.currentTimeMillis(), "yyyy年MM月dd日"));
     }
 }

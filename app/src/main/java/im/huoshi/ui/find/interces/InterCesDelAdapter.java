@@ -33,36 +33,45 @@ import im.huoshi.utils.DateUtils;
 import im.huoshi.utils.LogUtils;
 import im.huoshi.utils.ViewInject;
 import im.huoshi.utils.ViewUtils;
-import im.huoshi.views.LoadMoreAdapter;
 
 /**
- * Created by Lyson on 15/12/26.
+ * Created by Lyson on 16/6/1.
  */
-public class InterCesDelRecAdapter extends LoadMoreAdapter<Comment> {
+public class InterCesDelAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context mContext;
     private Intercession mIntercession;
+    protected List<Comment> mItemList;
     private int ITEM_TYPE_TOP = 1;
     private int ITEM_TYPE_NORMAL = 2;
 
-    public InterCesDelRecAdapter(Context mContext, Intercession intercession, List<Comment> commentList) {
-        super(mContext, commentList);
+    public InterCesDelAdapter(Context mContext, Intercession intercession, List<Comment> commentList) {
         this.mContext = mContext;
         this.mIntercession = intercession;
+        this.mItemList = commentList;
     }
 
     public void resetData(Intercession intercession, List<Comment> commentList) {
         this.mIntercession = intercession;
-        resetData(commentList);
+        this.mItemList = commentList;
+        notifyDataSetChanged();
     }
 
-    public void resetData(Intercession intercession){
+    public void resetData(Intercession intercession) {
         this.mIntercession = intercession;
         notifyItemChanged(0);
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        if (position == 0) {
+            return ITEM_TYPE_TOP;
+        }
+        return ITEM_TYPE_NORMAL;
+    }
+
 
     @Override
-    public RecyclerView.ViewHolder getNewItemViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == ITEM_TYPE_TOP) {
             View contentView = LayoutInflater.from(mContext).inflate(R.layout.widget_interces_details_top_item, parent, false);
             TopViewHolder topViewHolder = new TopViewHolder(contentView);
@@ -75,15 +84,7 @@ public class InterCesDelRecAdapter extends LoadMoreAdapter<Comment> {
     }
 
     @Override
-    public int getNewItemViewtype(int position) {
-        if (position == 0) {
-            return ITEM_TYPE_TOP;
-        }
-        return ITEM_TYPE_NORMAL;
-    }
-
-    @Override
-    public void bindNewViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (getItemViewType(position) == ITEM_TYPE_TOP) {
             TopViewHolder viewHolder = (TopViewHolder) holder;
             if (!TextUtils.isEmpty(mIntercession.getPortrait())) {
@@ -186,13 +187,14 @@ public class InterCesDelRecAdapter extends LoadMoreAdapter<Comment> {
 
 
     @Override
-    public long getNewItemId(int position) {
+    public long getItemId(int position) {
         return position;
     }
 
+
     @Override
     public int getItemCount() {
-        return mIntercession == null ? 0 : (mItemList == null || mItemList.size() == 0 ? 1 : mItemList.size() + 2);
+        return mIntercession == null ? 0 : mItemList.size() + 1;
     }
 
 

@@ -28,11 +28,14 @@
 
     </LinearLayout>
 
-    <View style="@style/GrayDividerStyle" />
+    <View
+        android:visibility="gone"
+        style="@style/GrayDividerStyle" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:orientation="vertical">
 
         <TextView
@@ -50,6 +53,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:orientation="vertical">
 
         <TextView
@@ -65,6 +69,7 @@
         android:id="@+id/layout_five_two"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:orientation="vertical">
 
         <TextView

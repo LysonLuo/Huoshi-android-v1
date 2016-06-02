@@ -10,7 +10,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/margin_25"
         android:src="@mipmap/icon_bless" />
 
 
@@ -30,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="@dimen/margin_35"
                 android:text="这是你第十次代祷"
                 android:textColor="@color/text_color_black_3"
                 android:textSize="@dimen/text_size_14" />
@@ -51,8 +50,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="@dimen/margin_30"
-                android:layout_marginTop="@dimen/margin_30"
+                android:layout_marginBottom="@dimen/margin_25"
+                android:layout_marginTop="@dimen/margin_25"
                 android:text="6"
                 android:textColor="#25aeff"
                 android:textSize="80sp" />
@@ -142,7 +141,7 @@
                     android:layout_marginLeft="@dimen/margin_25"
                     android:layout_marginRight="@dimen/margin_25"
                     android:layout_marginTop="@dimen/margin_16"
-                    android:background="#45dffe"
+                    android:background="@color/common_blue_light"
                     android:gravity="center_horizontal"
                     android:paddingBottom="@dimen/margin_10"
                     android:paddingTop="@dimen/margin_10"
@@ -156,7 +155,7 @@
                     android:layout_marginLeft="@dimen/margin_25"
                     android:layout_marginRight="@dimen/margin_25"
                     android:layout_marginTop="@dimen/margin_16"
-                    android:background="#45dffe"
+                    android:background="@color/common_blue_light"
                     android:gravity="center_horizontal"
                     android:paddingBottom="@dimen/margin_10"
                     android:paddingTop="@dimen/margin_10"
@@ -170,7 +169,7 @@
                     android:layout_marginLeft="@dimen/margin_25"
                     android:layout_marginRight="@dimen/margin_25"
                     android:layout_marginTop="@dimen/margin_16"
-                    android:background="#45dffe"
+                    android:background="@color/common_blue_light"
                     android:gravity="center_horizontal"
                     android:paddingBottom="@dimen/margin_10"
                     android:paddingTop="@dimen/margin_10"

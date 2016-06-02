@@ -11,8 +11,8 @@ import java.util.List;
 
 import im.huoshi.R;
 import im.huoshi.base.BaseActivity;
-import im.huoshi.ui.find.interces.InterCesFragment;
 import im.huoshi.ui.find.interces.InterCesPagerAdapter;
+import im.huoshi.ui.find.interces.NewIntercesFragment;
 import im.huoshi.utils.ViewInject;
 import im.huoshi.utils.ViewUtils;
 
@@ -25,7 +25,7 @@ public class MyPrayerActivity extends BaseActivity {
     @ViewInject(R.id.viewpager)
     private ViewPager mViewPager;
     private InterCesPagerAdapter mAdapter;
-    private List<InterCesFragment> mFragments = new ArrayList<>();
+    private List<NewIntercesFragment> mFragments = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,8 +43,8 @@ public class MyPrayerActivity extends BaseActivity {
     }
 
     private void setupViews() {
-        mFragments.add(InterCesFragment.getInstance(InterCesFragment.INTECES_TYPE_MINE));
-        mFragments.add(InterCesFragment.getInstance(InterCesFragment.INTECES_TYPE_JOIN));
+        mFragments.add(NewIntercesFragment.getInstance(NewIntercesFragment.INTECES_TYPE_MINE));
+        mFragments.add(NewIntercesFragment.getInstance(NewIntercesFragment.INTECES_TYPE_JOIN));
         mAdapter = new InterCesPagerAdapter(getSupportFragmentManager(), mFragments);
         mViewPager.setAdapter(mAdapter);
         mTablayout.setupWithViewPager(mViewPager);

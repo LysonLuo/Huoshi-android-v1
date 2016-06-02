@@ -300,11 +300,13 @@ public class ReadPreference {
         String shareToday = mPreference.getString("share_today", "");
         int shareNumber = mPreference.getInt("share_number", 0);
         LastHistory lastHistory = getLastHistory();
+        DailyAsked dailyAsked = getDailyAsked();
         SharedPreferences.Editor editor = mPreference.edit();
         editor.clear();
         editor.putString("share_today", shareToday);
         editor.putInt("share_number", shareNumber);
         saveLastHistory(lastHistory);
+        saveDailyAsked(dailyAsked);
         editor.apply();
     }
 

@@ -68,7 +68,7 @@
                 android:layout_marginTop="@dimen/margin_6"
                 android:orientation="horizontal"
                 android:visibility="gone">
-
+                <!--连续阅读UI-->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -100,7 +100,7 @@
                             android:text="天" />
                     </LinearLayout>
                 </LinearLayout>
-
+                <!--连续代祷UI-->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -132,13 +132,53 @@
                             android:text="天" />
                     </LinearLayout>
                 </LinearLayout>
+
+                <View
+                    android:layout_width="@dimen/margin_2"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/margin_4"
+                    android:background="@color/common_blue_light" />
+
+                <TextView
+                    android:id="@+id/tv_interces"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:background="@drawable/drawable_blue_circle_solid"
+                    android:gravity="center"
+                    android:text="@string/text_suffrage"
+                    android:textColor="@color/text_color_white" />
+
             </LinearLayout>
         </FrameLayout>
 
-        <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="vertical">-->
+        <View style="@style/GrayDividerStyle" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/common_white_bg"
+            android:paddingBottom="@dimen/margin_6"
+            android:paddingLeft="@dimen/margin_10"
+            android:paddingRight="@dimen/margin_10"
+            android:paddingTop="@dimen/margin_6">
+
+            <TextView
+                android:id="@+id/tv_search"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@drawable/drawable_gray_solid_small"
+                android:drawableLeft="@mipmap/icon_search_white"
+                android:drawablePadding="@dimen/margin_10"
+                android:gravity="left|center_vertical"
+                android:hint="搜索经文"
+                android:paddingLeft="@dimen/margin_4"
+                android:textColor="@color/text_color_gray_9"
+                android:textColorHint="@color/text_color_gray_9"
+                android:textSize="@dimen/text_size_13" />
+        </FrameLayout>
 
         <View style="@style/GrayDividerStyle" />
 
@@ -169,7 +209,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="3"
-                android:textColor="#ff444444"
+                android:textColor="@color/text_color_black_light"
                 android:textSize="@dimen/text_size_17" />
         </LinearLayout>
 
@@ -180,7 +220,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingBottom="@dimen/margin_10"
-            android:paddingTop="@dimen/margin_10">
+            android:paddingTop="@dimen/margin_10"
+            android:visibility="gone">
 
             <View
                 android:layout_width="5dp"
@@ -199,7 +240,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/textview_share_number"
@@ -226,7 +268,8 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/margin_16"
             android:text="用嘴说，用手点，分享也是为主效力"
-            android:textColor="@color/text_color_orange" />
+            android:textColor="@color/text_color_orange"
+            android:visibility="gone" />
 
         <View
             android:layout_width="match_parent"
@@ -234,5 +277,4 @@
             android:layout_weight="1"
             android:background="@color/common_gray_dark_bg" />
     </LinearLayout>
-    <!--</LinearLayout>-->
 </ScrollView>
