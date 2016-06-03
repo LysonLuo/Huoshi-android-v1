@@ -9,7 +9,6 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -283,21 +282,6 @@ public class UserInfoActivity extends BaseActivity {
                 mGender = mGenderList.get(i).key;
             }
         });
-
-//        mTimerPickerView.setOnTimeSelectListener(onTimeSelectListener);
-//        mTimerPickerView.setOnTimeSelectListener(new TimePickerView.OnTimeSelectListener() {
-//            @Override
-//            public void onTimeSelect(Date date) {
-//                mContentHasChanged = true;
-//                if (mIsBirthday) {
-//                    mBirthday = new SimpleDateFormat("yyyy-MM-dd").format(date);
-//                    mBirthdayTextView.setText(mBirthday);
-//                    return;
-//                }
-//                mBelieveDate = new SimpleDateFormat("yyyy").format(date);
-//                mBelieveDateTextView.setText(mBelieveDate);
-//            }
-//        });
     }
 
     private void preUploadAvatar() {
@@ -325,7 +309,6 @@ public class UserInfoActivity extends BaseActivity {
             @Override
             public void complete(String key, ResponseInfo info, JSONObject response) {
                 if (!info.isOK()) {
-                    ImageView imageView = new ImageView(UserInfoActivity.this);
                     showShortToast("头像修改失败！");
                     return;
                 }

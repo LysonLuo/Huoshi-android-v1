@@ -97,7 +97,7 @@ public class ShareUtils {
 
     public static void smsShare(final BaseActivity activity) {
         new ShareAction(activity).setPlatform(SHARE_MEDIA.SMS)
-                .withText("哈喽，忍不住想给你推荐个基督生活类的APP【活石】，这里下载：http://www.huoshi.im；我已经在用了，淡定绝对不是病毒，你赶紧试试。")
+                .withText("我发现一个主内工具类APP，不但可以读圣经看注释，最酷的是能手机上代祷，强烈推荐！我已经下载了，你快下载试试！地址：http://www.huoshi.im;（放心，这不是病毒，哈哈哈）")
                 .setCallback(new UMShareListener() {
                     @Override
                     public void onResult(SHARE_MEDIA share_media) {

@@ -1,6 +1,5 @@
 package im.huoshi.ui.find.interces;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -67,7 +66,7 @@ public class NewIntercesFragment extends BaseFragment {
         mIntercesType = getArguments().getInt("type");
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mRefreshLayout.setColorSchemeColors(Color.BLUE);
+        mRefreshLayout.setColorSchemeResources(R.color.toolbar_bg);
         mAdapter = new IntercesAdapter(getActivity(), mIntercessionList);
         mHfAdapter = new RecyclerAdapterWithHF(mAdapter);
         mRecyclerView.setAdapter(mHfAdapter);

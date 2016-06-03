@@ -33,7 +33,7 @@ public class DailyAskedDetailActivity extends BaseActivity {
     @Override
     protected void initTitle() {
         super.initTitle();
-        mToolbarUtils.setTitleText("今日一问");
+        mToolbarUtils.setTitleText("每日一问");
     }
 
     private void setupViewsByDailyAsked() {

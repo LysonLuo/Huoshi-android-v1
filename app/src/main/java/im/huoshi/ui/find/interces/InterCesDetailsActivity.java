@@ -1,7 +1,6 @@
 package im.huoshi.ui.find.interces;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -81,7 +80,8 @@ public class InterCesDetailsActivity extends BaseActivity {
     private void setupViews() {
         mIntercessionId = getIntent().getIntExtra("intercession_id", 0);
         mLayoutManager = new LinearLayoutManager(this);
-        mRefreshLayout.setColorSchemeColors(Color.BLUE);
+        //这一行代码是关键
+        mRefreshLayout.setColorSchemeResources(R.color.toolbar_bg);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new InterCesDelAdapter(this, mIntercession, mCommentList);
         mAdapterHf = new RecyclerAdapterWithHF(mAdapter);

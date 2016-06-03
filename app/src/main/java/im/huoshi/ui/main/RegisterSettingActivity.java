@@ -79,14 +79,8 @@ public class RegisterSettingActivity extends BaseActivity {
 
     private void setupViews() {
         mGenderPickerView = new OptionsPickerView(RegisterSettingActivity.this);
-        mTimerPickerView = new TimePickerView(RegisterSettingActivity.this, TimePickerView.Type.YEAR_MONTH_DAY);
         mGenderList.add(new Gender(0, "女"));
         mGenderList.add(new Gender(1, "男"));
-        //控制时间范围
-        Calendar calendar = Calendar.getInstance();
-        mTimerPickerView.setRange(calendar.get(Calendar.YEAR) - 50, calendar.get(Calendar.YEAR));
-        mTimerPickerView.setTime(new Date());
-        mTimerPickerView.setCyclic(false);
         mGenderPickerView.setPicker(mGenderList);
         mGenderPickerView.setTitle("选择性别");
         mGenderPickerView.setCyclic(false);
@@ -151,6 +145,20 @@ public class RegisterSettingActivity extends BaseActivity {
                 });
             }
         });
+
+        final TimePickerView.OnTimeSelectListener onTimeSelectListener = new TimePickerView.OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date) {
+                if (mIsBirthday) {
+                    mBirthday = new SimpleDateFormat("yyyy-MM-dd").format(date);
+                    mBirthdayTextView.setText(mBirthday);
+                    return;
+                }
+                mBelieveDate = new SimpleDateFormat("yyyy").format(date);
+                mBelieveDateTextView.setText(mBelieveDate);
+            }
+        };
+
         mGenderTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -169,7 +177,14 @@ public class RegisterSettingActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 mIsBirthday = true;
+                mTimerPickerView = new TimePickerView(RegisterSettingActivity.this, TimePickerView.Type.YEAR_MONTH_DAY);
+                //控制时间范围
+                Calendar calendar = Calendar.getInstance();
+                mTimerPickerView.setRange(calendar.get(Calendar.YEAR) - 50, calendar.get(Calendar.YEAR));
+                mTimerPickerView.setTime(new Date());
+                mTimerPickerView.setCyclic(false);
                 mTimerPickerView.setTitle("选择生日");
+                mTimerPickerView.setOnTimeSelectListener(onTimeSelectListener);
                 mTimerPickerView.show();
             }
         });
@@ -177,20 +192,15 @@ public class RegisterSettingActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 mIsBirthday = false;
+                mTimerPickerView = new TimePickerView(RegisterSettingActivity.this, TimePickerView.Type.YEAR);
+                //控制时间范围
+                Calendar calendar = Calendar.getInstance();
+                mTimerPickerView.setRange(calendar.get(Calendar.YEAR) - 50, calendar.get(Calendar.YEAR));
+                mTimerPickerView.setTime(new Date());
+                mTimerPickerView.setCyclic(false);
                 mTimerPickerView.setTitle("选择信主时间");
+                mTimerPickerView.setOnTimeSelectListener(onTimeSelectListener);
                 mTimerPickerView.show();
-            }
-        });
-        mTimerPickerView.setOnTimeSelectListener(new TimePickerView.OnTimeSelectListener() {
-            @Override
-            public void onTimeSelect(Date date) {
-                if (mIsBirthday) {
-                    mBirthday = new SimpleDateFormat("yyyy-MM-dd").format(date);
-                    mBirthdayTextView.setText(mBirthday);
-                    return;
-                }
-                mBelieveDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
-                mBelieveDateTextView.setText(mBelieveDate);
             }
         });
     }
@@ -237,7 +247,7 @@ public class RegisterSettingActivity extends BaseActivity {
     }
 
     private void uploadAvatar(String token) {
-        QiNiuUtils.upLoadFile(new File(getFilesDir() + "/Avatar.png").getAbsolutePath(), token, new UpCompletionHandler() {
+        QiNiuUtils.upLoadFile(new File(mAvatarUri.getPath()).getAbsolutePath(), token, new UpCompletionHandler() {
             @Override
             public void complete(String key, ResponseInfo info, JSONObject response) {
                 if (!info.isOK()) {
