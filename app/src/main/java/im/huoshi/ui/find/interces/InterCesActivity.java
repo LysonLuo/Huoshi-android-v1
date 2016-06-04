@@ -81,8 +81,12 @@ public class InterCesActivity extends BaseActivity {
                         LogUtils.d("lyson", "asyn contacts success");
                         List<Contacts> contactsList = new Gson().fromJson(responseString, new TypeToken<List<Contacts>>() {
                         }.getType());
-                        mContactsDao.saveContactsList(contactsList);
                         mAuthDialog.updateUI();
+
+                        if (contactsList.size() <= 0){
+                            return;
+                        }
+                        mContactsDao.saveContactsList(contactsList);
                     }
 
                     @Override

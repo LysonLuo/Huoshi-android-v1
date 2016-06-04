@@ -54,7 +54,9 @@ public class AsynDataService extends Service {
         public void asynContacts(final BaseActivity activity, final int userId) {
             LogUtils.d("lyson", "get contacts from phone");
             List<Contacts> contactsList = ContactsDao.getRawContacts();
-            mContactsDao.saveContactsList(contactsList);
+            if (contactsList.size() <= 0) {
+                return;
+            }
             String contacts = new Gson().toJson(contactsList);
             ContactsRequest.asynContacts(activity, userId, contacts, new RestApiCallback() {
                 @Override

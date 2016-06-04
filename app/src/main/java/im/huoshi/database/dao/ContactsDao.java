@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.net.Uri;
 import android.provider.ContactsContract;
+import android.util.Log;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.misc.TransactionManager;
@@ -58,6 +59,11 @@ public class ContactsDao {
                 }
                 contact.setContactsId(contactsId);
                 contact.setContactsName(contactsName);
+                //跳过电话为空的联系人，不然会抛错啊
+                if (stringBuilder.length() == 0) {
+                    Log.d("alpha", contactsName);
+                    continue;
+                }
                 contact.setPhones(stringBuilder.toString().substring(0, stringBuilder.toString().length() - 1));
                 contacts.add(contact);
                 if (phones != null) {
@@ -72,6 +78,8 @@ public class ContactsDao {
         }
         return contacts;
     }
+
+
 
     /**
      * 保存联系人列表
