@@ -78,6 +78,10 @@ public class ShareUtils {
         }
     }
 
+    public static void shareOnlyText(){
+
+    }
+
     public static void updateShareRecord(BaseActivity activity) {
         ShareRequest.shareRecord(activity, UserPreference.getInstance().getUser().getUserId(), new RestApiCallback() {
             @Override
@@ -97,7 +101,7 @@ public class ShareUtils {
 
     public static void smsShare(final BaseActivity activity) {
         new ShareAction(activity).setPlatform(SHARE_MEDIA.SMS)
-                .withText("我发现一个主内工具类APP，不但可以读圣经看注释，最酷的是能手机上代祷，强烈推荐！我已经下载了，你快下载试试！地址：http://www.huoshi.im;（放心，这不是病毒，哈哈哈）")
+                .withText("我发现一个主内工具类APP，不但可以读圣经看注释，最酷的是能手机上代祷，强烈推荐！我已经下载了，你快下载试试！地址：http://www.fir.im/huoshi;（放心，这不是病毒，哈哈哈）")
                 .setCallback(new UMShareListener() {
                     @Override
                     public void onResult(SHARE_MEDIA share_media) {
