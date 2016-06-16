@@ -3,6 +3,7 @@ package im.huoshi;
 import android.app.Application;
 import android.content.Context;
 
+import com.alibaba.sdk.android.feedback.impl.FeedbackAPI;
 import com.bugtags.library.Bugtags;
 import com.bugtags.library.BugtagsOptions;
 import com.umeng.socialize.PlatformConfig;
@@ -50,6 +51,11 @@ public class HuoshiApplication extends Application {
         PlatformConfig.setSinaWeibo(BuildConfig.WEIBO_ID, BuildConfig.WEIBO_SECRET);
         // QQ和Qzone appid appkey
         PlatformConfig.setQQZone(BuildConfig.QQ_ID, BuildConfig.QQ_SECRET);
+        initFeedBack();
+    }
+
+    private void initFeedBack() {
+        FeedbackAPI.initAnnoy(this, BuildConfig.FEED_BACK_KEY);
     }
 
     private void copyDataBase() {

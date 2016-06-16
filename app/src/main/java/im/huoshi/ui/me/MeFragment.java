@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.sdk.android.feedback.impl.FeedbackAPI;
 import com.bumptech.glide.Glide;
-import com.umeng.fb.FeedbackAgent;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import im.huoshi.R;
@@ -99,8 +99,7 @@ public class MeFragment extends BaseFragment {
         mRecomTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FeedbackAgent agent = new FeedbackAgent(getActivity());
-                agent.startFeedbackActivity();
+                FeedbackAPI.openFeedbackActivity(getActivity());
             }
         });
         mLogoutTextView.setOnClickListener(new View.OnClickListener() {
