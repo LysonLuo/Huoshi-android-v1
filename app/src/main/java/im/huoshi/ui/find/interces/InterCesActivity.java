@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -22,12 +23,15 @@ import im.huoshi.model.Permission;
 import im.huoshi.ui.me.MyPrayerActivity;
 import im.huoshi.utils.LogUtils;
 import im.huoshi.utils.ShareUtils;
+import im.huoshi.utils.ViewInject;
 import im.huoshi.utils.ViewUtils;
 
 /**
  * Created by Lyson on 15/12/26.
  */
 public class InterCesActivity extends BaseActivity {
+    @ViewInject(R.id.iv_blur)
+    private ImageView mIvBlur;
     private NewIntercesFragment mInterCesFragment;
     private AuthDialog mAuthDialog;
     private Permission mPermission;
@@ -83,7 +87,7 @@ public class InterCesActivity extends BaseActivity {
                         }.getType());
                         mAuthDialog.updateUI();
 
-                        if (contactsList.size() <= 0){
+                        if (contactsList.size() <= 0) {
                             return;
                         }
                         mContactsDao.saveContactsList(contactsList);
@@ -102,7 +106,7 @@ public class InterCesActivity extends BaseActivity {
             @Override
             public void OnMsg() {
                 mAuthDialog.dismiss();
-                ShareUtils.smsShare(InterCesActivity.this);
+                ShareUtils.smsShare(InterCesActivity.this, null);
                 finish();
             }
         });
@@ -130,10 +134,12 @@ public class InterCesActivity extends BaseActivity {
 
     private void showDialogByPermission() {
         if (mPermission.isAuth() == 1 && mPermission.getPermission() == 1) {
+            mIvBlur.setVisibility(View.GONE);
             initFragment();
             return;
         }
         if (mPermission.isAuth() == 1 && mPermission.getPermission() != 1) {
+            mIvBlur.setVisibility(View.VISIBLE);
             mAuthDialog.updateUI();
 
         }

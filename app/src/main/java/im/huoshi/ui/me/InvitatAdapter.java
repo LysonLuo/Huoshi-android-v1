@@ -60,7 +60,7 @@ public class InvitatAdapter extends RecyclerView.Adapter<InvitatAdapter.InvitatV
             holder.tvContactStatus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ShareUtils.init((BaseActivity) mContext, new ShareUtils.UmengShareListener() {
+                    ShareUtils.smsShare((BaseActivity) mContext, new ShareUtils.UmengShareListener() {
                         @Override
                         public void onSuccess() {
                             holder.tvContactStatus.setTextColor(ContextCompat.getColor(mContext, R.color.text_color_invitat));

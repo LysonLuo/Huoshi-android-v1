@@ -148,7 +148,7 @@ public class SectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                             return;
                         }
                         //分享
-                        ShareUtils.init((BaseActivity) mContext);
+                        ShareUtils.initOnlyText((BaseActivity) mContext, detailHolder.mContentTextView.getText().toString());
                         popupUtils.dismiss();
                     }
                 });

@@ -43,68 +43,68 @@
                     android:textColor="@color/text_color_white"
                     android:textSize="20sp" />
 
-                <!--<TextView-->
-                <!--android:id="@+id/toolbar_right_view"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_alignParentRight="true"-->
-                <!--android:layout_centerVertical="true"-->
-                <!--android:background="@drawable/shape_white_rec_blue_solid"-->
-                <!--android:gravity="center"-->
-                <!--android:paddingBottom="@dimen/margin_5"-->
-                <!--android:paddingLeft="@dimen/margin_10"-->
-                <!--android:paddingRight="@dimen/margin_10"-->
-                <!--android:paddingTop="@dimen/margin_5"-->
-                <!--android:text="分享"-->
-                <!--android:textColor="@color/text_color_white" />-->
-
-                <!--<TextView-->
-                <!--android:id="@+id/toolbar_middle_right_view"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_centerVertical="true"-->
-                <!--android:layout_marginRight="@dimen/margin_16"-->
-                <!--android:layout_toLeftOf="@+id/toolbar_right_view"-->
-                <!--android:background="@drawable/shape_white_rec_blue_solid"-->
-                <!--android:gravity="center"-->
-                <!--android:paddingBottom="@dimen/margin_5"-->
-                <!--android:paddingLeft="@dimen/margin_10"-->
-                <!--android:paddingRight="@dimen/margin_10"-->
-                <!--android:paddingTop="@dimen/margin_5"-->
-                <!--android:text="祝福"-->
-                <!--android:textColor="@color/text_color_white" />-->
+                <TextView
+                android:id="@+id/toolbar_right_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/shape_white_rec_blue_solid"
+                android:gravity="center"
+                android:paddingBottom="@dimen/margin_5"
+                android:paddingLeft="@dimen/margin_10"
+                android:paddingRight="@dimen/margin_10"
+                android:paddingTop="@dimen/margin_5"
+                android:text="分享"
+                android:textColor="@color/text_color_white" />
 
                 <TextView
-                    android:id="@+id/toolbar_right_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/shape_white_rec_blue_solid"
-                    android:gravity="center"
-                    android:paddingBottom="@dimen/margin_5"
-                    android:paddingLeft="@dimen/margin_10"
-                    android:paddingRight="@dimen/margin_10"
-                    android:paddingTop="@dimen/margin_5"
-                    android:text="分享"
-                    android:textColor="@color/text_color_white"
-                    android:visibility="gone" />
+                android:id="@+id/toolbar_middle_right_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/margin_16"
+                android:layout_toLeftOf="@+id/toolbar_right_view"
+                android:background="@drawable/shape_white_rec_blue_solid"
+                android:gravity="center"
+                android:paddingBottom="@dimen/margin_5"
+                android:paddingLeft="@dimen/margin_10"
+                android:paddingRight="@dimen/margin_10"
+                android:paddingTop="@dimen/margin_5"
+                android:text="祝福"
+                android:textColor="@color/text_color_white" />
 
-                <TextView
-                    android:id="@+id/toolbar_middle_right_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/toolbar_right_view"
-                    android:background="@drawable/shape_white_rec_blue_solid"
-                    android:gravity="center"
-                    android:paddingBottom="@dimen/margin_5"
-                    android:paddingLeft="@dimen/margin_10"
-                    android:paddingRight="@dimen/margin_10"
-                    android:paddingTop="@dimen/margin_5"
-                    android:text="祝福"
-                    android:textColor="@color/text_color_white" />
+                <!--<TextView-->
+                    <!--android:id="@+id/toolbar_right_view"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:background="@drawable/shape_white_rec_blue_solid"-->
+                    <!--android:gravity="center"-->
+                    <!--android:paddingBottom="@dimen/margin_5"-->
+                    <!--android:paddingLeft="@dimen/margin_10"-->
+                    <!--android:paddingRight="@dimen/margin_10"-->
+                    <!--android:paddingTop="@dimen/margin_5"-->
+                    <!--android:text="分享"-->
+                    <!--android:textColor="@color/text_color_white"-->
+                    <!--android:visibility="gone" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/toolbar_middle_right_view"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_toLeftOf="@+id/toolbar_right_view"-->
+                    <!--android:background="@drawable/shape_white_rec_blue_solid"-->
+                    <!--android:gravity="center"-->
+                    <!--android:paddingBottom="@dimen/margin_5"-->
+                    <!--android:paddingLeft="@dimen/margin_10"-->
+                    <!--android:paddingRight="@dimen/margin_10"-->
+                    <!--android:paddingTop="@dimen/margin_5"-->
+                    <!--android:text="祝福"-->
+                    <!--android:textColor="@color/text_color_white" />-->
 
 
             </RelativeLayout>

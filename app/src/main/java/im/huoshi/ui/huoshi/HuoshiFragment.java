@@ -182,7 +182,7 @@ public class HuoshiFragment extends BaseFragment {
                 DailyAsked dailyAsked = new Gson().fromJson(responseString, new TypeToken<DailyAsked>() {
                 }.getType());
 
-                mLocalRead.saveDailyAsked(dailyAsked);
+                mLocalRead.saveDailyAsked(dailyAsked, 0);
                 setupViewsByDailyAsked(dailyAsked);
             }
 

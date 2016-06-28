@@ -96,13 +96,13 @@ public class ReadPreference {
      *
      * @param dailyAsked
      */
-    public void saveDailyAsked(DailyAsked dailyAsked) {
+    public void saveDailyAsked(DailyAsked dailyAsked, long daylyAskedTime) {
         SharedPreferences.Editor editor = mPreference.edit();
         editor.putInt("question_id", dailyAsked.getQuestionId());
         editor.putString("title", dailyAsked.getTitle());
         editor.putString("content", dailyAsked.getContent());
         editor.putString("url", dailyAsked.getUrl());
-        editor.putLong("last_daily_asked_time", System.currentTimeMillis());
+        editor.putLong("last_daily_asked_time", daylyAskedTime == 0 ? System.currentTimeMillis() : daylyAskedTime);
         editor.apply();
     }
 
@@ -114,6 +114,7 @@ public class ReadPreference {
     public long getDailyAskedTime() {
         return mPreference.getLong("last_daily_asked_time", 0);
     }
+
 
     /**
      * 获取今日一问
@@ -301,12 +302,13 @@ public class ReadPreference {
         int shareNumber = mPreference.getInt("share_number", 0);
         LastHistory lastHistory = getLastHistory();
         DailyAsked dailyAsked = getDailyAsked();
+        long dailyAskedTime = getDailyAskedTime();
         SharedPreferences.Editor editor = mPreference.edit();
         editor.clear();
         editor.putString("share_today", shareToday);
         editor.putInt("share_number", shareNumber);
         saveLastHistory(lastHistory);
-        saveDailyAsked(dailyAsked);
+        saveDailyAsked(dailyAsked, dailyAskedTime);
         editor.apply();
     }
 

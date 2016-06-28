@@ -22,6 +22,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import im.huoshi.BuildConfig;
 import im.huoshi.R;
 import im.huoshi.asynapi.callback.RestApiCallback;
 import im.huoshi.asynapi.request.InterCesRequest;
@@ -96,7 +97,8 @@ public class InterCesDetailsActivity extends BaseActivity {
         mRightTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShareUtils.init(InterCesDetailsActivity.this);
+                //// TODO: 16/6/23 代祷详情分享地址
+                ShareUtils.init(InterCesDetailsActivity.this, "我在「活石」上参与了一个代祷，邀请你一起来 ", BuildConfig.WEB_URI + "intercession/index.php?user_id=" + mLocalUser.getUser().getUserId() + "&intercession_id=" + mIntercession.getIntercessionId());
             }
         });
         mMiddleRightTextView.setOnClickListener(new View.OnClickListener() {
@@ -193,7 +195,8 @@ public class InterCesDetailsActivity extends BaseActivity {
 
             @Override
             public void onShare() {
-                ShareUtils.init(InterCesDetailsActivity.this);
+                //// TODO: 16/6/23 代祷详情分享地址
+                ShareUtils.init(InterCesDetailsActivity.this, "我在「活石」上参与了一个代祷，邀请你一起来 ", BuildConfig.WEB_URI + "intercession/index.php?user_id=" + mLocalUser.getUser().getUserId() + "&intercession_id=" + mIntercession.getIntercessionId());
             }
 
             @Override
