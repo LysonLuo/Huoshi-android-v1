@@ -15,7 +15,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import im.huoshi.R;
 import im.huoshi.base.BaseActivity;
 import im.huoshi.base.BaseFragment;
-import im.huoshi.data.ReadPreference;
 import im.huoshi.ui.main.LoginActivity;
 import im.huoshi.ui.main.MainActivity;
 import im.huoshi.utils.ViewInject;
@@ -105,9 +104,11 @@ public class MeFragment extends BaseFragment {
         mLogoutTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mLocalUser.logout();
-                ReadPreference.getInstance().clearData();
-                LoginActivity.launch((MainActivity) getActivity());
+                if (isLogin()) {
+                    mLocalUser.logout();
+                    mLocalRead.clearData();
+                    LoginActivity.launch((MainActivity) getActivity());
+                }
             }
         });
         mCheckUpdateTextview.setOnClickListener(new View.OnClickListener() {

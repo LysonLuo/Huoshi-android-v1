@@ -64,7 +64,7 @@ public class InterCesDialog extends AppCompatDialog {
     }
 
     private void setupViews(int totalTimes) {
-        mTotalTimesTextView.setText("这是你第" + totalTimes + "次代祷");
+        mTotalTimesTextView.setText("这是你第" + (totalTimes + 1) + "次代祷");
         mPubBlessTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

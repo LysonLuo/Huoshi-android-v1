@@ -101,7 +101,10 @@ public class HuoshiFragment extends BaseFragment {
         mLlDailyAsked.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), DailyAskedDetailActivity.class));
+                DailyAsked dailyAsked = mLocalRead.getDailyAsked();
+                if (dailyAsked.getQuestionId() != 0 && !TextUtils.isEmpty(dailyAsked.getContent())) {
+                    startActivity(new Intent(getActivity(), DailyAskedDetailActivity.class));
+                }
             }
         });
         mTvInterces.setOnClickListener(new View.OnClickListener() {
@@ -208,6 +211,6 @@ public class HuoshiFragment extends BaseFragment {
     }
 
     private void addSearchFragment() {
-        ((MainActivity)getActivity()).addSearchFragment();
+        ((MainActivity) getActivity()).addSearchFragment();
     }
 }

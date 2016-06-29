@@ -1,5 +1,6 @@
 package im.huoshi.utils;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import im.huoshi.BuildConfig;
@@ -13,7 +14,7 @@ public class LogUtils {
     private static boolean IS_DEBUG = BuildConfig.DEBUG;
 
     public static void d(String tag, String msg) {
-        if (!IS_DEBUG) return;
+        if (!IS_DEBUG || TextUtils.isEmpty(msg)) return;
         Log.d(tag, msg);
     }
 }

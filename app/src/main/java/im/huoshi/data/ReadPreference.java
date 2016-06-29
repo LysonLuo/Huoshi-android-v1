@@ -307,9 +307,9 @@ public class ReadPreference {
         editor.clear();
         editor.putString("share_today", shareToday);
         editor.putInt("share_number", shareNumber);
+        editor.apply();
         saveLastHistory(lastHistory);
         saveDailyAsked(dailyAsked, dailyAskedTime);
-        editor.apply();
     }
 
     public void updateTotalShareTimes(int totalShareTimes) {

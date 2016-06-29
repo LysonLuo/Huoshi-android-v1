@@ -63,7 +63,7 @@ public class ShareUtils {
                 .withText("活石App，能代祷的主内工具")
                 .withTitle(shareTitle)
                 .withTargetUrl(url)
-                .withMedia(new UMImage(activity, R.mipmap.ic_launcher))
+                .withMedia(new UMImage(activity, R.mipmap.icon_share_logo))
                 .setCallback(new UMShareListener() {
                     @Override
                     public void onResult(SHARE_MEDIA share_media) {
