@@ -24,9 +24,9 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false//混淆代码
+            minifyEnabled true//混淆代码
             debuggable true//开发日志
-            shrinkResources false//优化资源
+            shrinkResources true//优化资源
             versionNameSuffix "1.0." + new Date().format('yyyyMMdd')
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
