@@ -6,6 +6,8 @@ import android.content.Context;
 import com.alibaba.sdk.android.feedback.impl.FeedbackAPI;
 import com.bugtags.library.Bugtags;
 import com.bugtags.library.BugtagsOptions;
+import com.mcxiaoke.packer.helper.PackerNg;
+import com.umeng.analytics.MobclickAgent;
 import com.umeng.socialize.PlatformConfig;
 
 import java.io.File;
@@ -52,6 +54,7 @@ public class HuoshiApplication extends Application {
         // QQ和Qzone appid appkey
         PlatformConfig.setQQZone(BuildConfig.QQ_ID, BuildConfig.QQ_SECRET);
         initFeedBack();
+        initChannels();
     }
 
     private void initFeedBack() {
@@ -85,5 +88,12 @@ public class HuoshiApplication extends Application {
         String dbPath = Constants.DATA_BASE_DIR + Constants.DATA_BASE_NAME;
         File dbFile = new File(dbPath);
         return dbFile.exists();
+    }
+
+    private void initChannels() {
+        String market = PackerNg.getMarket(this);
+        MobclickAgent.UMAnalyticsConfig config = new MobclickAgent.UMAnalyticsConfig(this, "569ef0fc67e58e17180015bb", market);
+        MobclickAgent.startWithConfigure(config);
+
     }
 }

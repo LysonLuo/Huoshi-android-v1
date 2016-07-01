@@ -12,7 +12,6 @@ import com.umeng.socialize.UMShareAPI;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
-import im.huoshi.BuildConfig;
 import im.huoshi.R;
 import im.huoshi.base.BaseActivity;
 import im.huoshi.model.event.ShareEvent;
@@ -52,7 +51,7 @@ public class ShareHuoshiActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //// TODO: 16/6/23 下载链接
-                ShareUtils.init(ShareHuoshiActivity.this, "跟你分享一个能代祷的主内App工具。", BuildConfig.WEB_URI + "intercession/download.php");
+                ShareUtils.init(ShareHuoshiActivity.this, "跟你分享一个能代祷的主内App工具。", "https://www.pgyer.com/huoshi");
             }
         });
     }

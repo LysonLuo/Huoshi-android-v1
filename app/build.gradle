@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'packer'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -25,13 +26,13 @@ android {
     buildTypes {
         release {
             minifyEnabled true//混淆代码
-            debuggable true//开发日志
+            debuggable false//开发日志
             shrinkResources true//优化资源
             versionNameSuffix "1.0." + new Date().format('yyyyMMdd')
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "API_URI", '\"http://huoshi.im/bible/frontend/web/index.php/\"'
-            buildConfigField "String", "WEB_URI", '\"http://huoshi.im/bible/\"'
+            buildConfigField "String", "API_URI", '\"http://www.huoshi.im/bible/frontend/web/index.php/\"'
+            buildConfigField "String", "WEB_URI", '\"http://www.huoshi.im/bible/\"'
             buildConfigField "String", "APP_KEY", '\"8B79509E413BBFD5470D1A219C31E67B180CD2CE\"'
             buildConfigField "String", "APP_SECRET", '\"31DAB2BF005BE3312CF50577562D0D5367368D42\"'
             buildConfigField "String", "APP_PRIVATE_KEY", '\"huoshi2016!\"'
@@ -45,6 +46,18 @@ android {
             buildConfigField "String", "FEED_BACK_KEY", '\"23388458\"'
         }
     }
+}
+
+packer {
+    // 指定渠道打包输出目录
+     archiveOutput = file(new File(project.rootProject.buildDir.path, "archives"))
+    // 指定渠道打包输出文件名格式
+    // 默认是 `${appPkg}-${flavorName}-${buildType}-v${versionName}-${versionCode}`
+     archiveNameFormat = 'v${versionName}-${flavorName}-${versionCode}'
+    // 是否检查Gradle配置中的signingConfig，默认不检查
+    // checkSigningConfig = false
+    // 是否检查Gradle配置中的zipAlignEnabled，默认不检查
+    // checkZipAlign = false
 }
 
 dependencies {
@@ -77,4 +90,5 @@ dependencies {
     compile files('libs/SocialSDK_sms.jar')
     compile project(path: ':pickerview')
     compile project(path: ':OneSDK')//百川意见反馈
+    compile 'com.mcxiaoke.gradle:packer-helper:1.0.5'//多渠道打包，https://github.com/mcxiaoke/packer-ng-plugin
 }
